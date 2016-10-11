@@ -33,7 +33,7 @@ public class FinanceFragment extends BaseFragment implements FinanceView{
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_finance,container,false);
         view = binding.getRoot();
-        mModel = new FinanceViewModelImpl(entity,this,getContext());
+        mModel = new FinanceViewModelImpl(entity,this,getContext(),getActivity());
         binding.setHandler(mModel);
         binding.setEntity(entity);
 

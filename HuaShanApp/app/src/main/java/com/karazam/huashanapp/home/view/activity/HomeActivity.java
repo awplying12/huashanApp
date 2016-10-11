@@ -17,6 +17,7 @@ import com.karazam.huashanapp.home.model.databinding.HomeEntity;
 import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModel;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModelImpl;
+import com.karazam.huashanapp.manage.view.fragment.ManageFragment;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
     private int isSelected;
     private int isDefault;
 
-    private FinanceFragment financeFragment;
+    private FinanceFragment financeFragment = new FinanceFragment();
+    private ManageFragment manageFragment = new ManageFragment();
 
 
 
@@ -83,8 +85,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
      */
     private void setViewPager() {
         ArrayList<Fragment> list = new ArrayList<>();
-        list.add(new FinanceFragment());
-        list.add(new FinanceFragment());
+        list.add(financeFragment);
+        list.add(manageFragment);
         list.add(new FinanceFragment());
         list.add(new FinanceFragment());
 

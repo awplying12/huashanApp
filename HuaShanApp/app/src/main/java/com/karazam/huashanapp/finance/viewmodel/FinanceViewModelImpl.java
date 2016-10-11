@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.finance.viewmodel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
@@ -15,15 +16,17 @@ public class FinanceViewModelImpl extends FinanceViewModel {
     private FinanceEntity mEntity;
     private FinanceView mView;
     private Context context;
+    private Activity activity;
 
-    public FinanceViewModelImpl(FinanceEntity mEntity, FinanceView mView, Context context) {
+    public FinanceViewModelImpl(FinanceEntity mEntity, FinanceView mView, Context context, Activity activity) {
         this.mEntity = mEntity;
         this.mView = mView;
         this.context = context;
+        this.activity = activity;
     }
 
     @Override
     public void onBack(View view) {
-
+            mView.FinishActivity(activity);
     }
 }
