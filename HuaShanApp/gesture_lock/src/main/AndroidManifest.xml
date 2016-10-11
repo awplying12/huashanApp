@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="huashanapp.karazam.com.gesture_lock">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".GestureEditActivity"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+
+        <activity
+            android:name=".GestureVerifyActivity"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+
+    </application>
+
+</manifest>
