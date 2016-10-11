@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+
+    //下面这两句在创建项目时不会自动生成，必需加上，是为了引用Java8的。
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+   // classpath "io.realm:realm-gradle-plugin:1.1.0"
+    compile 'io.realm:realm-android:0.84.1'
+    //    classpath "io.realm:realm-gradle-plugin:1.2.0"
+    testCompile 'junit:junit:4.12'
+}

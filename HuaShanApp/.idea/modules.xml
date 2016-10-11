@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HuaShanApp.iml" filepath="$PROJECT_DIR$/HuaShanApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cacheutils/cacheutils.iml" filepath="$PROJECT_DIR$/cacheutils/cacheutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/gesture_lock/gesture_lock.iml" filepath="$PROJECT_DIR$/gesture_lock/gesture_lock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" />
     </modules>
   </component>
 </project>

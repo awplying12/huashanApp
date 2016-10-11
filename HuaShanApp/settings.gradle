@@ -1,1 +1,1 @@
-include ':app', ':gesture_lock'
+include ':app', ':gesture_lock', ':utils', ':cacheutils'
