@@ -7,4 +7,6 @@ import com.example.utils.base.BaseView;
  */
 
 public interface HomeView extends BaseView{
+
+    void setViewPagerCurrentItem(int position, String titleStr);
 }

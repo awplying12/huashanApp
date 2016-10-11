@@ -12,150 +12,207 @@
             ></variable>
     </data>
 
-    <android.support.percent.PercentRelativeLayout
+    <android.support.percent.PercentFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_above="@+id/bottom_home"
-            />
-
         <LinearLayout
-            android:id="@+id/bottom_home"
+            android:id="@+id/title_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_alignParentBottom="true"
-            app:layout_heightPercent="13%">
+            android:background="@color/title_color"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            >
 
-            <LinearLayout
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:descendantFocusability="beforeDescendants"
-                android:gravity="center"
-
-                android:orientation="vertical">
+                android:paddingLeft="20dp">
 
                 <ImageView
 
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="5dp"
-                    android:background="#000"
-                />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="金融"
-                    android:textSize="@dimen/homeactivity_bottom_text_size"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:descendantFocusability="beforeDescendants"
-                android:gravity="center"
-
-                android:orientation="vertical">
-
-                <ImageView
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="5dp"
-                    android:background="#000"
-                />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="理财"
-                    android:textSize="@dimen/homeactivity_bottom_text_size"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:descendantFocusability="beforeDescendants"
-                android:gravity="center"
-
-                android:orientation="vertical">
-
-                <ImageView
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="5dp"
-                    android:background="#000"
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="7%"
+                    android:layout_height="match_parent"
                     />
 
-                <TextView
+            </android.support.percent.PercentRelativeLayout>
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="金融"
+                android:textColor="#fff"
+                android:textSize="@dimen/title_text_size"/>
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="申请"
-                    android:textSize="@dimen/homeactivity_bottom_text_size"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:descendantFocusability="beforeDescendants"
-                android:gravity="center"
-
-                android:orientation="vertical">
+                android:paddingRight="20dp">
 
                 <ImageView
 
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="5dp"
-                    android:background="#000"
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
                     />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="我的"
-                    android:textSize="@dimen/homeactivity_bottom_text_size"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
+            </android.support.percent.PercentRelativeLayout>
         </LinearLayout>
 
-        <com.example.utils.custom.ScrollableViewPager
-            android:id="@+id/viewpager_home"
-            android:background="#000"
+        <android.support.percent.PercentRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            app:layout_heightPercent="87%">
+            app:layout_heightPercent="92%"
+            android:layout_gravity="bottom"
+            >
 
-        </com.example.utils.custom.ScrollableViewPager>
 
-    </android.support.percent.PercentRelativeLayout>
+
+            <com.example.utils.custom.ScrollableViewPager
+                android:id="@+id/viewpager_home"
+                android:background="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                app:layout_heightPercent="87%">
+
+            </com.example.utils.custom.ScrollableViewPager>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/bottom_home"
+                />
+
+            <LinearLayout
+                android:id="@+id/bottom_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_alignParentBottom="true"
+                app:layout_heightPercent="13%">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:descendantFocusability="beforeDescendants"
+                    android:gravity="center"
+                    android:onClick="@{handler.toFinanec}"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
+                        android:background="#000"
+                    />
+
+                    <TextView
+                        android:id="@+id/finance_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="金融"
+                        android:textSize="@dimen/homeactivity_bottom_text_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:descendantFocusability="beforeDescendants"
+                    android:gravity="center"
+                    android:onClick="@{handler.toManage}"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
+                        android:background="#000"
+                    />
+
+                    <TextView
+                        android:id="@+id/manage_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="理财"
+                        android:textSize="@dimen/homeactivity_bottom_text_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:descendantFocusability="beforeDescendants"
+                    android:gravity="center"
+                    android:onClick="@{handler.toApply}"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
+                        android:background="#000"
+                        />
+
+                    <TextView
+                        android:id="@+id/apply_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="申请"
+                        android:textSize="@dimen/homeactivity_bottom_text_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:descendantFocusability="beforeDescendants"
+                    android:gravity="center"
+                    android:onClick="@{handler.toMy}"
+                    android:orientation="vertical">
+
+                    <ImageView
+
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
+                        android:background="#000"
+                        />
+
+                    <TextView
+                        android:id="@+id/my_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="我的"
+                        android:textSize="@dimen/homeactivity_bottom_text_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.percent.PercentRelativeLayout>
+
+    </android.support.percent.PercentFrameLayout>
 </layout>

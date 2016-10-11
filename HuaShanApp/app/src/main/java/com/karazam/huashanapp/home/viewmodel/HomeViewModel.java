@@ -1,5 +1,7 @@
 package com.karazam.huashanapp.home.viewmodel;
 
+import android.view.View;
+
 import com.example.utils.base.BaseViewModel;
 
 /**
@@ -7,4 +9,14 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class HomeViewModel extends BaseViewModel{
+
+    public abstract void toFinanec(View view);
+
+    public abstract void toManage(View view);
+
+    public abstract void toApply(View view);
+
+    public abstract void toMy(View view);
+
+
 }

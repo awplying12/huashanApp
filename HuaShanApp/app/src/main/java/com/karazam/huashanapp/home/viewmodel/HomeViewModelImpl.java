@@ -29,4 +29,40 @@ public class HomeViewModelImpl extends HomeViewModel {
     public void onBack(View view) {
         mView.FinishActivity(activity);
     }
+
+    /**
+     * 金融Fragmetn
+     * @param view
+     */
+    @Override
+    public void toFinanec(View view) {
+        mView.setViewPagerCurrentItem(0,"金融");
+    }
+
+    /**
+     * 理财Fragment
+     * @param view
+     */
+    @Override
+    public void toManage(View view) {
+        mView.setViewPagerCurrentItem(1,"理财");
+    }
+
+    /**
+     * 申请Fragment
+     * @param view
+     */
+    @Override
+    public void toApply(View view) {
+        mView.setViewPagerCurrentItem(2,"申请");
+    }
+
+    /**
+     * 我的Fragment
+     * @param view
+     */
+    @Override
+    public void toMy(View view) {
+        mView.setViewPagerCurrentItem(3,"我的");
+    }
 }
