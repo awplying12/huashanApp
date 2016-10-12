@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
 import com.example.utils.Adapter.PagerFragmentAdapter;
@@ -11,6 +12,7 @@ import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.ScrollableViewPager;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
+import com.karazam.huashanapp.apply.view.fragment.ApplyFragment;
 import com.karazam.huashanapp.databinding.ActivityHomeBinding;
 import com.karazam.huashanapp.finance.view.fragment.FinanceFragment;
 import com.karazam.huashanapp.home.model.databinding.HomeEntity;
@@ -18,6 +20,7 @@ import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModel;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModelImpl;
 import com.karazam.huashanapp.manage.view.fragment.ManageFragment;
+import com.karazam.huashanapp.my.view.fragment.MyFragment;
 
 import java.util.ArrayList;
 
@@ -45,6 +48,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
     private FinanceFragment financeFragment = new FinanceFragment();
     private ManageFragment manageFragment = new ManageFragment();
+    private ApplyFragment applyFragment = new ApplyFragment();
+    private MyFragment myFragment = new MyFragment();
 
 
 
@@ -87,12 +92,44 @@ public class HomeActivity extends BaseActivity implements HomeView {
         ArrayList<Fragment> list = new ArrayList<>();
         list.add(financeFragment);
         list.add(manageFragment);
-        list.add(new FinanceFragment());
-        list.add(new FinanceFragment());
+        list.add(applyFragment);
+        list.add(myFragment);
 
         viewPager.setScrollAble(false);
         viewPager.setOffscreenPageLimit(limit); //设置viewpager缓存一侧Fragment的数量
         viewPager.setAdapter(new PagerFragmentAdapter(getSupportFragmentManager(), list));
+
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        mModel.toFinanec(null);
+                        break;
+                    case 1:
+                        mModel.toManage(null);
+                        break;
+                    case 2:
+                        mModel.toApply(null);
+                        break;
+                    case 3:
+                        mModel.toMy(null);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         viewPager.setCurrentItem(0);
         finance_text.setTextColor(isSelected);
