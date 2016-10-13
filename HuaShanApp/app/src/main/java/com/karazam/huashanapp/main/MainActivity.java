@@ -1,17 +1,15 @@
-package com.karazam.huashanapp;
+package com.karazam.huashanapp.main;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.karazam.huashanapp.R;
 
 import huashanapp.karazam.com.gesture_lock.GestureEditActivity;
 import huashanapp.karazam.com.gesture_lock.GestureUtil;
