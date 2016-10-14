@@ -62,10 +62,13 @@ public class PercentLemon extends View {
 	private static final boolean localLOG = false;
 
 	/** 默认的中心圆颜色 */
-	private static final int DEFAULT_HEART_COLOR_NORMAL = 0xFF373737;
+
+//	private static final int DEFAULT_HEART_COLOR_NORMAL = 0xFF373737;
+	private static final int DEFAULT_HEART_COLOR_NORMAL = 0xFFFFFF;
 
 	/** 默认的中心圆点击颜色 */
-	private static final int DEFAULT_HEART_COLOR_CLICKED = 0XFF33B6EA;
+//	private static final int DEFAULT_HEART_COLOR_CLICKED = 0XFF33B6EA;
+	private static final int DEFAULT_HEART_COLOR_CLICKED = 0xFFFFFF;
 
 	/** 默认的外圆环起始颜色（百分比为0） */
 	private static final int DEFAULT_SKIN_START_COLOR = 0xFFFF0000;
@@ -75,6 +78,7 @@ public class PercentLemon extends View {
 
 	/** 默认的文本颜色（百分比为0） */
 	private static final int DEFAULT_TEXT_COLOR = 0xFFFFFFFF;
+
 
 	/** 默认的外圆环宽度在整个半径中所占份额（共100份） */
 	private static final int DEFAULT_SKIN_DEPTH = 15;
@@ -230,6 +234,26 @@ public class PercentLemon extends View {
 			mSkinPaint.setColor(DEFAULT_SKIN_INVALID_COLOR);
 			canvas.drawArc(mBounds, -90 + radianAngle, 360 - radianAngle,
 					false, mSkinPaint);
+//			if(mPercent == 100){
+//				String percentText = mPercentFormat.format(mPercent);
+//				setRawTextSize(mHeartRadius / 2);
+//				float mTxtWidth = mTextPaint.measureText(percentText, 0,
+//						percentText.length());
+//				FontMetrics fm = mTextPaint.getFontMetrics();
+//				float mTxtHeight = (int) Math.ceil(fm.descent - fm.ascent);
+//				setRawTextSize(mHeartRadius / 4);
+//				float mTxtWidth2 = mTextPaint.measureText("%", 0, 1);
+//				float mTxtHeight2 = (int) Math.ceil(fm.descent - fm.ascent);
+//				setRawTextSize(mHeartRadius / 2);
+//				canvas.drawText("满", mXCenter - (mTxtWidth + mTxtWidth2)
+//						/ 2, mYCenter + mTxtHeight / 4, mTextPaint);
+//				setRawTextSize(mHeartRadius / 4);
+//				canvas.drawText("额", mXCenter - (mTxtWidth2 - mTxtWidth) / 2,
+//						mYCenter + mTxtHeight / 4 + (mTxtHeight - mTxtHeight2) / 2,
+//						mTextPaint);
+//				return;
+//			}
+
 			String percentText = mPercentFormat.format(mPercent);
 			setRawTextSize(mHeartRadius / 2);
 			float mTxtWidth = mTextPaint.measureText(percentText, 0,

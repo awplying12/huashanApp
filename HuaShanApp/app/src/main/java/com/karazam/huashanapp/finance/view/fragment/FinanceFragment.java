@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.finance.view.fragment;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -81,6 +82,8 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
         percentLemon = (PercentLemon) getView(R.id.percentLemon,view);
+        percentLemon.setTextColor(Color.parseColor("#000000"));
+
     }
 
     /**
@@ -118,7 +121,7 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
     public void onRefresh() {
         showToast("Refresh Down");
         float f = random.nextFloat();
-//        percentLemon.animatToPercent((float) 100.00,"");
+//        percentLemon.animatToPercent((float) 100);
 
         percentLemon.animatToPercent(f * 100);
         mSwipeLayout.setRefreshing(false);

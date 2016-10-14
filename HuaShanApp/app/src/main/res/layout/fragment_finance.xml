@@ -233,7 +233,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     app:layout_heightPercent="20%"
-                                    android:background="#caa"
+
                                     android:layout_gravity="top"
                                     android:gravity="right|bottom"
                                     android:paddingRight="20dp"
@@ -259,14 +259,14 @@
                                 <android.support.percent.PercentFrameLayout
                                     android:layout_width="match_parent"
                                     app:layout_heightPercent="60%"
-                                    android:background="#eea"
+
                                     android:layout_gravity="center_vertical"
                                     >
                                     <android.support.percent.PercentFrameLayout
                                         app:layout_widthPercent="60%"
                                         app:layout_heightPercent="100%"
                                         android:layout_gravity="left"
-                                        android:background="#aaf"
+
                                         android:paddingLeft="12dp"
                                         android:paddingRight="12dp"
                                         android:paddingBottom="20dp"
@@ -383,7 +383,7 @@
                                         app:layout_widthPercent="40%"
                                         app:layout_heightPercent="100%"
                                         android:layout_gravity="right"
-                                        android:background="#0ef">
+                                        >
 
                                         <com.example.utils.custom.views.PercentLemon
                                             android:id="@+id/percentLemon"
@@ -402,7 +402,7 @@
                                     android:layout_width="match_parent"
                                     app:layout_heightPercent="20%"
                                     android:layout_gravity="bottom"
-                                    android:background="#cfa"
+
 
                                     >
 
