@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="all_activity_background">#EEEEEE</color>
+
     <color name="line_color">#dddddd</color>
 
     <color name="title_color">#0894EC</color>
@@ -12,4 +14,7 @@
     <color name="homeactivity_textcolor_selected">#0894EC</color>
 
     <color name="homeactivity_textcolor_default">#000</color>
+
+    <!--finance-->
+    <color name="financefragment_calculator_text_color">#FFFFFF</color>
 </resources>
