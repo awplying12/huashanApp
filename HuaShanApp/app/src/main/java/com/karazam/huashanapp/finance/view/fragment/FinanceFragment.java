@@ -21,23 +21,24 @@ import com.karazam.huashanapp.finance.view.fragment.view.AutoScrollAdapter;
 import com.karazam.huashanapp.finance.viewmodel.FinanceViewModel;
 import com.karazam.huashanapp.finance.viewmodel.FinanceViewModelImpl;
 
+import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2016/10/11.
  */
 
 public class FinanceFragment extends BaseFragment implements FinanceView{
 
+    private View view;
+
     private FragmentFinanceBinding binding;
     private FinanceEntity entity = new FinanceEntity();
     private FinanceViewModel mModel;
 
-    private View view;
-
     private AutoScrollViewPager pager;
-
     private ViewGroupIndicator indicator;
-
-    private int[] ids;
+    private AutoScrollAdapter autoScrollAdapter;
+    private ArrayList<Integer> ids;
 
     @Nullable
     @Override
@@ -51,26 +52,11 @@ public class FinanceFragment extends BaseFragment implements FinanceView{
 
         initView();
 
-
-        ids = new int[]{R.drawable.image1,
-                R.drawable.image2,
-                R.drawable.image3,
-                R.drawable.image4,
-                R.drawable.image5,
-                R.drawable.image5};
+        //顶部滚动广告条
+        AutoScrollViewPager();
 
 
 
-        pager.setAdapter(new AutoScrollAdapter(ids,getContext()));
-
-        pager.setOnPageClickListener(new AutoScrollViewPager.OnPageClickListener() {
-            @Override
-            public void onPageClick(AutoScrollViewPager pager, int position) {
-                showToast("12312");
-            }
-        });
-
-        indicator.setParent(pager);
         return view;
     }
 
@@ -79,13 +65,40 @@ public class FinanceFragment extends BaseFragment implements FinanceView{
      * 初始化View
      */
     private void initView() {
-
         pager = (AutoScrollViewPager) getView(R.id.scroll_pager,view);
         indicator = (ViewGroupIndicator) getView(R.id.scroll_pager_indicator,view);
 
+    }
 
+    /**
+     * 设置滚动ViewPager
+     */
+    private void AutoScrollViewPager(){
 
+        ids = new ArrayList<>();
+        ids.add(R.drawable.image1);
+        ids.add(R.drawable.image2);
+        ids.add(R.drawable.image3);
+        ids.add(R.drawable.image4);
+        ids.add(R.drawable.image5);
 
+        autoScrollAdapter = new AutoScrollAdapter(ids,getContext(),pager);
+        pager.setAdapter(autoScrollAdapter);
+        indicator.setParent(pager);
+
+        autoScrollAdapter.setOnAutoScrollPagerClickListener(new AutoScrollAdapter.OnAutoScrollPagerClickListener() {
+
+            @Override
+            public void onClick(View view, int position) {
+                showToast(position+"");
+            }
+
+            @Override
+            public boolean onLongClick(View view, int position) {
+                showToast(position+"Long");
+                return true;
+            }
+        });
     }
 
 

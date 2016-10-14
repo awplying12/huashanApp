@@ -50,10 +50,20 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
         handler.sendEmptyMessageDelayed(0, 2000);
     }
 
+    public void StartAutoScroll(){
+        getParent().requestDisallowInterceptTouchEvent(false);
+        startAutoScroll();
+    }
+
     @Override
     public void stopAutoScroll() {
         isRunning = false;
         handler.removeMessages(0);
+    }
+
+    public void StopAutoScroll() {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        stopAutoScroll();
     }
 
     @Override
