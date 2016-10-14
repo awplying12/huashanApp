@@ -3,7 +3,7 @@ package com.karazam.huashanapp.finance.view.fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.example.utils.base.BaseFragment;
 
 import com.example.utils.custom.views.AutoScrollViewPager;
+import com.example.utils.custom.views.PercentLemon;
 import com.example.utils.custom.views.ViewGroupIndicator;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentFinanceBinding;
@@ -22,12 +23,13 @@ import com.karazam.huashanapp.finance.viewmodel.FinanceViewModel;
 import com.karazam.huashanapp.finance.viewmodel.FinanceViewModelImpl;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2016/10/11.
  */
 
-public class FinanceFragment extends BaseFragment implements FinanceView{
+public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRefreshLayout.OnRefreshListener{
 
     private View view;
 
@@ -39,6 +41,10 @@ public class FinanceFragment extends BaseFragment implements FinanceView{
     private ViewGroupIndicator indicator;
     private AutoScrollAdapter autoScrollAdapter;
     private ArrayList<Integer> ids;
+
+    private SwipeRefreshLayout mSwipeLayout;
+
+    private PercentLemon percentLemon;
 
     @Nullable
     @Override
@@ -68,6 +74,13 @@ public class FinanceFragment extends BaseFragment implements FinanceView{
         pager = (AutoScrollViewPager) getView(R.id.scroll_pager,view);
         indicator = (ViewGroupIndicator) getView(R.id.scroll_pager_indicator,view);
 
+
+        mSwipeLayout = (SwipeRefreshLayout) getView(R.id.id_swipe_ly,view);
+        mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+
+        percentLemon = (PercentLemon) getView(R.id.percentLemon,view);
     }
 
     /**
@@ -100,6 +113,16 @@ public class FinanceFragment extends BaseFragment implements FinanceView{
             }
         });
     }
+    private final Random random = new Random();
+    @Override
+    public void onRefresh() {
+        showToast("Refresh Down");
+        float f = random.nextFloat();
+//        percentLemon.animatToPercent((float) 100.00,"");
+
+        percentLemon.animatToPercent(f * 100);
+        mSwipeLayout.setRefreshing(false);
+    }
 
 
     @Override
@@ -118,5 +141,6 @@ public class FinanceFragment extends BaseFragment implements FinanceView{
         Log.i("Activity-->", "onStop");
 
     }
+
 
 }

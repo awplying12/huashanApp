@@ -29,4 +29,13 @@ public class FinanceViewModelImpl extends FinanceViewModel {
     public void onBack(View view) {
             mView.FinishActivity(activity);
     }
+
+    /**
+     * 投资计算器
+     * @param view
+     */
+    @Override
+    public void onCalculator(View view) {
+        mView.showToast("onCalculator");
+    }
 }

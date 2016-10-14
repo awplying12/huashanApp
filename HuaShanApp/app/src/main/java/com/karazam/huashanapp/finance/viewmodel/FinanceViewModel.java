@@ -1,5 +1,7 @@
 package com.karazam.huashanapp.finance.viewmodel;
 
+import android.view.View;
+
 import com.example.utils.base.BaseViewModel;
 
 /**
@@ -7,4 +9,6 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class FinanceViewModel extends BaseViewModel{
+
+    public abstract void onCalculator(View view);
 }
