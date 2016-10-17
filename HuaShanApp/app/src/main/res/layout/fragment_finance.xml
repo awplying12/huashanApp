@@ -200,7 +200,7 @@
                                     app:layout_heightPercent="60%"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:background="@drawable/bg_fillet_0894ec_5dp"
+                                    android:background="@drawable/btn_bg_img_0894ec_5dp"
                                     android:textColor="@color/financefragment_calculator_text_color"
                                     android:text="计算器"
                                     android:onClick="@{handler.onCalculator}"
@@ -411,9 +411,10 @@
                                         app:layout_heightPercent="75%"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:background="@drawable/bg_fillet_0894ec_5dp"
+                                        android:background="@drawable/btn_bg_img_0894ec_5dp"
                                         android:textColor="@color/financefragment_calculator_text_color"
                                         android:text="立即投资"
+                                        android:onClick="@{handler.onInvestNow}"
                                         />
 
                                 </android.support.percent.PercentFrameLayout>

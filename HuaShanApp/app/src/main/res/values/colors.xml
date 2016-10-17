@@ -17,4 +17,7 @@
 
     <!--finance-->
     <color name="financefragment_calculator_text_color">#FFFFFF</color>
+
+    <!--manage-->
+    <color name="manage_titlebar_bg_color">#cfa</color>
 </resources>

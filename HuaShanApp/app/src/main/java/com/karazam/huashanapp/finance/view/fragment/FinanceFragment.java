@@ -62,8 +62,6 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
         //顶部滚动广告条
         AutoScrollViewPager();
 
-
-
         return view;
     }
 
@@ -75,7 +73,7 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
         pager = (AutoScrollViewPager) getView(R.id.scroll_pager,view);
         indicator = (ViewGroupIndicator) getView(R.id.scroll_pager_indicator,view);
 
-
+        //SwipeRefreshLayout 基础设置
         mSwipeLayout = (SwipeRefreshLayout) getView(R.id.id_swipe_ly,view);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
@@ -122,10 +120,10 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
     public void onRefresh() {
         showToast("Refresh Down");
         float f = random.nextFloat();
-        percentLemon.animatToPercent((float) 100);
+//        percentLemon.animatToPercent((float) 100);
 
         percentLemon.setStr("已完成",true);
-//        percentLemon.animatToPercent(f * 100);
+        percentLemon.animatToPercent(f * 100);
         mSwipeLayout.setRefreshing(false);
     }
 

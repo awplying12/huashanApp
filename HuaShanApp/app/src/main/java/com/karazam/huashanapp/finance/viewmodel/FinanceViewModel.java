@@ -11,4 +11,6 @@ import com.example.utils.base.BaseViewModel;
 public abstract class FinanceViewModel extends BaseViewModel{
 
     public abstract void onCalculator(View view);
+
+    public abstract void onInvestNow(View view);
 }

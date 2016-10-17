@@ -38,4 +38,15 @@ public class FinanceViewModelImpl extends FinanceViewModel {
     public void onCalculator(View view) {
         mView.showToast("onCalculator");
     }
+
+    /**
+     * 立即投资
+     * @param view
+     */
+    @Override
+    public void onInvestNow(View view) {
+        mView.showToast("onInvestNow");
+    }
+
+
 }
