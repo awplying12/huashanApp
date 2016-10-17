@@ -22,7 +22,7 @@ import java.util.ArrayList;
  * Created by Administrator on 2016/10/17.
  */
 
-public class TitleBarAdapter extends RecyclerView.Adapter<TitleBarAdapter.ViewHodel> {
+public class TitleBarAdapter extends RecyclerView.Adapter<TitleBarAdapter.ViewHolder> {
 
     private ArrayList<String> list = new ArrayList<>();
     private Context context;
@@ -34,16 +34,16 @@ public class TitleBarAdapter extends RecyclerView.Adapter<TitleBarAdapter.ViewHo
     }
 
     @Override
-    public ViewHodel onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_titlebar_item,parent,false);
         view.setLayoutParams(new LinearLayout.LayoutParams((int)(BaseActivity.ScreeW*0.25),LinearLayout.LayoutParams.MATCH_PARENT));
 
-        ViewHodel viewHodel = new ViewHodel(view,mOnItemClickListener);
+        ViewHolder viewHodel = new ViewHolder(view,mOnItemClickListener);
         return viewHodel;
     }
 
     @Override
-    public void onBindViewHolder(ViewHodel holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
 
         String str = list.get(position);
         holder.content.setText(StringUtil.interrupt(str,4,""));
@@ -63,14 +63,14 @@ public class TitleBarAdapter extends RecyclerView.Adapter<TitleBarAdapter.ViewHo
         return list.size();
     }
 
-    public class ViewHodel extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public onItemClickListener listener;
 
         TextView content;
         ImageView hint;
 
-        public ViewHodel(View itemView,onItemClickListener onItemClickListener) {
+        public ViewHolder(View itemView,onItemClickListener onItemClickListener) {
             super(itemView);
             this.listener = onItemClickListener;
             content = (TextView) itemView.findViewById(R.id.content_tv);

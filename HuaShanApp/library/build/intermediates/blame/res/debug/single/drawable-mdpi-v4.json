@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\wordspace\\huashanApp\\HuaShanApp\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\default_ptr_flip.png",
+        "source": "D:\\wordspace\\huashanApp\\HuaShanApp\\library\\src\\main\\res\\drawable-mdpi\\default_ptr_flip.png"
+    },
+    {
+        "merged": "D:\\wordspace\\huashanApp\\HuaShanApp\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\default_ptr_rotate.png",
+        "source": "D:\\wordspace\\huashanApp\\HuaShanApp\\library\\src\\main\\res\\drawable-mdpi\\default_ptr_rotate.png"
+    },
+    {
+        "merged": "D:\\loving-family-app\\family\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\default_ptr_flip.png",
+        "source": "D:\\loving-family-app\\family\\library\\src\\main\\res\\drawable-mdpi\\default_ptr_flip.png"
+    },
+    {
+        "merged": "D:\\loving-family-app\\family\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\default_ptr_rotate.png",
+        "source": "D:\\loving-family-app\\family\\library\\src\\main\\res\\drawable-mdpi\\default_ptr_rotate.png"
+    },
+    {
+        "merged": "D:\\loving-family-app\\family\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\indicator_arrow.png",
+        "source": "D:\\loving-family-app\\family\\library\\src\\main\\res\\drawable-mdpi\\indicator_arrow.png"
+    },
+    {
+        "merged": "D:\\wordspace\\huashanApp\\HuaShanApp\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\indicator_arrow.png",
+        "source": "D:\\wordspace\\huashanApp\\HuaShanApp\\library\\src\\main\\res\\drawable-mdpi\\indicator_arrow.png"
+    }
+]

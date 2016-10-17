@@ -82,12 +82,24 @@
 
                         </android.support.v7.widget.RecyclerView>
 
-                    <android.support.v4.widget.SwipeRefreshLayout
-                        android:layout_width="match_parent"
-                        app:layout_heightPercent="90%">
 
 
-                    </android.support.v4.widget.SwipeRefreshLayout>
+                        <android.support.v4.widget.SwipeRefreshLayout
+                            android:id="@+id/manage_sl"
+                            android:layout_width="match_parent"
+                            app:layout_heightPercent="90%"
+                            android:layout_gravity="bottom">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/content_rl"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            </android.support.v7.widget.RecyclerView>
+
+                        </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 
 
