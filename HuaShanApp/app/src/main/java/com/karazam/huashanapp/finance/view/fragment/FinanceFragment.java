@@ -116,14 +116,16 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
             }
         });
     }
+
     private final Random random = new Random();
     @Override
     public void onRefresh() {
         showToast("Refresh Down");
         float f = random.nextFloat();
-//        percentLemon.animatToPercent((float) 100);
+        percentLemon.animatToPercent((float) 100);
 
-        percentLemon.animatToPercent(f * 100);
+        percentLemon.setStr("已完成",true);
+//        percentLemon.animatToPercent(f * 100);
         mSwipeLayout.setRefreshing(false);
     }
 

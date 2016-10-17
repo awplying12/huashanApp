@@ -215,6 +215,14 @@ public class PercentLemon extends View {
 		}
 	}
 
+	private String str = "满";
+	private boolean isShow = true;
+
+	public void setStr(String str,boolean show) {
+		this.str = str;
+		this.isShow = show;
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -234,25 +242,25 @@ public class PercentLemon extends View {
 			mSkinPaint.setColor(DEFAULT_SKIN_INVALID_COLOR);
 			canvas.drawArc(mBounds, -90 + radianAngle, 360 - radianAngle,
 					false, mSkinPaint);
-//			if(mPercent == 100){
-//				String percentText = mPercentFormat.format(mPercent);
-//				setRawTextSize(mHeartRadius / 2);
-//				float mTxtWidth = mTextPaint.measureText(percentText, 0,
-//						percentText.length());
-//				FontMetrics fm = mTextPaint.getFontMetrics();
-//				float mTxtHeight = (int) Math.ceil(fm.descent - fm.ascent);
-//				setRawTextSize(mHeartRadius / 4);
-//				float mTxtWidth2 = mTextPaint.measureText("%", 0, 1);
-//				float mTxtHeight2 = (int) Math.ceil(fm.descent - fm.ascent);
-//				setRawTextSize(mHeartRadius / 2);
-//				canvas.drawText("满", mXCenter - (mTxtWidth + mTxtWidth2)
-//						/ 2, mYCenter + mTxtHeight / 4, mTextPaint);
-//				setRawTextSize(mHeartRadius / 4);
-//				canvas.drawText("额", mXCenter - (mTxtWidth2 - mTxtWidth) / 2,
-//						mYCenter + mTxtHeight / 4 + (mTxtHeight - mTxtHeight2) / 2,
-//						mTextPaint);
-//				return;
-//			}
+			if(mPercent == 100 || (!isShow)){
+
+				setRawTextSize(mHeartRadius / 2);
+
+				FontMetrics fm = mTextPaint.getFontMetrics();
+				float mTxtHeight = (int) Math.ceil(fm.descent - fm.ascent);
+				setRawTextSize(mHeartRadius / 4);
+
+
+
+				float mTxtWidth = mTextPaint.measureText(str);
+
+				setRawTextSize(mHeartRadius / 2);
+				canvas.drawText(str, mXCenter - mTxtWidth ,
+						mYCenter + mTxtHeight / 4, mTextPaint);
+				setRawTextSize(mHeartRadius / 4);
+
+				return;
+			}
 
 			String percentText = mPercentFormat.format(mPercent);
 			setRawTextSize(mHeartRadius / 2);
