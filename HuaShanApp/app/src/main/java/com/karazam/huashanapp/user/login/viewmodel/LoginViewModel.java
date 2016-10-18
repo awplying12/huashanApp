@@ -13,4 +13,6 @@ public abstract class LoginViewModel extends BaseViewModel{
     public abstract void toFindpassword(View view);
 
     public abstract void toRegister(View view);
+
+    public abstract void login(String account,String password);
 }

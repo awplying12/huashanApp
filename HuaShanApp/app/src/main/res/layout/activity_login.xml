@@ -81,7 +81,7 @@
             <android.support.percent.PercentFrameLayout
                 app:layout_widthPercent="95%"
                 app:layout_heightPercent="20%"
-                android:background="#fff"
+                android:background="@drawable/bg_fillet_ffffff_5dp"
                 app:layout_marginTopPercent ="5%"
                 android:layout_gravity="center_horizontal"
 
@@ -102,6 +102,8 @@
                     app:layout_heightPercent="50%"
                     android:layout_gravity="top|right"
                     android:hint="请输入用户名"
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:background="@null"
                     android:textColorHint="@color/login_hint_text_color"
                     android:textSize="@dimen/login_text_size"/>
@@ -121,6 +123,9 @@
                     app:layout_heightPercent="50%"
                     android:layout_gravity="bottom|right"
                     android:hint="请输入密码"
+                    android:singleLine="true"
+                    android:password="true"
+                    android:maxLines="1"
                     android:background="@null"
                     android:textColorHint="@color/login_hint_text_color"
                     android:textSize="@dimen/login_text_size"/>
@@ -157,7 +162,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 app:layout_marginTopPercent="30%"
-                android:background="@drawable/btn_bg_img_0894ec_5dp"
+                android:background="@drawable/bg_fillet_adadad_5dp"
                 android:text="登 录"
                 android:textSize="@dimen/app_text_size"
                 android:textColor="#fff"

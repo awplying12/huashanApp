@@ -7,4 +7,8 @@ import com.example.utils.base.BaseView;
  */
 
 public interface LoginView extends BaseView{
+
+    void loginSuccess();
+
+    void loginFaile();
 }

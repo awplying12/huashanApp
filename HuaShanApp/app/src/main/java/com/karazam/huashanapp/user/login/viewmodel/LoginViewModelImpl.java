@@ -7,6 +7,9 @@ import com.karazam.huashanapp.user.login.model.databinding.LoginEntity;
 import com.karazam.huashanapp.user.login.view.LoginView;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by Administrator on 2016/10/18.
  */
@@ -38,5 +41,22 @@ public class LoginViewModelImpl extends LoginViewModel {
     @Override
     public void toRegister(View view) {
         mView.showToast("toRegister");
+    }
+
+    @Override
+    public void login(String account, String password) {
+        Timer timer = new Timer();
+        TimerTask tk = new TimerTask() {
+            @Override
+            public void run() {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mView.loginSuccess();
+                    }
+                });
+
+            }
+        };timer.schedule(tk,3000);
     }
 }
