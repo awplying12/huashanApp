@@ -32,7 +32,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     @Override
     public ContentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.layout_project_content_item, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view,mOnItemClickListener);
         return holder;
     }
 
@@ -41,7 +41,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
 //        ItemHolder itemHolder = (ItemHolder)holder;
 //        itemHolder.mTextView.setText(string);
-        holder.textView.setText("item");
+
     }
 
 
@@ -51,11 +51,22 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         return mData.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        public onItemClickListener listener;
         TextView textView;
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView,onItemClickListener onItemClickListener) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.item);
+            this.listener = onItemClickListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(listener == null){
+                return;
+            }
+            listener.onItemClick(view,getPosition());
         }
     }
 
@@ -72,5 +83,15 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     public void addMoreItem(ArrayList<Project> newDatas) {
         mData.addAll(newDatas);
         notifyDataSetChanged();
+    }
+
+    public interface onItemClickListener{
+        void onItemClick(View view,int position);
+    }
+
+    private static onItemClickListener mOnItemClickListener;
+
+    public static void setmOnItemClickListener(onItemClickListener onItemClickListener){
+        mOnItemClickListener = onItemClickListener;
     }
 }

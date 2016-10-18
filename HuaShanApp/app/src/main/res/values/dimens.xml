@@ -19,4 +19,7 @@
 
     <!--login-->
     <dimen name="login_text_size">15dp</dimen>
+
+    <!--manage-->
+    <dimen name="manage_content_item_text_size_1">12dp</dimen>
 </resources>

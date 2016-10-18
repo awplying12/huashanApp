@@ -13,6 +13,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 
 import com.example.utils.base.BaseFragment;
+import com.example.utils.custom.RefreshRecyclerView;
 import com.example.utils.custom.WrapContentLinearLayoutManager;
 
 import com.karazam.huashanapp.R;
@@ -50,7 +51,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 
 
     private SwipeRefreshLayout mSwipeLayout;
-    private RecyclerView content_rl;
+    private RefreshRecyclerView content_rl;
     private ContentAdapter adapter;
 
     @Nullable
@@ -85,7 +86,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         mSwipeLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
-        content_rl = (RecyclerView) getView(R.id.content_rl,view);
+        content_rl = (RefreshRecyclerView) getView(R.id.content_rl,view);
 
 
     }
@@ -158,43 +159,19 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         adapter = new ContentAdapter(getContext(),list);
         content_rl.setAdapter(adapter);
 
+        adapter.setmOnItemClickListener(new ContentAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                showToast("点击 Item"+position);
+            }
+        });
 
-        if(content_rl.getLayoutManager() instanceof LinearLayoutManager) {
-            final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) content_rl.getLayoutManager();
-             lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-
-
-            content_rl.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                    super.onScrollStateChanged(recyclerView, newState);
-
-
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
-//                        new Handler().postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                List<String> newDatas = new ArrayList<String>();
-//                                for (int i = 0; i < 5; i++) {
-//                                    int index = i + 1;
-//                                    newDatas.add("more item" + index);
-//                                }
-//                                adapter.addMoreItem(newDatas);
-//                            }
-//                        }, 1000);
-
-                        showToast("onRefresh up");
-                    }
-                }
-
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                    lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-                }
-            });
-
-        }
+        content_rl.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
+            @Override
+            public void onRefreshUp() {
+                showToast("onRefresh up");
+            }
+        });
 
     }
 
