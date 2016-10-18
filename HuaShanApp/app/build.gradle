@@ -28,5 +28,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':gesture_lock')
     compile project(':utils')
-    compile project(':library')
+
 }

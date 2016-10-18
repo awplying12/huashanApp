@@ -2,10 +2,12 @@ package com.karazam.huashanapp.finance.viewmodel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.karazam.huashanapp.finance.model.databinding.FinanceEntity;
 import com.karazam.huashanapp.finance.view.FinanceView;
+import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
 /**
  * Created by Administrator on 2016/10/11.
@@ -37,6 +39,9 @@ public class FinanceViewModelImpl extends FinanceViewModel {
     @Override
     public void onCalculator(View view) {
         mView.showToast("onCalculator");
+        Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivity(intent);
+
     }
 
     /**

@@ -14,8 +14,7 @@ import android.widget.ListView;
 
 import com.example.utils.base.BaseFragment;
 import com.example.utils.custom.WrapContentLinearLayoutManager;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentManageBinding;
 import com.karazam.huashanapp.manage.model.databinding.ManageEntity;
