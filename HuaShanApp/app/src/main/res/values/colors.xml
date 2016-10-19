@@ -26,4 +26,11 @@
     <color name="login_content_line_color">#8e8e8e</color>
 
     <color name="login_btn_text_color">#0894EC</color>
+
+    <!--my-->
+    <color name="my_pf1_content_text_color_1">#adadad</color>
+
+    <color name="my_pf1_content_text_color_2">#000</color>
+
+    <color name="my_pf2_content_text_color">#fff</color>
 </resources>

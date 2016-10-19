@@ -39,8 +39,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     @Override
     public void onBindViewHolder(ContentAdapter.ViewHolder holder, int position) {
 
-//        ItemHolder itemHolder = (ItemHolder)holder;
-//        itemHolder.mTextView.setText(string);
+        
 
     }
 
@@ -54,11 +53,18 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public onItemClickListener listener;
-        TextView textView;
+        TextView Annual_Income;
+        TextView Project_Duration;
+        TextView Project_Scale;
+
         public ViewHolder(View itemView,onItemClickListener onItemClickListener) {
             super(itemView);
             this.listener = onItemClickListener;
             itemView.setOnClickListener(this);
+            Annual_Income = (TextView) itemView.findViewById(R.id.tv_1_2);
+            Project_Duration = (TextView) itemView.findViewById(R.id.tv_2_2);
+            Project_Scale = (TextView) itemView.findViewById(R.id.tv_3_2);
+
         }
 
         @Override

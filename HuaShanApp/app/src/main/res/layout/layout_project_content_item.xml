@@ -39,35 +39,6 @@
 
         </LinearLayout>
 
-        <android.support.percent.PercentRelativeLayout
-            app:layout_widthPercent="25%"
-            app:layout_heightPercent="35%"
-            app:layout_marginTopPercent="50%"
-            app:layout_marginLeftPercent="5%"
-            >
-
-            <TextView
-                android:id="@+id/tv_1_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_1_1"
-                android:layout_centerInParent="true"
-                android:text="8.50"
-                android:textSize="@dimen/financefragment_Recommend_text_size_1"
-                android:textColor="#0894EC"
-                />
-
-            <TextView
-                android:id="@+id/tv_1_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="%"
-                android:textSize="@dimen/financefragment_Recommend_text_size_2"
-                android:layout_toRightOf="@+id/tv_1_2"
-                android:layout_toEndOf="@+id/tv_1_2" />
-        </android.support.percent.PercentRelativeLayout>
-
 
         <LinearLayout
             app:layout_widthPercent="25%"
@@ -89,33 +60,6 @@
                 android:textSize="@dimen/manage_content_item_text_size_1"/>
 
         </LinearLayout>
-
-        <android.support.percent.PercentRelativeLayout
-            app:layout_widthPercent="25%"
-            app:layout_heightPercent="35%"
-            app:layout_marginTopPercent="50%"
-            app:layout_marginLeftPercent="30%"
-            >
-
-            <TextView
-                android:id="@+id/tv_2_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_2_1"
-                android:layout_centerInParent="true"
-                android:text="1"
-                android:textSize="@dimen/financefragment_Recommend_text_size_1"
-                android:textColor="#F75000"/>
-
-            <TextView
-                android:id="@+id/tv_2_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_2_2"
-                android:layout_centerVertical="true"
-                android:text="个月"
-                android:textSize="@dimen/financefragment_Recommend_text_size_2"/>
-        </android.support.percent.PercentRelativeLayout>
 
         <LinearLayout
             app:layout_widthPercent="25%"
@@ -152,7 +96,7 @@
                 android:layout_toRightOf="@+id/tv_3_1"
                 android:layout_centerInParent="true"
                 android:text="5.00"
-                android:textSize="@dimen/financefragment_Recommend_text_size_1"/>
+                android:textSize="@dimen/manage_content_item_text_size_2"/>
 
             <TextView
                 android:id="@+id/tv_3_3"
@@ -161,7 +105,7 @@
                 android:layout_toRightOf="@+id/tv_3_2"
                 android:layout_centerVertical="true"
                 android:text="万"
-                android:textSize="@dimen/financefragment_Recommend_text_size_2"/>
+                android:textSize="@dimen/manage_content_item_text_size_2_1"/>
         </android.support.percent.PercentRelativeLayout>
 
         <android.support.percent.PercentFrameLayout
@@ -181,6 +125,62 @@
                 />
 
         </android.support.percent.PercentFrameLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            app:layout_widthPercent="25%"
+            app:layout_heightPercent="35%"
+            app:layout_marginTopPercent="50%"
+            app:layout_marginLeftPercent="30%"
+            >
+
+            <TextView
+                android:id="@+id/tv_2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_2_1"
+                android:layout_centerInParent="true"
+                android:text="1"
+                android:textSize="@dimen/manage_content_item_text_size_2"
+                android:textColor="#F75000"/>
+
+            <TextView
+                android:id="@+id/tv_2_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_2_2"
+                android:layout_centerVertical="true"
+                android:text="个月"
+                android:textSize="@dimen/manage_content_item_text_size_2_1"/>
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            app:layout_widthPercent="25%"
+            app:layout_heightPercent="35%"
+            app:layout_marginTopPercent="50%"
+            app:layout_marginLeftPercent="5%"
+            >
+
+            <TextView
+                android:id="@+id/tv_1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_1_1"
+                android:layout_centerInParent="true"
+                android:text="8.50"
+                android:textSize="@dimen/manage_content_item_text_size_2"
+                android:textColor="#0894EC"
+                />
+
+            <TextView
+                android:id="@+id/tv_1_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="%"
+                android:textSize="@dimen/manage_content_item_text_size_2_1"
+                android:layout_toRightOf="@+id/tv_1_2"
+                android:layout_toEndOf="@+id/tv_1_2" />
+        </android.support.percent.PercentRelativeLayout>
 
 
     </android.support.percent.PercentFrameLayout>
@@ -204,11 +204,13 @@
             android:background="#ff8000"/>
 
         <TextView
+            android:id="@+id/state_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_marginLeftPercent="11%"
             android:layout_gravity="center_vertical"
-            android:text="经营周转(PX2016-037)"/>
+            android:text="经营周转(PX2016-037)"
+            android:textSize="@dimen/manage_content_item_text_size_3"/>
 
     </android.support.percent.PercentFrameLayout>
 

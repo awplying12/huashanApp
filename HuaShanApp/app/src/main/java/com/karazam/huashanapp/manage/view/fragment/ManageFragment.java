@@ -129,7 +129,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
      *  实现下拉刷新和上拉加载更多以及没有数据的显示
      *
      */
-    private int lastVisibleItem;
+
     private void setRefreshRecyclerView() {
 
 
