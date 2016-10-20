@@ -3,6 +3,7 @@ package com.karazam.huashanapp.home.viewmodel;
 import android.content.Context;
 import android.view.View;
 
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.home.model.databinding.HomeEntity;
 import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
@@ -63,6 +64,21 @@ public class HomeViewModelImpl extends HomeViewModel {
      */
     @Override
     public void toMy(View view) {
-        mView.setViewPagerCurrentItem(3,"我的");
+        switch (HuaShanApplication.loginStatus){
+            case 1:
+                mView.setViewPagerCurrentItem(3,"我的");
+                break;
+            default:
+                mView.toLoginActivity();
+                break;
+        }
+
+    }
+
+    @Override
+    public void setUp(View view) {
+        HuaShanApplication.editor.putInt("loginStatus",2).commit();
+        HuaShanApplication.loginStatus = 2;
+        mView.setViewPagerCurrentItem(0,"金融");
     }
 }

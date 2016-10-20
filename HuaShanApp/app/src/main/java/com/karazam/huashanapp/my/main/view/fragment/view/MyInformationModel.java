@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.my.view.fragment.view;
+package com.karazam.huashanapp.my.main.view.fragment.view;
 
 /**
  * Created by Administrator on 2016/10/19.

@@ -11,6 +11,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxCheckedTextView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityLoginBinding;
 import com.karazam.huashanapp.user.login.model.databinding.LoginEntity;
@@ -106,12 +107,22 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void loginSuccess() {    //登录成功
         showToast("登录成功");
         loginText.set(false);
+
+        HuaShanApplication.editor.putInt("loginStatus",1).commit();
+        HuaShanApplication.loginStatus = 1;
+        setResult(101);
+        finish();
     }
 
     @Override
     public void loginFaile() {      //登录失败
         showToast("登录失败");
         loginText.set(false);
+
+        HuaShanApplication.editor.putInt("loginStatus",2).commit();
+        HuaShanApplication.loginStatus = 2;
+//        setResult(102);
+//        finish();
     }
 
     /**

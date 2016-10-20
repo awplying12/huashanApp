@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.my.view.fragment;
+package com.karazam.huashanapp.my.main.view.fragment;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -14,12 +14,12 @@ import com.example.utils.base.BaseFragment;
 import com.example.utils.custom.RecyclerViewItemDecoration;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentMyBinding;
-import com.karazam.huashanapp.my.model.databinding.MyEntity;
-import com.karazam.huashanapp.my.view.MyView;
-import com.karazam.huashanapp.my.view.fragment.view.MyInformationAdapter;
-import com.karazam.huashanapp.my.view.fragment.view.MyInformationModel;
-import com.karazam.huashanapp.my.viewmodel.MyViewModel;
-import com.karazam.huashanapp.my.viewmodel.MyViewModelImpl;
+import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
+import com.karazam.huashanapp.my.main.view.MyView;
+import com.karazam.huashanapp.my.main.view.fragment.view.MyInformationAdapter;
+import com.karazam.huashanapp.my.main.view.fragment.view.MyInformationModel;
+import com.karazam.huashanapp.my.main.viewmodel.MyViewModel;
+import com.karazam.huashanapp.my.main.viewmodel.MyViewModelImpl;
 
 import java.util.ArrayList;
 
@@ -61,7 +61,7 @@ public class MyFragment extends BaseFragment implements MyView {
         GridLayoutManager mgr=new GridLayoutManager(getActivity(),3);   //一行3个
         myInformation.setLayoutManager(mgr);
 
-        ArrayList<MyInformationModel> models = new ArrayList<>();
+        final ArrayList<MyInformationModel> models = new ArrayList<>();
         models.add(new MyInformationModel(0,"安全中心"));
         models.add(new MyInformationModel(0,"交易记录"));
         models.add(new MyInformationModel(0,"借款管理"));
@@ -75,12 +75,37 @@ public class MyFragment extends BaseFragment implements MyView {
         MyInformationAdapter adapter = new MyInformationAdapter(models,getContext(),myInformation);
         myInformation.setAdapter(adapter);
         myInformation.addItemDecoration(new RecyclerViewItemDecoration(
-                RecyclerViewItemDecoration.MODE_GRID, Color.RED,10,20,10));
+                RecyclerViewItemDecoration.MODE_GRID, "#adadad",1,0,0));
 
         adapter.setmOnItemClickListener(new MyInformationAdapter.onItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                showToast(""+position);
+                switch (position){
+                    case 0:
+                        mModel.toSecurityCenter(null);
+                        break;
+                    case 1:
+                        mModel.toTransactionRecord(null);
+                        break;
+                    case 2:
+                        mModel.toLoanManagement(null);
+                        break;
+                    case 3:
+                        mModel.toInvestmentManagement(null);
+                        break;
+                    case 4:
+                        mModel.toBankcardManagement(null);
+                        break;
+                    case 5:
+                        mModel.toRecommendedManagement(null);
+                        break;
+                    case 6:
+                        mModel.toDiscountCoupons(null);
+                        break;
+                    default:
+                        break;
+
+                }
             }
         });
     }

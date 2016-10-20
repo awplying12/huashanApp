@@ -18,5 +18,6 @@ public abstract class HomeViewModel extends BaseViewModel{
 
     public abstract void toMy(View view);
 
+    public abstract void setUp(View view);
 
 }

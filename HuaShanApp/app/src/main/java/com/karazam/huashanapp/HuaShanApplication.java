@@ -21,6 +21,8 @@ public class HuaShanApplication extends Application {
     public static String refresh_token;
     public static String client_id;
 
+    public static int loginStatus;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -34,6 +36,8 @@ public class HuaShanApplication extends Application {
         token = sharedPreferences.getString("token", "");
         refresh_token = sharedPreferences.getString("refresh_token", "");
         client_id = sharedPreferences.getString("client_id", "");
+
+        loginStatus = sharedPreferences.getInt("loginStatus",-1);
     }
 
     public static HuaShanApplication getinstance() {

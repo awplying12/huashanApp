@@ -1,8 +1,7 @@
 package com.karazam.huashanapp.home.view.activity;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
@@ -11,6 +10,7 @@ import com.example.utils.Adapter.PagerFragmentAdapter;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.ScrollableViewPager;
 import com.example.utils.utils.StringUtil;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.apply.view.fragment.ApplyFragment;
 import com.karazam.huashanapp.databinding.ActivityHomeBinding;
@@ -20,7 +20,8 @@ import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModel;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModelImpl;
 import com.karazam.huashanapp.manage.view.fragment.ManageFragment;
-import com.karazam.huashanapp.my.view.fragment.MyFragment;
+import com.karazam.huashanapp.my.main.view.fragment.MyFragment;
+import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
 import java.util.ArrayList;
 
@@ -83,6 +84,31 @@ public class HomeActivity extends BaseActivity implements HomeView {
     @Override
     public void dealLogicAfterInitView() {
         setViewPager();
+    }
+
+    /**
+     * 跳转登录界面
+     */
+    @Override
+    public void toLoginActivity(){
+        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+        startActivityForResult(intent,10);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 10: //homeActivity
+                if(resultCode == 101){  //登录
+                    showToast("登录 ： "+ HuaShanApplication.loginStatus);
+                    setViewPagerCurrentItem(3,"我的");
+                }
+//                else if(resultCode == 102){
+//                    showToast("登录 ： "+ HuaShanApplication.loginStatus);
+//                    setViewPagerCurrentItem(3,"我的");
+//                }
+                break;
+        }
     }
 
     /**

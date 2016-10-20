@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.karazam.huashanapp.finance.model.databinding.FinanceEntity;
 import com.karazam.huashanapp.finance.view.FinanceView;
+import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
 /**
@@ -39,8 +40,6 @@ public class FinanceViewModelImpl extends FinanceViewModel {
     @Override
     public void onCalculator(View view) {
         mView.showToast("onCalculator");
-        Intent intent = new Intent(activity, LoginActivity.class);
-        activity.startActivity(intent);
 
     }
 
