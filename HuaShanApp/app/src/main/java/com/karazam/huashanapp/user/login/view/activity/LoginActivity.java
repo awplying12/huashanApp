@@ -1,8 +1,15 @@
 package com.karazam.huashanapp.user.login.view.activity;
 
+import android.app.Service;
 import android.databinding.DataBindingUtil;
+import android.os.Vibrator;
+import android.support.percent.PercentFrameLayout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -46,6 +53,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
     private String account;
     private String password;
 
+    private PercentFrameLayout content_pl;
+    // 震动动画
+    private Animation shakeAnimation;
+    // 插值器
+    private CycleInterpolator cycleInterpolator;
+    // 振动器
+    private Vibrator shakeVibrator;
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
@@ -56,7 +71,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void dealLogicBeforeInitView() {
+        // 初始化振动器
+        shakeVibrator = (Vibrator) this.getSystemService(Service.VIBRATOR_SERVICE);
 
+        // 初始化震动动画
+        shakeAnimation = new TranslateAnimation(0, 10, 0, 0);
+        shakeAnimation.setDuration(300);
+        cycleInterpolator = new CycleInterpolator(8);
+        shakeAnimation.setInterpolator(cycleInterpolator);
     }
 
     @Override
@@ -65,6 +87,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         ed_password = (EditText) getView(R.id.ed_password);
 
         btn_login = (TextView) getView(R.id.btn_login);
+
+        content_pl = (PercentFrameLayout) getView(R.id.content_pl);
     }
 
     @Override
@@ -114,10 +138,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
         finish();
     }
 
+
+
     @Override
     public void loginFaile() {      //登录失败
         showToast("登录失败");
         loginText.set(false);
+
+        content_pl.startAnimation(shakeAnimation);
 
         HuaShanApplication.editor.putInt("loginStatus",2).commit();
         HuaShanApplication.loginStatus = 2;

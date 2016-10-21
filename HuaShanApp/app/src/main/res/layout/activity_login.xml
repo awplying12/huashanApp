@@ -79,6 +79,7 @@
 
 
             <android.support.percent.PercentFrameLayout
+                android:id="@+id/content_pl"
                 app:layout_widthPercent="95%"
                 app:layout_heightPercent="20%"
                 android:background="@drawable/bg_fillet_ffffff_5dp"

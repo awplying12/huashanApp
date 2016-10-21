@@ -57,19 +57,7 @@ public class LoginViewModelImpl extends LoginViewModel {
 
     @Override
     public void login(String account, String password) {
-//        Timer timer = new Timer();
-//        TimerTask tk = new TimerTask() {
-//            @Override
-//            public void run() {
-//                activity.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mView.loginSuccess();
-//                    }
-//                });
-//
-//            }
-//        };timer.schedule(tk,3000);
+
 
         dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
             @Override
