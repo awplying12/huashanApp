@@ -132,27 +132,27 @@
                     android:textSize="@dimen/login_text_size"/>
 
                 <!--<ImageView-->
-                    <!--android:layout_width="1dp"-->
-                    <!--app:layout_heightPercent="30%"-->
-                    <!--android:background="@color/login_content_line_color"-->
-                    <!--app:layout_marginTopPercent="10%"-->
-                    <!--app:layout_marginLeftPercent="22%"/>-->
+                <!--android:layout_width="1dp"-->
+                <!--app:layout_heightPercent="30%"-->
+                <!--android:background="@color/login_content_line_color"-->
+                <!--app:layout_marginTopPercent="10%"-->
+                <!--app:layout_marginLeftPercent="22%"/>-->
 
                 <!--<ImageView-->
-                    <!--android:layout_width="1dp"-->
-                    <!--app:layout_heightPercent="30%"-->
-                    <!--android:background="@color/login_content_line_color"-->
-                    <!--android:layout_gravity="bottom"-->
-                    <!--app:layout_marginBottomPercent="10%"-->
-                    <!--app:layout_marginLeftPercent="22%"/>-->
+                <!--android:layout_width="1dp"-->
+                <!--app:layout_heightPercent="30%"-->
+                <!--android:background="@color/login_content_line_color"-->
+                <!--android:layout_gravity="bottom"-->
+                <!--app:layout_marginBottomPercent="10%"-->
+                <!--app:layout_marginLeftPercent="22%"/>-->
 
                 <!--<ImageView-->
-                    <!--app:layout_widthPercent="95%"-->
-                    <!--android:layout_height="1dp"-->
-                    <!--android:background="@color/login_content_line_color"-->
-                    <!--android:layout_gravity="center"-->
+                <!--app:layout_widthPercent="95%"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@color/login_content_line_color"-->
+                <!--android:layout_gravity="center"-->
 
-                    <!--/>-->
+                <!--/>-->
 
             </android.support.percent.PercentFrameLayout>
 

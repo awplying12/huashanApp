@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.home.view.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
@@ -199,4 +200,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
         apply_text.setTextColor(isDefault);
         my_text.setTextColor(isDefault);
     }
+
+
+
 }

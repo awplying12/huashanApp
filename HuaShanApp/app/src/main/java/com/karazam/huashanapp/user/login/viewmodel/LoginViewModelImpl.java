@@ -10,6 +10,7 @@ import com.karazam.huashanapp.user.login.model.databinding.TokenData;
 import com.karazam.huashanapp.user.login.model.retrofit.LoginDataSource;
 import com.karazam.huashanapp.user.login.view.LoginView;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
+import com.karazam.huashanapp.user.register.view.activity.Register1Activity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -45,19 +46,33 @@ public class LoginViewModelImpl extends LoginViewModel {
         mView.FinishActivity(activity);
     }
 
+    /**
+     * 跳转到忘记密码页面
+     * @param view
+     */
     @Override
     public void toFindpassword(View view) {
         mView.showToast("toFindpassword");
     }
 
+    /**
+     * 跳转到注册页面
+     * @param view
+     */
     @Override
     public void toRegister(View view) {
         mView.showToast("toRegister");
+        activity.toOtherActivity(activity, Register1Activity.class);
     }
 
+
+    /**
+     * 登录方法
+     * @param account
+     * @param password
+     */
     @Override
     public void login(String account, String password) {
-
 
         dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
             @Override
@@ -82,7 +97,6 @@ public class LoginViewModelImpl extends LoginViewModel {
                 }else {
                     mView.loginFaile();
                 }
-
 
             }
         });

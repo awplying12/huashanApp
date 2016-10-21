@@ -6,6 +6,7 @@ import com.karazam.huashanapp.user.login.model.databinding.LoginEntity;
 import com.karazam.huashanapp.user.login.model.databinding.TokenData;
 
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -15,6 +16,6 @@ import rx.Observable;
  */
 
 public interface LoginApi {
-    @POST("/login")
-    Observable<BaseReturn<TokenData>> getToken(@Query("loginName") String loginName, @Query("password") String password);
+    @POST("/oauth/login")
+    Observable<BaseReturn<TokenData>> getToken(@Query("username") String loginName, @Query("password") String password, @Query("clientType") String clientType,@Header("X-Requested-With") String ID);
 }

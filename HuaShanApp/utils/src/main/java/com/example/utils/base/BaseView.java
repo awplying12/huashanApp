@@ -14,6 +14,12 @@ public interface BaseView {
     void showToast(String msg);
     Context getContext();
 
+    void toOtherActivity(Activity activity,Class<?> cls);
+
+    void exitKeyboard();
+
+    void exitKeyboard(Activity activity);
+
     void FinishActivity(Activity act);
 
 }

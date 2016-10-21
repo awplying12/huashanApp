@@ -31,23 +31,28 @@
         android:layout_height="match_parent"
         android:paddingLeft="20dp">
 
-        <ImageView
+            <ImageView
 
-        android:layout_width="0dp"
-        app:layout_widthPercent="7%"
-        android:layout_height="match_parent"
-        />
+                android:layout_width="0dp"
+                app:layout_widthPercent="7%"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageView"
+                android:src="@drawable/back_icon"
+                android:onClick="@{handler.onBack}"/>
 
         </android.support.percent.PercentRelativeLayout>
         <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="快速注册"
-        android:textColor="#fff"
-        android:textSize="@dimen/title_text_size"/>
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="快速注册"
+            android:textColor="#fff"
+            android:textSize="@dimen/title_text_size"/>
 
         <android.support.percent.PercentRelativeLayout
         android:id="@+id/add_btn"
@@ -75,14 +80,162 @@
             >
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Register1"
-                />
 
+            <android.support.percent.PercentFrameLayout
+                android:id="@+id/content_pl"
+                app:layout_widthPercent="95%"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_fillet_ffffff_5dp"
+                app:layout_marginTopPercent ="5%"
+                android:layout_gravity="center_horizontal"
+
+                >
+
+
+                <!--<TextView-->
+                    <!--app:layout_widthPercent="25%"-->
+                    <!--app:layout_heightPercent="50%"-->
+                    <!--android:layout_gravity="bottom|left"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="密码："-->
+                    <!--android:textSize="@dimen/login_text_size"-->
+                    <!--/>-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/ed_password"-->
+                    <!--app:layout_widthPercent="75%"-->
+                    <!--app:layout_heightPercent="50%"-->
+                    <!--android:layout_gravity="bottom|right"-->
+                    <!--android:hint="请输入密码"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:password="true"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:background="@null"-->
+                    <!--android:textColorHint="@color/login_hint_text_color"-->
+                    <!--android:textSize="@dimen/login_text_size"/>-->
+
+                <ImageView
+                    app:layout_widthPercent="88%"
+                    android:layout_height="1dp"
+                    android:background="@color/register_content_line_color"
+                    android:layout_gravity="bottom|center_horizontal">
+
+                </ImageView>
+
+                <EditText
+                    android:id="@+id/ed_account_register"
+                    app:layout_widthPercent="88%"
+                    app:layout_heightPercent="10%"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="请输入手机号"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:background="@null"
+                    android:textColorHint="@color/login_hint_text_color"
+                    android:textSize="@dimen/login_text_size"/>
+            </android.support.percent.PercentFrameLayout>
+
+            <TextView
+                android:id="@+id/refgister_hint_text"
+                app:layout_widthPercent="80%"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:layout_marginTopPercent="16%"
+                android:text="请输入有效的手机号码!"
+                android:textSize="@dimen/refgister_hint_text_size"
+                android:textColor="@color/refgister_hint_text_color"/>
+
+            <TextView
+                android:id="@+id/btn_next_step_1"
+                app:layout_widthPercent="88%"
+                app:layout_heightPercent="8%"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                app:layout_marginTopPercent="30%"
+                android:background="@drawable/bg_fillet_adadad_5dp"
+                android:text="下一步"
+                android:textSize="@dimen/app_text_size"
+                android:textColor="#fff"
+                android:clickable="true"
+                android:onClick="@{handler.onNextStep}"/>
 
 
         </android.support.percent.PercentFrameLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:id="@+id/pl_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:visibility="gone"
+            android:background="#80000000"
+            android:descendantFocusability="beforeDescendants"
+            android:clickable="true">
+
+            <android.support.percent.PercentFrameLayout
+
+                app:layout_widthPercent="75%"
+                app:layout_heightPercent="35%"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_fillet_ffffff_5dp"
+
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    app:layout_heightPercent="25%"
+                    android:gravity="center"
+                    android:text="我们将发送短信验证码至:"
+                    />
+
+                <TextView
+                    android:id="@+id/phoneNum_register"
+                    android:layout_width="match_parent"
+                    app:layout_heightPercent="25%"
+                    app:layout_marginTopPercent="25%"
+                    android:gravity="center"
+                    android:text="111111"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    app:layout_heightPercent="25%"
+                    app:layout_marginTopPercent="50%"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textSize="@dimen/refgister_btn_text_size"
+                    android:textColor="@color/refgister_btn_text_color"
+                    android:onClick="@{handler.onSure}"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    app:layout_heightPercent="25%"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:text="取消"
+                    android:textSize="@dimen/refgister_btn_text_size"
+                    android:textColor="@color/refgister_btn_text_color"
+                    android:onClick="@{handler.onIntroduction}"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_marginTopPercent="50%"
+                    android:background="@color/register_content_line_color_2"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_marginTopPercent="75%"
+                    android:background="@color/register_content_line_color_2"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+        </android.support.percent.PercentFrameLayout>
+
     </android.support.percent.PercentRelativeLayout>
 </layout>

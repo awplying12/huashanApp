@@ -174,7 +174,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
                     @Override
                     public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
                         String key = textViewTextChangeEvent.text().toString().trim();
-
                         accountOK = !TextUtils.isEmpty(key);
                         isClickable();
                     }

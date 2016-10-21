@@ -17,7 +17,7 @@ public class LoginDataSource extends BaseDataSource {
 
     public Observable<BaseReturn<TokenData>> getToken( String loginName,String password){
 
-        return service.getToken(loginName,password);
+        return service.getToken(loginName,password,"android","XMLHttpRequest");
 
     }
 }

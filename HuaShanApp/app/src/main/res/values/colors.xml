@@ -27,6 +27,14 @@
 
     <color name="login_btn_text_color">#0894EC</color>
 
+    <!--register-->
+    <color name="register_content_line_color">#adadad</color>
+    
+    <color name="refgister_hint_text_color">#f00</color>
+
+    <color name="refgister_btn_text_color">#0894EC</color>
+    <color name="register_content_line_color_2">#e0e0e0</color>
+
     <!--my-->
     <color name="my_pf1_content_text_color_1">#adadad</color>
 

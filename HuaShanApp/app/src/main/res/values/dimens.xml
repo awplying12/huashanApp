@@ -20,6 +20,11 @@
     <!--login-->
     <dimen name="login_text_size">15dp</dimen>
 
+    <!--register-->
+    <dimen name="refgister_hint_text_size">12dp</dimen>
+
+    <dimen name="refgister_btn_text_size">18dp</dimen>
+
     <!--manage-->
     <dimen name="manage_content_item_text_size_1">12dp</dimen>
 
