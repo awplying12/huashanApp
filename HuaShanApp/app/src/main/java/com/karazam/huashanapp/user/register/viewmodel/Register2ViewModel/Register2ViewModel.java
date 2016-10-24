@@ -15,5 +15,7 @@ public abstract class Register2ViewModel extends BaseViewModel {
 
     public RxProperty<Integer> time = RxProperty.create();
 
-    public abstract void w(View view);
+    public abstract void reacQuire(View view);
+
+    public abstract void onNextStep(View view);
 }

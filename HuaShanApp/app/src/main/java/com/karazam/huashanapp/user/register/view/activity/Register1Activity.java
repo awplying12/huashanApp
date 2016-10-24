@@ -14,6 +14,7 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityRegister1Binding;
+import com.karazam.huashanapp.main.registerMain.registerActivity;
 import com.karazam.huashanapp.user.register.model.databinbing.Register1Entity;
 import com.karazam.huashanapp.user.register.view.Register1View;
 import com.karazam.huashanapp.user.register.viewmodel.Register1ViewModel.Register1ViewModel;
@@ -51,6 +52,7 @@ public class Register1Activity extends BaseActivity implements Register1View{
     @Override
     public void dealLogicBeforeInitView() {
         ut = new CheckPhoneNumberUtil();
+        registerActivity.allRegisterActivity.add(this);
     }
 
     @Override

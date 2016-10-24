@@ -25,6 +25,8 @@
 
     <dimen name="refgister_btn_text_size">18dp</dimen>
 
+    <dimen name="register_user_agreement_text_size">13dp</dimen>
+
     <!--manage-->
     <dimen name="manage_content_item_text_size_1">12dp</dimen>
 

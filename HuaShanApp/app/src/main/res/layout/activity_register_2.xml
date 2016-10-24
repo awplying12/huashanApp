@@ -101,9 +101,9 @@
 
                 <EditText
                     android:id="@+id/ed_verify_code_register"
-                    app:layout_widthPercent="100%"
+                    app:layout_widthPercent="67%"
                     app:layout_heightPercent="10%"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="left"
                     android:hint="请输入短信验证码"
                     android:singleLine="true"
                     android:maxLines="1"
@@ -111,21 +111,16 @@
                     android:textColorHint="@color/login_hint_text_color"
                     android:textSize="@dimen/login_text_size"/>
 
-                <TextView
-                    app:layout_widthPercent="20%"
-                    app:layout_heightPercent="10%"
-                    android:layout_gravity="right"
-                    app:layout_marginRightPercent="11%"
-                    android:gravity="center"
-                    android:text="重新发送"/>
 
                 <TextView
                     android:id="@+id/time"
-                    app:layout_widthPercent="12%"
+                    app:layout_widthPercent="33%"
                     app:layout_heightPercent="10%"
                     android:layout_gravity="right"
                     android:gravity="center"
-                    android:text="(114)"/>
+                    android:textColor="@color/login_hint_text_color"
+                    android:text="重新发送 (120)"
+                    android:onClick="@{handler.reacQuire}"/>
             </android.support.percent.PercentFrameLayout>
 
 
@@ -141,7 +136,7 @@
                 android:textSize="@dimen/app_text_size"
                 android:textColor="#fff"
                 android:clickable="true"
-                android:onClick="@{handler.w}"
+                android:onClick="@{handler.onNextStep}"
                 />
 
 

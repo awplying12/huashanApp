@@ -10,6 +10,7 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityRegister2Binding;
+import com.karazam.huashanapp.main.registerMain.registerActivity;
 import com.karazam.huashanapp.user.register.model.databinbing.Register2Entity;
 import com.karazam.huashanapp.user.register.view.Register2View;
 import com.karazam.huashanapp.user.register.viewmodel.Register2ViewModel.Register2ViewModel;
@@ -43,7 +44,7 @@ public class Register2Activity extends BaseActivity implements Register2View {
 
     @Override
     public void dealLogicBeforeInitView() {
-
+        registerActivity.allRegisterActivity.add(this);
     }
 
     @Override
@@ -75,8 +76,10 @@ public class Register2Activity extends BaseActivity implements Register2View {
 
                         if(TextUtils.isEmpty(key)){
                             btn_next_step_2.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
+                            btn_next_step_2.setClickable(false);
                         }else {
                             btn_next_step_2.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
+                            btn_next_step_2.setClickable(true);
                         }
                     }
                 });

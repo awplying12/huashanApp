@@ -35,6 +35,9 @@
     <color name="refgister_btn_text_color">#0894EC</color>
     <color name="register_content_line_color_2">#e0e0e0</color>
 
+    <color name="register_user_agreement_text_color_1">#6c6c6c</color>
+    <color name="register_user_agreement_text_color_2">#0894EC</color>
+
     <!--my-->
     <color name="my_pf1_content_text_color_1">#adadad</color>
 
