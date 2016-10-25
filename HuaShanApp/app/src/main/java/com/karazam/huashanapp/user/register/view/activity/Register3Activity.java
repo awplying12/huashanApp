@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.user.register.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.percent.PercentFrameLayout;
 import android.text.InputType;
@@ -26,6 +27,7 @@ import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.concurrent.TimeUnit;
 
+import huashanapp.karazam.com.gesture_lock.GestureUtil;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -75,6 +77,22 @@ public class Register3Activity extends BaseActivity implements Register3View {
 
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == GestureUtil.GESTURELOCK_REQUESTCODE){
+            switch (resultCode){
+                case GestureUtil.GESTURELOCK_EDIT_RESULTCODE:
+                    String key = data.getStringExtra(GestureUtil.Password);
+                    showToast(key);
+                    registerActivity.finishAll();
+                    break;
+                default:
+                    break;
+
+            }
+        }
     }
 
     /**

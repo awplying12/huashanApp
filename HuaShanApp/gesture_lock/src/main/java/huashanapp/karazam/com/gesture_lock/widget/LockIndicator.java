@@ -40,8 +40,12 @@ public class LockIndicator extends View {
 		paint.setAntiAlias(true);
 		paint.setStrokeWidth(strokeWidth);
 		paint.setStyle(Style.STROKE);
-		patternNoraml = getResources().getDrawable(R.drawable.lock_pattern_node_normal);
-		patternPressed = getResources().getDrawable(R.drawable.lock_pattern_node_pressed);
+//		patternNoraml = getResources().getDrawable(R.drawable.lock_pattern_node_normal);
+//		patternPressed = getResources().getDrawable(R.drawable.lock_pattern_node_pressed);
+
+		patternNoraml = getResources().getDrawable(R.drawable.jj);
+		patternPressed = getResources().getDrawable(R.drawable.circle);
+
 		if (patternPressed != null) {
 			patternWidth = patternPressed.getIntrinsicWidth();
 			patternHeight = patternPressed.getIntrinsicHeight();

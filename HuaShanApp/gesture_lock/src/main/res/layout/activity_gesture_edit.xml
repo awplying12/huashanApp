@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#48423D" >
+    android:background="@drawable/beijing" >
 
     <RelativeLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="46dip"
-        android:background="#000000"
+        android:background="#0894EC"
         android:paddingLeft="20dip"
         android:paddingRight="20dip"
         android:layout_alignParentTop="true" >
@@ -20,7 +20,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/setup_gesture_code"
-            android:textSize="20sp"
+            android:textSize="15dp"
             android:textColor="#ffffff" />
 
         <TextView
@@ -31,8 +31,8 @@
             android:layout_centerVertical="true"
             android:gravity="right"
             android:text="取消"
-            android:textSize="18sp"
-            android:textColor="@color/gesture_cancel_text_color" />
+            android:textSize="15dp"
+            android:textColor="#fff" />
     </RelativeLayout>
 
     <LinearLayout
@@ -76,6 +76,6 @@
         android:layout_below="@id/gesture_container"
         android:layout_marginTop="20dip"
         android:text="@string/set_gesture_pattern_reason"
-        android:textColor="#816E6A" />
+        android:textColor="#fff" />
 
 </RelativeLayout>

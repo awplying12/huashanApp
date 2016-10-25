@@ -77,7 +77,8 @@ public class GestureDrawline extends View {
 		canvas.setBitmap(bitmap);
 		paint.setStyle(Style.STROKE);// ���÷����
 		paint.setStrokeWidth(10);// �ʿ�5����
-		paint.setColor(Color.rgb(245, 142, 33));// ����Ĭ��������ɫ
+//		paint.setColor(Color.rgb(245, 142, 33));// ����Ĭ��������ɫ
+		paint.setColor(Color.parseColor("#076892"));
 		paint.setAntiAlias(true);// ����ʾ���
 
 		this.list = list;
@@ -127,7 +128,9 @@ public class GestureDrawline extends View {
 			// ���ڲ��������
 			return true;
 		}
-		paint.setColor(Color.rgb(245, 142, 33));// ����Ĭ��������ɫ
+//		paint.setColor(Color.rgb(245, 142, 33));// ����Ĭ��������ɫ
+
+		paint.setColor(Color.parseColor("#076892"));
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			mov_x = (int) event.getX();

@@ -2,6 +2,7 @@ package huashanapp.karazam.com.gesture_lock;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.gesture.Gesture;
 import android.os.Bundle;
 import android.text.Html;
@@ -47,6 +48,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gesture_edit);
 		setUpViews();
