@@ -9,4 +9,5 @@ public class GestureUtil {
     public static final int GESTURELOCK_VERIFY_RESULTCODE = 702;
 
     public static final String Password = "Password";
+    public static final String PhoneNum = "phoneNum";
 }

@@ -1,7 +1,9 @@
 package com.karazam.huashanapp;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.telephony.TelephonyManager;
 
 /**
  * Created by Administrator on 2016/10/11.
@@ -22,6 +24,7 @@ public class HuaShanApplication extends Application {
     public static String client_id;
 
     public static int loginStatus;
+    public static String imei;
 
     @Override
     public void onCreate() {
@@ -38,9 +41,26 @@ public class HuaShanApplication extends Application {
         client_id = sharedPreferences.getString("client_id", "");
 
         loginStatus = sharedPreferences.getInt("loginStatus",-1);
+
+
+        //IMEI（imei）
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); //手机的唯一标识
+        imei = tm.getDeviceId();
+
     }
 
     public static HuaShanApplication getinstance() {
         return instance;
     }
+
+    public static boolean checkSecurityInformation(Context context){
+
+        return !sharedPreferences.getString("gesture_lock", "-1") .equals("-1") ;
+    }
+
+    public static String getGesturePassword(){
+        return sharedPreferences.getString("gesture_lock", "-1");
+    }
+
+
 }

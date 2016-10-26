@@ -96,6 +96,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
         checkText();
         login();
+
+
     }
 
     /**
@@ -133,6 +135,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         loginText.set(false);
 
         HuaShanApplication.editor.putInt("loginStatus",1).commit();
+        HuaShanApplication.editor.putString("account",account).commit();
+        HuaShanApplication.account = account;
         HuaShanApplication.loginStatus = 1;
         setResult(101);
         finish();

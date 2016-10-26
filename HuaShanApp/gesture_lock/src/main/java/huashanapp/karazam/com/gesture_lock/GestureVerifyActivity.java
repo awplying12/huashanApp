@@ -42,6 +42,7 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 	private int mParamIntentCode;
 
 	private String mPassword = "";
+	private String phoneNum = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 	
 	private void ObtainExtraData() {
 		mPassword = getIntent().getStringExtra(GestureUtil.Password);
+		phoneNum = getIntent().getStringExtra(GestureUtil.PhoneNum);
 		mParamPhoneNumber = getIntent().getStringExtra(PARAM_PHONE_NUMBER);
 		mParamIntentCode = getIntent().getIntExtra(PARAM_INTENT_CODE, 0);
 	}
@@ -109,6 +111,11 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 		mTextCancel.setOnClickListener(this);
 		mTextForget.setOnClickListener(this);
 		mTextOther.setOnClickListener(this);
+
+		if(!phoneNum.equals("") && !TextUtils.isEmpty(phoneNum)){
+			mTextPhoneNumber.setText(getProtectedMobile(phoneNum));
+		}
+
 	}
 	
 	private String getProtectedMobile(String phoneNumber) {
@@ -130,8 +137,32 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 		if (i == R.id.text_cancel) {
 			this.finish();
 
-		} else {
+		} else if(i == R.id.text_forget_gesture){
+
+			if(mOnGestureVerifyClickListener == null){
+				return;
+			}
+			mOnGestureVerifyClickListener.onForgetGesture();
+		}else if(i == R.id.text_other_account){
+
+			if(mOnGestureVerifyClickListener == null){
+				return;
+			}
+			mOnGestureVerifyClickListener.onOtherAccount();
 		}
 	}
+
+	public interface onGestureVerifyClickListener{
+		void onForgetGesture();
+
+		void onOtherAccount();
+	}
+
+	private static onGestureVerifyClickListener mOnGestureVerifyClickListener;
+
+	public static void setOnGestureVerifyClickListener(onGestureVerifyClickListener onGestureVerifyClickListener){
+		mOnGestureVerifyClickListener = onGestureVerifyClickListener;
+	}
+
 	
 }

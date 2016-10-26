@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.utils.base.BaseActivity;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityRegister3Binding;
 import com.karazam.huashanapp.main.registerMain.registerActivity;
@@ -86,6 +87,7 @@ public class Register3Activity extends BaseActivity implements Register3View {
                 case GestureUtil.GESTURELOCK_EDIT_RESULTCODE:
                     String key = data.getStringExtra(GestureUtil.Password);
                     showToast(key);
+                    HuaShanApplication.editor.putString("gesture_lock",key).commit();
                     registerActivity.finishAll();
                     break;
                 default:
