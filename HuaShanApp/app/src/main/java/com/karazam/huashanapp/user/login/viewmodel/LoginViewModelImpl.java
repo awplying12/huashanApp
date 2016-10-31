@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.user.login.model.databinding.LoginEntity;
 import com.karazam.huashanapp.user.login.model.databinding.TokenData;
@@ -74,7 +75,7 @@ public class LoginViewModelImpl extends LoginViewModel {
      */
     @Override
     public void login(String account, String password) {
-
+//            mView.showToast(HuaShanApplication.imei);
         dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
             @Override
             public void onCompleted() {

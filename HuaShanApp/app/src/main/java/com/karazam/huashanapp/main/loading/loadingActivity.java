@@ -8,6 +8,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.main.MainActivity;
+import com.karazam.huashanapp.user.findpassword.main.view.activity.VerificationActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,8 +50,6 @@ public class loadingActivity extends BaseActivity {
 
 //                overridePendingTransition(R.anim.fade, R.anim.hold);
 
-
-
             }
         };
         timer.schedule(tk,3000);
@@ -59,7 +58,10 @@ public class loadingActivity extends BaseActivity {
         GestureVerifyActivity.setOnGestureVerifyClickListener(new GestureVerifyActivity.onGestureVerifyClickListener() {
             @Override
             public void onForgetGesture() {
-                showToast("onForgetGesture");
+
+                Intent intent = new Intent(loadingActivity.this, VerificationActivity.class);
+                intent.putExtra("sign",2);
+                startActivity(intent);
             }
 
             @Override

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.user.findpassword.main.model.databinding.VerificationEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.user.findpassword.main.viewmodel.VerificationViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/title_color"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="7%"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/back_icon"
+                    android:onClick="@{handler.onBack}"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="短信验证"
+                android:textColor="#fff"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="#fff"
+
+            >
+
+
+            <android.support.percent.PercentFrameLayout
+                android:id="@+id/content_pl"
+                app:layout_widthPercent="88%"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_fillet_ffffff_5dp"
+                app:layout_marginTopPercent ="10%"
+                android:layout_gravity="center_horizontal"
+
+                >
+
+
+                <ImageView
+                    app:layout_widthPercent="100%"
+                    android:layout_height="1dp"
+                    android:background="@color/register_content_line_color"
+                    android:layout_gravity="bottom|center_horizontal">
+
+                </ImageView>
+
+
+                Verify code
+
+                <EditText
+                    android:id="@+id/ed_verify_code_register"
+                    app:layout_widthPercent="67%"
+                    app:layout_heightPercent="10%"
+                    android:layout_gravity="left"
+                    android:hint="请输入短信验证码"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:background="@null"
+                    android:textColorHint="@color/login_hint_text_color"
+                    android:textSize="@dimen/login_text_size"/>
+
+
+                <TextView
+                    android:id="@+id/time"
+                    app:layout_widthPercent="33%"
+                    app:layout_heightPercent="10%"
+                    android:layout_gravity="right"
+                    android:gravity="center"
+                    android:textColor="@color/login_hint_text_color"
+                    android:text="重新发送 (120)"
+                    android:onClick="@{handler.reacQuire}"
+                    />
+            </android.support.percent.PercentFrameLayout>
+
+
+            <TextView
+                android:id="@+id/btn_next_step_2"
+                app:layout_widthPercent="88%"
+                app:layout_heightPercent="8%"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                app:layout_marginTopPercent="30%"
+                android:background="@drawable/bg_fillet_adadad_5dp"
+                android:text="下一步"
+                android:textSize="@dimen/app_text_size"
+                android:textColor="#fff"
+                android:clickable="true"
+                android:onClick="@{handler.onNextStep}"
+                />
+
+
+        </android.support.percent.PercentFrameLayout>
+
+
+    </android.support.percent.PercentRelativeLayout>
+</layout>
+
