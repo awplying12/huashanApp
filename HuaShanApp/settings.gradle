@@ -1,1 +1,1 @@
-include ':app', ':gesture_lock', ':utils', ':cacheutils'
+include ':app', ':gesture_lock', ':utils', ':cacheutils', 'waveview'

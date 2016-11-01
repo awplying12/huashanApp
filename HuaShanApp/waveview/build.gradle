@@ -1,15 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
-    dataBinding {
-        enabled = true
-    }
-
     defaultConfig {
-        applicationId "com.karazam.huashanapp"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
@@ -24,9 +19,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile project(':gesture_lock')
-    compile project(':utils')
-    compile project(':waveview')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
 }

@@ -8,6 +8,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.main.MainActivity;
+import com.karazam.huashanapp.main.WaveActivity;
 import com.karazam.huashanapp.user.findpassword.main.view.activity.VerificationActivity;
 
 import java.util.Timer;
@@ -112,6 +113,8 @@ public class loadingActivity extends BaseActivity {
             }
 
             Intent intent = new Intent(loadingActivity.this, HomeActivity.class);
+
+//            Intent intent = new Intent(loadingActivity.this, WaveActivity.class);
             startActivity(intent);
             finish();
         }
