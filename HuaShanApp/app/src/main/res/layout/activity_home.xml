@@ -119,7 +119,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:background="#000"
+                        android:background="@drawable/today_bule"
                     />
 
                     <TextView
@@ -146,7 +146,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:background="#000"
+                        android:background="@drawable/inv_blue"
                     />
 
                     <TextView
@@ -173,7 +173,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:background="#000"
+                        android:background="@drawable/mall_blue"
                         />
 
                     <TextView
@@ -201,7 +201,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:background="#000"
+                        android:background="@drawable/me_blue"
                         />
 
                     <TextView

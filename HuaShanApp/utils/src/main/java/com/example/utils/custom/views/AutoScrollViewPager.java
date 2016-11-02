@@ -26,7 +26,7 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
             if (isRunning && msg.what == 0) {
                 //让viewPager 滑动到下一页
                 AutoScrollViewPager.this.setCurrentItem(getCurrentItem() + 1, true);
-                handler.sendEmptyMessageDelayed(0, 2000);
+                handler.sendEmptyMessageDelayed(0, time);
             }
         }
 
@@ -47,7 +47,12 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
     @Override
     public void startAutoScroll() {
         isRunning = true;
-        handler.sendEmptyMessageDelayed(0, 2000);
+        handler.sendEmptyMessageDelayed(0, time);
+    }
+
+    private long time = 2000;
+    public void setTime(long time){
+        this.time = time;
     }
 
     public void StartAutoScroll(){
