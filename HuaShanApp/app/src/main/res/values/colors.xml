@@ -44,4 +44,15 @@
     <color name="my_pf1_content_text_color_2">#000</color>
 
     <color name="my_pf2_content_text_color">#fff</color>
+
+    <!--today-->
+    <color name="todayfragment_Profit_text_color">#fff</color>
+
+    <color name="todayfragment_line_color">#ddd</color>
+
+    <color name="todayfragment_line_color_1">#505050</color>
+
+    <color name="todayfragment_part3_text_color">#505050</color>
+
+    <color name="todayfragment_part4_text_color">#505050</color>
 </resources>

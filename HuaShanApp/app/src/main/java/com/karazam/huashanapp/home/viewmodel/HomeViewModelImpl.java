@@ -37,7 +37,17 @@ public class HomeViewModelImpl extends HomeViewModel {
      */
     @Override
     public void toFinanec(View view) {
-        mView.setViewPagerCurrentItem(0,"金融");
+//        mView.setViewPagerCurrentItem(0,"金融");
+    }
+
+
+    /**
+     * 今日Fragmetn
+     * @param view
+     */
+    @Override
+    public void toToday(View view) {
+        mView.setViewPagerCurrentItem(0,"今日");
     }
 
     /**
@@ -79,6 +89,6 @@ public class HomeViewModelImpl extends HomeViewModel {
     public void setUp(View view) {
         HuaShanApplication.editor.putInt("loginStatus",2).commit();
         HuaShanApplication.loginStatus = 2;
-        mView.setViewPagerCurrentItem(0,"金融");
+        mView.setViewPagerCurrentItem(0,"今日");
     }
 }

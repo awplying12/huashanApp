@@ -22,6 +22,7 @@ import com.karazam.huashanapp.home.viewmodel.HomeViewModel;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModelImpl;
 import com.karazam.huashanapp.manage.view.fragment.ManageFragment;
 import com.karazam.huashanapp.my.main.view.fragment.MyFragment;
+import com.karazam.huashanapp.today.main.view.fragment.TodayFragment;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
 import java.util.ArrayList;
@@ -40,7 +41,9 @@ public class HomeActivity extends BaseActivity implements HomeView {
     private ScrollableViewPager viewPager; //主体viewPager
     private TextView title_text;
 
-    private TextView finance_text;
+//    private TextView finance_text;
+
+    private TextView today_text;
     private TextView manage_text;
     private TextView apply_text;
     private TextView my_text;
@@ -48,7 +51,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
     private int isSelected;
     private int isDefault;
 
-    private FinanceFragment financeFragment = new FinanceFragment();
+//    private FinanceFragment financeFragment = new FinanceFragment();
+    private TodayFragment todayFragment = new TodayFragment();
     private ManageFragment manageFragment = new ManageFragment();
     private ApplyFragment applyFragment = new ApplyFragment();
     private MyFragment myFragment = new MyFragment();
@@ -74,7 +78,9 @@ public class HomeActivity extends BaseActivity implements HomeView {
         viewPager = (ScrollableViewPager) getView(R.id.viewpager_home);
         title_text = (TextView) getView(R.id.title_text);
 
-        finance_text = (TextView) getView(R.id.finance_text);
+//        finance_text = (TextView) getView(R.id.finance_text);
+
+        today_text = (TextView) getView(R.id.today_text);
         manage_text = (TextView) getView(R.id.manage_text);
         apply_text = (TextView) getView(R.id.apply_text);
         my_text = (TextView) getView(R.id.my_text);
@@ -117,7 +123,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
      */
     private void setViewPager() {
         ArrayList<Fragment> list = new ArrayList<>();
-        list.add(financeFragment);
+        list.add(todayFragment);
         list.add(manageFragment);
         list.add(applyFragment);
         list.add(myFragment);
@@ -159,7 +165,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
         });
 
         viewPager.setCurrentItem(0);
-        finance_text.setTextColor(isSelected);
+        today_text.setTextColor(isSelected);
 
     }
 
@@ -175,7 +181,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
         initBottomLayout();
         switch (position){
             case 0:
-                finance_text.setTextColor(isSelected);
+                today_text.setTextColor(isSelected);
                 break;
             case 1:
                 manage_text.setTextColor(isSelected);
@@ -195,7 +201,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
      * 初始化BottomLayout
      */
     private void initBottomLayout() {
-        finance_text.setTextColor(isDefault);
+        today_text.setTextColor(isDefault);
         manage_text.setTextColor(isDefault);
         apply_text.setTextColor(isDefault);
         my_text.setTextColor(isDefault);

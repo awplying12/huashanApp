@@ -12,6 +12,8 @@ public abstract class HomeViewModel extends BaseViewModel{
 
     public abstract void toFinanec(View view);
 
+    public abstract void toToday(View view);
+
     public abstract void toManage(View view);
 
     public abstract void toApply(View view);
