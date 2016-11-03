@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.utils.Adapter.PagerFragmentAdapter;
@@ -45,8 +46,13 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
     private TextView today_text;
     private TextView manage_text;
-    private TextView apply_text;
+    private TextView mall_text;
     private TextView my_text;
+
+    private ImageView today_img;
+    private ImageView manage_img;
+    private ImageView mall_img;
+    private ImageView my_img;
 
     private int isSelected;
     private int isDefault;
@@ -82,9 +88,13 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
         today_text = (TextView) getView(R.id.today_text);
         manage_text = (TextView) getView(R.id.manage_text);
-        apply_text = (TextView) getView(R.id.apply_text);
+        mall_text = (TextView) getView(R.id.mall_text);
         my_text = (TextView) getView(R.id.my_text);
 
+        today_img = (ImageView) getView(R.id.today_img);
+        manage_img = (ImageView) getView(R.id.manage_img);
+        mall_img = (ImageView) getView(R.id.mall_img);
+        my_img = (ImageView) getView(R.id.my_img);
 
     }
 
@@ -128,7 +138,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
         list.add(applyFragment);
         list.add(myFragment);
 
-        viewPager.setScrollAble(false);
+        viewPager.setScrollAble(true);
         viewPager.setOffscreenPageLimit(limit); //设置viewpager缓存一侧Fragment的数量
         viewPager.setAdapter(new PagerFragmentAdapter(getSupportFragmentManager(), list));
 
@@ -142,7 +152,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
             public void onPageSelected(int position) {
                 switch (position){
                     case 0:
-                        mModel.toFinanec(null);
+                        mModel.toToday(null);
                         break;
                     case 1:
                         mModel.toManage(null);
@@ -166,6 +176,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
         viewPager.setCurrentItem(0);
         today_text.setTextColor(isSelected);
+        today_img.setSelected(true);
 
     }
 
@@ -182,15 +193,19 @@ public class HomeActivity extends BaseActivity implements HomeView {
         switch (position){
             case 0:
                 today_text.setTextColor(isSelected);
+                today_img.setSelected(true);
                 break;
             case 1:
                 manage_text.setTextColor(isSelected);
+                manage_img.setSelected(true);
                 break;
             case 2:
-                apply_text.setTextColor(isSelected);
+                mall_text.setTextColor(isSelected);
+                mall_img.setSelected(true);
                 break;
             case 3:
                 my_text.setTextColor(isSelected);
+                my_img.setSelected(true);
                 break;
             default:
                 break;
@@ -203,8 +218,13 @@ public class HomeActivity extends BaseActivity implements HomeView {
     private void initBottomLayout() {
         today_text.setTextColor(isDefault);
         manage_text.setTextColor(isDefault);
-        apply_text.setTextColor(isDefault);
+        mall_text.setTextColor(isDefault);
         my_text.setTextColor(isDefault);
+
+        today_img.setSelected(false);
+        manage_img.setSelected(false);
+        mall_img.setSelected(false);
+        my_img.setSelected(false);
     }
 
 

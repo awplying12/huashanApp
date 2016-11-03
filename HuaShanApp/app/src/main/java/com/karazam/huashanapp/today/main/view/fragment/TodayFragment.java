@@ -1,26 +1,34 @@
 package com.karazam.huashanapp.today.main.view.fragment;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.utils.base.BaseFragment;
 import com.example.utils.custom.views.AutoScrollViewPager;
 import com.example.utils.custom.views.ViewGroupIndicator;
 import com.google.common.collect.Lists;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
 import com.karazam.huashanapp.today.main.view.TodayView;
 import com.karazam.huashanapp.today.main.view.fragment.view.AutoScrollAdapter;
+import com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModel;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModelImpl;
+import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +50,19 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     private TodayEntity entity = new TodayEntity();
 
     private TodayViewModel mModel;
+    private TextView profit_num;
 
     private SwipeRefreshLayout swl;
 
     private AutoScrollViewPager pager;
-//    private ViewGroupIndicator indicator;
+
     private AutoScrollAdapter autoScrollAdapter;
     private SpringIndicator springIndicator;
+
+    private MyNestedScrollView scrollview;
+
+    private ImageView line_1;
+    private ImageView line_2;
 
     @Nullable
     @Override
@@ -62,16 +76,38 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
         initView();
 
-        initSwipeRefreshLayout();
+        initTime();
+        setScrollView();
         AutoScrollViewPager();
         return view;
     }
 
-    /**
-     * 初始化
-     */
-    private void initSwipeRefreshLayout() {
+    @Override
+    public void onStart() {
+        super.onStart();
+        pager.startAutoScroll();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        pager.stopAutoScroll();
+
+    }
+
+
+
+    /**
+     * 初始化日期
+     */
+    private void initTime() {
+        RxView.findById(view,R.id.today_time).bind(HuaShanApplication.day, new Rx.Action<View, String>() {
+            @Override
+            public void call(View target, String s) {
+                TextView textView = (TextView) target;
+                textView.setText(s);
+            }
+        });
     }
 
 
@@ -86,8 +122,16 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
         pager = (AutoScrollViewPager) getView(R.id.today_scroll_pager,view);
-//        indicator = (ViewGroupIndicator) getView(R.id.today_scroll_pager_indicator,view);
         springIndicator = (SpringIndicator) getView(R.id.indicator,view);
+
+        profit_num = (TextView) getView(R.id.profit_num,view);
+        final Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"FZXQJW.TTF");
+        profit_num.setTypeface(font);
+
+        scrollview = (MyNestedScrollView) getView(R.id.scrollview,view);
+
+        line_1 = (ImageView) getView(R.id.td_line_1,view);
+        line_2 = (ImageView) getView(R.id.td_line_2,view);
 
     }
 
@@ -99,21 +143,12 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     /**
      * 设置滚动ViewPager
      */
-    private ArrayList<Integer> ids;
     private void AutoScrollViewPager(){
-
-        ids = new ArrayList<>();
-        ids.add(R.drawable.image1);
-        ids.add(R.drawable.image2);
-        ids.add(R.drawable.image3);
-        ids.add(R.drawable.image4);
-        ids.add(R.drawable.image5);
 
         PagerModelManager manager = new PagerModelManager();
         manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
-//        ModelPagerAdapter adapter = new ModelPagerAdapter(getActivity().getSupportFragmentManager(), manager);
 
-        autoScrollAdapter = new AutoScrollAdapter(getActivity().getSupportFragmentManager(), manager,ids,getContext(),pager);
+        autoScrollAdapter = new AutoScrollAdapter(getActivity().getSupportFragmentManager(), manager,getBgRes(),getContext(),pager);
         pager.setTime(5000);
         pager.setAdapter(autoScrollAdapter);
 //        indicator.setParent(pager);
@@ -135,30 +170,58 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         });
     }
 
+    /**
+     * 设置广告标题
+     * @return
+     */
     private List<String> getTitles(){
         return Lists.newArrayList("1", "2", "3", "4","5");
     }
 
+    /**
+     * 设置广告图片
+     * @return
+     */
     private List<Integer> getBgRes(){
         return Lists.newArrayList(R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4,R.drawable.image5);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.i("Activity-->", "onStart");
-//        indicator.start();
-        pager.startAutoScroll();
+    /**
+     * 设置滑动效果
+     */
+    private void setScrollView() {
+
+
+
+
+        scrollview.setOnScrollInterface(new MyNestedScrollView.onScrollInterface() {
+            @Override
+            public void onSChanged(int l, int t, int oldl, int oldt) {
+//                Log.i("sss","l "+l+" t "+t+" oldl "+oldl+" oldt "+oldt);
+
+                int[] location1 = new int[2];
+                line_1.getLocationOnScreen(location1);
+                final int x1 = location1[0];
+                final int y1 = location1[1];
+
+                int[] location2 = new int[2];
+                line_2.getLocationOnScreen(location2);
+                final int x2 = location2[0];
+                final int y2 = location2[1];
+                Log.i("sss","y1 "+y1+" y2 "+y2);
+//                line_1.
+                if((y1-y2) <= 0 ){
+//                    line_1.setVisibility(View.GONE);
+
+                    line_1.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    line_2.setBackgroundColor(getResources().getColor(R.color.line_color));
+                }else {
+                    line_2.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    line_1.setBackgroundColor(getResources().getColor(R.color.line_color));
+                }
+            }
+        });
+
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        //    if (isPowerOff()) {
-//        indicator.stop();
-        pager.stopAutoScroll();
-        //    }
-        Log.i("Activity-->", "onStop");
-
-    }
 }

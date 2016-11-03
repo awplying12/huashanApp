@@ -3,17 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#00ffffff</color>
 
     <color name="all_activity_background">#EEEEEE</color>
 
-    <color name="line_color">#dddddd</color>
+    <color name="line_color">#20000000</color>
 
     <color name="title_color">#0894EC</color>
 
     <!--homeactivity-->
     <color name="homeactivity_textcolor_selected">#0894EC</color>
 
-    <color name="homeactivity_textcolor_default">#000</color>
+    <color name="homeactivity_textcolor_default">#a8a8a8</color>
 
     <!--finance-->
     <color name="financefragment_calculator_text_color">#FFFFFF</color>
@@ -48,7 +49,7 @@
     <!--today-->
     <color name="todayfragment_Profit_text_color">#fff</color>
 
-    <color name="todayfragment_line_color">#ddd</color>
+    <color name="todayfragment_line_color">#505050</color>
 
     <color name="todayfragment_line_color_1">#505050</color>
 

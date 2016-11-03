@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
+import android.text.format.Time;
+
+import com.ogaclejapan.rx.binding.RxProperty;
 
 /**
  * Created by Administrator on 2016/10/11.
@@ -26,6 +29,10 @@ public class HuaShanApplication extends Application {
     public static int loginStatus;
     public static String imei;
 
+
+
+    public static RxProperty<String> day = RxProperty.create();;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -42,10 +49,14 @@ public class HuaShanApplication extends Application {
 
         loginStatus = sharedPreferences.getInt("loginStatus",-1);
 
-
         //IMEI（imei）
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); //手机的唯一标识
         imei = tm.getDeviceId();
+
+        Time time = new Time("GMT+8");
+        time.setToNow();
+
+        day.set(time.monthDay+"");
 
     }
 

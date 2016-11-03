@@ -90,20 +90,14 @@
 
             </com.example.utils.custom.ScrollableViewPager>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/line_color"
-                android:layout_above="@+id/bottom_home"
-                />
-
             <LinearLayout
                 android:id="@+id/bottom_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:background="#f8f8f8"
                 android:layout_alignParentBottom="true"
-                app:layout_heightPercent="10%">
+                app:layout_heightPercent="10%"
+                >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -115,11 +109,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-
+                        android:id="@+id/today_img"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:background="@drawable/today_bule"
+                        android:background="@drawable/bg_today_img"
                     />
 
                     <TextView
@@ -142,18 +136,18 @@
                     android:orientation="vertical">
 
                     <ImageView
-
+                        android:id="@+id/manage_img"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:background="@drawable/inv_blue"
-                    />
+                        android:background="@drawable/bg_inv_img"
+                         />
 
                     <TextView
                         android:id="@+id/manage_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="理财"
+                        android:text="投资"
                         android:textSize="@dimen/homeactivity_bottom_text_size"
                         android:textStyle="bold" />
 
@@ -169,18 +163,18 @@
                     android:orientation="vertical">
 
                     <ImageView
-
+                        android:id="@+id/mall_img"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:background="@drawable/mall_blue"
+                        android:background="@drawable/bg_mall_img"
                         />
 
                     <TextView
-                        android:id="@+id/apply_text"
+                        android:id="@+id/mall_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="申请"
+                        android:text="积分"
                         android:textSize="@dimen/homeactivity_bottom_text_size"
                         android:textStyle="bold" />
 
@@ -197,11 +191,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-
+                        android:id="@+id/my_img"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:background="@drawable/me_blue"
+                        android:background="@drawable/bg_me_img"
                         />
 
                     <TextView
@@ -216,6 +210,15 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"
+                android:layout_below="@+id/viewpager_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/view" />
         </android.support.percent.PercentRelativeLayout>
 
     </android.support.percent.PercentFrameLayout>

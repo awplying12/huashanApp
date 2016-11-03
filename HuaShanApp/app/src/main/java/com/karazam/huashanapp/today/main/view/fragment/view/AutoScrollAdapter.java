@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.example.utils.custom.views.AutoScrollViewPager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
@@ -19,11 +20,11 @@ import github.chenupt.multiplemodel.viewpager.PagerModelManager;
  */
 
 public class AutoScrollAdapter extends ModelPagerAdapter {
-    private ArrayList<Integer> ids;
+    private List<Integer> ids;
     private Context context;
     private AutoScrollViewPager pager;
 
-    public AutoScrollAdapter(FragmentManager fm, PagerModelManager pagerModelManager,ArrayList<Integer> ids, Context context, AutoScrollViewPager pager) {
+    public AutoScrollAdapter(FragmentManager fm, PagerModelManager pagerModelManager, List<Integer> ids, Context context, AutoScrollViewPager pager) {
         super(fm, pagerModelManager);
         this.ids = ids;
         this.context = context;
