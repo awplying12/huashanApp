@@ -282,7 +282,10 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
             if (!(position >= getCount() || position == 0)
                     || (lastPosition == 0 && position == getCount())
                     || (position == getCount() && lastPosition == getCount() - 1)) {
-                mIndicatorListener.moving(position - 1, positionOffset);
+                if(mIndicatorListener != null){
+                    mIndicatorListener.moving(position - 1, positionOffset);
+                }
+
             }
             lastPosition = position;
             if (listener != null && position > 0 && position < getCount()) {

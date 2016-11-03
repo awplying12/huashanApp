@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.today.main.view.fragment.view;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +11,31 @@ import com.example.utils.custom.views.AutoScrollViewPager;
 
 import java.util.ArrayList;
 
+import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
+import github.chenupt.multiplemodel.viewpager.PagerModelManager;
+
 /**
  * Created by Administrator on 2016/10/13.
  */
 
-public class AutoScrollAdapter extends PagerAdapter {
+public class AutoScrollAdapter extends ModelPagerAdapter {
     private ArrayList<Integer> ids;
     private Context context;
     private AutoScrollViewPager pager;
 
-    public AutoScrollAdapter(ArrayList<Integer> ids, Context context, AutoScrollViewPager pager) {
+    public AutoScrollAdapter(FragmentManager fm, PagerModelManager pagerModelManager,ArrayList<Integer> ids, Context context, AutoScrollViewPager pager) {
+        super(fm, pagerModelManager);
         this.ids = ids;
         this.context = context;
         this.pager = pager;
     }
+
+//    public AutoScrollAdapter(ArrayList<Integer> ids, Context context, AutoScrollViewPager pager) {
+//        super();
+//        this.ids = ids;
+//        this.context = context;
+//        this.pager = pager;
+//    }
 
     @Override
     public int getCount() {

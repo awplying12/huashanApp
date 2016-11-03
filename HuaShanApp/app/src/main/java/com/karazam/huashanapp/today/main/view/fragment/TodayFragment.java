@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.example.utils.base.BaseFragment;
 import com.example.utils.custom.views.AutoScrollViewPager;
 import com.example.utils.custom.views.ViewGroupIndicator;
+import com.google.common.collect.Lists;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 
@@ -22,6 +23,12 @@ import com.karazam.huashanapp.today.main.viewmodel.TodayViewModel;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModelImpl;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
+import github.chenupt.multiplemodel.viewpager.PagerModelManager;
+import github.chenupt.springindicator.GuideFragment;
+import github.chenupt.springindicator.SpringIndicator;
 
 /**
  * Created by Administrator on 2016/11/2.
@@ -39,8 +46,9 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     private SwipeRefreshLayout swl;
 
     private AutoScrollViewPager pager;
-    private ViewGroupIndicator indicator;
+//    private ViewGroupIndicator indicator;
     private AutoScrollAdapter autoScrollAdapter;
+    private SpringIndicator springIndicator;
 
     @Nullable
     @Override
@@ -78,7 +86,8 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
         pager = (AutoScrollViewPager) getView(R.id.today_scroll_pager,view);
-        indicator = (ViewGroupIndicator) getView(R.id.today_scroll_pager_indicator,view);
+//        indicator = (ViewGroupIndicator) getView(R.id.today_scroll_pager_indicator,view);
+        springIndicator = (SpringIndicator) getView(R.id.indicator,view);
 
     }
 
@@ -100,10 +109,16 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         ids.add(R.drawable.image4);
         ids.add(R.drawable.image5);
 
-        autoScrollAdapter = new AutoScrollAdapter(ids,getContext(),pager);
+        PagerModelManager manager = new PagerModelManager();
+        manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
+//        ModelPagerAdapter adapter = new ModelPagerAdapter(getActivity().getSupportFragmentManager(), manager);
+
+        autoScrollAdapter = new AutoScrollAdapter(getActivity().getSupportFragmentManager(), manager,ids,getContext(),pager);
         pager.setTime(5000);
         pager.setAdapter(autoScrollAdapter);
-        indicator.setParent(pager);
+//        indicator.setParent(pager);
+
+        springIndicator.setViewPager(pager);
 
         autoScrollAdapter.setOnAutoScrollPagerClickListener(new AutoScrollAdapter.OnAutoScrollPagerClickListener() {
 
@@ -120,18 +135,28 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         });
     }
 
+    private List<String> getTitles(){
+        return Lists.newArrayList("1", "2", "3", "4","5");
+    }
+
+    private List<Integer> getBgRes(){
+        return Lists.newArrayList(R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4,R.drawable.image5);
+    }
+
     @Override
     public void onStart() {
         super.onStart();
         Log.i("Activity-->", "onStart");
-        indicator.start();
+//        indicator.start();
+        pager.startAutoScroll();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         //    if (isPowerOff()) {
-        indicator.stop();
+//        indicator.stop();
+        pager.stopAutoScroll();
         //    }
         Log.i("Activity-->", "onStop");
 

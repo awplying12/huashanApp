@@ -221,20 +221,35 @@
                             android:id="@+id/today_scroll_pager"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
                             android:background="#cfa">
 
                         </com.example.utils.custom.views.AutoScrollViewPager>
 
-                        <com.example.utils.custom.views.ViewGroupIndicator
-                            xmlns:indicator="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/today_scroll_pager_indicator"
-                            android:layout_width="wrap_content"
-                            android:layout_height="25dp"
-                            android:layout_gravity="bottom"
-                            indicator:selected_color="#50505050"
-                            indicator:unselected_color="#00ffffff"
-                            indicator:distance_from_two_indicator="20dp"
-                            indicator:radius="3dp"/>
+                        <!--<com.example.utils.custom.views.ViewGroupIndicator-->
+                            <!--xmlns:indicator="http://schemas.android.com/apk/res-auto"-->
+                            <!--android:id="@+id/today_scroll_pager_indicator"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="25dp"-->
+                            <!--android:layout_gravity="bottom"-->
+                            <!--indicator:selected_color="#50505050"-->
+                            <!--indicator:unselected_color="#00ffffff"-->
+                            <!--indicator:distance_from_two_indicator="20dp"-->
+                            <!--indicator:radius="3dp"/>-->
+
+                        <github.chenupt.springindicator.SpringIndicator
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            app:siTextSize="12dp"
+                            app:siIndicatorColors="@array/indicator_colors"
+                            app:siTextColor="@color/cfa"
+                            app:siSelectedTextColor="@android:color/white"
+                            app:siIndicatorColor="@color/colorPrimary"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:id="@+id/indicator"
+                            app:layout_widthPercent="40%"
+                            app:layout_heightPercent="30%"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp" />
 
                     </android.support.percent.PercentFrameLayout>
 
