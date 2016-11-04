@@ -67,8 +67,8 @@
         <!--</LinearLayout>-->
 
 
-
-        <android.support.v4.widget.SwipeRefreshLayout
+        <!--com.example.utils.custom.VpSwipeRefreshLayout-->
+        <com.example.utils.custom.VpSwipeRefreshLayout
             android:id="@+id/today_swipe_ly"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -209,7 +209,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
+                        android:layout_height="8dp"
                         android:background="@color/todayfragment_line_color"/>
 
                     <!--滚动广告条-->
@@ -256,12 +256,12 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
+                        android:layout_height="8dp"
                         android:background="@color/todayfragment_line_color"/>
 
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="190dp"
+                        android:layout_height="187dp"
                         >
 
                         <android.support.percent.PercentFrameLayout
@@ -433,24 +433,72 @@
 
                     </android.support.percent.PercentFrameLayout>
 
-                    <LinearLayout
+                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:background="#dadf">
+                        android:layout_height="8dp"
+                        android:background="@color/todayfragment_line_color"/>
 
-                    </LinearLayout>
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:background="#fff">
+
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="积分商城"
+                            style="@style/Base.TextAppearance.AppCompat.Body1"
+                            app:layout_marginLeftPercent="5%"
+                            app:layout_marginTopPercent="5%"
+                            android:textSize="@dimen/todayfragment_part4_text_size"
+                            android:textColor="@color/todayfragment_part4_text_color"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_gravity="right"
+                            app:layout_marginTopPercent="5%"
+                            app:layout_marginRightPercent="3%"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="更多"
+                                android:textColor="#ff8000"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="right|center_vertical"
+                                android:src="@drawable/goto_icon" />
+
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/commodity_rl"
+                            android:layout_width="match_parent"
+                            app:layout_heightPercent="68%"
+                            app:layout_marginTopPercent="25%">
+
+                        </android.support.v7.widget.RecyclerView>
+
+
+                    </android.support.percent.PercentFrameLayout>
 
                 </LinearLayout>
 
             </com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </com.example.utils.custom.VpSwipeRefreshLayout>
 
 
         <android.support.percent.PercentFrameLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:layout_heightPercent="10%"
+            android:layout_height="47dp"
 
             >
 

@@ -49,7 +49,7 @@
     <!--today-->
     <color name="todayfragment_Profit_text_color">#fff</color>
 
-    <color name="todayfragment_line_color">#505050</color>
+    <color name="todayfragment_line_color">#f0f0f0</color>
 
     <color name="todayfragment_line_color_1">#505050</color>
 

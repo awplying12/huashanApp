@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseFragment;
+
+import com.example.utils.custom.VpSwipeRefreshLayout;
 import com.example.utils.custom.views.AutoScrollViewPager;
 import com.example.utils.custom.views.ViewGroupIndicator;
 import com.google.common.collect.Lists;
@@ -24,7 +28,10 @@ import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
 import com.karazam.huashanapp.today.main.view.TodayView;
 import com.karazam.huashanapp.today.main.view.fragment.view.AutoScrollAdapter;
+import com.karazam.huashanapp.today.main.view.fragment.view.CommodityAdapter;
+import com.karazam.huashanapp.today.main.view.fragment.view.CommodityItem;
 import com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView;
+
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModel;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
@@ -52,7 +59,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     private TodayViewModel mModel;
     private TextView profit_num;
 
-    private SwipeRefreshLayout swl;
+    private VpSwipeRefreshLayout swl;
 
     private AutoScrollViewPager pager;
 
@@ -60,6 +67,8 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     private SpringIndicator springIndicator;
 
     private MyNestedScrollView scrollview;
+
+    private RecyclerView commodity_rl;
 
     private ImageView line_1;
     private ImageView line_2;
@@ -79,6 +88,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         initTime();
         setScrollView();
         AutoScrollViewPager();
+        setCommodity();
         return view;
     }
 
@@ -116,7 +126,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
      */
     private void initView() {
 
-        swl = (SwipeRefreshLayout) getView(R.id.today_swipe_ly,view);
+        swl = (VpSwipeRefreshLayout) getView(R.id.today_swipe_ly,view);
         swl.setOnRefreshListener(this);
         swl.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
@@ -132,6 +142,10 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
         line_1 = (ImageView) getView(R.id.td_line_1,view);
         line_2 = (ImageView) getView(R.id.td_line_2,view);
+
+        commodity_rl = (RecyclerView) getView(R.id.commodity_rl,view);
+        LinearLayoutManager lm = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        commodity_rl.setLayoutManager(lm);
 
     }
 
@@ -151,6 +165,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         autoScrollAdapter = new AutoScrollAdapter(getActivity().getSupportFragmentManager(), manager,getBgRes(),getContext(),pager);
         pager.setTime(5000);
         pager.setAdapter(autoScrollAdapter);
+        pager.setmDuration(500);
 //        indicator.setParent(pager);
 
         springIndicator.setViewPager(pager);
@@ -191,13 +206,10 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
      */
     private void setScrollView() {
 
-
-
-
         scrollview.setOnScrollInterface(new MyNestedScrollView.onScrollInterface() {
             @Override
             public void onSChanged(int l, int t, int oldl, int oldt) {
-//                Log.i("sss","l "+l+" t "+t+" oldl "+oldl+" oldt "+oldt);
+
 
                 int[] location1 = new int[2];
                 line_1.getLocationOnScreen(location1);
@@ -208,11 +220,9 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
                 line_2.getLocationOnScreen(location2);
                 final int x2 = location2[0];
                 final int y2 = location2[1];
-                Log.i("sss","y1 "+y1+" y2 "+y2);
-//                line_1.
-                if((y1-y2) <= 0 ){
-//                    line_1.setVisibility(View.GONE);
 
+
+                if((y1-y2) <= 0 ){
                     line_1.setBackgroundColor(getResources().getColor(R.color.transparent));
                     line_2.setBackgroundColor(getResources().getColor(R.color.line_color));
                 }else {
@@ -223,5 +233,24 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         });
 
     }
+
+    /**
+     * 积分商城RecyclerView
+     */
+    private void setCommodity(){
+
+        ArrayList<CommodityItem> items = new ArrayList<>();
+        items.add(new CommodityItem("手机主题馆积分不够分期付","#66ffff"));
+        items.add(new CommodityItem());
+        items.add(new CommodityItem());
+        items.add(new CommodityItem());
+        items.add(new CommodityItem());
+
+        CommodityAdapter adapter = new CommodityAdapter(items,commodity_rl);
+
+        commodity_rl.setAdapter(adapter);
+
+    }
+
 
 }

@@ -7,6 +7,9 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.animation.AccelerateInterpolator;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by liukun on 15/2/9.
@@ -136,6 +139,7 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
 
         }
 
+        setFixedSpeedScroller();
 
     }
 
@@ -206,6 +210,7 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
             case MotionEvent.ACTION_DOWN:
                 getParent().requestDisallowInterceptTouchEvent(true);
                 stopAutoScroll();
+                mDuration(100);
                 break;
 
 //                /**
@@ -235,6 +240,7 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
                         if(isRunning){
                             getParent().requestDisallowInterceptTouchEvent(true);
                             stopAutoScroll();
+                            mDuration(100);
                         }
             break;
             case MotionEvent.ACTION_UP:
@@ -242,6 +248,7 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
                 if(!isRunning){
                     getParent().requestDisallowInterceptTouchEvent(false);
                     startAutoScroll();
+                    mDuration(mTime);
                 }
 
 
@@ -339,6 +346,32 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
                 listener.onPageScrollStateChanged(state);
             }
         }
+    }
+
+    private FixedSpeedScroller  mScroller;
+    public void setFixedSpeedScroller(){
+        try {
+            Field mField = ViewPager.class.getDeclaredField("mScroller");
+            mField.setAccessible(true);
+            mScroller = new FixedSpeedScroller(this.getContext(),new AccelerateInterpolator());
+            mField.set(this, mScroller);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int mTime = 1000;
+    public void setmDuration(int time){
+
+        mTime = time;
+        mDuration(time);
+    }
+
+    private void mDuration(int time){
+        if (mScroller == null){
+            return;
+        }
+        mScroller.setmDuration(time);
     }
 
 }
