@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
+import com.karazam.huashanapp.today.calendar.view.activity.CalendarActivity;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
 import com.karazam.huashanapp.today.main.view.TodayView;
 
@@ -43,6 +44,15 @@ public class TodayViewModelImpl extends TodayViewModel {
     }
 
     /**
+     * 日历界面
+     * @param view
+     */
+    @Override
+    public void toCalendar(View view) {
+        mView.toOtherActivity(activity, CalendarActivity.class);
+    }
+
+    /**
      * 产融货
      * @param view
      */
@@ -69,4 +79,35 @@ public class TodayViewModelImpl extends TodayViewModel {
     public void onAllFinance(View view) {
         mView.showToast("onAllFinance");
     }
+
+    /**
+     * 每日精选详情
+     * @param view
+     */
+    @Override
+    public void onEverydayDetails(View view) {
+        mView.showToast("每日精选详情");
+    }
+
+    /**
+     * 每日精选立即购买
+     * @param view
+     */
+    @Override
+    public void onBuyImmediately(View view) {
+        mView.showToast("每日精选立即购买");
+    }
+
+    /**
+     * 积分商城更多
+     * @param view
+     */
+    @Override
+    public void onIntegralMore(View view) {
+        mView.showToast("onIntegralMore");
+    }
+
+
+
+
 }

@@ -36,7 +36,12 @@ public class TitleBarAdapter extends RecyclerView.Adapter<TitleBarAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_titlebar_item,parent,false);
-        view.setLayoutParams(new LinearLayout.LayoutParams((int)(BaseActivity.ScreeW*0.25),LinearLayout.LayoutParams.MATCH_PARENT));
+        int size = list.size();
+        if(size >=4){
+            view.setLayoutParams(new LinearLayout.LayoutParams((int)(BaseActivity.ScreeW*0.25),LinearLayout.LayoutParams.MATCH_PARENT));
+        }else {
+            view.setLayoutParams(new LinearLayout.LayoutParams((int)(BaseActivity.ScreeW/size),LinearLayout.LayoutParams.MATCH_PARENT));
+        }
 
         ViewHolder viewHodel = new ViewHolder(view,mOnItemClickListener);
         return viewHodel;

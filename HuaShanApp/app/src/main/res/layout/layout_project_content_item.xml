@@ -6,213 +6,129 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="160dp"
     android:layout_margin="8dp"
     android:descendantFocusability="blocksDescendants"
     card_view:cardCornerRadius="10dp"
 
     card_view:contentPaddingTop="5dp"
-    >
+    android:background="@color/all_activity_background">
 
     <android.support.percent.PercentFrameLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-        <LinearLayout
-            app:layout_widthPercent="25%"
-            app:layout_heightPercent="50%"
-            app:layout_marginLeftPercent="5%"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:background="#2894ff"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="年化收入"
-                android:textSize="@dimen/manage_content_item_text_size_1"
-                android:id="@+id/textView" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            app:layout_widthPercent="25%"
-            app:layout_heightPercent="50%"
-
-            android:orientation="horizontal"
-            app:layout_marginLeftPercent="30%"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:background="#93ff93"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="项目期限"
-                android:textSize="@dimen/manage_content_item_text_size_1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            app:layout_widthPercent="25%"
-            app:layout_heightPercent="50%"
-
-            android:orientation="horizontal"
-            app:layout_marginLeftPercent="55%"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:background="#ff8000"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="项目规模"
-                android:textSize="@dimen/manage_content_item_text_size_1"/>
-
-        </LinearLayout>
-
-        <android.support.percent.PercentRelativeLayout
-            app:layout_widthPercent="25%"
-            app:layout_heightPercent="35%"
-            app:layout_marginTopPercent="50%"
-            app:layout_marginLeftPercent="55%"
-            >
-
-            <TextView
-                android:id="@+id/tv_3_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_3_1"
-                android:layout_centerInParent="true"
-                android:text="5.00"
-                android:textSize="@dimen/manage_content_item_text_size_2"/>
-
-            <TextView
-                android:id="@+id/tv_3_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_3_2"
-                android:layout_centerVertical="true"
-                android:text="万"
-                android:textSize="@dimen/manage_content_item_text_size_2_1"/>
-        </android.support.percent.PercentRelativeLayout>
-
+        android:layout_height="match_parent"
+        >
         <android.support.percent.PercentFrameLayout
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="100%"
-            android:layout_gravity="right"
-            >
+            android:layout_width="match_parent"
+            app:layout_heightPercent="23%">
 
-            <com.example.utils.custom.views.PercentLemon
-                android:id="@+id/percentLemon"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_gravity="center"
-                app:percent="17.9"
-                app:skinDepth="15"
+                android:layout_gravity="center_vertical"
+                app:layout_marginLeftPercent="5%"
+                android:text="产融贷 - CR216002-30"
+                android:textSize="15dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:src="@drawable/goto_icon"
+                app:layout_marginRightPercent="3%"
+                android:id="@+id/imageView2"
                 />
 
         </android.support.percent.PercentFrameLayout>
 
-        <android.support.percent.PercentRelativeLayout
-            app:layout_widthPercent="25%"
-            app:layout_heightPercent="35%"
-            app:layout_marginTopPercent="50%"
-            app:layout_marginLeftPercent="30%"
-            >
-
-            <TextView
-                android:id="@+id/tv_2_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_2_1"
-                android:layout_centerInParent="true"
-                android:text="1"
-                android:textSize="@dimen/manage_content_item_text_size_2"
-                android:textColor="#F75000"/>
-
-            <TextView
-                android:id="@+id/tv_2_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_2_2"
-                android:layout_centerVertical="true"
-                android:text="个月"
-                android:textSize="@dimen/manage_content_item_text_size_2_1"/>
-        </android.support.percent.PercentRelativeLayout>
-
-        <android.support.percent.PercentRelativeLayout
-            app:layout_widthPercent="25%"
-            app:layout_heightPercent="35%"
-            app:layout_marginTopPercent="50%"
-            app:layout_marginLeftPercent="5%"
-            >
-
-            <TextView
-                android:id="@+id/tv_1_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_1_1"
-                android:layout_centerInParent="true"
-                android:text="8.50"
-                android:textSize="@dimen/manage_content_item_text_size_2"
-                android:textColor="#0894EC"
-                />
-
-            <TextView
-                android:id="@+id/tv_1_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="%"
-                android:textSize="@dimen/manage_content_item_text_size_2_1"
-                android:layout_toRightOf="@+id/tv_1_2"
-                android:layout_toEndOf="@+id/tv_1_2" />
-        </android.support.percent.PercentRelativeLayout>
-
-
-    </android.support.percent.PercentFrameLayout>
-
-    <android.support.percent.PercentFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="bottom"
-        >
         <ImageView
             app:layout_widthPercent="95%"
             android:layout_height="1dp"
-            android:background="#d0d0d0"
-            android:layout_gravity="top|center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            app:layout_marginTopPercent="25%"
+            android:background="@color/line_color"/>
 
-        <ImageView
-            app:layout_widthPercent="5%"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            app:layout_marginLeftPercent="5%"
-            android:background="#ff8000"/>
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            app:layout_heightPercent="30%"
+            app:layout_marginTopPercent="25%"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_marginLeftPercent="5%"
+                android:text="8.60"
+                android:textSize="25dp"
+                android:textColor="#ff8000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_marginLeftPercent="40%"
+                android:text="200000"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_marginLeftPercent="70%"
+                android:text="6"
+                android:textSize="18dp" />
+
+        </android.support.percent.PercentFrameLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_marginTopPercent="55%"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_marginLeftPercent="5%"
+                android:text="预期年化收益（%）"
+                android:textSize="12dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_marginLeftPercent="40%"
+                android:text="剩余金额（元）"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_marginLeftPercent="70%"
+                android:text="理财期限（月）"
+                android:textSize="12dp" />
+
+        </android.support.percent.PercentFrameLayout>
+
+
 
         <TextView
-            android:id="@+id/state_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_marginLeftPercent="11%"
-            android:layout_gravity="center_vertical"
-            android:text="经营周转(PX2016-037)"
-            android:textSize="@dimen/manage_content_item_text_size_3"/>
+            android:id="@+id/buy_now_item"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="22%"
+            android:layout_gravity="bottom|center_horizontal"
+            app:layout_marginBottomPercent="5%"
+            android:background="@drawable/bg_fillet_0894ec_5dp"
+            android:gravity="center"
+            android:text="立即购买"
+            android:textColor="#fff"
+
+            />
 
     </android.support.percent.PercentFrameLayout>
 
 </android.support.v7.widget.CardView>
-

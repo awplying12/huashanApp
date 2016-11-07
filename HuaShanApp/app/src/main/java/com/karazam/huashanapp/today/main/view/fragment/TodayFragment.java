@@ -32,6 +32,8 @@ import com.karazam.huashanapp.today.main.view.fragment.view.CommodityAdapter;
 import com.karazam.huashanapp.today.main.view.fragment.view.CommodityItem;
 import com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView;
 
+import com.karazam.huashanapp.today.main.view.fragment.view.NewAdapter;
+import com.karazam.huashanapp.today.main.view.fragment.view.NewItem;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModel;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
@@ -69,6 +71,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     private MyNestedScrollView scrollview;
 
     private RecyclerView commodity_rl;
+    private RecyclerView new_rl;
 
     private ImageView line_1;
     private ImageView line_2;
@@ -89,6 +92,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         setScrollView();
         AutoScrollViewPager();
         setCommodity();
+        setNew();
         return view;
     }
 
@@ -147,6 +151,9 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         LinearLayoutManager lm = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         commodity_rl.setLayoutManager(lm);
 
+        new_rl = (RecyclerView) getView(R.id.new_rl,view);
+        LinearLayoutManager lm1 = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        new_rl.setLayoutManager(lm1);
     }
 
     @Override
@@ -239,18 +246,40 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
      */
     private void setCommodity(){
 
-        ArrayList<CommodityItem> items = new ArrayList<>();
-        items.add(new CommodityItem("手机主题馆积分不够分期付","#66ffff"));
-        items.add(new CommodityItem());
-        items.add(new CommodityItem());
-        items.add(new CommodityItem());
-        items.add(new CommodityItem());
+        final ArrayList<CommodityItem> items = new ArrayList<>();
+        items.add(new CommodityItem("手机主题馆","积分不够分期付","#00E3E3"));
+        items.add(new CommodityItem("购物卡主题馆","优惠活动双重享","#ff2d2d"));
+        items.add(new CommodityItem("购物卡主题馆","优惠活动双重享","#2894ff"));
+
 
         CommodityAdapter adapter = new CommodityAdapter(items,commodity_rl);
 
         commodity_rl.setAdapter(adapter);
 
+        adapter.setmOnItemClickListener(new CommodityAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                showToast(items.get(position).getTitle());
+            }
+        });
+
     }
 
+    /**
+     * 知道RecyclerView
+     */
+    private void setNew(){
 
+        final ArrayList<NewItem> items = new ArrayList<>();
+        items.add(new NewItem());
+        items.add(new NewItem());
+        items.add(new NewItem());
+        items.add(new NewItem());
+        items.add(new NewItem());
+
+        NewAdapter adapter = new NewAdapter(getContext(),items);
+
+        new_rl.setAdapter(adapter);
+
+    }
 }

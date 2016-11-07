@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.today.main.view.fragment.view;
 
 import android.graphics.Color;
+import android.support.percent.PercentFrameLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
+import com.karazam.huashanapp.manage.view.view.TitleBarAdapter;
 
 import java.util.ArrayList;
 
@@ -36,7 +38,7 @@ public class CommodityAdapter extends RecyclerView.Adapter<CommodityAdapter.View
 
         view.setLayoutParams( rl);
 
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view,mOnItemClickListener);
         return holder;
     }
 
@@ -58,11 +60,17 @@ public class CommodityAdapter extends RecyclerView.Adapter<CommodityAdapter.View
 
 
         String title = items.get(position).getTitle();
-        holder.tv.setText(StringUtil.interrupt(title,0,""));
-//        holder.tv.setText(StringUtil.linefeed(title,5));
+        holder.name.setText(StringUtil.interrupt(title,0,""));
+        holder.name.setTextColor(Color.parseColor("#ffffff"));
+
+
+        String content = items.get(position).getContent();
+        holder.content.setText(StringUtil.interrupt(content,0,""));
+        holder.content.setTextColor(Color.parseColor("#ffffff"));
 
         String color = items.get(position).getColor();
-        holder.tv.setBackgroundColor(Color.parseColor(StringUtil.interrupt(color,0,"#ffffff")));
+        holder.pl.setBackgroundColor(Color.parseColor(StringUtil.interrupt(color,0,"#ffffff")));
+//        holder.pl.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
     }
 
@@ -71,13 +79,35 @@ public class CommodityAdapter extends RecyclerView.Adapter<CommodityAdapter.View
         return items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private TextView tv;
-        public ViewHolder(View itemView) {
+        private PercentFrameLayout pl;
+        private TextView name;
+        private TextView content;
+        private onItemClickListener listener;
+        public ViewHolder(View itemView,onItemClickListener listener) {
             super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.tv_item);
+            this.listener = listener;
+            itemView.setOnClickListener(this);
+            pl = (PercentFrameLayout) itemView.findViewById(R.id.item_pl);
+            name = (TextView) itemView.findViewById(R.id.tv_item_name);
+            content = (TextView) itemView.findViewById(R.id.tv_item_content);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onItemClick(view,getPosition());
+        }
+    }
+
+    public interface onItemClickListener{
+        void onItemClick(View view,int position);
+    }
+
+    private  onItemClickListener mOnItemClickListener;
+
+    public  void setmOnItemClickListener(onItemClickListener onItemClickListener){
+        mOnItemClickListener = onItemClickListener;
     }
 
 }

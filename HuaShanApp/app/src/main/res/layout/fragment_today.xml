@@ -259,6 +259,7 @@
                         android:layout_height="8dp"
                         android:background="@color/todayfragment_line_color"/>
 
+                    <!--每日精选-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="187dp"
@@ -335,7 +336,8 @@
                                         android:layout_gravity="right|center_vertical"
                                         android:src="@drawable/goto_icon"
                                         app:layout_marginRightPercent="3%"
-                                        android:id="@+id/imageView2" />
+                                        android:id="@+id/imageView2"
+                                        android:onClick="@{handler.onEverydayDetails}"/>
 
                                 </android.support.percent.PercentFrameLayout>
 
@@ -423,6 +425,7 @@
                                 android:gravity="center"
                                 android:text="立即购买"
                                 android:textColor="#fff"
+                                android:onClick="@{handler.onBuyImmediately}"
                                 />
 
                             </android.support.percent.PercentFrameLayout>
@@ -438,12 +441,12 @@
                         android:layout_height="8dp"
                         android:background="@color/todayfragment_line_color"/>
 
+
+                    <!--积分商城-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="170dp"
                         android:background="#fff">
-
-
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -461,7 +464,8 @@
                             android:layout_gravity="right"
                             app:layout_marginTopPercent="5%"
                             app:layout_marginRightPercent="3%"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:onClick="@{handler.onIntegralMore}">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -489,6 +493,41 @@
 
                     </android.support.percent.PercentFrameLayout>
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="@color/todayfragment_line_color"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.percent.PercentFrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="知道"
+                                style="@style/Base.TextAppearance.AppCompat.Body1"
+                                app:layout_marginLeftPercent="5%"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:textSize="@dimen/todayfragment_part4_text_size"
+                                android:textColor="@color/todayfragment_part4_text_color"/>
+                        </android.support.percent.PercentFrameLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/new_rl"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView>
@@ -507,7 +546,9 @@
                 android:layout_height="30dp"
                 android:background="@drawable/calendar_icon"
                 android:layout_gravity="center_vertical|right"
-                app:layout_marginRightPercent="5%">
+                app:layout_marginRightPercent="5%"
+                android:descendantFocusability="beforeDescendants"
+                android:onClick="@{handler.toCalendar}">
 
                 <TextView
                     android:id="@+id/today_time"

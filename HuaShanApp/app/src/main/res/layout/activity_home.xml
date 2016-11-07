@@ -86,6 +86,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:overScrollMode="never"
                 app:layout_heightPercent="90%">
 
             </com.example.utils.custom.ScrollableViewPager>

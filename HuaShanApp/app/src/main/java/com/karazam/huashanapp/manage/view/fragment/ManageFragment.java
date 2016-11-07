@@ -96,10 +96,10 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
      */
     private void setTitlebBar() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("信用标");
-        list.add("担保标");
-        list.add("债务标");
-        list.add("转让专区");
+        list.add("产融货");
+        list.add("优企宝");
+        list.add("债权转让");
+
 
         titlebarAdapter = new TitleBarAdapter(list,getContext());
         titlebar_rl.setAdapter(titlebarAdapter);
@@ -142,29 +142,29 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         content_rl.setLayoutManager(layoutManager);
 
         ArrayList<Project> list = new ArrayList<>();
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
-        list.add(new Project());
+        list.add(new Project(1));
+        list.add(new Project(0));
+        list.add(new Project(0));
+        list.add(new Project(1));
+        list.add(new Project(1));
+        list.add(new Project(1));
+        list.add(new Project(0));
+        list.add(new Project(0));
+        list.add(new Project(1));
+        list.add(new Project(0));
+        list.add(new Project(1));
+        list.add(new Project(1));
+        list.add(new Project(0));
+        list.add(new Project(1));
         adapter = new ContentAdapter(getContext(),list);
         content_rl.setAdapter(adapter);
 
-        adapter.setmOnItemClickListener(new ContentAdapter.onItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                showToast("点击 Item"+position);
-            }
-        });
+//        adapter.setmOnItemClickListener(new ContentAdapter.onItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                showToast("点击 Item"+position);
+//            }
+//        });
 
         content_rl.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
             @Override

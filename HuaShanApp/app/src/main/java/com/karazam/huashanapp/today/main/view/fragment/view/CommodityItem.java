@@ -7,13 +7,15 @@ package com.karazam.huashanapp.today.main.view.fragment.view;
 public class CommodityItem {
     private String title;
     private String color;
+    private String content;
 
     public CommodityItem() {
     }
 
-    public CommodityItem(String title, String color) {
+    public CommodityItem(String title, String content, String color) {
         this.title = title;
         this.color = color;
+        this.content = content;
     }
 
     public String getTitle() {
@@ -32,11 +34,20 @@ public class CommodityItem {
         this.color = color;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "CommodityItem{" +
                 "title='" + title + '\'' +
-                ", color=" + color +
+                ", color='" + color + '\'' +
+                ", content='" + content + '\'' +
                 '}';
     }
 }

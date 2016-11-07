@@ -5,12 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.utils.base.BaseBaseAdapter;
+import com.jakewharton.rxbinding.widget.RxTextView;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.manage.model.databinding.Project;
+import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
 
@@ -37,9 +38,35 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ContentAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ContentAdapter.ViewHolder holder, final int position) {
 
-        
+//        R
+//        RxView.of(holder.buy_now).bind()
+
+        holder.buy_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext,"立即购买  "+position,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        int status = mData.get(position).getStatus();
+        switch (status){
+            case 0:
+                holder.buy_now.setText("立即购买");
+                holder.buy_now.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
+                holder.buy_now.setClickable(true);
+                break;
+            case 1:
+                holder.buy_now.setText("还款中");
+                holder.buy_now.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
+                holder.buy_now.setClickable(false);
+                break;
+            default:
+                break;
+        }
+
+
 
     }
 
@@ -56,14 +83,16 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         TextView Annual_Income;
         TextView Project_Duration;
         TextView Project_Scale;
+        private TextView buy_now;
 
         public ViewHolder(View itemView,onItemClickListener onItemClickListener) {
             super(itemView);
             this.listener = onItemClickListener;
             itemView.setOnClickListener(this);
-            Annual_Income = (TextView) itemView.findViewById(R.id.tv_1_2);
-            Project_Duration = (TextView) itemView.findViewById(R.id.tv_2_2);
-            Project_Scale = (TextView) itemView.findViewById(R.id.tv_3_2);
+//            Annual_Income = (TextView) itemView.findViewById(R.id.tv_1_2);
+//            Project_Duration = (TextView) itemView.findViewById(R.id.tv_2_2);
+//            Project_Scale = (TextView) itemView.findViewById(R.id.tv_3_2);
+            buy_now = (TextView) itemView.findViewById(R.id.buy_now_item);
 
         }
 
