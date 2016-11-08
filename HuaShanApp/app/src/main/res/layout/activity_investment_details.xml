@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.manage.details.model.databinding.InvestmentdetailsEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.manage.details.viewmodel.InvestmentdetailsViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#46a3ff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            >
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp">
+
+        <ImageView
+
+            android:layout_width="0dp"
+            app:layout_widthPercent="7%"
+            android:layout_height="match_parent"
+            android:src="@drawable/back_icon"
+            android:onClick="@{handler.onBack}"
+            />
+
+        </android.support.percent.PercentRelativeLayout>
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="产品详情"
+            android:textColor="#fff"
+            android:textSize="@dimen/title_text_size"/>
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingRight="20dp">
+
+        <ImageView
+
+            android:layout_width="0dp"
+            app:layout_widthPercent="7%"
+            android:layout_height="match_parent"
+            android:src="@drawable/share_icon"
+        />
+        </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+
+            >
+
+            <!--第1部分-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="34%"
+                android:background="#66b3ff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginTopPercent="7%"
+                    app:layout_marginLeftPercent="7%"
+                    android:text="产融贷CR216001-30"
+                    android:textColor="@color/Investmentdetails_part1_text_size"
+                    android:textSize="18dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:layout_marginTopPercent="30%"
+                    android:text="年化收益率（%）"
+                    android:textColor="@color/Investmentdetails_part1_text_size"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:layout_marginTopPercent="42%"
+                    android:text="8.60"
+                    android:textColor="@color/Investmentdetails_part1_text_size"
+                    android:textSize="50dp"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--第2部分-->
+
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="15%"
+                app:layout_marginTopPercent="34%"
+                android:background="#fff">
+
+                <TextView
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="40%"
+                    android:gravity="center|bottom"
+                    android:text="起购金额(元)"/>
+
+                <TextView
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="40%"
+                    android:layout_gravity="right"
+                    android:gravity="center|bottom"
+                    android:text="投资期限(月)"/>
+
+
+                <TextView
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="55%"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_horizontal"
+                    android:text="100.00"
+                    android:textSize="25dp"/>
+
+                <TextView
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="55%"
+                    android:layout_gravity="right|bottom"
+                    android:gravity="center_horizontal"
+                    android:text="6"
+                    android:textSize="25dp"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <!--第3部分-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="18%"
+                app:layout_marginTopPercent="49%"
+                >
+
+                <FrameLayout
+                    app:layout_widthPercent="20%"
+                    app:layout_heightPercent="80%"
+                    app:layout_marginLeftPercent="15%"
+                    android:layout_below="@+id/colorChoice"
+                    android:layout_gravity="center_vertical"
+                    android:background="#5066b3ff">
+
+                    <com.gelitenight.waveview.library.WaveView
+                        android:id="@+id/wave_in"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/ww_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="220dp"
+                        android:gravity="center"
+                        android:text="100%"
+                        android:textColor="#ddd"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/qwe"/>
+
+                </FrameLayout>
+
+                <android.support.percent.PercentFrameLayout
+                    app:layout_widthPercent="60%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        app:layout_heightPercent="49%"
+                        android:gravity="center_horizontal|bottom"
+                        android:text="200,000.00/1,000,000.00"
+                        android:textSize="17dp"
+                        />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        app:layout_heightPercent="49%"
+                        android:layout_gravity="bottom"
+                        android:gravity="center_horizontal"
+                        android:text="剩余可投（元）/融资金额（元）"
+                        android:textSize="12dp"
+                        />
+
+                </android.support.percent.PercentFrameLayout>
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <!--第3部分-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="67%"
+                android:background="#fff"
+                >
+
+                <TextView
+                    app:layout_widthPercent="40%"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="回款方式"/>
+
+                <TextView
+                    app:layout_widthPercent="60%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:gravity="center"
+                    android:text="每月付息   到期还本"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <!--第4部分-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                android:layout_gravity="bottom"
+                android:background="#46a3ff"
+                >
+
+            </android.support.percent.PercentFrameLayout>
+
+
+
+        </android.support.percent.PercentFrameLayout>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

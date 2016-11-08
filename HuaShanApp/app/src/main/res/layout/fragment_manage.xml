@@ -4,11 +4,11 @@
     <data>
         <variable
             name="entity"
-            type="com.karazam.huashanapp.manage.model.databinding.ManageEntity"
+            type="com.karazam.huashanapp.manage.main.model.databinding.ManageEntity"
             ></variable>
         <variable
             name="handler"
-            type="com.karazam.huashanapp.manage.viewmodel.ManageViewModel"
+            type="com.karazam.huashanapp.manage.main.viewmodel.ManageViewModel"
             ></variable>
     </data>
             <android.support.percent.PercentRelativeLayout

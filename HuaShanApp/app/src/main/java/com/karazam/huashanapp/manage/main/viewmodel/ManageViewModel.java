@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.manage.viewmodel;
+package com.karazam.huashanapp.manage.main.viewmodel;
 
 import com.example.utils.base.BaseViewModel;
 

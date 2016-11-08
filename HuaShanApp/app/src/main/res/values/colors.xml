@@ -58,7 +58,8 @@
 
     <color name="todayfragment_part4_text_color">#505050</color>
 
-
+    <!--Investmentdetails-->
+    <color name="Investmentdetails_part1_text_size">#fff</color>
 
 
     <!--SpringIndicator-->

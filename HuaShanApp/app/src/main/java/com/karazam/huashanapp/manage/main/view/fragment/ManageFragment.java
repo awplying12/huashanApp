@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.manage.view.fragment;
+package com.karazam.huashanapp.manage.main.view.fragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ListView;
 
 import com.example.utils.base.BaseFragment;
 import com.example.utils.custom.RefreshRecyclerView;
@@ -18,20 +16,16 @@ import com.example.utils.custom.WrapContentLinearLayoutManager;
 
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentManageBinding;
-import com.karazam.huashanapp.manage.model.databinding.ManageEntity;
-import com.karazam.huashanapp.manage.model.databinding.Project;
-import com.karazam.huashanapp.manage.view.ManageView;
+import com.karazam.huashanapp.manage.main.model.databinding.ManageEntity;
+import com.karazam.huashanapp.manage.main.model.databinding.Project;
+import com.karazam.huashanapp.manage.main.view.ManageView;
 
-import com.karazam.huashanapp.manage.view.view.ContentAdapter;
-import com.karazam.huashanapp.manage.view.view.TitleBarAdapter;
-import com.karazam.huashanapp.manage.viewmodel.ManageViewModel;
-import com.karazam.huashanapp.manage.viewmodel.ManageViewModelImpl;
+import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
+import com.karazam.huashanapp.manage.main.view.view.TitleBarAdapter;
+import com.karazam.huashanapp.manage.main.viewmodel.ManageViewModel;
+import com.karazam.huashanapp.manage.main.viewmodel.ManageViewModelImpl;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Handler;
 
 /**
  * Created by Administrator on 2016/10/11.

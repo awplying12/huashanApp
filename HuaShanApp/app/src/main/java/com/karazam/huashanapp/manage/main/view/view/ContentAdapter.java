@@ -1,34 +1,25 @@
-package com.karazam.huashanapp.manage.view.view;
+package com.karazam.huashanapp.manage.main.view.view;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.utils.utils.StringUtil;
-import com.jakewharton.rxbinding.widget.RxTextView;
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.manage.model.databinding.Project;
+import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
+import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import static android.support.v7.widget.RecyclerView.*;
-import static android.widget.LinearLayout.*;
 
 /**
  * Created by Administrator on 2016/10/17.
@@ -64,6 +55,9 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext,"立即购买  "+position,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, InvestmentdetailsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
             }
         });
 

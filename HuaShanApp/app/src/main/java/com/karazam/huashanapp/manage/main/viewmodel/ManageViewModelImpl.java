@@ -1,11 +1,11 @@
-package com.karazam.huashanapp.manage.viewmodel;
+package com.karazam.huashanapp.manage.main.viewmodel;
 
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
-import com.karazam.huashanapp.manage.model.databinding.ManageEntity;
-import com.karazam.huashanapp.manage.view.ManageView;
+import com.karazam.huashanapp.manage.main.model.databinding.ManageEntity;
+import com.karazam.huashanapp.manage.main.view.ManageView;
 
 /**
  * Created by Administrator on 2016/10/11.

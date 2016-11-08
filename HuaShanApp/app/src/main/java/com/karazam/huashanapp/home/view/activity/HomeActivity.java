@@ -1,6 +1,5 @@
 package com.karazam.huashanapp.home.view.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
@@ -16,12 +15,11 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.apply.view.fragment.ApplyFragment;
 import com.karazam.huashanapp.databinding.ActivityHomeBinding;
-import com.karazam.huashanapp.finance.view.fragment.FinanceFragment;
 import com.karazam.huashanapp.home.model.databinding.HomeEntity;
 import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModel;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModelImpl;
-import com.karazam.huashanapp.manage.view.fragment.ManageFragment;
+import com.karazam.huashanapp.manage.main.view.fragment.ManageFragment;
 import com.karazam.huashanapp.my.main.view.fragment.MyFragment;
 import com.karazam.huashanapp.today.main.view.fragment.TodayFragment;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;

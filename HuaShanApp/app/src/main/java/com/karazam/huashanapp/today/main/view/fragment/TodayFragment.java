@@ -4,43 +4,33 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseFragment;
 
 import com.example.utils.custom.FullyLinearLayoutManager;
 import com.example.utils.custom.VpSwipeRefreshLayout;
-import com.example.utils.custom.WrapHeightLinearLayoutManager;
 import com.example.utils.custom.views.AutoScrollViewPager;
-import com.example.utils.custom.views.ViewGroupIndicator;
 import com.google.common.collect.Lists;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 
-import com.karazam.huashanapp.manage.model.databinding.Project;
-import com.karazam.huashanapp.manage.view.view.ContentAdapter;
+import com.karazam.huashanapp.manage.main.model.databinding.Project;
+import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
 import com.karazam.huashanapp.today.main.view.TodayView;
 import com.karazam.huashanapp.today.main.view.fragment.view.AutoScrollAdapter;
-import com.karazam.huashanapp.today.main.view.fragment.view.CommodityAdapter;
-import com.karazam.huashanapp.today.main.view.fragment.view.CommodityItem;
 import com.karazam.huashanapp.today.main.view.fragment.view.ExperienceAdapter;
 import com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView;
 
-import com.karazam.huashanapp.today.main.view.fragment.view.NewAdapter;
-import com.karazam.huashanapp.today.main.view.fragment.view.NewItem;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModel;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
@@ -48,10 +38,7 @@ import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
 import github.chenupt.springindicator.GuideFragment;
 import github.chenupt.springindicator.SpringIndicator;
