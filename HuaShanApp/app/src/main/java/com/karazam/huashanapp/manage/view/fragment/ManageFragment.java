@@ -109,13 +109,11 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
             public void onItemClick(View view, int position) {
 
                 switch (position){
-                    case 0: //信用标
+                    case 0: //产融货
                         break;
-                    case 1: //担保标
+                    case 1: //优企宝
                         break;
-                    case 2: //债务标
-                        break;
-                    case 3: //转让专区
+                    case 2: //债权转让
                         break;
                     default:
                         break;
@@ -142,20 +140,16 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         content_rl.setLayoutManager(layoutManager);
 
         ArrayList<Project> list = new ArrayList<>();
-        list.add(new Project(1));
-        list.add(new Project(0));
-        list.add(new Project(0));
-        list.add(new Project(1));
-        list.add(new Project(1));
-        list.add(new Project(1));
-        list.add(new Project(0));
-        list.add(new Project(0));
-        list.add(new Project(1));
-        list.add(new Project(0));
-        list.add(new Project(1));
-        list.add(new Project(1));
-        list.add(new Project(0));
-        list.add(new Project(1));
+        list.add(new Project(1,"还款中"));
+        list.add(new Project(0,"立即购买"));
+        list.add(new Project(0,"立即购买"));
+        list.add(new Project(1,"已满额"));
+        list.add(new Project(1,"已完成"));
+        list.add(new Project(1,"还款中"));
+        list.add(new Project(0,"立即购买"));
+        list.add(new Project(0,"立即购买"));
+        list.add(new Project(1,"已满额"));
+
         adapter = new ContentAdapter(getContext(),list);
         content_rl.setAdapter(adapter);
 

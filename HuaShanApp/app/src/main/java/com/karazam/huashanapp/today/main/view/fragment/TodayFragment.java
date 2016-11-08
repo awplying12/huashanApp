@@ -13,11 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseFragment;
 
+import com.example.utils.custom.FullyLinearLayoutManager;
 import com.example.utils.custom.VpSwipeRefreshLayout;
+import com.example.utils.custom.WrapHeightLinearLayoutManager;
 import com.example.utils.custom.views.AutoScrollViewPager;
 import com.example.utils.custom.views.ViewGroupIndicator;
 import com.google.common.collect.Lists;
@@ -25,11 +29,14 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 
+import com.karazam.huashanapp.manage.model.databinding.Project;
+import com.karazam.huashanapp.manage.view.view.ContentAdapter;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
 import com.karazam.huashanapp.today.main.view.TodayView;
 import com.karazam.huashanapp.today.main.view.fragment.view.AutoScrollAdapter;
 import com.karazam.huashanapp.today.main.view.fragment.view.CommodityAdapter;
 import com.karazam.huashanapp.today.main.view.fragment.view.CommodityItem;
+import com.karazam.huashanapp.today.main.view.fragment.view.ExperienceAdapter;
 import com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView;
 
 import com.karazam.huashanapp.today.main.view.fragment.view.NewAdapter;
@@ -41,6 +48,8 @@ import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
@@ -70,8 +79,12 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
     private MyNestedScrollView scrollview;
 
-    private RecyclerView commodity_rl;
-    private RecyclerView new_rl;
+
+//    private RecyclerView commodity_rl;
+//    private RecyclerView new_rl;
+
+    private RecyclerView selected_rl;
+    private RecyclerView experience_rl;
 
     private ImageView line_1;
     private ImageView line_2;
@@ -91,14 +104,17 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         initTime();
         setScrollView();
         AutoScrollViewPager();
-        setCommodity();
-        setNew();
+        setExperience();
+        setSelected();
+//        setCommodity();
+//        setNew();
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
         pager.startAutoScroll();
     }
 
@@ -147,13 +163,22 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         line_1 = (ImageView) getView(R.id.td_line_1,view);
         line_2 = (ImageView) getView(R.id.td_line_2,view);
 
-        commodity_rl = (RecyclerView) getView(R.id.commodity_rl,view);
-        LinearLayoutManager lm = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        commodity_rl.setLayoutManager(lm);
+//        commodity_rl = (RecyclerView) getView(R.id.commodity_rl,view);
+//        LinearLayoutManager lm = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+//        commodity_rl.setLayoutManager(lm);
+//
+//        new_rl = (RecyclerView) getView(R.id.new_rl,view);
+//        LinearLayoutManager lm1 = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+//        new_rl.setLayoutManager(lm1);
 
-        new_rl = (RecyclerView) getView(R.id.new_rl,view);
-        LinearLayoutManager lm1 = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-        new_rl.setLayoutManager(lm1);
+
+        selected_rl = (RecyclerView) getView(R.id.selected_rl,view);
+        FullyLinearLayoutManager lm2 = new FullyLinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        selected_rl.setLayoutManager(lm2);
+
+        experience_rl = (RecyclerView) getView(R.id.experience_rl,view);
+        FullyLinearLayoutManager lm3 = new FullyLinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        experience_rl.setLayoutManager(lm3);
     }
 
     @Override
@@ -242,44 +267,74 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     }
 
     /**
-     * 积分商城RecyclerView
+     * 每日精选——体验RecyclerView
      */
-    private void setCommodity(){
+    private void setExperience(){
+        ArrayList<Project> list = new ArrayList<>();
+        list.add(new Project(0,"立即体检"));
 
-        final ArrayList<CommodityItem> items = new ArrayList<>();
-        items.add(new CommodityItem("手机主题馆","积分不够分期付","#00E3E3"));
-        items.add(new CommodityItem("购物卡主题馆","优惠活动双重享","#ff2d2d"));
-        items.add(new CommodityItem("购物卡主题馆","优惠活动双重享","#2894ff"));
+        ExperienceAdapter adapter = new ExperienceAdapter(getContext(),list);
 
-
-        CommodityAdapter adapter = new CommodityAdapter(items,commodity_rl);
-
-        commodity_rl.setAdapter(adapter);
-
-        adapter.setmOnItemClickListener(new CommodityAdapter.onItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                showToast(items.get(position).getTitle());
-            }
-        });
+        experience_rl.setAdapter(adapter);
 
     }
 
     /**
-     * 知道RecyclerView
+     * 每日精选——推荐RecyclerView
      */
-    private void setNew(){
+    private void setSelected(){
 
-        final ArrayList<NewItem> items = new ArrayList<>();
-        items.add(new NewItem());
-        items.add(new NewItem());
-        items.add(new NewItem());
-        items.add(new NewItem());
-        items.add(new NewItem());
 
-        NewAdapter adapter = new NewAdapter(getContext(),items);
+        ArrayList<Project> list = new ArrayList<>();
+        list.add(new Project(0,"立即购买"));
+        list.add(new Project(0,"立即购买"));
+        list.add(new Project(0,"立即购买"));
 
-        new_rl.setAdapter(adapter);
+        ContentAdapter adapter = new ContentAdapter(getContext(),list);
+
+        selected_rl.setAdapter(adapter);
 
     }
+
+//    /**
+//     * 积分商城RecyclerView
+//     */
+//    private void setCommodity(){
+//
+//        final ArrayList<CommodityItem> items = new ArrayList<>();
+//        items.add(new CommodityItem("手机主题馆","积分不够分期付","#00E3E3"));
+//        items.add(new CommodityItem("购物卡主题馆","优惠活动双重享","#ff2d2d"));
+//        items.add(new CommodityItem("购物卡主题馆","优惠活动双重享","#2894ff"));
+//
+//
+//        CommodityAdapter adapter = new CommodityAdapter(items,commodity_rl);
+//
+//        commodity_rl.setAdapter(adapter);
+//
+//        adapter.setmOnItemClickListener(new CommodityAdapter.onItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                showToast(items.get(position).getTitle());
+//            }
+//        });
+//
+//    }
+//
+//    /**
+//     * 知道RecyclerView
+//     */
+//    private void setNew(){
+//
+//        final ArrayList<NewItem> items = new ArrayList<>();
+//        items.add(new NewItem());
+//        items.add(new NewItem());
+//        items.add(new NewItem());
+//        items.add(new NewItem());
+//        items.add(new NewItem());
+//
+//        NewAdapter adapter = new NewAdapter(getContext(),items);
+//
+//        new_rl.setAdapter(adapter);
+//
+//    }
 }

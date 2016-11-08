@@ -31,7 +31,7 @@ public class HuaShanApplication extends Application {
 
 
 
-    public static RxProperty<String> day = RxProperty.create();;
+    public static RxProperty<String> day = RxProperty.create();
 
     @Override
     public void onCreate() {

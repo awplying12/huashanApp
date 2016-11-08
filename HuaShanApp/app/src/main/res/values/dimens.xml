@@ -35,6 +35,8 @@
 
     <dimen name="manage_content_item_text_size_3">15dp</dimen>
 
+    <dimen name="manage_content_item_text_size">22dp</dimen>
+
 
     <!--my-->
     <dimen name="my_pf1_content_text_size_1">13dp</dimen>

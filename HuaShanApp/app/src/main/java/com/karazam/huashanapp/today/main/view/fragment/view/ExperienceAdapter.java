@@ -1,22 +1,20 @@
-package com.karazam.huashanapp.manage.view.view;
+package com.karazam.huashanapp.today.main.view.fragment.view;
 
-import android.app.Activity;
+/**
+ * Created by Administrator on 2016/11/8.
+ */
+
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.utils.utils.StringUtil;
-import com.jakewharton.rxbinding.widget.RxTextView;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.manage.model.databinding.Project;
 import com.ogaclejapan.rx.binding.Rx;
@@ -24,23 +22,15 @@ import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import static android.support.v7.widget.RecyclerView.*;
-import static android.widget.LinearLayout.*;
 
-/**
- * Created by Administrator on 2016/10/17.
- */
-
-public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHolder> {
+public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.ViewHolder> {
     private ArrayList<Project> mData;
     private final LayoutInflater mLayoutInflater;
     private Context mContext;
 
 
-    public ContentAdapter(Context context, ArrayList<Project> data) {
+    public ExperienceAdapter(Context context, ArrayList<Project> data) {
         this.mContext = context;
         this.mData = data;
         this.mLayoutInflater = LayoutInflater.from(mContext);
@@ -49,24 +39,23 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
 
     @Override
-    public ContentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.layout_project_content_item, parent, false);
-        ViewHolder holder = new ViewHolder(view,mOnItemClickListener);
+    public ExperienceAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = mLayoutInflater.inflate(R.layout.layout_experience_content_item, parent, false);
+        ViewHolder holder = new ExperienceAdapter.ViewHolder(view,mOnItemClickListener);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ContentAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(ExperienceAdapter.ViewHolder holder, final int position) {
 
         setTextView(holder,position);
 
         holder.buy_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext,"立即购买  "+position,Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"立即体验  "+position,Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
         RxProperty<Project> status = RxProperty.create();
@@ -96,8 +85,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
 
 
-
-
     }
 
     /**
@@ -105,18 +92,15 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
      * @param holder
      * @param position
      */
-    private void setTextView(ContentAdapter.ViewHolder holder, final int position) {
+    private void setTextView(ExperienceAdapter.ViewHolder holder, final int position) {
 
         String annualIncome = "8.60";
         Spanned text1 = Html.fromHtml(StringUtil.interrupt(annualIncome,0,"")+"<font color='#505050'><small><small>%<small><small>");
         holder.Annual_Income.setText(text1);
 
-        String projectDuration = "20";
-        Spanned text2 = Html.fromHtml(StringUtil.interrupt(projectDuration,0,"")+"<small><small>万元<small><small>");
-        holder.Project_Duration.setText(text2);
 
-        String projectScale = "6";
-        Spanned text3 = Html.fromHtml(StringUtil.interrupt(projectScale,0,"")+"<small><small>月<small><small>");
+        String projectScale = "3";
+        Spanned text3 = Html.fromHtml(StringUtil.interrupt(projectScale,0,"")+"<small><small>天<small><small>");
         holder.Project_Scale.setText(text3);
     }
 
@@ -129,7 +113,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
         public onItemClickListener listener;
         private TextView Annual_Income;
-        private TextView Project_Duration;
         private TextView Project_Scale;
         private TextView buy_now;
 
@@ -138,7 +121,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
             this.listener = onItemClickListener;
             itemView.setOnClickListener(this);
             Annual_Income = (TextView) itemView.findViewById(R.id.tv_1_2);
-            Project_Duration = (TextView) itemView.findViewById(R.id.tv_2_2);
+
             Project_Scale = (TextView) itemView.findViewById(R.id.tv_3_2);
             buy_now = (TextView) itemView.findViewById(R.id.buy_now_item);
 
@@ -179,3 +162,4 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         mOnItemClickListener = onItemClickListener;
     }
 }
+
