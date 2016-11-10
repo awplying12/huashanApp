@@ -1,7 +1,9 @@
 package com.karazam.huashanapp.manage.details.view.activity;
 
+import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.utils.Adapter.PagerFragmentAdapter;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.VerticalViewPager.VerticalViewPager;
 import com.gelitenight.waveview.library.WaveHelper;
@@ -19,10 +22,14 @@ import com.gelitenight.waveview.library.WaveView;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityInvestmentDetailsBinding;
 import com.karazam.huashanapp.manage.details.model.databinding.InvestmentdetailsEntity;
+
 import com.karazam.huashanapp.manage.details.view.InvestmentdetailsView;
 import com.karazam.huashanapp.manage.details.view.view.VerticalAdapter;
+
 import com.karazam.huashanapp.manage.details.viewmodel.InvestmentdetailsViewModel;
 import com.karazam.huashanapp.manage.details.viewmodel.InvestmentdetailsViewModelImpl;
+import com.karazam.huashanapp.manage.details_fragment.view.fragment.DetailsFragment1;
+import com.karazam.huashanapp.manage.details_fragment.view.fragment.DetailsFragment2;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
@@ -34,7 +41,7 @@ import java.util.ArrayList;
  * Created by Administrator on 2016/11/8.
  */
 
-public class InvestmentdetailsActivity extends BaseActivity implements InvestmentdetailsView{
+public class InvestmentdetailsActivity extends BaseActivity implements InvestmentdetailsView {
 
     private ActivityInvestmentDetailsBinding binding;
     private InvestmentdetailsEntity entity = new InvestmentdetailsEntity();
@@ -111,11 +118,20 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
     private void setVerticalViewPager() {
 
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(R.drawable.image1);
-        list.add(R.drawable.image2);
+//        ArrayList<Integer> list = new ArrayList<>();
+//        list.add(R.drawable.image1);
+//        list.add(R.drawable.image2);
+//
+//        VerticalAdapter adapter = new VerticalAdapter(list);
+//
+//        ViewPager.setAdapter(adapter);
 
-        VerticalAdapter adapter = new VerticalAdapter(list);
+
+        ArrayList<Fragment> list = new ArrayList<>();
+        list.add(new DetailsFragment1());
+        list.add(new DetailsFragment2());
+
+        PagerFragmentAdapter adapter = new PagerFragmentAdapter(getSupportFragmentManager(),list);
 
         ViewPager.setAdapter(adapter);
 
@@ -191,7 +207,6 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
             }
         });
 
-//        PagerFragmentAdapter adapter = new PagerFragmentAdapter(getSupportFragmentManager(),)
 
 
 
