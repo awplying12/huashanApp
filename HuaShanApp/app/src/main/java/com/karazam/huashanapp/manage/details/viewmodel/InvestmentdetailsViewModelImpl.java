@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.karazam.huashanapp.manage.details.model.databinding.InvestmentdetailsEntity;
+
 import com.karazam.huashanapp.manage.details.view.InvestmentdetailsView;
 import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
 

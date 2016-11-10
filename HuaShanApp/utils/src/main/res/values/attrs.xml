@@ -8,4 +8,8 @@
     </declare-styleable>
 
     <attr name="indicatorDefStyleAttr" format="reference"/>
+
+    <declare-styleable name="MyViewPager">
+        <attr name="isVertical" format="boolean" />
+    </declare-styleable>
 </resources>

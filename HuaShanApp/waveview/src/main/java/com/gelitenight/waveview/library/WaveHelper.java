@@ -25,7 +25,7 @@ public class WaveHelper {
         mWaveView = waveView;
         this.activity = activity;
         this.textView = textView;
-        initAnimation(0.5f);
+        initAnimation(0);
     }
 
     public void start() {
