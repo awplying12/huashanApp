@@ -3,6 +3,7 @@ package com.karazam.huashanapp.manage.details.view.activity;
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.support.percent.PercentFrameLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -55,12 +56,11 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     private int sh;
     private int eh;
 
-    private ImageView img_ll;
     private VerticalViewPager ViewPager;
     private TextView text_11;
     private TextView det_income;
 
-    private ImageView tab_det;
+    private PercentFrameLayout tab_det;
 
     private AccelerateDecelerateInterpolator mSmoothInterpolator;
     private int mMinHeaderTranslation;
@@ -68,6 +68,10 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     private TypedValue mTypedValue = new TypedValue();
     private View mHeader;
     private View header_2;
+
+    private TextView information;
+    private TextView record;
+    private TextView speed;
 
 
     @Override
@@ -86,7 +90,6 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
         sh = (int) (H*0.9);
         eh = (int) (H*0.8);
 
-
         mSmoothInterpolator = new AccelerateDecelerateInterpolator();
         mMinHeaderTranslation = -((int) (BaseActivity.ScreeH*0.1));
 //        mMinHeaderTranslation = ((int) (BaseActivity.ScreeH*0.1)+ getActionBarHeight());
@@ -95,9 +98,6 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
     @Override
     public void initView() {
-        waveView = (WaveView) getView(R.id.wave_in);
-
-        img_ll = (ImageView) getView(R.id.img_ll);
 
         mHeader = getView(R.id.header);
         header_2 = getView(R.id.header_2);
@@ -106,30 +106,31 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
         ViewPager = (VerticalViewPager) getView(R.id.viewpager_ve);
 
-        tab_det = (ImageView) getView(R.id.tab_det);
+        tab_det = (PercentFrameLayout) getView(R.id.tab_det);
+
+        information = (TextView) getView(R.id.bt_det_1);
+        record = (TextView) getView(R.id.bt_det_2);
+        speed = (TextView) getView(R.id.bt_det_3);
     }
 
     @Override
     public void dealLogicAfterInitView() {
-            setWaveView();
+//            setWaveView();
             setLayout();
             setVerticalViewPager();
     }
 
+    /**
+     * 设置详情的ViewPager
+     */
+    private  int i = 0;
+    private  DetailsFragment1 fragment1 = new DetailsFragment1();
+    private  DetailsFragment2 fragment2 = new DetailsFragment2();
     private void setVerticalViewPager() {
 
-//        ArrayList<Integer> list = new ArrayList<>();
-//        list.add(R.drawable.image1);
-//        list.add(R.drawable.image2);
-//
-//        VerticalAdapter adapter = new VerticalAdapter(list);
-//
-//        ViewPager.setAdapter(adapter);
-
-
         ArrayList<Fragment> list = new ArrayList<>();
-        list.add(new DetailsFragment1());
-        list.add(new DetailsFragment2());
+        list.add(fragment1);
+        list.add(fragment2);
 
         PagerFragmentAdapter adapter = new PagerFragmentAdapter(getSupportFragmentManager(),list);
 
@@ -146,7 +147,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
                 switch (i){
                     case 0:
-                        mHeader.setTranslationY((float) ( Math.max(-scrollY, -tab_det.getHeight()*0.5)));
+                        mHeader.setTranslationY((float) ( Math.max(-scrollY, -tab_det.getHeight()*0.7)));
                         header_2.setTranslationY((float) ( Math.max(-scrollY, -tab_det.getHeight())));
                         break;
                     case 1:
@@ -168,7 +169,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
                         header_2.setTranslationY(0);
                         break;
                     case 1:
-                        mHeader.setTranslationY(-(int) (tab_det.getHeight()*0.5));
+                        mHeader.setTranslationY(-(int) (tab_det.getHeight()*0.7));
                         header_2.setTranslationY(-(int) (tab_det.getHeight()));
 
                         break;
@@ -187,90 +188,75 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     /**
      * 设置界面
      */
-    private  int i = 0;
-    RxProperty<Project> project =  RxProperty.create();
+
+    public static RxProperty<Project> project =  RxProperty.create();
     private void setLayout() {
 
-
-        RxView.findById(this,R.id.content_pl).bind(project, new Rx.Action<View, Project>() {
+        RxView.findById(this, R.id.content_pl).bind(project, new Rx.Action<View, Project>() {
             @Override
             public void call(View target, Project project) {
-                target.findViewById(R.id.det_name);
-                target.findViewById(R.id.det_income);
-                target.findViewById(R.id.det_playenough);
-                target.findViewById(R.id.det_time);
+               TextView name = (TextView) target.findViewById(R.id.det_name);
+                TextView income = (TextView) target.findViewById(R.id.det_income);
 
-                TextView tv_money =  (TextView)  target.findViewById(R.id.det_money);
-                String money = "200,000.00";
-                tv_money.setText(Html.fromHtml(money+"<font color='#7b7b7b'>/1,000,000.00</font>"));
+//                name.setText("你大爷");
+//                income.setText("9.30");
 
             }
         });
 
+    }
 
-
-
-}
-    private boolean is = false;
+    /**
+     * 设置选择器
+     */
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-
-        int sy = 0;
-        int ey = 0;
-        switch (event.getAction()){
-            case  MotionEvent.ACTION_DOWN:
-
-                Log.i("move","DOWN :  "+"  Y : "+y);
-                if(eh< y && y <sh){
-                    is =true;
-                    showToast("OK1  "+is);
-                    sy = (int) event.getY();
-
-                }
+    public void setTab(int num) {
+        initTab();
+        fragment2.setCurrentItem(num);
+        switch (num){
+            case 0:
+                information.setBackgroundColor(Color.parseColor("#00ffffff"));
                 break;
-            case MotionEvent.ACTION_MOVE:
-
-//                Log.i("move","MOVE :  "+"X : "+x+"  Y : "+y);
+            case 1:
+                record.setBackgroundColor(Color.parseColor("#00ffffff"));
                 break;
-            case MotionEvent.ACTION_UP:
-
-                Log.i("move","UP :  "+"  Y : "+y);
-//                if(is && (sy - event.getY()) ){
-//
-//                    showToast("OK2  "+is);
-//                    is = false;
-//                }
-
-
+            case 2:
+                speed.setBackgroundColor(Color.parseColor("#00ffffff"));
                 break;
             default:
                 break;
         }
-        return false;
     }
 
     /**
-     *设置滴水效果WaveView
+     * 初始化tab
      */
-    private void setWaveView() {
-
-        int mBorderColor = Color.parseColor("#0080FF");
-        waveView.setBorder(0, mBorderColor);
-        TextView t =(TextView)findViewById(R.id.ww_text);
-        mWaveHelper = new WaveHelper(waveView,this,t);
-        waveView.setShapeType(WaveView.ShapeType.SQUARE);
-
-//        waveView.setWaveColor(
-//                Color.parseColor("#0080FF"),
-//                Color.parseColor("#0080FF"));
-//        waveView.setBorder(1, mBorderColor);
-
-        mWaveHelper.setPercent(0.20f);
-        mWaveHelper.start();
-
+    private void initTab(){
+        information.setBackgroundColor(Color.parseColor("#f0f0f0"));
+        record.setBackgroundColor(Color.parseColor("#f0f0f0"));
+        speed.setBackgroundColor(Color.parseColor("#f0f0f0"));
     }
+
+    /**
+     * 滑动选择
+     * @param positoin
+     */
+    public void SlidingSelection(int positoin){
+        switch (positoin){
+            case 0:
+                mModel.onInformation(null);
+                break;
+            case 1:
+                mModel.onRecord(null);
+                break;
+            case 2:
+                mModel.onSpeed(null);
+                break;
+            default:
+                break;
+        }
+    }
+
 
     @Override
     protected void onPause() {
@@ -285,14 +271,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     }
 
 
-    public int getActionBarHeight() {
-        if (mActionBarHeight != 0) {
-            return mActionBarHeight;
-        }
-        getTheme().resolveAttribute(android.R.attr.actionBarSize, mTypedValue, true);
-        mActionBarHeight = TypedValue.complexToDimensionPixelSize(mTypedValue.data, getResources().getDisplayMetrics());
-        return mActionBarHeight;
-    }
+
 
 
 }

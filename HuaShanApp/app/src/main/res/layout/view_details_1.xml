@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="项目描述"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="12345678"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="资金用途"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="12345678"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="还款来源"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="12345678"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="相关材料展示"/>
+
+        <com.example.recyclerviewpager.RecyclerViewPager.CarouselViewPager
+            android:id="@+id/img_rl"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            app:rvp_triggerOffset="0.1"
+            app:rvp_singlePageFling="true"
+            android:clipToPadding="false">
+
+        </com.example.recyclerviewpager.RecyclerViewPager.CarouselViewPager>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

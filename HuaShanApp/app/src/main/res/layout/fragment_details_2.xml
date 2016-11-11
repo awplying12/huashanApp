@@ -81,35 +81,20 @@
                 <!--android:text="fragment_details_2"-->
                 <!--/>-->
 
-            <android.support.v4.widget.NestedScrollView
+            <com.example.utils.custom.NestingNestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/content_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:background="#0ff"
-                        ></LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:background="#caa"
-                        ></LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:background="#faf"
-                        ></LinearLayout>
 
                 </LinearLayout>
-            </android.support.v4.widget.NestedScrollView>
+            </com.example.utils.custom.NestingNestedScrollView>
 
 
 

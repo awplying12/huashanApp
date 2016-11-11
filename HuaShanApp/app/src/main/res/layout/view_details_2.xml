@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            app:layout_widthPercent="30%"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            app:layout_marginLeftPercent="5%"
+            android:text="购买人/购买时间"/>
+
+        <TextView
+            app:layout_widthPercent="50%"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center_vertical|right"
+            app:layout_marginRightPercent="5%"
+            android:text="购买金额/购买方式"/>
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="290dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/con_rl"
+                app:layout_widthPercent="90%"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+    </android.support.percent.PercentFrameLayout>
+</LinearLayout>

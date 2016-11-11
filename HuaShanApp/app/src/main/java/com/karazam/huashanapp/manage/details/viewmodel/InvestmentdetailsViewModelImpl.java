@@ -30,4 +30,34 @@ public class InvestmentdetailsViewModelImpl extends InvestmentdetailsViewModel {
     public void onBack(View view) {
         mView.FinishActivity(activity);
     }
+
+    /**
+     * 项目信息
+     * @param view
+     */
+    @Override
+    public void onInformation(View view) {
+        mView.showToast("项目信息");
+        mView.setTab(0);
+    }
+
+    /**
+     * 购买记录
+     * @param view
+     */
+    @Override
+    public void onRecord(View view) {
+        mView.showToast("购买记录");
+        mView.setTab(1);
+    }
+
+    /**
+     * 项目进度
+     * @param view
+     */
+    @Override
+    public void onSpeed(View view) {
+        mView.showToast("项目进度");
+        mView.setTab(2);
+    }
 }

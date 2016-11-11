@@ -29,4 +29,6 @@ dependencies {
     compile project(':gesture_lock')
     compile project(':utils')
     compile project(':waveview')
+    compile project(':cacheutils')
+    compile project(':recyclerviewpager')
 }

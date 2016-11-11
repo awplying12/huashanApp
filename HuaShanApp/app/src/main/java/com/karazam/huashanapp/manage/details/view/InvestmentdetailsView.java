@@ -7,4 +7,6 @@ import com.example.utils.base.BaseView;
  */
 
 public interface InvestmentdetailsView extends BaseView{
+
+    void setTab(int num);
 }

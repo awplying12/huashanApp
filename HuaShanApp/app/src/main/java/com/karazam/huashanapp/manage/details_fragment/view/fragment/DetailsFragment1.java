@@ -1,19 +1,29 @@
 package com.karazam.huashanapp.manage.details_fragment.view.fragment;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.utils.base.BaseFragment;
+import com.gelitenight.waveview.library.WaveHelper;
+import com.gelitenight.waveview.library.WaveView;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentDetails1Binding;
+import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
 import com.karazam.huashanapp.manage.details_fragment.model.databinding.DetailsFragment1Entity;
 import com.karazam.huashanapp.manage.details_fragment.view.DetailsFragment1View;
 import com.karazam.huashanapp.manage.details_fragment.viewmodel.DetailsFragmentViewModel_1.DetailsFragment1ViewModel;
 import com.karazam.huashanapp.manage.details_fragment.viewmodel.DetailsFragmentViewModel_1.DetailsFragment1ViewModelImpl;
+import com.karazam.huashanapp.manage.main.model.databinding.Project;
+import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxProperty;
+import com.ogaclejapan.rx.binding.RxView;
 
 /**
  * Created by Administrator on 2016/11/10.
@@ -28,6 +38,9 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
 
     private DetailsFragment1ViewModel mModel;
 
+    private WaveView waveView;
+    private WaveHelper mWaveHelper;
+
 
     @Nullable
     @Override
@@ -39,6 +52,9 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
         binding.setEntity(entity);
 
         initView();
+
+        setWaveView();
+        setLayout();
         return view;
     }
 
@@ -46,5 +62,58 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
      * 初始化View
      */
     private void initView() {
+
+        waveView = (WaveView) getView(R.id.wave_in,view);
+
+
+    }
+
+    /**
+     * 设置界面
+     */
+
+
+    private void setLayout() {
+
+
+        RxView.findById(getActivity(), R.id.content_pl).bind(InvestmentdetailsActivity.project, new Rx.Action<View, Project>() {
+            @Override
+            public void call(View target, Project project) {
+
+                TextView tv_playenough = (TextView) target.findViewById(R.id.det_playenough);
+                TextView tv_time = (TextView) target.findViewById(R.id.det_time);
+
+
+//                tv_playenough.setText("50");
+                TextView tv_money = (TextView) target.findViewById(R.id.det_money);
+                String money = "200,000.00";
+                tv_money.setText(Html.fromHtml(money + "<font color='#7b7b7b'>/1,000,000.00</font>"));
+
+                mWaveHelper.setPercent(0.3f);
+            }
+        });
+
+    }
+
+
+    /**
+     *设置滴水效果WaveView
+     */
+    private void setWaveView() {
+
+        int mBorderColor = Color.parseColor("#0080FF");
+        waveView.setBorder(0, mBorderColor);
+        TextView t =(TextView)getView(R.id.ww_text,view);
+        mWaveHelper = new WaveHelper(waveView,getActivity(),t);
+        waveView.setShapeType(WaveView.ShapeType.SQUARE);
+
+//        waveView.setWaveColor(
+//                Color.parseColor("#0080FF"),
+//                Color.parseColor("#0080FF"));
+//        waveView.setBorder(1, mBorderColor);
+
+
+        mWaveHelper.start();
+
     }
 }
