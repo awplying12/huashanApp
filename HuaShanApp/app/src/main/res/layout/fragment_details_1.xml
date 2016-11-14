@@ -80,7 +80,7 @@
 
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
-                app:layout_heightPercent="25%"
+                app:layout_heightPercent="24%"
                 android:background="#fff">
 
                 <TextView
@@ -121,13 +121,13 @@
             <!--第3部分-->
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
-                app:layout_heightPercent="35%"
-                app:layout_marginTopPercent="25%"
+                app:layout_heightPercent="36%"
+                app:layout_marginTopPercent="24%"
                 >
 
                 <android.support.percent.PercentFrameLayout
                     app:layout_widthPercent="20%"
-                    app:layout_heightPercent="80%"
+                    app:layout_heightPercent="68%"
                     app:layout_marginLeftPercent="15%"
                     android:layout_below="@+id/colorChoice"
                     android:layout_gravity="center_vertical"
@@ -138,8 +138,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         />
-
-
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -193,7 +191,7 @@
             <!--第3部分-->
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
-                app:layout_heightPercent="15%"
+                app:layout_heightPercent="12%"
                 app:layout_marginTopPercent="60%"
                 android:background="#fff"
                 >
@@ -218,7 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                app:layout_marginBottomPercent="2%"
+                app:layout_marginBottomPercent="5%"
                 android:src="@drawable/move_1"
                 />
 
@@ -227,7 +225,7 @@
                 app:layout_heightPercent="10%"
                 android:layout_gravity="bottom|center_horizontal"
 
-                app:layout_marginBottomPercent="11%"
+                app:layout_marginBottomPercent="15%"
                 android:src="@drawable/move_2"
                 />
 

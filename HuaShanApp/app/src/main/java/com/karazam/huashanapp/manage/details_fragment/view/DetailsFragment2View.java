@@ -7,4 +7,5 @@ import com.example.utils.base.BaseView;
  */
 
 public interface DetailsFragment2View extends BaseView{
+    void setCurrentItem(int position);
 }

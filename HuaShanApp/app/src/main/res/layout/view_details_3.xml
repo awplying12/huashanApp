@@ -1,13 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="#acf">
+    android:orientation="vertical"
+>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View 3"/>
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="View 3"/>-->
+    <com.example.utils.custom.NestingNestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:paddingLeft="25dp"
+                android:orientation="vertical">
+
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/oo"
+                            android:id="@+id/imageView3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="4dp"
+                            android:text="调查"
+                            android:textSize="11dp"
+                            android:textColor="#fff"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2016-10-31   12:00       调查人：wanghui"
+                            android:layout_marginLeft="60dp"
+                            android:layout_gravity="center_vertical"
+                            android:id="@+id/textView2" />
+
+                    </android.support.percent.PercentFrameLayout>
+
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/oo"
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="4dp"
+                            android:text="审查"
+                            android:textSize="11dp"
+                            android:textColor="#fff"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="60dp"
+                            android:text="2016-10-31   12:00       调查人：wanghui"
+                            android:layout_gravity="center_vertical"/>
+                    </android.support.percent.PercentFrameLayout>
+
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/lo"
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="4dp"
+                            android:text="购买"
+                            android:textSize="11dp"
+                            android:textColor="#fff"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="60dp"
+                            android:text="2016-10-31   12:00       购买中"
+                            android:textColor="#ff8000"
+                            android:layout_gravity="center_vertical"/>
+
+                    </android.support.percent.PercentFrameLayout>
+
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/ol"
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="4dp"
+                            android:text="满额"
+                            android:textSize="11dp"
+                            android:textColor="#4f4f4f"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="60dp"
+                            android:text=""
+                            android:layout_gravity="center_vertical"/>
+                    </android.support.percent.PercentFrameLayout>
+
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/o"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="4dp"
+                            android:text="还款"
+                            android:textSize="11dp"
+                            android:textColor="#4f4f4f"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="60dp"
+                            android:text=""
+                            android:layout_gravity="center_vertical"/>
+                    </android.support.percent.PercentFrameLayout>
+            </LinearLayout>
+
+    </com.example.utils.custom.NestingNestedScrollView>
 
 </LinearLayout>

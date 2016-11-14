@@ -78,123 +78,12 @@
 
             >
 
-            <!--123-->
-            <android.support.percent.PercentFrameLayout
-                android:id="@+id/tab_det"
-                android:layout_width="match_parent"
-                app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="24%"
-                android:background="#fff"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    app:layout_heightPercent="10%"
-                    android:background="#ffa042"/>
-
-                <TextView
-                    android:id="@+id/bt_det_1"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    app:layout_widthPercent="33.4%"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="项目信息"
-                    android:onClick="@{handler.onInformation}"
-                    />
-
-                <TextView
-                    android:id="@+id/bt_det_2"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    app:layout_widthPercent="33.4%"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:text="购买记录"
-                    android:background="#f0f0f0"
-                    android:onClick="@{handler.onRecord}"/>
-
-                <TextView
-                    android:id="@+id/bt_det_3"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    app:layout_widthPercent="33.4%"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:gravity="center"
-                    android:text="项目进度"
-                    android:background="#f0f0f0"
-                    android:onClick="@{handler.onSpeed}"/>
-
-
-
-            </android.support.percent.PercentFrameLayout>
-
             <!--第1部分-->
 
 
-            <android.support.percent.PercentRelativeLayout
-                android:id="@+id/header_2"
-                android:layout_width="match_parent"
-                app:layout_heightPercent="5%"
-                app:layout_marginTopPercent="29%"
-                android:background="#66b3ff"
-                android:clickable="true">
-
-                <ImageView
-                    app:layout_widthPercent="8%"
-                    app:layout_heightPercent="60%"
-                    android:layout_toLeftOf="@+id/release_time"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/release_time"/>
-
-                <TextView
-                    android:id="@+id/release_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_centerInParent="true"
-                    android:text="发布日期：2016-11-09 00:05"
-                    android:textColor="#fff"/>
-
-            </android.support.percent.PercentRelativeLayout>
-
-
-                <android.support.percent.PercentFrameLayout
-                    android:id="@+id/header"
-                    android:layout_width="380dp"
-                    app:layout_heightPercent="25%"
-                    app:layout_marginTopPercent="5%"
-                    android:background="#66b3ff"
-                    android:clickable="true"
-                    android:layout_height="116dp">
-                    <TextView
-                        android:id="@+id/text_11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center"
-                        app:layout_marginTopPercent="30%"
-                        android:text="年化收益率（%）"
-                        android:textColor="@color/Investmentdetails_part1_text_size"
-                        android:textSize="15dp"/>
-
-                    <TextView
-                        android:id="@+id/det_income"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        app:layout_marginTopPercent="45%"
-                        android:text="8.60"
-                        android:textColor="@color/Investmentdetails_part1_text_size"
-                        android:textSize="50dp"
-                        />
-                </android.support.percent.PercentFrameLayout>
-
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
-                app:layout_heightPercent="5%"
+                app:layout_heightPercent="26%"
                 android:background="#66b3ff">
 
                 <TextView
@@ -208,6 +97,54 @@
                     android:textColor="@color/Investmentdetails_part1_text_size"
                     android:textSize="18dp"/>
 
+                <TextView
+                    android:id="@+id/text_11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    app:layout_marginTopPercent="30%"
+                    android:text="年化收益率（%）"
+                    android:textColor="@color/Investmentdetails_part1_text_size"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/det_income"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:layout_marginTopPercent="45%"
+                    android:text="8.60"
+                    android:textColor="@color/Investmentdetails_part1_text_size"
+                    android:textSize="40dp"
+                    />
+
+                <android.support.percent.PercentRelativeLayout
+                    android:id="@+id/header_2"
+                    android:layout_width="match_parent"
+                    app:layout_heightPercent="20%"
+                    android:layout_gravity="bottom"
+                    android:background="#66b3ff"
+                    android:clickable="true">
+
+                    <ImageView
+                        app:layout_widthPercent="8%"
+                        app:layout_heightPercent="60%"
+                        android:layout_toLeftOf="@+id/release_time"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/release_time"/>
+
+                    <TextView
+                        android:id="@+id/release_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_centerInParent="true"
+                        android:text="发布日期：2016-11-09 00:05"
+                        android:textColor="#fff"
+                        android:textSize="12dp"/>
+
+                </android.support.percent.PercentRelativeLayout>
 
 
             </android.support.percent.PercentFrameLayout>
@@ -216,8 +153,8 @@
 
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
-                app:layout_heightPercent="56%"
-                app:layout_marginTopPercent="34%"
+                app:layout_heightPercent="64%"
+                app:layout_marginTopPercent="26%"
                 >
 
                 <com.example.utils.custom.VerticalViewPager.VerticalViewPager

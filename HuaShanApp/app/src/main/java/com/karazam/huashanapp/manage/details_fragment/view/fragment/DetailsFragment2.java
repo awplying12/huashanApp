@@ -1,16 +1,20 @@
 package com.karazam.huashanapp.manage.details_fragment.view.fragment;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.recyclerviewpager.RecyclerViewPager.CarouselViewPager;
 import com.example.utils.Adapter.PagerFragmentAdapter;
@@ -48,6 +52,10 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
     private View view2;
     private View view3;
 
+    private TextView information;
+    private TextView record;
+    private TextView speed;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,6 +83,10 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
         view1 = LayoutInflater.from(getContext()).inflate(R.layout.view_details_1,null);
         view2 = LayoutInflater.from(getContext()).inflate(R.layout.view_details_2,null);
         view3 = LayoutInflater.from(getContext()).inflate(R.layout.view_details_3,null);
+
+        information = (TextView) getView(R.id.bt_det_1,view);
+        record = (TextView) getView(R.id.bt_det_2,view);
+        speed = (TextView) getView(R.id.bt_det_3,view);
     }
 
     /**
@@ -87,22 +99,35 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
         content_ll.addView(view1);
     }
 
+    @Override
     public void setCurrentItem(int position){
         content_ll.removeAllViews();
+        initTab();
         switch (position){
             case 0:
-//                view1.setLayoutParams(content_ll.getLayoutParams());
                 content_ll.addView(view1);
+                information.setBackgroundColor(Color.parseColor("#00ffffff"));
                 break;
             case 1:
                 content_ll.addView(view2);
+                record.setBackgroundColor(Color.parseColor("#00ffffff"));
                 break;
             case 2:
                 content_ll.addView(view3);
+                speed.setBackgroundColor(Color.parseColor("#00ffffff"));
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 初始化tab
+     */
+    private void initTab(){
+        information.setBackgroundColor(Color.parseColor("#f0f0f0"));
+        record.setBackgroundColor(Color.parseColor("#f0f0f0"));
+        speed.setBackgroundColor(Color.parseColor("#f0f0f0"));
     }
 
     private void onView1(){
@@ -125,11 +150,14 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
 
     }
 
+
+    View header;
+    View header1;
     private void onView2(){
         RecyclerView recyclerView = (RecyclerView) view2.findViewById(R.id.con_rl);
-        LinearLayoutManager lm = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        header1 = view2.findViewById(R.id.header_view1);
+       final LinearLayoutManager lm = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(lm);
-
         ArrayList<String> list = new ArrayList<>();
         list.add("");
         list.add("");
@@ -146,7 +174,23 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
         list.add("");
         list.add("");
 
-        recyclerView.setAdapter(new ConAdapter(list,getContext()));
+        ConAdapter adapter = new ConAdapter(list,getContext());
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+//                header1.setTranslationY(Math.max(-dy, -header1.getHeight()));
+                header1.setTranslationY(-dy);
+            }
+        });
     }
 
     private void onView3(){

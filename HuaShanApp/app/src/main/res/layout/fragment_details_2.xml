@@ -81,20 +81,71 @@
                 <!--android:text="fragment_details_2"-->
                 <!--/>-->
 
-            <com.example.utils.custom.NestingNestedScrollView
+            <!--123-->
+            <android.support.percent.PercentFrameLayout
+                android:id="@+id/tab_det"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                app:layout_heightPercent="15%"
+                android:background="#fff"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    app:layout_heightPercent="10%"
+                    android:background="#ffa042"/>
+
+                <TextView
+                    android:id="@+id/bt_det_1"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    app:layout_widthPercent="33.4%"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="项目信息"
+                    android:onClick="@{handler.onInformation}"
+                    />
+
+                <TextView
+                    android:id="@+id/bt_det_2"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    app:layout_widthPercent="33.4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="购买记录"
+                    android:background="#f0f0f0"
+                    android:onClick="@{handler.onRecord}"/>
+
+                <TextView
+                    android:id="@+id/bt_det_3"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    app:layout_widthPercent="33.4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:gravity="center"
+                    android:text="项目进度"
+                    android:background="#f0f0f0"
+                    android:onClick="@{handler.onSpeed}"/>
+
+
+
+            </android.support.percent.PercentFrameLayout>
+
+
 
                 <LinearLayout
                     android:id="@+id/content_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layout_marginTopPercent="15%"
                     android:orientation="vertical">
 
 
 
                 </LinearLayout>
-            </com.example.utils.custom.NestingNestedScrollView>
+
 
 
 

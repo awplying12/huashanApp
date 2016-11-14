@@ -30,4 +30,34 @@ public class DetailsFragment2ViewModelImpl extends DetailsFragment2ViewModel {
     public void onBack(View view) {
         mView.FinishActivity(activity);
     }
+
+    /**
+     * 项目信息
+     * @param view
+     */
+    @Override
+    public void onInformation(View view) {
+        mView.showToast("项目信息");
+        mView.setCurrentItem(0);
+    }
+
+    /**
+     * 购买记录
+     * @param view
+     */
+    @Override
+    public void onRecord(View view) {
+        mView.showToast("购买记录");
+        mView.setCurrentItem(1);
+    }
+
+    /**
+     * 项目进度
+     * @param view
+     */
+    @Override
+    public void onSpeed(View view) {
+        mView.showToast("项目进度");
+        mView.setCurrentItem(2);
+    }
 }

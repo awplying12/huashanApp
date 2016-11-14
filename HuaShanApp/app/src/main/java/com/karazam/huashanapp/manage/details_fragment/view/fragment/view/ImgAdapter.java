@@ -41,7 +41,7 @@ public class ImgAdapter extends RecyclerView.Adapter<ImgAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         RxImageLoader.init(context);
-        RxImageLoader.getLoaderObservable(null,"http://4493bz.1985t.com/uploads/allimg/150127/4-15012G52133.jpg").subscribe(new Subscriber<Data>() {
+        RxImageLoader.getLoaderObservable(null,"https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/267f9e2f07082838eda9ce18b899a9014c08f112.jpg").subscribe(new Subscriber<Data>() {
             @Override
             public void onCompleted() {
 

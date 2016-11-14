@@ -66,12 +66,9 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     private int mMinHeaderTranslation;
     private int mActionBarHeight;
     private TypedValue mTypedValue = new TypedValue();
-    private View mHeader;
-    private View header_2;
 
-    private TextView information;
-    private TextView record;
-    private TextView speed;
+
+
 
 
     @Override
@@ -99,8 +96,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     @Override
     public void initView() {
 
-        mHeader = getView(R.id.header);
-        header_2 = getView(R.id.header_2);
+
         text_11 = (TextView) getView(R.id.text_11);
         det_income = (TextView) getView(R.id.det_income);
 
@@ -108,9 +104,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
         tab_det = (PercentFrameLayout) getView(R.id.tab_det);
 
-        information = (TextView) getView(R.id.bt_det_1);
-        record = (TextView) getView(R.id.bt_det_2);
-        speed = (TextView) getView(R.id.bt_det_3);
+
     }
 
     @Override
@@ -136,53 +130,6 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
         ViewPager.setAdapter(adapter);
 
-        ViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                Log.i("fa","1");
-                int scrollY = positionOffsetPixels;
-                Log.i("scrollY : ",positionOffset+"  position   "+position);
-
-                switch (i){
-                    case 0:
-                        mHeader.setTranslationY((float) ( Math.max(-scrollY, -tab_det.getHeight()*0.7)));
-                        header_2.setTranslationY((float) ( Math.max(-scrollY, -tab_det.getHeight())));
-                        break;
-                    case 1:
-
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.i("fa","2");
-                i = position;
-                switch (i){
-                    case 0:
-                        mHeader.setTranslationY(0);
-                        header_2.setTranslationY(0);
-                        break;
-                    case 1:
-                        mHeader.setTranslationY(-(int) (tab_det.getHeight()*0.7));
-                        header_2.setTranslationY(-(int) (tab_det.getHeight()));
-
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                Log.i("fa","3");
-            }
-        });
     }
 
     /**
@@ -211,31 +158,11 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      */
     @Override
     public void setTab(int num) {
-        initTab();
+
         fragment2.setCurrentItem(num);
-        switch (num){
-            case 0:
-                information.setBackgroundColor(Color.parseColor("#00ffffff"));
-                break;
-            case 1:
-                record.setBackgroundColor(Color.parseColor("#00ffffff"));
-                break;
-            case 2:
-                speed.setBackgroundColor(Color.parseColor("#00ffffff"));
-                break;
-            default:
-                break;
-        }
+
     }
 
-    /**
-     * 初始化tab
-     */
-    private void initTab(){
-        information.setBackgroundColor(Color.parseColor("#f0f0f0"));
-        record.setBackgroundColor(Color.parseColor("#f0f0f0"));
-        speed.setBackgroundColor(Color.parseColor("#f0f0f0"));
-    }
 
     /**
      * 滑动选择
