@@ -15,4 +15,6 @@ public abstract class InvestmentdetailsViewModel extends BaseViewModel {
     public abstract void onRecord(View view);
 
     public abstract void onSpeed(View view);
+
+    public abstract void toPurchase(View view);
 }

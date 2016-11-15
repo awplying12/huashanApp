@@ -6,6 +6,7 @@ import android.view.View;
 import com.karazam.huashanapp.manage.experience.model.databinding.ExperienceEntity;
 import com.karazam.huashanapp.manage.experience.view.ExperienceView;
 import com.karazam.huashanapp.manage.experience.view.activity.ExperienceActivity;
+import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
 
 /**
  * Created by Administrator on 2016/11/15.
@@ -28,5 +29,10 @@ public class ExperienceViewModelImpl extends ExperienceViewModel {
     @Override
     public void onBack(View view) {
         mView.FinishActivity(activity);
+    }
+
+    @Override
+    public void toPurchase(View view) {
+        mView.toOtherActivity(activity, PurchaseActivity.class);
     }
 }

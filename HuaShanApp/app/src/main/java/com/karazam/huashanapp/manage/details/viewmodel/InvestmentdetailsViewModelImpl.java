@@ -7,6 +7,7 @@ import com.karazam.huashanapp.manage.details.model.databinding.Investmentdetails
 
 import com.karazam.huashanapp.manage.details.view.InvestmentdetailsView;
 import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
+import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
 
 /**
  * Created by Administrator on 2016/11/8.
@@ -59,5 +60,14 @@ public class InvestmentdetailsViewModelImpl extends InvestmentdetailsViewModel {
     public void onSpeed(View view) {
         mView.showToast("项目进度");
         mView.setTab(2);
+    }
+
+    /**
+     * 立即购买
+     * @param view
+     */
+    @Override
+    public void toPurchase(View view) {
+        mView.toOtherActivity(activity, PurchaseActivity.class);
     }
 }
