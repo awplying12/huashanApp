@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
+import com.karazam.huashanapp.manage.experience.view.activity.ExperienceActivity;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
@@ -56,7 +57,7 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext,"立即体验  "+position,Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, InvestmentdetailsActivity.class);
+                Intent intent = new Intent(mContext, ExperienceActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 mContext.startActivity(intent);

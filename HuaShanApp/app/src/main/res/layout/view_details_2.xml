@@ -2,45 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_weight="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
-    <android.support.percent.PercentFrameLayout
-        android:id="@+id/header_view1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:background="#fff"
-        android:visibility="visible">
+                    <!--<android.support.percent.PercentFrameLayout-->
+                        <!--android:id="@+id/header_view1"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:layout_marginTop="30dp"-->
+                        <!--android:background="#fff"-->
+                        <!--android:visibility="visible">-->
 
-        <TextView
-            app:layout_widthPercent="30%"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            app:layout_marginLeftPercent="5%"
-            android:text="购买人/购买时间"/>
+                        <!--<TextView-->
+                            <!--app:layout_widthPercent="30%"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--app:layout_marginLeftPercent="5%"-->
+                            <!--android:text="购买人/购买时间"-->
+                            <!--android:layout_width="wrap_content" />-->
 
-        <TextView
-            app:layout_widthPercent="50%"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:gravity="center_vertical|right"
-            app:layout_marginRightPercent="5%"
-            android:text="购买金额/购买方式"/>
-    </android.support.percent.PercentFrameLayout>
+                        <!--<TextView-->
+                            <!--app:layout_widthPercent="50%"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="right"-->
+                            <!--android:gravity="center_vertical|right"-->
+                            <!--app:layout_marginRightPercent="5%"-->
+                            <!--android:text="购买金额/购买方式"-->
+                            <!--android:layout_width="wrap_content" />-->
+                    <!--</android.support.percent.PercentFrameLayout>-->
 
-    <android.support.percent.PercentFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="290dp">
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="290dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/con_rl"
-                app:layout_widthPercent="90%"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                >
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/con_rl"
+                                app:layout_widthPercent="90%"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                >
 
-            </android.support.v7.widget.RecyclerView>
-    </android.support.percent.PercentFrameLayout>
+                            </android.support.v7.widget.RecyclerView>
+                    </android.support.percent.PercentFrameLayout>
 </LinearLayout>

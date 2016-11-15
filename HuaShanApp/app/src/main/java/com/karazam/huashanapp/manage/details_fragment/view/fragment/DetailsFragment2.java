@@ -151,11 +151,10 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
     }
 
 
-    View header;
-    View header1;
+
     private void onView2(){
         RecyclerView recyclerView = (RecyclerView) view2.findViewById(R.id.con_rl);
-        header1 = view2.findViewById(R.id.header_view1);
+
        final LinearLayoutManager lm = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(lm);
         ArrayList<String> list = new ArrayList<>();
@@ -176,21 +175,10 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
 
         ConAdapter adapter = new ConAdapter(list,getContext());
         recyclerView.setAdapter(adapter);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_header_item,null);
+        adapter.setHeaderView(view);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
 
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-//                header1.setTranslationY(Math.max(-dy, -header1.getHeight()));
-                header1.setTranslationY(-dy);
-            }
-        });
     }
 
     private void onView3(){
