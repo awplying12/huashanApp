@@ -3,6 +3,7 @@ package com.karazam.huashanapp.manage.purchase.viewmodel;
 import android.content.Context;
 import android.view.View;
 
+import com.karazam.huashanapp.manage.paymentmod.view.activity.PaymentmodActivity;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
@@ -29,4 +30,34 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
     public void onBack(View view) {
         mView.FinishActivity(activity);
     }
+
+    /**
+     * 更多支付方式
+     * @param view
+     */
+    @Override
+    public void onPaymentMethod(View view) {
+        mView.showToast("更多支付方式");
+        mView.toOtherActivity(activity, PaymentmodActivity.class);
+    }
+
+    /**
+     * 购买
+     * @param view
+     */
+    @Override
+    public void onPurchase(View view) {
+        mView.showToast("购买");
+    }
+
+    /**
+     * 投资协议
+     * @param view
+     */
+    @Override
+    public void onAgreement(View view) {
+        mView.showToast("投资协议");
+    }
+
+
 }

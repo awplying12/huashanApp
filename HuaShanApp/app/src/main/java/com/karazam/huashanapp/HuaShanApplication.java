@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 import android.text.format.Time;
 
+import com.karazam.huashanapp.main.UserInformation;
 import com.ogaclejapan.rx.binding.RxProperty;
 
 /**
@@ -29,9 +30,13 @@ public class HuaShanApplication extends Application {
     public static int loginStatus;
     public static String imei;
 
+    public static UserInformation userInformation;
+
 
 
     public static RxProperty<String> day = RxProperty.create();
+
+    public static RxProperty<UserInformation> userInformationR = RxProperty.create();
 
     @Override
     public void onCreate() {
@@ -49,6 +54,8 @@ public class HuaShanApplication extends Application {
 
         loginStatus = sharedPreferences.getInt("loginStatus",-1);
 
+//        paymentmod = sharedPreferences.getString("paymentmod","");
+
         //IMEI（imei）
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); //手机的唯一标识
         imei = tm.getDeviceId();
@@ -57,6 +64,14 @@ public class HuaShanApplication extends Application {
         time.setToNow();
 
         day.set(time.monthDay+"");
+
+        userInformation = new UserInformation();
+        userInformation.setBankCard("中国银行(尾号7634)");
+        userInformation.setCardInformation("单笔限额5万,单日限额50万");
+        userInformation.setUserbalance("8,214.47");
+        userInformation.setPaymentmod("bankCard");
+//        paymentmod = userInformation.getPaymentmod();
+        userInformationR.set(userInformation);
 
     }
 

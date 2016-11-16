@@ -1,5 +1,7 @@
 package com.karazam.huashanapp.manage.purchase.viewmodel;
 
+import android.view.View;
+
 import com.example.utils.base.BaseViewModel;
 
 /**
@@ -7,4 +9,10 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class PurchaseViewModel extends BaseViewModel {
+
+    public abstract void onPaymentMethod(View view);
+
+    public abstract void onPurchase(View view);
+
+    public abstract void onAgreement(View view);
 }
