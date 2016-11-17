@@ -31,4 +31,5 @@ dependencies {
     compile project(':waveview')
     compile project(':cacheutils')
     compile project(':recyclerviewpager')
+    compile project(':paymentpassword')
 }
