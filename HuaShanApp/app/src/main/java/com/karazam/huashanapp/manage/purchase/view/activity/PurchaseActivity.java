@@ -1,6 +1,8 @@
 package com.karazam.huashanapp.manage.purchase.view.activity;
 
 import android.databinding.DataBindingUtil;
+import android.support.percent.PercentFrameLayout;
+import android.support.percent.PercentRelativeLayout;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.StringUtil;
 import com.jakewharton.rxbinding.widget.RxCheckedTextView;
@@ -21,6 +24,7 @@ import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityPurchaseBinding;
 import com.karazam.huashanapp.main.Method;
 import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
@@ -52,8 +56,14 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     private TextView tv_prompt;
     private CheckBox cb_agreement;
 
+    private PercentRelativeLayout purchase_pl;
 
     private Project project;
+
+    private PasswordView passwordView;
+
+    private SMSauthenticationView sms;
+    private View smsView;
 
     @Override
     public void setContentLayout() {
@@ -78,7 +88,9 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         bt_purchase = (TextView) getView(R.id.bt_purchase);
         tv_prompt = (TextView) getView(R.id.tv_prompt);
         cb_agreement = (CheckBox) getView(R.id.cb_agreement);
-
+        passwordView = (PasswordView) getView(R.id.pwd_view);
+        purchase_pl = (PercentRelativeLayout) getView(R.id.purchase_pl);
+        sms = new SMSauthenticationView(this);
 
     }
 
@@ -86,6 +98,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     public void dealLogicAfterInitView() {
         setLayout();
         checkContent();
+        setPasswordView();
+        setSMSView();
     }
 
     /**
@@ -198,5 +212,85 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             bt_purchase.setClickable(false);
             bt_purchase.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
         }
+    }
+
+    /**
+     * 设置支付密码控件PasswordView
+     */
+    private void setPasswordView(){
+
+        passwordView.setOnPasswordViewListener(new PasswordView.OnPasswordViewListener() {
+            @Override
+            public void inputFinish() {
+                showToast(passwordView.getStrPassword());
+            }
+
+            @Override
+            public void onBack(View v) {
+                passwordView.out();
+            }
+
+            @Override
+            public void onForgetpassword(View v) {
+
+            }
+        });
+    }
+
+    /**
+     * 弹起支付密码控件
+     */
+    @Override
+    public void showPasswordView() {
+        if(passwordView == null){
+            return;
+        }
+            passwordView.show();
+    }
+
+    /**
+     * 设置短息认证控件
+     */
+    private void setSMSView(){
+//        smsView = sms.getView();
+        sms.setView(purchase_pl, new SMSauthenticationView.OnAuthenticationListener() {
+
+            @Override
+            public void onLeft(View view) {
+                showToast("onleft");
+                sms.dismiss();
+            }
+
+            @Override
+            public void onRight(View view) {
+                showToast("onRight");
+
+                sms.verification();
+
+            }
+
+            @Override
+            public void onHelp(View view) {
+                showToast("onhelp");
+            }
+
+            @Override
+            public void onResult(boolean result) {
+                if(result){
+                    sms.dismiss();
+                    showPasswordView();
+                }
+            }
+
+
+        });
+    }
+
+    /**
+     * 弹出短息认证控件
+     */
+    @Override
+    public void addSMSView(){
+        sms.show();
     }
 }

@@ -61,6 +61,18 @@
     <!--Investmentdetails-->
     <color name="Investmentdetails_part1_text_size">#fff</color>
 
+    <!--PromptDialog-->
+    <color name="promptdialog_text_color_1">#505050</color>
+    <color name="promptdialog_text_color_2">#9e9e9e</color>
+    <color name="promptdialog_text_color_3">#0894EC</color>
+
+    <!--SMSauthenticationView-->
+    <color name="SMSauthenticationView_text_color_1">#505050</color>
+    <color name="SMSauthenticationView_text_color_2">#9e9e9e</color>
+    <color name="SMSauthenticationView_text_color_3">#0894EC</color>
+    <color name="SMSauthenticationView_text_color_4">#9e9e9e</color>
+    <color name="SMSauthenticationView_text_color_5">#9e9e9e</color>
+
 
     <!--SpringIndicator-->
     <color name="white">#ffffff</color>

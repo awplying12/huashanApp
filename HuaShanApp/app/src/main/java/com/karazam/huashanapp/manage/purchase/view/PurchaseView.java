@@ -7,4 +7,7 @@ import com.example.utils.base.BaseView;
  */
 
 public interface PurchaseView extends BaseView{
+    void showPasswordView();
+
+    void addSMSView();
 }

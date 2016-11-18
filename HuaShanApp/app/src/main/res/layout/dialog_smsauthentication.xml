@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:background="#50000000">
+
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="300dp"
+        app:layout_heightPercent="35%"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/bg_fillet_f0f0f0_5dp"
+        >
+
+        <TextView
+            android:id="@+id/sms_tv_1"
+            android:layout_width="match_parent"
+            app:layout_heightPercent="20%"
+            android:gravity="center"
+            android:text="支付100元"
+            android:textSize="@dimen/promptdialog_text_size_1"
+            android:textColor="@color/SMSauthenticationView_text_color_1"/>
+        <ImageView
+            app:layout_widthPercent = "90%"
+            android:layout_height="0.5dp"
+            app:layout_marginTopPercent="20%"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/line_color"/>
+
+        <TextView
+            android:id="@+id/sms_tv_2_1"
+            app:layout_widthPercent = "70%"
+            app:layout_heightPercent="13%"
+            app:layout_marginTopPercent="20%"
+            android:gravity="center_horizontal|bottom"
+            android:text="请输入手机尾号5616接受的验证码"
+            android:textSize="@dimen/promptdialog_text_size_2"
+            android:textColor="@color/SMSauthenticationView_text_color_2"/>
+
+        <TextView
+            android:id="@+id/sms_tv_2_2"
+            app:layout_widthPercent = "20%"
+            app:layout_heightPercent="13%"
+            app:layout_marginTopPercent="20%"
+            app:layout_marginLeftPercent="70%"
+            android:gravity="bottom|right"
+            android:text="没收到？"
+            android:textSize="@dimen/promptdialog_text_size_2"
+            android:textColor="@color/SMSauthenticationView_text_color_3"/>
+
+        <ImageView
+            app:layout_widthPercent = "90%"
+            android:layout_height="0.5dp"
+            app:layout_marginTopPercent="70%"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/line_color"/>
+
+
+        <TextView
+            android:id="@+id/bt_sms_r"
+            app:layout_widthPercent = "50%"
+            app:layout_heightPercent="30%"
+            android:layout_gravity="bottom|right"
+            android:gravity="center"
+            android:text="确定"
+            android:textSize="@dimen/promptdialog_text_size_3"
+            android:textColor="@color/SMSauthenticationView_text_color_4"
+            android:background="@drawable/bg_fillet_ffffff_5dp"/>
+
+        <android.support.percent.PercentFrameLayout
+            app:layout_widthPercent = "100%"
+            app:layout_heightPercent="32%"
+            app:layout_marginTopPercent="33%">
+
+            <EditText
+                android:id="@+id/sms_ed"
+                app:layout_widthPercent = "45%"
+                app:layout_heightPercent="70%"
+                app:layout_marginLeftPercent="5%"
+                android:layout_gravity="center_vertical"
+                android:hint="填写短信验证码"
+                android:gravity="center"
+                android:textColorHint="#e0e0e0"
+                android:background="@drawable/u41"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/sms_tv_3"
+                app:layout_widthPercent = "35%"
+                app:layout_heightPercent="75%"
+                app:layout_marginRightPercent="10%"
+                android:layout_gravity="right|center_vertical"
+                android:gravity="center"
+                android:text="重发"
+                android:background="@drawable/u45"
+                android:textColor="@color/SMSauthenticationView_text_color_5"/>
+
+        </android.support.percent.PercentFrameLayout>
+
+        <TextView
+            android:id="@+id/wrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_marginTopPercent="62%"
+            app:layout_marginLeftPercent="10%"
+            android:text="验证码错误"
+            android:textSize="8dp"
+            android:textColor="#f00"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/bt_sms_l"
+            app:layout_widthPercent = "50%"
+            app:layout_heightPercent="30%"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:text="取消"
+            android:textSize="@dimen/promptdialog_text_size_3"
+            android:textColor="@color/SMSauthenticationView_text_color_4"
+            android:background="@drawable/bg_fillet_ffffff_5dp"/>
+
+        <ImageView
+            android:layout_width="0.5dp"
+            app:layout_heightPercent="22%"
+            android:layout_gravity="bottom|center_horizontal"
+            app:layout_marginBottomPercent="4%"
+            android:background="@color/line_color"/>
+
+
+    </android.support.percent.PercentFrameLayout>
+
+</android.support.percent.PercentFrameLayout>

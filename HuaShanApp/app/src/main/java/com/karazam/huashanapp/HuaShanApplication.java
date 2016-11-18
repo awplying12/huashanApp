@@ -32,7 +32,7 @@ public class HuaShanApplication extends Application {
 
     public static UserInformation userInformation;
 
-
+    public static boolean certificationStatus = true;
 
     public static RxProperty<String> day = RxProperty.create();
 

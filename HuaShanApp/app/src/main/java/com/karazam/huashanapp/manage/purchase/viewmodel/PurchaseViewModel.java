@@ -15,4 +15,6 @@ public abstract class PurchaseViewModel extends BaseViewModel {
     public abstract void onPurchase(View view);
 
     public abstract void onAgreement(View view);
+
+
 }

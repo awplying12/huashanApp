@@ -5,6 +5,8 @@ import android.view.View;
 
 import com.example.paymentpassword.PasswordView;
 import com.karazam.huashanapp.R;
+
+import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.manage.paymentmod.view.activity.PaymentmodActivity;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
@@ -21,7 +23,7 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
     private Context context;
     private PurchaseActivity activity;
 
-    private PasswordView passwordView;
+
 
     public PurchaseViewModelImpl(PurchaseEntity mEntity, PurchaseView mView, Context context, PurchaseActivity activity) {
         this.mEntity = mEntity;
@@ -29,7 +31,7 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
         this.context = context;
         this.activity = activity;
 
-        passwordView = (PasswordView) mView.getView(R.id.pwd_view);
+
     }
 
     @Override
@@ -55,23 +57,8 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
     @Override
     public void onPurchase(View view) {
         mView.showToast("购买");
-        passwordView.show();
-        passwordView.setOnPasswordViewListener(new PasswordView.OnPasswordViewListener() {
-            @Override
-            public void inputFinish() {
-                mView.showToast(passwordView.getStrPassword());
-            }
 
-            @Override
-            public void onBack(View v) {
-                passwordView.out();
-            }
-
-            @Override
-            public void onForgetpassword(View v) {
-
-            }
-        });
+        mView.addSMSView();
     }
 
     /**
