@@ -17,15 +17,22 @@ public class PromptDialog extends Dialog {
 
     private TextView text1;
     private TextView text2;
+    private TextView text3;
 
     private TextView bt_l;
     private TextView bt_r;
 
     private String text1Str = "";
     private String text2Str = "";
+    private String text3Str = "";
 
     private String btnlStr = "";
     private String btnrStr = "";
+
+    public static final int MOD1 = 1;
+    public static final int MOD2 = 2;
+
+    private int mod = MOD1;
 
     public PromptDialog(Context context) {
         super(context, R.style.Mydialog);
@@ -43,6 +50,7 @@ public class PromptDialog extends Dialog {
 
 
         initView();
+        initMod();
         initData();
         initEvent();
 
@@ -55,6 +63,7 @@ public class PromptDialog extends Dialog {
     private void initView() {
         text1 = (TextView) findViewById(R.id.pro_tv_1);
         text2 = (TextView) findViewById(R.id.pro_tv_2);
+        text3 = (TextView) findViewById(R.id.pro_tv_3);
 
         bt_l = (TextView) findViewById(R.id.bt_pro_l);
         bt_r = (TextView) findViewById(R.id.bt_pro_r);
@@ -70,6 +79,10 @@ public class PromptDialog extends Dialog {
 
         if(text2 != null){
             text2.setText(StringUtil.interrupt(text2Str,0,"未知"));
+        }
+
+        if(text3 != null){
+            text3.setText(StringUtil.interrupt(text3Str,0,"未知"));
         }
 
         if(bt_l != null){
@@ -103,11 +116,45 @@ public class PromptDialog extends Dialog {
     }
 
     /**
+     * 设置Mod
+     */
+    public void setMod(int mod){
+        this.mod = mod;
+    }
+    public void initMod(){
+        if(text1 == null &&text2 == null && text3 == null){
+            return;
+        }
+        switch (mod){
+            case 1:
+                text1.setVisibility(View.VISIBLE);
+                text2.setVisibility(View.VISIBLE);
+                text3.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                text1.setVisibility(View.INVISIBLE);
+                text2.setVisibility(View.INVISIBLE);
+                text3.setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
+        }
+    }
+    /**
      * 设置界面数据
      */
     public void setPrompt(String prompt1,String prompt2) {
         this.text1Str = prompt1;
         this.text2Str = prompt2;
+        this.text3Str = prompt2;
+    }
+
+    public void setPrompt(String prompt1,String prompt2,String btnL,String btnR) {
+        this.text1Str = prompt1;
+        this.text2Str = prompt2;
+        this.text3Str = prompt2;
+        this.btnlStr = btnL;
+        this.btnrStr = btnR;
     }
 
     public void setClick(String btnL,String btnR,OnDialogListener dialoglistener){

@@ -32,6 +32,16 @@
             android:textSize="@dimen/promptdialog_text_size_2"
             android:textColor="@color/promptdialog_text_color_2"/>
 
+        <TextView
+            android:id="@+id/pro_tv_3"
+            android:layout_width="match_parent"
+            app:layout_heightPercent="60%"
+            android:gravity="center"
+            android:text="提示3"
+            android:textSize="@dimen/promptdialog_text_size_4"
+            android:textColor="@color/promptdialog_text_color_1"
+            android:visibility="gone"/>
+
         <ImageView
             app:layout_widthPercent = "90%"
             android:layout_height="0.5dp"

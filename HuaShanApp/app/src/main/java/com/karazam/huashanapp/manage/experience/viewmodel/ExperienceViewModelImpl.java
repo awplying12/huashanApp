@@ -53,7 +53,7 @@ public class ExperienceViewModelImpl extends ExperienceViewModel {
 
     private void setCertificationDialog(){
         certificationDialog = new PromptDialog(context);
-
+        certificationDialog.setMod(PromptDialog.MOD1);
         certificationDialog.setPrompt("购买需要实名认证","您要前往实名认证吗？");
 
         certificationDialog.setClick("否", "是", new PromptDialog.OnDialogListener() {

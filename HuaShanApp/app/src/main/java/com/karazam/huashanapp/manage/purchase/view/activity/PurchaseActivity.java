@@ -1,11 +1,13 @@
 package com.karazam.huashanapp.manage.purchase.view.activity;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.percent.PercentFrameLayout;
 import android.support.percent.PercentRelativeLayout;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityPurchaseBinding;
 import com.karazam.huashanapp.main.Method;
 import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.dialog.PromptDialog;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
@@ -65,6 +68,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     private SMSauthenticationView sms;
     private View smsView;
 
+    private PromptDialog dialog;
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_purchase);
@@ -91,6 +96,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         passwordView = (PasswordView) getView(R.id.pwd_view);
         purchase_pl = (PercentRelativeLayout) getView(R.id.purchase_pl);
         sms = new SMSauthenticationView(this);
+        dialog = new PromptDialog(this);
+
 
     }
 
@@ -100,6 +107,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         checkContent();
         setPasswordView();
         setSMSView();
+        setDialog();
     }
 
     /**
@@ -223,6 +231,9 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             @Override
             public void inputFinish() {
                 showToast(passwordView.getStrPassword());
+                passwordView.out();
+                dialog.show();
+
             }
 
             @Override
@@ -245,7 +256,12 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         if(passwordView == null){
             return;
         }
+        String money = ed_amountofmoney.getText().toString();
+            passwordView.setMoney(money);
             passwordView.show();
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     /**
@@ -264,11 +280,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             @Override
             public void onRight(View view) {
                 showToast("onRight");
-
                 sms.verification();
-
             }
-
             @Override
             public void onHelp(View view) {
                 showToast("onhelp");
@@ -281,8 +294,6 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
                     showPasswordView();
                 }
             }
-
-
         });
     }
 
@@ -291,6 +302,33 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
      */
     @Override
     public void addSMSView(){
+        String money = ed_amountofmoney.getText().toString();
+        sms.setText1("支付"+money+"元");
+        sms.setText2("请输入手机尾号5618接受的验证码");
         sms.show();
+
+
+//        imm.showSoftInput(ed_amountofmoney,InputMethodManager.SHOW_FORCED);
+    }
+
+    /**
+     * 投资后的提示Dialog
+     */
+    public void setDialog(){
+        dialog.setPrompt("","购买成功！");
+        dialog.setMod(PromptDialog.MOD2);
+        dialog.setClick("查看详情","继续购买", new PromptDialog.OnDialogListener() {
+            @Override
+            public void onleft(View view) {
+                showToast("查看详情");
+            }
+
+            @Override
+            public void onRight(View view) {
+                showToast("继续购买");
+                dialog.dismiss();
+                ed_amountofmoney.setText("");
+            }
+        });
     }
 }
