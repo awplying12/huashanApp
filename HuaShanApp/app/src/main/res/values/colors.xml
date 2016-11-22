@@ -44,7 +44,7 @@
     <color name="my_pf1_content_text_color_1">#adadad</color>
 
     <color name="my_pf1_content_text_color_2">#000</color>
-
+    <color name="my_pf1_content_text_color">#fff</color>
     <color name="my_pf2_content_text_color">#fff</color>
 
     <!--today-->
@@ -72,6 +72,8 @@
     <color name="SMSauthenticationView_text_color_3">#0894EC</color>
     <color name="SMSauthenticationView_text_color_4">#9e9e9e</color>
     <color name="SMSauthenticationView_text_color_5">#9e9e9e</color>
+
+    <!---->
 
 
     <!--SpringIndicator-->

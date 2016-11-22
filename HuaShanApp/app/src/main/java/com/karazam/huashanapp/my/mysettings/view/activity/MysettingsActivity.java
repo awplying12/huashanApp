@@ -1,27 +1,23 @@
-package com.karazam.huashanapp.my.main.view.fragment;
+package com.karazam.huashanapp.my.mysettings.view.activity;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.utils.base.BaseFragment;
+import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.BitmapUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.databinding.FragmentMyBinding;
+import com.karazam.huashanapp.databinding.ActivityMysettingsBinding;
 import com.karazam.huashanapp.main.UserInformation;
-import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
-import com.karazam.huashanapp.my.main.view.MyView;
-import com.karazam.huashanapp.my.main.viewmodel.MyViewModel;
-import com.karazam.huashanapp.my.main.viewmodel.MyViewModelImpl;
+import com.karazam.huashanapp.my.mysettings.model.databinding.MysettingsEntity;
+import com.karazam.huashanapp.my.mysettings.view.MysettingsView;
+import com.karazam.huashanapp.my.mysettings.viewmodel.MysettingsViewModel;
+import com.karazam.huashanapp.my.mysettings.viewmodel.MysettingsViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxView;
 
@@ -30,55 +26,48 @@ import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
 import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
 /**
- * Created by Administrator on 2016/10/12.
+ * Created by Administrator on 2016/11/22.
  */
 
-public class MyFragment extends BaseFragment implements MyView {
+public class MysettingsActivity extends BaseActivity implements MysettingsView {
 
-    private View view;
+    private ActivityMysettingsBinding binding;
+    private MysettingsEntity entity = new MysettingsEntity();
+    private MysettingsViewModel mModel;
 
-    private MyEntity entity = new MyEntity();
-    private FragmentMyBinding binding;
-    private MyViewModel mModel;
-
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my,container,false);
-        view = binding.getRoot();
-        mModel = new MyViewModelImpl(entity,this,getContext(),getActivity());
+    public void setContentLayout() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_mysettings);
+        mModel = new MysettingsViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
-
-        initView();
-
-        //设置头像
-        setHeader();
-        return view;
     }
 
+    @Override
+    public void dealLogicBeforeInitView() {
 
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void dealLogicAfterInitView() {
+        setHeader();
+    }
 
     /**
-     * 初始化View
+     * 设置头像
      */
-    private void initView() {
-
-
-    }
-
-   /**
-    * 设置头像
-    */
     private void setHeader() {
-
-        RxView.findById(view,R.id.user_header).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+        RxView.findById(this,R.id.use_header).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
 
             @Override
             public void call(View target, UserInformation userInformation) {
                 final ImageView header = (ImageView) target;
+                Log.i("e","1");
                 if(TextUtils.isEmpty(userInformation.getHeaderImg())){
                     header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     return;

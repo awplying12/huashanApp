@@ -11,229 +11,318 @@
             type="com.karazam.huashanapp.my.main.viewmodel.MyViewModel"
             ></variable>
     </data>
-    <android.support.percent.PercentRelativeLayout
+    <android.support.percent.PercentFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <!--<LinearLayout-->
-        <!--android:id="@+id/title_ll"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/title_color"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_heightPercent="8%"-->
-        <!--&gt;-->
 
-        <!--<android.support.percent.PercentRelativeLayout-->
-        <!--android:id="@+id/title_back"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:paddingLeft="20dp">-->
 
-        <!--<ImageView-->
+            <android.support.percent.PercentFrameLayout
+                android:id="@+id/title_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fw"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_heightPercent="9%"
+            >
 
-        <!--android:layout_width="0dp"-->
-        <!--app:layout_widthPercent="7%"-->
-        <!--android:layout_height="match_parent"-->
-        <!--/>-->
+                <ImageView
+                    app:layout_widthPercent="7%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    app:layout_marginRightPercent="7%"
+                    android:src="@drawable/message_icon"/>
 
-        <!--</android.support.percent.PercentRelativeLayout>-->
-        <!--<TextView-->
-        <!--android:id="@+id/title_text"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="1"-->
-        <!--android:gravity="center"-->
-        <!--android:text="我的"-->
-        <!--android:textColor="#fff"-->
-        <!--android:textSize="@dimen/title_text_size"/>-->
+                <ImageView
+                    app:layout_widthPercent="6%"
+                    android:layout_height="match_parent"
+                    app:layout_marginRightPercent="20%"
+                    android:layout_gravity="right"
+                    android:src="@drawable/set_icon"
+                    android:id="@+id/imageView4"
+                    android:onClick="@{handler.setUp}"/>
 
-        <!--<android.support.percent.PercentRelativeLayout-->
-        <!--android:id="@+id/add_btn"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:paddingRight="20dp">-->
 
-        <!--<ImageView-->
-
-        <!--android:layout_width="0dp"-->
-        <!--app:layout_widthPercent="5%"-->
-        <!--android:layout_height="match_parent"-->
-
-        <!--/>-->
-        <!--</android.support.percent.PercentRelativeLayout>-->
-        <!--</LinearLayout>-->
+            </android.support.percent.PercentFrameLayout>
 
         <android.support.percent.PercentFrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_heightPercent="100%"
+            app:layout_heightPercent="92%"
             android:background="@color/all_activity_background"
+            android:layout_gravity="bottom"
+            >
 
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-
-            <LinearLayout
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                app:layout_heightPercent="22%"
-                app:layout_marginTopPercent="2%"
-                android:background="#fff"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/head_img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="#aca"
-                    />
-
-                <android.support.percent.PercentFrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="111111"/>
-
-                   <LinearLayout
-                       app:layout_widthPercent="50%"
-                       app:layout_heightPercent="45%"
-                       app:layout_marginTopPercent="5%"
-                       android:layout_gravity="right|top"
-
-                       android:orientation="vertical">
-
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_weight="1"
-                           android:gravity="center_vertical"
-                           android:text="投资总额(元)"
-                           android:textSize="@dimen/my_pf1_content_text_size_1"
-                           android:textColor="@color/my_pf1_content_text_color_1"/>
-
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:gravity="center_vertical"
-                           android:layout_weight="1"
-                           android:text="0.00"
-                           android:textSize="@dimen/my_pf1_content_text_size_2"
-                           android:textColor="@color/my_pf1_content_text_color_2"/>
-
-                   </LinearLayout>
-
-
-                    <LinearLayout
-                        app:layout_widthPercent="50%"
-                        app:layout_heightPercent="45%"
-                        app:layout_marginBottomPercent="5%"
-                        android:layout_gravity="right|bottom"
-
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="借款总额(元)"
-                            android:textSize="@dimen/my_pf1_content_text_size_1"
-                            android:textColor="@color/my_pf1_content_text_color_1"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:text="0.00"
-                            android:textSize="@dimen/my_pf1_content_text_size_2"
-                            android:textColor="@color/my_pf1_content_text_color_2"/>
-
-                    </LinearLayout>
-
-
-                </android.support.percent.PercentFrameLayout>
-
-            </LinearLayout>
-
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                app:layout_heightPercent="8%"
-                app:layout_marginTopPercent="24%"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="#ff8000">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|left"
-                    android:text="待收总额"
-                    android:textColor="@color/my_pf2_content_text_color"
-                    android:textSize="@dimen/my_pf2_content_text_size"/>
+                android:layout_height="wrap_content"
+                android:overScrollMode="never">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical|right"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:text="¥"
-                        android:textSize="9dp"
-                        android:textColor="@color/my_pf2_content_text_color"/>
+                    <!--part1-->
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:background="#66b3ff"
+                        >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0.00"
-                        android:textColor="@color/my_pf2_content_text_color"
-                        android:textSize="@dimen/my_pf2_content_text_size"/>
+                        <TextView
+                            android:id="@+id/text_11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            app:layout_marginTopPercent="20%"
+                            android:text="总资产（元）"
+                            android:textColor="@color/my_pf1_content_text_color"
+                            android:textSize="13dp"/>
+
+                        <TextView
+                            android:id="@+id/det_income"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            app:layout_marginTopPercent="28%"
+                            android:text="0.00"
+                            android:textColor="@color/my_pf1_content_text_color"
+                            android:textSize="38dp"
+                            />
+
+
+                        <TextView
+                            app:layout_widthPercent="50%"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="left|bottom"
+                            app:layout_marginBottomPercent="25%"
+                            android:text="账户余额（元）"
+                            android:textColor="@color/my_pf1_content_text_color"
+                            />
+
+                        <TextView
+                            app:layout_widthPercent="50%"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="right|bottom"
+                            app:layout_marginBottomPercent="25%"
+                            android:text="累计收益（元）"
+                            android:textColor="@color/my_pf1_content_text_color"
+                            />
+
+                        <TextView
+                            app:layout_widthPercent="50%"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="left|bottom"
+                            app:layout_marginBottomPercent="6%"
+                            android:text="0.00"
+                            android:textColor="@color/my_pf1_content_text_color"
+                            android:textSize="30dp"
+                            />
+
+                        <TextView
+                            app:layout_widthPercent="50%"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_gravity="right|bottom"
+                            app:layout_marginBottomPercent="6%"
+                            android:text="0.00"
+                            android:textColor="@color/my_pf1_content_text_color"
+                            android:textSize="30dp"
+                            />
+                        
+                    </android.support.percent.PercentFrameLayout>
+
+                    <!--充值 提现-->
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="#fff">
+
+                        <TextView
+                            app:layout_widthPercent="30%"
+                            android:layout_height="40dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:gravity="center"
+                            app:layout_marginRightPercent="10%"
+                            android:text="充值"
+                            android:textSize="17dp"
+                            android:textColor="#fff"
+                            android:background="@drawable/bg_recharge"/>
+
+                        <TextView
+                            app:layout_widthPercent="30%"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical|left"
+                            android:gravity="center"
+                            app:layout_marginLeftPercent="10%"
+                            android:text="提现"
+                            android:textSize="17dp"
+                            android:textColor="@color/title_color"
+                            android:background="@drawable/bg_withdrawals"
+                            android:id="@+id/textView3" />
+
+
+                    </android.support.percent.PercentFrameLayout>
+                    
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        />
+
+                    <!--我的理财-->
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="#fff">
+
+                        <ImageView
+                            app:layout_widthPercent="6%"
+                            android:layout_height="match_parent"
+                            app:layout_marginLeftPercent="7%"
+                            android:src="@drawable/financial_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:layout_marginLeftPercent="20%"
+                            android:text="我的理财"
+                            android:textSize="@dimen/my_pf3_content_text_size"/>
+
+                        <ImageView
+                            app:layout_widthPercent="4%"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            app:layout_marginRightPercent="5%"
+                            android:src="@drawable/goto2_icon"/>
+
+                    </android.support.percent.PercentFrameLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        />
+
+                    <!--我的回款-->
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="#fff">
+
+                        <ImageView
+                            app:layout_widthPercent="6%"
+                            android:layout_height="match_parent"
+                            app:layout_marginLeftPercent="7%"
+                            android:src="@drawable/payment_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:layout_marginLeftPercent="20%"
+                            android:text="我的回款"
+                            android:textSize="@dimen/my_pf3_content_text_size"/>
+
+                        <ImageView
+                            app:layout_widthPercent="4%"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            app:layout_marginRightPercent="5%"
+                            android:src="@drawable/goto2_icon"/>
+
+
+                    </android.support.percent.PercentFrameLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        />
+
+                    <!--银行卡-->
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="#fff">
+
+                        <ImageView
+                            app:layout_widthPercent="6%"
+                            android:layout_height="match_parent"
+                            app:layout_marginLeftPercent="7%"
+                            android:src="@drawable/card_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:layout_marginLeftPercent="20%"
+                            android:text="我的理财"
+                            android:textSize="@dimen/my_pf3_content_text_size"/>
+
+                        <ImageView
+                            app:layout_widthPercent="4%"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            app:layout_marginRightPercent="5%"
+                            android:src="@drawable/goto2_icon"/>
+
+                    </android.support.percent.PercentFrameLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        />
+
+                    <!--交易记录-->
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="#fff">
+
+                        <ImageView
+                            app:layout_widthPercent="6%"
+                            android:layout_height="match_parent"
+                            app:layout_marginLeftPercent="7%"
+                            android:src="@drawable/record_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:layout_marginLeftPercent="20%"
+                            android:text="交易记录"
+                            android:textSize="@dimen/my_pf3_content_text_size"/>
+
+                        <ImageView
+                            app:layout_widthPercent="4%"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            app:layout_marginRightPercent="5%"
+                            android:src="@drawable/goto2_icon"/>
+
+                    </android.support.percent.PercentFrameLayout>
+
 
                 </LinearLayout>
-
-
-            </android.support.percent.PercentFrameLayout>
-
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                app:layout_heightPercent="65%"
-                app:layout_marginTopPercent="32%"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:background="#fff">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rl_my_information"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:overScrollMode="never"
-                    android:scrollbars="none">
-
-
-                </android.support.v7.widget.RecyclerView>
-
-
-            </android.support.percent.PercentFrameLayout>
+            </android.support.v4.widget.NestedScrollView>
 
 
         </android.support.percent.PercentFrameLayout>
-    </android.support.percent.PercentRelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/user_header"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/user_logo"
+            app:layout_marginTopPercent="2%"
+            app:layout_marginLeftPercent="5%"
+            android:gravity="center"/>
+
+    </android.support.percent.PercentFrameLayout>
 </layout>

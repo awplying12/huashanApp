@@ -41,7 +41,7 @@
     <!--my-->
     <dimen name="my_pf1_content_text_size_1">13dp</dimen>
     <dimen name="my_pf1_content_text_size_2">18dp</dimen>
-
+    <dimen name="my_pf3_content_text_size">16dp</dimen>
     <dimen name="my_pf2_content_text_size">15dp</dimen>
     
     <!--today-->
@@ -59,4 +59,7 @@
     <dimen name="promptdialog_text_size_2">12dp</dimen>
     <dimen name="promptdialog_text_size_3">15dp</dimen>
     <dimen name="promptdialog_text_size_4">18dp</dimen>
+
+    <!--setup-->
+    <dimen name="setup_header_text_size">15dp</dimen>
 </resources>

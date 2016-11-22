@@ -10,20 +10,5 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class MyViewModel extends BaseViewModel{
 
-    public abstract void toSecurityCenter(View view);
-
-    public abstract void toTransactionRecord(View view);
-
-    public abstract void toLoanManagement(View view);
-
-    public abstract void toInvestmentManagement(View view);
-
-    public abstract void toBankcardManagement(View view);
-
-    public abstract void toRecommendedManagement(View view);
-
-    public abstract void toDiscountCoupons(View view);
-
-
-
+    public abstract void setUp(View view);
 }

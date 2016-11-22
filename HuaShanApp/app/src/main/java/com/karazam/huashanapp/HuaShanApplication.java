@@ -9,6 +9,8 @@ import android.text.format.Time;
 import com.karazam.huashanapp.main.UserInformation;
 import com.ogaclejapan.rx.binding.RxProperty;
 
+import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
+
 /**
  * Created by Administrator on 2016/10/11.
  */
@@ -56,6 +58,8 @@ public class HuaShanApplication extends Application {
 
 //        paymentmod = sharedPreferences.getString("paymentmod","");
 
+        RxImageLoader.init(getinstance());
+
         //IMEI（imei）
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); //手机的唯一标识
         imei = tm.getDeviceId();
@@ -70,6 +74,7 @@ public class HuaShanApplication extends Application {
         userInformation.setCardInformation("单笔限额5万,单日限额50万");
         userInformation.setUserbalance("8,214.47");
         userInformation.setPaymentmod("bankCard");
+        userInformation.setHeaderImg("http://tx.haiqq.com/uploads/allimg/150325/12215B540-0.jpg");
 //        paymentmod = userInformation.getPaymentmod();
         userInformationR.set(userInformation);
 
