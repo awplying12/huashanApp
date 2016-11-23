@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.my.mysettings.viewmodel;
+package com.karazam.huashanapp.my.mysettings.viewmodel.MysettingsViewModel;
 
 import android.content.Context;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.view.View;
 import com.karazam.huashanapp.my.mysettings.model.databinding.MysettingsEntity;
 import com.karazam.huashanapp.my.mysettings.view.MysettingsView;
 import com.karazam.huashanapp.my.mysettings.view.activity.MysettingsActivity;
+import com.karazam.huashanapp.my.mysettings.view.activity.MysettingsActivity2;
 
 /**
  * Created by Administrator on 2016/11/22.
@@ -18,12 +19,17 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
     private Context context;
     private MysettingsActivity activity;
 
+
     public MysettingsViewModelImpl(MysettingsView mView, MysettingsEntity mEntity, Context context, MysettingsActivity activity) {
         this.mView = mView;
         this.mEntity = mEntity;
         this.context = context;
         this.activity = activity;
+
+
     }
+
+
 
     @Override
     public void onBack(View view) {
@@ -37,5 +43,17 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
     @Override
     public void setupHeader(View view) {
             mView.showToast("setupHeader");
+            mView.addPicturedialog();
     }
+
+    /**
+     * 修改用户名
+     * @param view
+     */
+    @Override
+    public void setupUserName(View view) {
+        mView.toOtherActivity(activity, MysettingsActivity2.class);
+    }
+
+
 }

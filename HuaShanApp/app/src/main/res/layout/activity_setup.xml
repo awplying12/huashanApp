@@ -72,6 +72,7 @@
         </LinearLayout>
 
         <android.support.percent.PercentFrameLayout
+            android:id="@+id/data_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/title_ll"
@@ -80,7 +81,7 @@
 
             >
 
-
+            <!--个人信息-->
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
                 app:layout_heightPercent="15%"
@@ -113,11 +114,11 @@
                     app:layout_heightPercent="45%"
                     app:layout_marginLeftPercent="30%"
                     android:gravity="bottom"
-                    android:text="王慧"
+                    android:text="王蕙"
                     android:textSize="@dimen/setup_header_text_size"/>
 
                 <TextView
-                    android:id="@+id/user_phonenum"
+                    android:id="@+id/user_nickname"
                     android:layout_width="wrap_content"
                     app:layout_heightPercent="45%"
                     app:layout_marginLeftPercent="30%"
@@ -132,6 +133,264 @@
                     android:layout_gravity="right|center_vertical"
                     app:layout_marginRightPercent="5%"
                     />
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--实名认证-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="19%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="实名认证"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="10%"
+                    android:text="已认证"/>
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--绑定手机-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="28.1%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="绑定手机"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:id="@+id/phonenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="10%"
+                    android:text="131*****017"/>
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--账号安全-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="39%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="账号安全"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="10%"
+                    android:text=""/>
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--软件设置-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="48.1%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="软件设置"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="10%"
+                    android:text=""/>
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--推荐-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="59%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="推荐给朋友一起赚钱吧"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="10%"
+                    android:text=""/>
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--关于-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="68.1%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="关于"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="10%"
+                    android:text=""/>
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--帮助-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="77.2%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="帮助中心"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="10%"
+                    android:text=""/>
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <!--退出-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="10%"
+                android:layout_gravity="bottom"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="安全退出"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa2_text_size"/>
 
             </android.support.percent.PercentFrameLayout>
 

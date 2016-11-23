@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#50000000"
+    android:clickable="true">
+
+
+    <android.support.percent.PercentFrameLayout
+        app:layout_widthPercent="70%"
+        app:layout_heightPercent="40%"
+        app:layout_marginTopPercent="25%"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_fillet_ffffff_5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            app:layout_heightPercent="34%"
+            app:layout_marginLeftPercent= "10%"
+            android:gravity="center_vertical"
+            android:text="修改头像"
+            />
+
+        <TextView
+            android:id="@+id/photograph"
+            android:layout_width="match_parent"
+            app:layout_heightPercent="21%"
+            app:layout_marginTopPercent="34%"
+            app:layout_marginLeftPercent= "10%"
+            android:gravity="center_vertical"
+            android:text="现在拍摄一张"
+
+            />
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                app:layout_heightPercent="1%"
+                app:layout_marginTopPercent="55%"
+                android:background="#F0F0F0"/>
+
+
+        <TextView
+            android:id="@+id/album"
+            android:layout_width="match_parent"
+            app:layout_heightPercent="21%"
+            app:layout_marginTopPercent="56%"
+            app:layout_marginLeftPercent= "10%"
+            android:gravity="center_vertical"
+            android:text="从相册中选择"
+            />
+
+            <ImageView
+                android:layout_width="match_parent"
+                app:layout_heightPercent="1%"
+                app:layout_marginTopPercent="77%"
+                android:background="#F0F0F0"/>
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            app:layout_heightPercent="22%"
+            app:layout_marginTopPercent="78%"
+            app:layout_marginLeftPercent= "10%"
+            android:gravity="center_vertical"
+            android:text="取消"
+            />
+
+
+
+    </android.support.percent.PercentFrameLayout>
+
+</android.support.percent.PercentFrameLayout>

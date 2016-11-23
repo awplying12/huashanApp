@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.my.mysettings.viewmodel;
+package com.karazam.huashanapp.my.mysettings.viewmodel.MysettingsViewModel;
 
 import android.view.View;
 
@@ -11,4 +11,6 @@ import com.example.utils.base.BaseViewModel;
 public abstract class MysettingsViewModel extends BaseViewModel {
 
     public abstract void setupHeader(View view);
+
+    public abstract void setupUserName(View view);
 }

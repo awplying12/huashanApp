@@ -47,6 +47,10 @@
     <color name="my_pf1_content_text_color">#fff</color>
     <color name="my_pf2_content_text_color">#fff</color>
 
+    <!--setup-->
+    <color name="setup_text_color">#4f4f4f</color>
+    <color name="setup_text_color_1">#bebebe</color>
+
     <!--today-->
     <color name="todayfragment_Profit_text_color">#fff</color>
 

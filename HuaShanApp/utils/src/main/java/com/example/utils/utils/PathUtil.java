@@ -11,7 +11,7 @@ public class PathUtil {
 
     //SD卡路径
     private static String pathname = Environment.getExternalStorageDirectory().getPath();
-    private static String dirname = "Family_old_ImageFile";
+    private static String dirname = "HuaShanApp_Header";
 
     public static void createDir(){
         File filedir = new File(pathname+File.separator+dirname+File.separator);

@@ -7,9 +7,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.BitmapUtil;
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivitySetupBinding;
@@ -58,7 +60,9 @@ public class SetupActivity extends BaseActivity implements SetupView {
     @Override
     public void dealLogicAfterInitView() {
         setHeader();
+        setData();
     }
+
 
     /**
      * 设置头像
@@ -93,6 +97,35 @@ public class SetupActivity extends BaseActivity implements SetupView {
                         header.setImageBitmap(BitmapUtil.toRoundBitmap(heaher));
                     }
                 });
+            }
+        });
+    }
+
+    /**
+     * 设置界面数据
+     */
+    private void setData() {
+
+        RxView.findById(this,R.id.data_ll).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+            @Override
+            public void call(View target, UserInformation userInformation) {
+                TextView name = (TextView) target.findViewById(R.id.user_name);
+                TextView nickname = (TextView) target.findViewById(R.id.user_nickname);
+                TextView status = (TextView) target.findViewById(R.id.status);
+                TextView phonenum = (TextView) target.findViewById(R.id.phonenum);
+
+
+                String nameStr = userInformation.getUserName();
+                name.setText(StringUtil.interrupt(nameStr,0,"未认证"));
+
+                String nicknameStr = userInformation.getNickname();
+                nickname.setText(StringUtil.interrupt(nicknameStr,12,userInformation.getPhonenum()));
+
+                String statusStr = userInformation.getStatus();
+                status.setText(StringUtil.interrupt(statusStr,0,""));
+
+                String phone = userInformation.getPhonenum();
+                phonenum.setText(phone);
             }
         });
     }

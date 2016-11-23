@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 import android.text.format.Time;
 
+import com.example.utils.utils.PathUtil;
 import com.karazam.huashanapp.main.UserInformation;
 import com.ogaclejapan.rx.binding.RxProperty;
 
@@ -59,6 +60,7 @@ public class HuaShanApplication extends Application {
 //        paymentmod = sharedPreferences.getString("paymentmod","");
 
         RxImageLoader.init(getinstance());
+        PathUtil.createDir();
 
         //IMEI（imei）
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); //手机的唯一标识
@@ -75,6 +77,10 @@ public class HuaShanApplication extends Application {
         userInformation.setUserbalance("8,214.47");
         userInformation.setPaymentmod("bankCard");
         userInformation.setHeaderImg("http://tx.haiqq.com/uploads/allimg/150325/12215B540-0.jpg");
+        userInformation.setUserName("王蕙");
+        userInformation.setNickname("chayewala");
+        userInformation.setStatus("已认证");
+        userInformation.setPhonenum("130*****017");
 //        paymentmod = userInformation.getPaymentmod();
         userInformationR.set(userInformation);
 

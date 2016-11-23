@@ -8,6 +8,9 @@ public class UserInformation {
 
     private String headerImg;
     private String userName;
+    private String nickname;
+    private String status;
+    private String phonenum;
     private String userbalance;
     private String paymentmod;
     private String bankCard;
@@ -27,6 +30,30 @@ public class UserInformation {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPhonenum() {
+        return phonenum;
+    }
+
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum;
     }
 
     public String getUserbalance() {
@@ -66,6 +93,9 @@ public class UserInformation {
         return "UserInformation{" +
                 "headerImg='" + headerImg + '\'' +
                 ", userName='" + userName + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", status='" + status + '\'' +
+                ", phonenum='" + phonenum + '\'' +
                 ", userbalance='" + userbalance + '\'' +
                 ", paymentmod='" + paymentmod + '\'' +
                 ", bankCard='" + bankCard + '\'' +

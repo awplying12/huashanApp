@@ -62,4 +62,8 @@
 
     <!--setup-->
     <dimen name="setup_header_text_size">15dp</dimen>
+    <dimen name="setup_pa1_text_size">15dp</dimen>
+    <dimen name="setup_pa2_text_size">18dp</dimen>
+
+
 </resources>

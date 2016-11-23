@@ -8,10 +8,11 @@
             ></variable>
         <variable
             name="handler"
-            type="com.karazam.huashanapp.my.mysettings.viewmodel.MysettingsViewModel"
+            type="com.karazam.huashanapp.my.mysettings.viewmodel.MysettingsViewModel.MysettingsViewModel"
             ></variable>
     </data>
     <android.support.percent.PercentRelativeLayout
+        android:id="@+id/content_pl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -115,6 +116,114 @@
                     android:layout_gravity="right|center_vertical"
                     app:layout_marginRightPercent="5%"
                     />
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <!--用户名-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="17.1%"
+                android:background="#fff"
+                android:onClick="@{handler.setupUserName}">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="用户名"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:id="@+id/user_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="10%"
+                    android:text="chayewala"/>
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--真实姓名-->
+            <android.support.percent.PercentFrameLayout
+                android:id="@+id/name_ll"
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="28%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="真实姓名"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="5%"
+                    android:text="王蕙"/>
+
+                <!--<ImageView-->
+                    <!--app:layout_widthPercent="4%"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center_vertical|right"-->
+                    <!--app:layout_marginRightPercent="5%"-->
+                    <!--android:src="@drawable/goto2_icon"/>-->
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--真实姓名-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="9%"
+                app:layout_marginTopPercent="37.1%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="手机号"
+                    android:textColor="@color/setup_text_color"
+                    android:textSize="@dimen/setup_pa1_text_size"/>
+
+                <TextView
+                    android:id="@+id/phonenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/setup_text_color_1"
+                    android:textSize="@dimen/setup_pa1_text_size"
+                    app:layout_marginRightPercent="5%"
+                    android:text="131*****017"/>
+
+                <!--<ImageView-->
+                <!--app:layout_widthPercent="4%"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="center_vertical|right"-->
+                <!--app:layout_marginRightPercent="5%"-->
+                <!--android:src="@drawable/goto2_icon"/>-->
 
             </android.support.percent.PercentFrameLayout>
 
