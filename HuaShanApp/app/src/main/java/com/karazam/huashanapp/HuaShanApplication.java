@@ -35,7 +35,7 @@ public class HuaShanApplication extends Application {
 
     public static UserInformation userInformation;
 
-    public static boolean certificationStatus = true;
+    public static boolean certificationStatus = false;
 
     public static RxProperty<String> day = RxProperty.create();
 
@@ -79,7 +79,7 @@ public class HuaShanApplication extends Application {
         userInformation.setHeaderImg("http://tx.haiqq.com/uploads/allimg/150325/12215B540-0.jpg");
         userInformation.setUserName("王蕙");
         userInformation.setNickname("chayewala");
-        userInformation.setStatus("已认证");
+        userInformation.setStatus(certificationStatus);
         userInformation.setPhonenum("130*****017");
 //        paymentmod = userInformation.getPaymentmod();
         userInformationR.set(userInformation);

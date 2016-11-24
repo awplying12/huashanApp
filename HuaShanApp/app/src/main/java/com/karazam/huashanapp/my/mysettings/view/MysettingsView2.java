@@ -7,4 +7,5 @@ import com.example.utils.base.BaseView;
  */
 
 public interface MysettingsView2 extends BaseView{
+
 }

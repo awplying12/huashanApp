@@ -11,4 +11,6 @@ import com.example.utils.base.BaseViewModel;
 public abstract class SetupViewModel extends BaseViewModel {
 
     public abstract void toMysettings(View view);
+
+    public abstract void toRealname(View view);
 }

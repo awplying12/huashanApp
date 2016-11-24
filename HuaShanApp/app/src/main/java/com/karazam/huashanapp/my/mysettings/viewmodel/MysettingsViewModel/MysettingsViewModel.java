@@ -13,4 +13,6 @@ public abstract class MysettingsViewModel extends BaseViewModel {
     public abstract void setupHeader(View view);
 
     public abstract void setupUserName(View view);
+
+    public abstract void toRealname(View view);
 }

@@ -9,6 +9,7 @@ import com.karazam.huashanapp.manage.experience.model.databinding.ExperienceEnti
 import com.karazam.huashanapp.manage.experience.view.ExperienceView;
 import com.karazam.huashanapp.manage.experience.view.activity.ExperienceActivity;
 import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
+import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
 
 /**
  * Created by Administrator on 2016/11/15.
@@ -40,7 +41,7 @@ public class ExperienceViewModelImpl extends ExperienceViewModel {
 
     @Override
     public void toPurchase(View view) {
-        if(!HuaShanApplication.certificationStatus){
+        if(!HuaShanApplication.userInformation.isStatus()){
 
                 if(certificationDialog != null){
                     certificationDialog.show();
@@ -59,7 +60,7 @@ public class ExperienceViewModelImpl extends ExperienceViewModel {
         certificationDialog.setClick("否", "是", new PromptDialog.OnDialogListener() {
             @Override
             public void onleft(View view) {
-                mView.showToast("否");
+
                 if(certificationDialog != null){
                     certificationDialog.dismiss();
                 }
@@ -67,7 +68,10 @@ public class ExperienceViewModelImpl extends ExperienceViewModel {
 
             @Override
             public void onRight(View view) {
-                mView.showToast("是");
+                mView.toOtherActivity(activity, UnauthorizedActivity.class);
+                if(certificationDialog != null){
+                    certificationDialog.dismiss();
+                }
             }
         });
 

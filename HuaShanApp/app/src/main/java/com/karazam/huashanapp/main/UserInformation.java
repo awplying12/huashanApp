@@ -9,7 +9,7 @@ public class UserInformation {
     private String headerImg;
     private String userName;
     private String nickname;
-    private String status;
+    private boolean status;
     private String phonenum;
     private String userbalance;
     private String paymentmod;
@@ -40,11 +40,11 @@ public class UserInformation {
         this.nickname = nickname;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

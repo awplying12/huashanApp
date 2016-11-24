@@ -89,16 +89,16 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
                 PercentFrameLayout name_ll = (PercentFrameLayout) target.findViewById(R.id.name_ll);
 
                 String nameStr = userInformation.getUserName();
-                name.setText(StringUtil.interrupt(nameStr,0,"去认证"));
+
 
                 String nicknameStr = userInformation.getNickname();
                 nickname.setText(StringUtil.interrupt(nicknameStr,12,userInformation.getPhonenum()));
 
-                String status = userInformation.getStatus();
-                if(status.equals("未认证")){
-                    name_ll.setClickable(true);
+                boolean status = userInformation.isStatus();
+                if(status){
+                    name.setText(StringUtil.interrupt(nameStr,0,"去认证"));
                 }else {
-                    name_ll.setClickable(false);
+                    name.setText("去认证");
                 }
 
                 String phonenumStr = userInformation.getPhonenum();
@@ -106,12 +106,7 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
             }
         });
 
-        name_ll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showToast("name_ll");
-            }
-        });
+
     }
 
     /**

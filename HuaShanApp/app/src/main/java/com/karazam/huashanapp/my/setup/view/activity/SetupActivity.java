@@ -116,13 +116,20 @@ public class SetupActivity extends BaseActivity implements SetupView {
 
 
                 String nameStr = userInformation.getUserName();
-                name.setText(StringUtil.interrupt(nameStr,0,"未认证"));
+
 
                 String nicknameStr = userInformation.getNickname();
                 nickname.setText(StringUtil.interrupt(nicknameStr,12,userInformation.getPhonenum()));
 
-                String statusStr = userInformation.getStatus();
-                status.setText(StringUtil.interrupt(statusStr,0,""));
+                boolean statusStr = userInformation.isStatus();
+                if(statusStr){
+                    status.setText("已认证");
+                    name.setText(StringUtil.interrupt(nameStr,0,"未认证"));
+                }else {
+                    status.setText("去认证");
+                    name.setText("未认证");
+                }
+
 
                 String phone = userInformation.getPhonenum();
                 phonenum.setText(phone);

@@ -141,7 +141,8 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="9%"
                 app:layout_marginTopPercent="19%"
-                android:background="#fff">
+                android:background="#fff"
+                android:onClick="@{handler.toRealname}">
 
                 <TextView
                     android:layout_width="wrap_content"
