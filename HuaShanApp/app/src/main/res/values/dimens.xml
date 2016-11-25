@@ -68,4 +68,7 @@
     <!--MysettingsActivity2-->
     <dimen name="MysettingsActivity2_text_size_1">13dp</dimen>
 
+    <!--AuthenticatedActivity-->
+    <dimen name="AuthenticatedActivity_text_size_1">15dp</dimen>
+
 </resources>

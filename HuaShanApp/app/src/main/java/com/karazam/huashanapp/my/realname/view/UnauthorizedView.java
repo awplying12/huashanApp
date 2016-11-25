@@ -7,4 +7,8 @@ import com.example.utils.base.BaseView;
  */
 
 public interface UnauthorizedView extends BaseView{
+
+    void addSMSView();
+
+    void disSMSView();
 }

@@ -12,6 +12,7 @@
             ></variable>
     </data>
     <android.support.percent.PercentFrameLayout
+        android:id="@+id/content_pl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -116,6 +117,17 @@
                     app:layout_marginRightPercent="5%"
                     android:layout_gravity="right"
                     android:visibility="gone"
+                    android:onClick="@{handler.cleanName}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint1_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="22%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="gone"
                     />
 
                 <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
@@ -152,6 +164,17 @@
                     android:src="@drawable/clean_icon"
                     app:layout_marginRightPercent="5%"
                     android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanIdnum}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint2_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="22%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
                     android:visibility="gone"
                     />
 
@@ -191,6 +214,17 @@
                     app:layout_marginRightPercent="5%"
                     android:layout_gravity="right"
                     android:visibility="gone"
+                    android:onClick="@{handler.cleanCardnum}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint3_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="22%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="gone"
                     />
 
                 <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
@@ -228,6 +262,17 @@
                     android:src="@drawable/clean_icon"
                     app:layout_marginRightPercent="5%"
                     android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanBank}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint4_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="31%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
                     android:visibility="gone"
                     />
 
@@ -267,6 +312,17 @@
                     app:layout_marginRightPercent="5%"
                     android:layout_gravity="right"
                     android:visibility="gone"
+                    android:onClick="@{handler.cleanPhonenum}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint5_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="26%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="gone"
                     />
 
                 <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
@@ -302,6 +358,7 @@
                 android:visibility="gone"/>
 
             <TextView
+                android:id="@+id/btn_next_step"
                 app:layout_widthPercent="90%"
                 app:layout_heightPercent="10%"
                 app:layout_marginTopPercent="73%"
@@ -310,7 +367,8 @@
                 android:text="下一步"
                 android:textColor="#fff"
                 android:textSize="17dp"
-                android:background="@drawable/btn_bg_img_0894ec_5dp"/>
+                android:background="@drawable/btn_bg_img_0894ec_5dp"
+                android:onClick="@{handler.onNextstep}"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

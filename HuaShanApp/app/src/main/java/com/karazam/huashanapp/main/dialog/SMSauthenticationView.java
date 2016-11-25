@@ -117,6 +117,7 @@ public class SMSauthenticationView implements View.OnClickListener{
         layout.addView(view,layout.getLayoutParams());
 
         sim = 60;
+        sms_ed.setText("");
         if(thread.isAlive()){
             return;
         }
