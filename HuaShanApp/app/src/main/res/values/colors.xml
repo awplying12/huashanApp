@@ -84,6 +84,9 @@
     <color name="AuthenticatedActivity_text_color_1">#505050</color>
     <color name="AuthenticatedActivity_text_color_2">#adadad</color>
 
+    <!--SecurityActivity-->
+    <color name="SecurityActivity_text_color">#adadad</color>
+
     <!--SpringIndicator-->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

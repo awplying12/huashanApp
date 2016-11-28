@@ -131,6 +131,7 @@ public class SMSauthenticationView implements View.OnClickListener{
         layout.removeView(view);
     }
 
+    private boolean isVerification = false;
     public void verification(){
 
         String ver = sms_ed.getText().toString();
@@ -152,6 +153,10 @@ public class SMSauthenticationView implements View.OnClickListener{
             }
         }
 
+        if(isVerification == true){
+            return;
+        }
+        isVerification = true;
 
         Timer time = new Timer();
         TimerTask tk = new TimerTask() {
@@ -162,6 +167,7 @@ public class SMSauthenticationView implements View.OnClickListener{
                     @Override
                     public void run() {
                         mOnAuthenticationListener.onResult(status);
+                        isVerification = false;
                     }
                 });
 

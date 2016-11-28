@@ -7,6 +7,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.my.mysettings.view.activity.MysettingsActivity;
 import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
+import com.karazam.huashanapp.my.security.main.view.activity.SecurityActivity;
 import com.karazam.huashanapp.my.setup.model.datanbinding.SetupEntity;
 import com.karazam.huashanapp.my.setup.view.SetupView;
 import com.karazam.huashanapp.my.setup.view.activity.SetupActivity;
@@ -56,5 +57,14 @@ public class SetupViewModelImpl extends SetupViewModel {
             mView.toOtherActivity(activity, UnauthorizedActivity.class);
         }
 
+    }
+
+    /**
+     * 账号安全
+     * @param view
+     */
+    @Override
+    public void toSecurity(View view) {
+        mView.toOtherActivity(activity, SecurityActivity.class);
     }
 }

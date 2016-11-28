@@ -71,4 +71,7 @@
     <!--AuthenticatedActivity-->
     <dimen name="AuthenticatedActivity_text_size_1">15dp</dimen>
 
+    <!--SecurityActivity-->
+    <dimen name="SecurityActivity_text_size">16dp</dimen>
+
 </resources>
