@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.security.paymentpassword3.model.datainding.SetpaypsEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.security.paymentpassword3.viewmodel.SetpaypsViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#fff"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="60%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cha"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="设置6位数字支付密码"
+                android:textColor="#272636"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+
+            >
+
+            <TextView
+                android:id="@+id/hint_text"
+                android:layout_width="match_parent"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="15%"
+                android:gravity="center"
+                android:text="设置6位数字支付密码"
+                android:textSize="18dp"/>
+
+            <com.example.paymentpassword.SetpasswordView
+                android:id="@+id/spwd_view"
+                android:layout_width="match_parent"
+                app:layout_heightPercent="15%"
+                app:layout_marginTopPercent="20%"
+                android:clickable="true"
+                android:visibility="visible">
+
+
+            </com.example.paymentpassword.SetpasswordView>
+
+
+            <TextView
+                android:id="@+id/btn_confirm"
+                app:layout_widthPercent="85%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="38%"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                android:gravity="center"
+                android:text="确定"
+                android:textSize="18dp"
+                android:textColor="#fff"
+                android:background="@drawable/btn_bg_img_0894ec_5dp"
+                android:onClick="@{handler.onConfirm}"/>
+
+
+        </android.support.percent.PercentFrameLayout>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

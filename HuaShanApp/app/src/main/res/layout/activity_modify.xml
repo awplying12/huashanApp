@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.security.paymentpassword.model.databinding.PaymentpwEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.security.paymentpassword.viewmodel.ModifyViewModel.ModifyViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#fff"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="60%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cha"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="身份验证"
+                android:textColor="#272636"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+            android:id="@+id/content_pl"
+            >
+            <TextView
+                app:layout_widthPercent="95%"
+                app:layout_heightPercent="5%"
+                android:gravity="center_vertical"
+                app:layout_marginLeftPercent="5%"
+                android:text="输入原支付密码,完成身份验证"/>
+
+            <!--支付密码-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                android:background="#fff"
+                app:layout_marginTopPercent="5%"
+                >
+
+                <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
+                    android:id="@+id/fet_paymentpw"
+                    app:layout_widthPercent="84%"
+                    app:layout_heightPercent="65%"
+                    app:layout_marginTopPercent="10%"
+                    app:layout_marginLeftPercent="5%"
+                    >
+                    <EditText
+                        android:id="@+id/payment_pw"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:hint="支付密码"
+                        android:background="#00ffffff"
+                        android:textSize="15dp"
+                        />
+                </com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText>
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <TextView
+                android:id="@+id/next_step"
+                app:layout_widthPercent="90%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="20%"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/btn_bg_img_0894ec_5dp"
+                android:text="下一步"
+                android:textSize="16dp"
+                android:textColor="#fff"
+                android:onClick="@{handler.onNextstep}"/>
+
+
+        </android.support.percent.PercentFrameLayout>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

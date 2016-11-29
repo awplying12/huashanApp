@@ -4,13 +4,16 @@ import android.content.Context;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
+import com.karazam.huashanapp.my.about.main.view.activity.AboutActivity;
 import com.karazam.huashanapp.my.mysettings.view.activity.MysettingsActivity;
 import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
+import com.karazam.huashanapp.my.recommend.RecommendActivity;
 import com.karazam.huashanapp.my.security.main.view.activity.SecurityActivity;
 import com.karazam.huashanapp.my.setup.model.datanbinding.SetupEntity;
 import com.karazam.huashanapp.my.setup.view.SetupView;
 import com.karazam.huashanapp.my.setup.view.activity.SetupActivity;
+import com.karazam.huashanapp.my.software.SoftwareActivity;
 
 /**
  * Created by Administrator on 2016/11/22.
@@ -66,5 +69,32 @@ public class SetupViewModelImpl extends SetupViewModel {
     @Override
     public void toSecurity(View view) {
         mView.toOtherActivity(activity, SecurityActivity.class);
+    }
+
+    /**
+     * 软件设置
+     * @param view
+     */
+    @Override
+    public void toSoftwareSetting(View view) {
+        mView.toOtherActivity(activity, SoftwareActivity.class);
+    }
+
+    /**
+     * 推荐
+     * @param view
+     */
+    @Override
+    public void toRecommend(View view) {
+        mView.toOtherActivity(activity, RecommendActivity.class);
+    }
+
+    /**
+     * 关于
+     * @param view
+     */
+    @Override
+    public void toAbout(View view) {
+        mView.toOtherActivity(activity, AboutActivity.class);
     }
 }

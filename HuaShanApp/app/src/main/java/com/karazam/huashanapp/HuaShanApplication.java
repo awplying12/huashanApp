@@ -6,9 +6,12 @@ import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 import android.text.format.Time;
 
+import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.PathUtil;
 import com.karazam.huashanapp.main.UserInformation;
 import com.ogaclejapan.rx.binding.RxProperty;
+
+import java.util.ArrayList;
 
 import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
@@ -40,6 +43,9 @@ public class HuaShanApplication extends Application {
     public static RxProperty<String> day = RxProperty.create();
 
     public static RxProperty<UserInformation> userInformationR = RxProperty.create();
+
+    public static ArrayList<BaseActivity> securitysPayment = new ArrayList<>();
+    public static ArrayList<BaseActivity> securitysGesture = new ArrayList<>();
 
     @Override
     public void onCreate() {

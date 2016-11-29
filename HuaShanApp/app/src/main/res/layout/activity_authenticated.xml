@@ -85,16 +85,16 @@
                 android:background="#66b3ff">
 
                 <ImageView
-                    app:layout_widthPercent="20%"
-                    app:layout_heightPercent="40%"
+                    app:layout_widthPercent="30%"
+                    app:layout_heightPercent="45%"
                     android:layout_gravity="center_horizontal"
                     app:layout_marginTopPercent="20%"
-                    android:background="#CFA"/>
+                    android:src="@drawable/realname_icon"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_marginTopPercent="66%"
+                    app:layout_marginTopPercent="70%"
                     android:layout_gravity="center_horizontal"
                     android:text="您已通过实名认证"
                     android:textColor="#fff"/>
@@ -200,7 +200,7 @@
                         android:text="7634"
                         android:textSize="18dp"
                         android:textColor="#fff"
-                        app:layout_marginTopPercent="50%"
+                        app:layout_marginTopPercent="54%"
                         app:layout_marginRightPercent="5%"/>
 
                     <TextView
@@ -214,6 +214,13 @@
                         app:layout_marginTopPercent="15%"
                         app:layout_marginRightPercent="5%"
                         android:id="@+id/textView4" />
+
+                    <ImageView
+                        app:layout_widthPercent="70%"
+                        app:layout_heightPercent="24%"
+                        app:layout_marginLeftPercent="5%"
+                        app:layout_marginTopPercent="55%"
+                        android:src="@drawable/f1f2f6"/>
 
                 </android.support.percent.PercentFrameLayout>
 

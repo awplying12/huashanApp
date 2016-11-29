@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.security.paymentpassword2.model.databinding.VerifyEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.security.paymentpassword2.viewmodel.VerifyViewModel2.VerifyViewModel2"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#fff"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="60%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cha"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="验证身份"
+                android:textColor="#272636"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+            android:id="@+id/content_pl"
+            >
+            <TextView
+                app:layout_widthPercent="95%"
+                app:layout_heightPercent="5%"
+                android:gravity="center_vertical"
+                app:layout_marginLeftPercent="5%"
+                android:text="请输入相关银行卡信息验证身份"
+                android:textSize="12dp"/>
+
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                android:background="#fff"
+                app:layout_marginTopPercent="5%">
+
+                <TextView
+                    android:id="@+id/tv_bankcard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="中国银行(尾号7634)"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:textSize="15dp"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--卡号-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                android:background="#fff"
+                app:layout_marginTopPercent="17.1%"
+                >
+
+                <ImageView
+                    android:id="@+id/clean_card"
+                    app:layout_widthPercent="6%"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/clean_icon"
+                    app:layout_marginRightPercent="5%"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanCard}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint1_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="17%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="visible"
+                    />
+
+                <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
+                    android:id="@+id/fet_cardnum"
+                    app:layout_widthPercent="84%"
+                    app:layout_heightPercent="65%"
+                    app:layout_marginTopPercent="10%"
+                    app:layout_marginLeftPercent="5%"
+                    >
+                    <EditText
+                        android:id="@+id/ed_cardnum"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="number"
+                        android:hint="卡号"
+                        android:background="#00ffffff"
+                        android:textSize="15dp"
+                        />
+                </com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--身份证-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                android:background="#fff"
+                app:layout_marginTopPercent="29.2%"
+                >
+
+                <ImageView
+                    android:id="@+id/clean_idnum"
+                    app:layout_widthPercent="6%"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/clean_icon"
+                    app:layout_marginRightPercent="5%"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanID}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint2_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="22%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="visible"
+                    />
+
+                <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
+                    android:id="@+id/fet_idnum"
+                    app:layout_widthPercent="84%"
+                    app:layout_heightPercent="65%"
+                    app:layout_marginTopPercent="10%"
+                    app:layout_marginLeftPercent="5%"
+                    >
+                    <EditText
+                        android:id="@+id/ed_idnum"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="number"
+                        android:hint="身份证号"
+                        android:background="#00ffffff"
+                        android:textSize="15dp"
+                        />
+                </com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText>
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <TextView
+                android:id="@+id/next_step"
+                app:layout_widthPercent="90%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="45%"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/btn_bg_img_0894ec_5dp"
+                android:text="下一步"
+                android:textSize="16dp"
+                android:textColor="#fff"
+                android:onClick="@{handler.onNextstep}"/>
+
+
+        </android.support.percent.PercentFrameLayout>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

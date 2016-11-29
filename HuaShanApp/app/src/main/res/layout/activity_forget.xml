@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.security.paymentpassword.model.databinding.PaymentpwEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.security.paymentpassword.viewmodel.ForgetViewModel.ForgetViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#fff"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="60%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/cha"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="账号安全"
+                android:textColor="#272636"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+
+            >
+
+            <TextView
+                app:layout_widthPercent="95%"
+                app:layout_heightPercent="5%"
+                android:gravity="center_vertical"
+                app:layout_marginLeftPercent="5%"
+                android:text="您正在重置华善金融的支付密码,请用以下验证方式完成身份验证"
+                android:textSize="10dp"/>
+
+            <!--手势密码-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                android:background="#fff"
+                app:layout_marginTopPercent="5%"
+                android:onClick="@{handler.onNextstep}"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:text="验证绑定手机与身份信息"
+                    android:textSize="@dimen/SecurityActivity_text_size"
+                    android:textColor="#000"
+                    />
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|right"
+                    app:layout_marginRightPercent="5%"
+                    android:src="@drawable/goto2_icon"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <TextView
+                android:id="@+id/hint_text"
+                app:layout_widthPercent="90%"
+                android:layout_height="wrap_content"
+                app:layout_marginTopPercent="19%"
+                android:layout_gravity="center_horizontal"
+                android:text="如无法修改支付密码，请拨打400-606-5500转7，由客服协助您进行修改"/>
+
+
+        </android.support.percent.PercentFrameLayout>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

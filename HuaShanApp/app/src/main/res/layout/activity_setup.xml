@@ -203,6 +203,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical|right"
                     app:layout_marginRightPercent="5%"
+                    android:visibility="gone"
                     android:src="@drawable/goto2_icon"/>
 
             </android.support.percent.PercentFrameLayout>
@@ -247,7 +248,8 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="9%"
                 app:layout_marginTopPercent="48.1%"
-                android:background="#fff">
+                android:background="#fff"
+                android:onClick="@{handler.toSoftwareSetting}">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -281,7 +283,8 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="9%"
                 app:layout_marginTopPercent="59%"
-                android:background="#fff">
+                android:background="#fff"
+                android:onClick="@{handler.toRecommend}">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -315,7 +318,8 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="9%"
                 app:layout_marginTopPercent="68.1%"
-                android:background="#fff">
+                android:background="#fff"
+                android:onClick="@{handler.toAbout}">
 
                 <TextView
                     android:layout_width="wrap_content"
