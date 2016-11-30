@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:background="#50000000">
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        app:layout_heightPercent="65%"
+        android:layout_gravity="bottom"
+        android:background="@color/all_activity_background">
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            app:layout_heightPercent="12%">
+
+            <ImageView
+                android:id="@+id/back"
+                app:layout_widthPercent="3%"
+                app:layout_heightPercent="80%"
+                android:layout_gravity="center_vertical"
+                app:layout_marginLeftPercent="5%"
+                android:src="@drawable/cha"
+                />
+
+            <ImageView
+                android:id="@+id/help"
+                app:layout_widthPercent="4%"
+                app:layout_heightPercent="80%"
+                android:layout_gravity="center_vertical|right"
+                app:layout_marginRightPercent="5%"
+                android:src="@drawable/wenhao"/>
+
+        </android.support.percent.PercentFrameLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_marginTopPercent="12%"
+            android:background="@color/line_color"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_marginTopPercent="16%"
+            app:layout_marginLeftPercent="5%"
+            android:text="余额不足以支付服务费，实际到账金额如下"/>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            app:layout_heightPercent="50%"
+            app:layout_marginTopPercent="30%">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_marginLeftPercent="5%"
+                android:text="到账金额"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginTopPercent="30%"
+                android:text="本次服务费"/>
+
+            <TextView
+                android:id="@+id/arrival_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                app:layout_marginRightPercent="5%"
+                android:text="0.9元"
+                android:textColor="#f00"/>
+
+            <TextView
+                android:id="@+id/service_charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                app:layout_marginRightPercent="5%"
+                app:layout_marginTopPercent="30%"
+                android:text="0.1元"/>
+
+        </android.support.percent.PercentFrameLayout>
+
+        <TextView
+            android:id="@+id/btn_continue"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="14%"
+            android:layout_gravity="center_horizontal"
+            app:layout_marginTopPercent="75%"
+            android:gravity="center"
+            android:text="继续提现"
+            android:textSize="17dp"
+            android:textColor="#fff"
+            android:background="@drawable/btn_bg_img_0894ec_5dp"/>
+
+    </android.support.percent.PercentFrameLayout>
+
+</android.support.percent.PercentFrameLayout>
+

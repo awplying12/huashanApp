@@ -165,7 +165,8 @@
                             android:textSize="17dp"
                             android:textColor="@color/title_color"
                             android:background="@drawable/bg_withdrawals"
-                            android:id="@+id/textView3" />
+                            android:id="@+id/textView3"
+                            android:onClick="@{handler.Withdrawals}"/>
 
 
                     </android.support.percent.PercentFrameLayout>

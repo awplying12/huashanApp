@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.my.about.main.view.activity.AboutActivity;
+import com.karazam.huashanapp.my.help.main.view.activity.HelpActivity;
 import com.karazam.huashanapp.my.mysettings.view.activity.MysettingsActivity;
 import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
@@ -96,5 +97,14 @@ public class SetupViewModelImpl extends SetupViewModel {
     @Override
     public void toAbout(View view) {
         mView.toOtherActivity(activity, AboutActivity.class);
+    }
+
+    /**
+     * 帮助中心
+     * @param view
+     */
+    @Override
+    public void toHelp(View view) {
+        mView.toOtherActivity(activity, HelpActivity.class);
     }
 }

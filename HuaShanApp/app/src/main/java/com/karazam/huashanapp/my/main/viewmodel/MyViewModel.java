@@ -11,4 +11,6 @@ import com.example.utils.base.BaseViewModel;
 public abstract class MyViewModel extends BaseViewModel{
 
     public abstract void setUp(View view);
+
+    public abstract void Withdrawals(View view);
 }

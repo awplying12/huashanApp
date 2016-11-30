@@ -80,7 +80,7 @@ public class HuaShanApplication extends Application {
         userInformation = new UserInformation();
         userInformation.setBankCard("中国银行(尾号7634)");
         userInformation.setCardInformation("单笔限额5万,单日限额50万");
-        userInformation.setUserbalance("8,214.47");
+        userInformation.setUserbalance("6214.47");
         userInformation.setPaymentmod("bankCard");
         userInformation.setHeaderImg("http://tx.haiqq.com/uploads/allimg/150325/12215B540-0.jpg");
         userInformation.setUserName("王蕙");

@@ -13,6 +13,7 @@ import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
@@ -33,6 +34,7 @@ import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModel;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModelImpl;
+import com.karazam.huashanapp.my.withdrawals.main.view.activity.WithdrawalsActivity;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -134,6 +136,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         RxView.findById(this,R.id.pay_pl).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
             @Override
             public void call(View target, UserInformation userInformation) {
+
+
                 TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
                 TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
                 ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);

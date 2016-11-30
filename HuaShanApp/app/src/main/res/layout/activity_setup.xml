@@ -353,7 +353,8 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="9%"
                 app:layout_marginTopPercent="77.2%"
-                android:background="#fff">
+                android:background="#fff"
+                android:onClick="@{handler.toHelp}">
 
                 <TextView
                     android:layout_width="wrap_content"

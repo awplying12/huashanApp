@@ -21,4 +21,6 @@ public abstract class SetupViewModel extends BaseViewModel {
     public abstract void toRecommend(View view);
 
     public abstract void toAbout(View view);
+
+    public abstract void toHelp(View view);
 }

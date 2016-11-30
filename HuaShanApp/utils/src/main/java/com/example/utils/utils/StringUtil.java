@@ -2,6 +2,8 @@ package com.example.utils.utils;
 
 import android.text.TextUtils;
 
+import java.math.BigDecimal;
+
 /**
  * Created by Administrator on 2016/4/27.
  */
@@ -79,6 +81,12 @@ public class StringUtil {
 
         }
         return sb.toString();
+    }
+
+    public static<T> T reservedDecimal(T data,int num){
+        BigDecimal bd = new BigDecimal(String.valueOf(data));
+        bd = bd.setScale(num,BigDecimal.ROUND_HALF_UP);
+        return (T)bd;
     }
 
 }

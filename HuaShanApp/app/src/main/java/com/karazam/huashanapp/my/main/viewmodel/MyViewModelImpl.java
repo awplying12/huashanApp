@@ -7,6 +7,7 @@ import android.view.View;
 import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
 import com.karazam.huashanapp.my.main.view.MyView;
 import com.karazam.huashanapp.my.setup.view.activity.SetupActivity;
+import com.karazam.huashanapp.my.withdrawals.main.view.activity.WithdrawalsActivity;
 
 /**
  * Created by Administrator on 2016/10/12.
@@ -32,8 +33,21 @@ public class MyViewModelImpl extends MyViewModel {
     }
 
 
+    /**
+     * 设置
+     * @param view
+     */
     @Override
     public void setUp(View view) {
             mView.toOtherActivity(activity, SetupActivity.class);
+    }
+
+    /**
+     * 提现
+     * @param view
+     */
+    @Override
+    public void Withdrawals(View view) {
+        mView.toOtherActivity(activity, WithdrawalsActivity.class);
     }
 }

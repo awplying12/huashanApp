@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.withdrawals.main.model.databinding.WithdrawalsEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.withdrawals.main.viewmodel.WithdrawalsViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/content_pl"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#fff"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    app:layout_widthPercent="7%"
+                    app:layout_heightPercent="60%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/back_b"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="提现"
+                android:textColor="#272636"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+
+            >
+
+            <!--银行卡-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="15%"
+                app:layout_marginTopPercent="3%"
+                android:background="#fff">
+
+
+                <TextView
+                    android:id="@+id/pay_method"
+                    app:layout_widthPercent="78%"
+                    app:layout_heightPercent="50%"
+                    android:layout_gravity="right"
+                    android:text="中国银行(尾号7634)"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:gravity="center_vertical|bottom"
+                    android:textSize="18dp"/>
+
+                <TextView
+                    android:id="@+id/pay_content"
+                    app:layout_widthPercent="78%"
+                    app:layout_heightPercent="40%"
+                    android:layout_gravity="right|bottom"
+                    android:text="单笔限额5万,单日限额50万"
+                    android:textSize="13dp"
+                    android:textColor="#7b7b7b"/>
+
+                <ImageView
+                    android:id="@+id/pay_img"
+                    app:layout_widthPercent="15%"
+                    app:layout_heightPercent="55%"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:src="@drawable/zgyh_icon"/>
+
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--金额-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="25%"
+                app:layout_marginTopPercent="21%"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginLeftPercent="5%"
+                    app:layout_marginTopPercent="8%"
+                    android:text="提现金额（收取0.1%服务费）"
+                    android:textSize="13dp"/>
+
+                <ImageView
+                    app:layout_widthPercent="7%"
+                    app:layout_heightPercent="45%"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:src="@drawable/money_icon"/>
+
+                <EditText
+                    android:id="@+id/ed_moneny"
+                    app:layout_widthPercent="80%"
+                    app:layout_heightPercent="45%"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="13%"
+                    android:inputType="numberDecimal"
+                    android:background="#fff"
+                    android:hint=""/>
+
+                <ImageView
+                    app:layout_widthPercent="80%"
+                    android:layout_height="1dp"
+                    app:layout_marginTopPercent="65%"
+                    app:layout_marginLeftPercent="13%"
+                    android:background="@color/line_color"/>
+
+
+
+                <android.support.percent.PercentFrameLayout
+                    android:layout_width="match_parent"
+                    app:layout_heightPercent="35%"
+                    app:layout_marginTopPercent="65%">
+
+                    <TextView
+                        android:id="@+id/avail_moneny"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        app:layout_marginLeftPercent="5%"
+                        android:text="可用余额1.00元"
+                        android:textSize="13dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        app:layout_marginRightPercent="5%"
+                        android:text="全部提现"
+                        android:textSize="13dp"
+                        android:textColor="#0894EC"
+                        android:onClick="@{handler.allwithdrawals}"/>
+
+
+                </android.support.percent.PercentFrameLayout>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <TextView
+                android:id="@+id/btn_withdrawals"
+                app:layout_widthPercent="80%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="50%"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_bg_img_0894ec_5dp"
+                android:gravity="center"
+                android:text="次日到账，确认提现"
+                android:textSize="18dp"
+                android:textColor="#fff"
+                android:onClick="@{handler.withdrawals}"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                app:layout_marginTopPercent="63%"
+                app:layout_marginRightPercent="10%"
+                android:text="提现说明"
+                android:textSize="13dp"
+                android:textColor="#0894EC"
+                android:onClick="@{handler.explain}"/>
+
+
+        </android.support.percent.PercentFrameLayout>
+
+        <com.example.paymentpassword.PasswordView
+            android:id="@+id/pwd_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:background="#60000000"
+            android:visibility="gone">
+
+        </com.example.paymentpassword.PasswordView>
+    </android.support.percent.PercentRelativeLayout>
+</layout>
