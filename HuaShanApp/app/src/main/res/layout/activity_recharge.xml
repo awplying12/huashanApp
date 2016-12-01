@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.recharge.main.model.databinding.RechargeEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.recharge.main.viewmodel.RechargeViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/content_pl"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#fff"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    app:layout_widthPercent="7%"
+                    app:layout_heightPercent="60%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/back_b"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="充值"
+                android:textColor="#272636"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+
+            >
+
+            <!--银行卡-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="15%"
+                app:layout_marginTopPercent="3%"
+                android:background="#fff">
+
+
+                <TextView
+                    android:id="@+id/pay_method"
+                    app:layout_widthPercent="78%"
+                    app:layout_heightPercent="50%"
+                    android:layout_gravity="right"
+                    android:text="中国银行(尾号7634)"
+                    style="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:gravity="center_vertical|bottom"
+                    android:textSize="18dp"/>
+
+                <TextView
+                    android:id="@+id/pay_content"
+                    app:layout_widthPercent="78%"
+                    app:layout_heightPercent="40%"
+                    android:layout_gravity="right|bottom"
+                    android:text="单笔限额5万,单日限额50万"
+                    android:textSize="13dp"
+                    android:textColor="#7b7b7b"/>
+
+                <ImageView
+                    android:id="@+id/pay_img"
+                    app:layout_widthPercent="15%"
+                    app:layout_heightPercent="55%"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginLeftPercent="5%"
+                    android:src="@drawable/zgyh_icon"/>
+
+
+            </android.support.percent.PercentFrameLayout>
+
+
+            <TextView
+                app:layout_widthPercent="95%"
+                app:layout_heightPercent="8%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginTopPercent="18%"
+                android:gravity="center_vertical"
+                android:text="每次充值金额至少1元"/>
+
+            <!--输入金额-->
+            <android.support.percent.PercentFrameLayout
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="26%"
+                android:background="#fff">
+
+                <TextView
+                    app:layout_widthPercent="12%"
+                    app:layout_heightPercent="100%"
+                    app:layout_marginLeftPercent="5%"
+                    android:gravity="center_vertical"
+                    android:text="金额"
+                    android:textSize="18dp"
+                    android:textColor="#000"/>
+
+                <EditText
+                    app:layout_widthPercent="78%"
+                    app:layout_heightPercent="100%"
+                    app:layout_marginLeftPercent="17%"
+                    android:gravity="center_vertical"
+                    android:background="#fff"
+                    android:hint="请输入充值金额"
+                    android:textSize="14dp"/>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <TextView
+                app:layout_widthPercent="95%"
+                app:layout_heightPercent="8%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginTopPercent="36%"
+                android:gravity="center_vertical"
+                android:text="充值金额有误"/>
+
+
+            <TextView
+                app:layout_widthPercent="90%"
+                app:layout_heightPercent="8%"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_bg_img_0894ec_5dp"
+                app:layout_marginTopPercent="44%"
+                android:gravity="center"
+                android:text="下一步"
+                android:textSize="15dp"
+                android:textColor="#fff"/>
+
+        </android.support.percent.PercentFrameLayout>
+
+
+
+        <com.example.paymentpassword.PasswordView
+            android:id="@+id/pwd_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:background="#60000000"
+            android:visibility="gone">
+
+        </com.example.paymentpassword.PasswordView>
+    </android.support.percent.PercentRelativeLayout>
+</layout>
+

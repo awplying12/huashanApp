@@ -74,4 +74,9 @@
     <!--SecurityActivity-->
     <dimen name="SecurityActivity_text_size">16dp</dimen>
 
+    <!--transactiondetails-->
+    <dimen name="transactiondetails_content_text_size">27dp</dimen>
+    <dimen name="transactiondetails_statet_text_size">13dp</dimen>
+    <dimen name="transactiondetails_service_text_size">14dp</dimen>
+    <dimen name="transactiondetails_text_size">14dp</dimen>
 </resources>

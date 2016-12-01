@@ -153,7 +153,8 @@
                             android:text="充值"
                             android:textSize="17dp"
                             android:textColor="#fff"
-                            android:background="@drawable/bg_recharge"/>
+                            android:background="@drawable/bg_recharge"
+                            android:onClick="@{handler.Recharge}"/>
 
                         <TextView
                             app:layout_widthPercent="30%"

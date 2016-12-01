@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
 import com.karazam.huashanapp.my.main.view.MyView;
+import com.karazam.huashanapp.my.recharge.main.view.activity.RechargeActivity;
 import com.karazam.huashanapp.my.setup.view.activity.SetupActivity;
 import com.karazam.huashanapp.my.withdrawals.main.view.activity.WithdrawalsActivity;
 
@@ -49,5 +50,14 @@ public class MyViewModelImpl extends MyViewModel {
     @Override
     public void Withdrawals(View view) {
         mView.toOtherActivity(activity, WithdrawalsActivity.class);
+    }
+
+    /**
+     * 充值
+     * @param view
+     */
+    @Override
+    public void Recharge(View view) {
+        mView.toOtherActivity(activity, RechargeActivity.class);
     }
 }

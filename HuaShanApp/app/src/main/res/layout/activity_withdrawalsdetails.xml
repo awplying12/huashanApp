@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.transactiondetails.withdrawals.model.databinding.WithdrawalsdetailsEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.transactiondetails.withdrawals.viewmodel.WithdrawalsdetailsViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#fff"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="7%"
+                    app:layout_heightPercent="40%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/back_b"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="提现详情"
+                android:textColor="#272636"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+
+            >
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_l"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <android.support.percent.PercentFrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        app:layout_heightPercent="75%"
+                        android:background="#fff"
+                        app:layout_marginTopPercent="0.5%">
+
+                        <android.support.percent.PercentRelativeLayout
+                            android:layout_width="match_parent"
+                            app:layout_heightPercent="10%"
+                            app:layout_marginTopPercent="2%"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/bank_logo"
+                                app:layout_widthPercent="8%"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/zgyh_icon"/>
+
+                            <TextView
+                                android:id="@+id/bank_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_toRightOf="@+id/bank_logo"
+                                app:layout_marginLeftPercent="2%"
+                                android:gravity="center"
+                                android:text="中国银行"/>
+
+                        </android.support.percent.PercentRelativeLayout>
+
+                        <TextView
+                            android:id="@+id/withdrawals_money"
+                            android:layout_width="wrap_content"
+                            app:layout_heightPercent="10%"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            app:layout_marginTopPercent="15%"
+                            android:text="-0.40"
+                            android:textSize="@dimen/transactiondetails_content_text_size"/>
+
+                        <TextView
+                            android:id="@+id/withdrawals_state"
+                            android:layout_width="wrap_content"
+                            app:layout_heightPercent="10%"
+                            android:layout_gravity="center_horizontal"
+                            app:layout_marginTopPercent="25%"
+                            android:gravity="center"
+                            android:text="交易完成"
+                            android:textSize="@dimen/transactiondetails_statet_text_size"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            app:layout_heightPercent="8%"
+                            app:layout_marginTopPercent="37%"
+                            android:gravity="center"
+                            app:layout_marginLeftPercent="5%"
+                            android:text="服务费"
+                            android:textSize="@dimen/transactiondetails_service_text_size"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            app:layout_heightPercent="8%"
+                            app:layout_marginTopPercent="37%"
+                            android:layout_gravity="right"
+                            app:layout_marginRightPercent="5%"
+                            android:gravity="center"
+                            android:text="0.10"
+                            android:textSize="@dimen/transactiondetails_service_text_size"/>
+
+                        <!--分割线-->
+                        <ImageView
+                            app:layout_widthPercent="90%"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center_horizontal"
+                            app:layout_marginTopPercent="45%"
+                            android:background="@color/line_color"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            app:layout_heightPercent="8%"
+                            app:layout_marginTopPercent="46%"
+                            app:layout_marginLeftPercent="5%"
+                            android:gravity="center"
+                            android:text="提现说明"
+                            android:textSize="@dimen/transactiondetails_text_size"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            app:layout_heightPercent="8%"
+                            app:layout_marginTopPercent="46%"
+                            app:layout_marginRightPercent="5%"
+                            android:layout_gravity="right"
+                            android:gravity="center"
+                            android:text="审核成功，次日到账"
+                            android:textSize="@dimen/transactiondetails_text_size"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_marginTopPercent="56%"
+                            app:layout_marginLeftPercent="5%"
+                            android:textSize="@dimen/transactiondetails_text_size"
+                            android:text="处理进度"/>
+
+
+                        <android.support.percent.PercentFrameLayout
+                            app:layout_widthPercent="55%"
+                            app:layout_heightPercent="35%"
+                            app:layout_marginTopPercent="56%"
+                            android:layout_gravity="right"
+                            app:layout_marginRightPercent="5%"
+                            >
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rl_state"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:overScrollMode="never"
+                                android:scrollbars="none"
+                                >
+
+                            </android.support.v7.widget.RecyclerView>
+
+                        </android.support.percent.PercentFrameLayout>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_marginLeftPercent="5%"
+                            app:layout_marginBottomPercent="2%"
+                            android:layout_gravity="bottom"
+                            android:textSize="@dimen/transactiondetails_text_size"
+                            android:text="提现到"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_marginRightPercent="5%"
+                            app:layout_marginBottomPercent="2%"
+                            android:layout_gravity="bottom|right"
+                            android:textSize="@dimen/transactiondetails_text_size"
+                            android:text="中国银行（7634）王蕙"/>
+
+                    </android.support.percent.PercentFrameLayout>
+
+
+                </android.support.percent.PercentFrameLayout>
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+
+        </android.support.percent.PercentFrameLayout>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

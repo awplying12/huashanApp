@@ -17,6 +17,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityWithdrawalsBinding;
 import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.my.transactiondetails.withdrawals.view.activity.WithdrawalsdetailsActivity;
 import com.karazam.huashanapp.my.withdrawals.main.model.databinding.WithdrawalsEntity;
 import com.karazam.huashanapp.my.withdrawals.main.view.WithdrawalsView;
 import com.karazam.huashanapp.my.withdrawals.main.viewmodel.WithdrawalsViewModel;
@@ -155,7 +156,7 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
                 showToast(mModel.pwd_view.getStrPassword());
                 mModel.pwd_view.out();
 
-
+                toOtherActivity(WithdrawalsActivity.this, WithdrawalsdetailsActivity.class);
             }
 
             @Override
