@@ -1,5 +1,8 @@
 package com.karazam.huashanapp.my.recharge.main.viewmodel;
 
+import android.view.View;
+import android.widget.EditText;
+
 import com.example.utils.base.BaseViewModel;
 
 /**
@@ -7,4 +10,10 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class RechargeViewModel extends BaseViewModel{
+
+    public EditText ed_money;
+
+    public abstract void nextStep(View view);
+
+    public abstract void Recharge();
 }

@@ -145,10 +145,12 @@
                     android:textColor="#000"/>
 
                 <EditText
+                    android:id="@+id/ed_money"
                     app:layout_widthPercent="78%"
                     app:layout_heightPercent="100%"
                     app:layout_marginLeftPercent="17%"
                     android:gravity="center_vertical"
+                    android:inputType="numberDecimal"
                     android:background="#fff"
                     android:hint="请输入充值金额"
                     android:textSize="14dp"/>
@@ -156,6 +158,7 @@
             </android.support.percent.PercentFrameLayout>
 
             <TextView
+                android:id="@+id/hint_tv"
                 app:layout_widthPercent="95%"
                 app:layout_heightPercent="8%"
                 app:layout_marginLeftPercent="5%"
@@ -165,6 +168,7 @@
 
 
             <TextView
+                android:id="@+id/next_step"
                 app:layout_widthPercent="90%"
                 app:layout_heightPercent="8%"
                 android:layout_gravity="center_horizontal"
@@ -173,7 +177,8 @@
                 android:gravity="center"
                 android:text="下一步"
                 android:textSize="15dp"
-                android:textColor="#fff"/>
+                android:textColor="#fff"
+                android:onClick="@{handler.nextStep}"/>
 
         </android.support.percent.PercentFrameLayout>
 

@@ -266,6 +266,7 @@
         </android.support.percent.PercentFrameLayout>
 
         <com.example.paymentpassword.PasswordView
+
             android:id="@+id/pwd_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -275,4 +276,5 @@
 
         </com.example.paymentpassword.PasswordView>
     </android.support.percent.PercentRelativeLayout>
+
 </layout>
