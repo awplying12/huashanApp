@@ -67,9 +67,7 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
     @Override
     public void dealLogicAfterInitView() {
         checkContent();
-
-
-
+        
     }
 
     /**
@@ -120,7 +118,6 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
 
     }
 
-
     /**
      * 充值成功
      */
@@ -163,4 +160,5 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
             }
         });
     }
+
 }

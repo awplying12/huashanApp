@@ -9,6 +9,8 @@ import android.text.format.Time;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.PathUtil;
 import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.financialproject.FinancialInformation;
+import com.karazam.huashanapp.main.financialproject.FinancialProject;
 import com.ogaclejapan.rx.binding.RxProperty;
 
 import java.util.ArrayList;
@@ -46,6 +48,8 @@ public class HuaShanApplication extends Application {
 
     public static ArrayList<BaseActivity> securitysPayment = new ArrayList<>();
     public static ArrayList<BaseActivity> securitysGesture = new ArrayList<>();
+
+    public static RxProperty<FinancialProject> financialProjectR = RxProperty.create();
 
     @Override
     public void onCreate() {
@@ -90,6 +94,15 @@ public class HuaShanApplication extends Application {
 //        paymentmod = userInformation.getPaymentmod();
         userInformationR.set(userInformation);
 
+
+        FinancialProject project = new FinancialProject();
+        ArrayList<FinancialInformation> informations = new ArrayList<>();
+        informations.add(new FinancialInformation());
+        informations.add(new FinancialInformation());
+        informations.add(new FinancialInformation());
+        project.setInformations(informations);
+
+        financialProjectR.set(project);
     }
 
     public static HuaShanApplication getinstance() {

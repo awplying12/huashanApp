@@ -1,8 +1,9 @@
-package com.karazam.huashanapp.manage.main.view.view;
+package com.karazam.huashanapp.main.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,12 @@ public class TitleBarAdapter extends RecyclerView.Adapter<TitleBarAdapter.ViewHo
     private ArrayList<String> list = new ArrayList<>();
     private Context context;
     private int selectPosition = 0;
+    private int size = 15;
 
-    public TitleBarAdapter(ArrayList<String> list, Context context) {
+    public TitleBarAdapter(ArrayList<String> list, Context context,int size) {
         this.list = list;
         this.context = context;
+        this.size = size;
     }
 
     @Override
@@ -50,12 +53,15 @@ public class TitleBarAdapter extends RecyclerView.Adapter<TitleBarAdapter.ViewHo
 
         String str = list.get(position);
         holder.content.setText(StringUtil.interrupt(str,4,""));
+        holder.content.setTextSize(TypedValue.COMPLEX_UNIT_DIP,size);
 
             if(position == selectPosition){
                holder.hint.setBackgroundColor(Color.parseColor("#0894EC"));
+                holder.content.setTextColor(Color.parseColor("#0894EC"));
             }else {
 
                 holder.hint.setBackgroundColor(context.getResources().getColor(R.color.manage_titlebar_bg_color));
+                holder.content.setTextColor(Color.parseColor("#4f4f4f"));
             }
 
 

@@ -21,7 +21,7 @@ import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.ManageView;
 
 import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
-import com.karazam.huashanapp.manage.main.view.view.TitleBarAdapter;
+import com.karazam.huashanapp.main.adapter.TitleBarAdapter;
 import com.karazam.huashanapp.manage.main.viewmodel.ManageViewModel;
 import com.karazam.huashanapp.manage.main.viewmodel.ManageViewModelImpl;
 
@@ -95,7 +95,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         list.add("债权转让");
 
 
-        titlebarAdapter = new TitleBarAdapter(list,getContext());
+        titlebarAdapter = new TitleBarAdapter(list,getContext(),18);
         titlebar_rl.setAdapter(titlebarAdapter);
 
         titlebarAdapter.setmOnItemClickListener(new TitleBarAdapter.onItemClickListener() {
