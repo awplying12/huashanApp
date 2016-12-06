@@ -147,7 +147,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         adapter = new ContentAdapter(getContext(),list);
         content_rl.setAdapter(adapter);
 
-//        adapter.setmOnItemClickListener(new ContentAdapter.onItemClickListener() {
+//        adapter.setmOnItemClickListener(new BidingAdapter.onItemClickListener() {
 //            @Override
 //            public void onItemClick(View view, int position) {
 //                showToast("点击 Item"+position);

@@ -8,28 +8,31 @@ import android.view.ViewGroup;
 import com.karazam.huashanapp.R;
 
 /**
- * Created by Administrator on 2016/12/5.
+ * Created by Administrator on 2016/12/6.
  */
 
-public class NofinanceView {
+public class AssignmentView {
 
     private View view;
     private Context context;
     private ViewGroup layout;
 
-    public NofinanceView(Context context) {
+    public AssignmentView(Context context) {
         this.context = context;
-
-
     }
 
-    public View setView(){
+    public View setView(ViewGroup layout){
+        this.layout = layout;
 
+        view = LayoutInflater.from(context).inflate(R.layout.view_assignment,null);
 
-        view = LayoutInflater.from(context).inflate(R.layout.view_nofinance,null);
-
+        initView();
         return view;
     }
 
-
+    /**
+     * 初始化View
+     */
+    private void initView() {
+    }
 }

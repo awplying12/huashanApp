@@ -79,4 +79,8 @@
     <dimen name="transactiondetails_statet_text_size">13dp</dimen>
     <dimen name="transactiondetails_service_text_size">14dp</dimen>
     <dimen name="transactiondetails_text_size">14dp</dimen>
+
+    <!--Myfinance-->
+    <dimen name="Myfinance_content_text_size_1">14dp</dimen>
+    <dimen name="Myfinance_content_text_size_2">14dp</dimen>
 </resources>

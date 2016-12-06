@@ -37,15 +37,11 @@ public class MyfinanceViewModelImpl extends MyfinanceViewModel {
     @Override
     public void Finanec(View view) {
 
-        RxView.of(new View(context)).bind(HuaShanApplication.financialProjectR, new Rx.Action<View, FinancialProject>() {
-            @Override
-            public void call(View target, FinancialProject financialProject) {
-                if(financialProject.getInformations().size() == 0){ // 没有标
-                        mView.showToast("立即前往购买");
-                }else {
-                    mView.showToast("买入");
-                }
-            }
-        });
+        if(isEmpty){
+            mView.showToast("立即前往购买");
+        }else {
+            mView.showToast("买入");
+        }
+
     }
 }

@@ -49,7 +49,9 @@ public class HuaShanApplication extends Application {
     public static ArrayList<BaseActivity> securitysPayment = new ArrayList<>();
     public static ArrayList<BaseActivity> securitysGesture = new ArrayList<>();
 
-    public static RxProperty<FinancialProject> financialProjectR = RxProperty.create();
+    public static FinancialProject project1;
+    public static FinancialProject project2;
+    public static FinancialProject project3;
 
     @Override
     public void onCreate() {
@@ -95,14 +97,28 @@ public class HuaShanApplication extends Application {
         userInformationR.set(userInformation);
 
 
-        FinancialProject project = new FinancialProject();
-        ArrayList<FinancialInformation> informations = new ArrayList<>();
-        informations.add(new FinancialInformation());
-        informations.add(new FinancialInformation());
-        informations.add(new FinancialInformation());
-        project.setInformations(informations);
+        project1= new FinancialProject();
+        ArrayList<FinancialInformation> informations1 = new ArrayList<>();
+        informations1.add(new FinancialInformation());
+        informations1.add(new FinancialInformation());
+        informations1.add(new FinancialInformation());
+        project1.setInformations(informations1);
 
-        financialProjectR.set(project);
+        project2= new FinancialProject();
+        ArrayList<FinancialInformation> informations2 = new ArrayList<>();
+        informations2.add(new FinancialInformation());
+        informations2.add(new FinancialInformation());
+        informations2.add(new FinancialInformation());
+        informations2.add(new FinancialInformation());
+        project2.setInformations(informations2);
+
+        project3= new FinancialProject();
+        ArrayList<FinancialInformation> informations3 = new ArrayList<>();
+        informations3.add(new FinancialInformation());
+        informations3.add(new FinancialInformation());
+        project3.setInformations(informations3);
+
+
     }
 
     public static HuaShanApplication getinstance() {

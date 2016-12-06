@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.utils.base.BaseActivity;
 import com.karazam.huashanapp.HuaShanApplication;
@@ -15,11 +16,14 @@ import com.karazam.huashanapp.main.adapter.TitleBarAdapter;
 import com.karazam.huashanapp.main.financialproject.FinancialProject;
 import com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEntity;
 import com.karazam.huashanapp.my.myfinancing.main.view.MyfinanceView;
-import com.karazam.huashanapp.my.myfinancing.main.view.view.ContentAdapter;
+import com.karazam.huashanapp.my.myfinancing.main.view.view.BidingAdapter;
+import com.karazam.huashanapp.my.myfinancing.main.view.view.FinishedAdapter;
+import com.karazam.huashanapp.my.myfinancing.main.view.view.HoldingAdapter;
 import com.karazam.huashanapp.my.myfinancing.main.view.view.NofinanceView;
 import com.karazam.huashanapp.my.myfinancing.main.viewmodel.MyfinanceViewModel;
 import com.karazam.huashanapp.my.myfinancing.main.viewmodel.MyfinanceViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
@@ -91,47 +95,150 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
             public void onItemClick(View view, int position) {
                 switch (position){
                     case 0:     //投标中
+                        BidindMode.set(HuaShanApplication.project1);
                         break;
                     case 1:     //已持有
+                        holdingMode.set(HuaShanApplication.project2);
                         break;
                     case 2:     //已完成
+                        finishedMode.set(HuaShanApplication.project3);
                         break;
                     default:
                         break;
                 }
             }
         });
+
+        BidindMode.set(HuaShanApplication.project1);
     }
 
     /**
      * 设置布局内容
      */
+    private RxProperty<FinancialProject> BidindMode = RxProperty.create();
+    private RxProperty<FinancialProject> holdingMode = RxProperty.create();
+    private RxProperty<FinancialProject> finishedMode = RxProperty.create();
+    private View view;
     private void setLayout() {
+        NofinanceView nofinanceView = new NofinanceView(MyfinanceActivity.this);
+        view = nofinanceView.setView();
 
-        RxView.findById(this,R.id.label_pl).bind(HuaShanApplication.financialProjectR, new Rx.Action<View, FinancialProject>() {
+        RxView.findById(this,R.id.label_pl).bind(BidindMode, new Rx.Action<View, FinancialProject>() {  //投标中
             @Override
             public void call(View target, FinancialProject financialProject) {
+                ViewGroup g = (ViewGroup) target;
                 if(financialProject.getInformations().size() == 0){ // 没有标
-                    NofinanceView view = new NofinanceView(MyfinanceActivity.this);
-                    ViewGroup g = (ViewGroup) target;
-                    g.addView(view.setView((ViewGroup) target));
+                    g.addView(view);
                     btn_finance.setText("立即前往购买");
+                    mModel.isEmpty = true;
                 }else {
-
-                    setContentRL(financialProject);
+                    g.removeView(view);
+                    setBidindContent(financialProject);
                     btn_finance.setText("买入");
+                    mModel.isEmpty = false;
+                }
+            }
+        });
+
+        RxView.findById(this,R.id.label_pl).bind(holdingMode, new Rx.Action<View, FinancialProject>() {  //已持有
+            @Override
+            public void call(View target, FinancialProject financialProject) {
+                ViewGroup g = (ViewGroup) target;
+                if(financialProject.getInformations().size() == 0){ // 没有标
+                    g.addView(view);
+                    btn_finance.setText("立即前往购买");
+                    mModel.isEmpty = true;
+                }else {
+                    g.removeView(view);
+                    setHoldingContent(financialProject);
+                    btn_finance.setText("买入");
+                    mModel.isEmpty = false;
+                }
+            }
+        });
+
+        RxView.findById(this,R.id.label_pl).bind(finishedMode, new Rx.Action<View, FinancialProject>() {  //已完成
+            @Override
+            public void call(View target, FinancialProject financialProject) {
+                ViewGroup g = (ViewGroup) target;
+                if(financialProject.getInformations().size() == 0){ // 没有标
+
+                    g.addView(view);
+                    btn_finance.setText("立即前往购买");
+                    mModel.isEmpty = true;
+                }else {
+                    g.removeView(view);
+                    setFinishedContent(financialProject);
+                    btn_finance.setText("买入");
+                    mModel.isEmpty = false;
                 }
             }
         });
     }
 
     /**
-     * 理财内容
+     * 投标中内容
      */
-    private void setContentRL(final FinancialProject financialProject){
+    private BidingAdapter bidingAdapter;
+    private void setBidindContent(final FinancialProject financialProject){
 
 
+        bidingAdapter = new BidingAdapter(MyfinanceActivity.this,financialProject.getInformations(),content_rl);
+        content_rl.setAdapter(bidingAdapter);
+    }
 
-        content_rl.setAdapter(new ContentAdapter(MyfinanceActivity.this,financialProject.getInformations()));
+    /**
+     * 已持有内容
+     */
+    private HoldingAdapter holdingAdapter;
+    private void setHoldingContent(final FinancialProject financialProject){
+
+
+        holdingAdapter = new HoldingAdapter(MyfinanceActivity.this,financialProject.getInformations(),content_rl);
+        content_rl.setAdapter(holdingAdapter);
+
+        holdingAdapter.setmOnItemClickListener(new HoldingAdapter.OnItemClickListener() {
+
+            @Override
+            public void onCheck(int position) {
+                showToast("查看  "+position);
+            }
+
+            @Override
+            public void onDownload(int position) {
+                showToast("下载  "+position);
+            }
+
+            @Override
+            public void onTransfer(int position) {
+                showToast("转让  "+position);
+            }
+
+        });
+    }
+
+    /**
+     * 已完成内容
+     */
+    private FinishedAdapter finishedAdapter;
+    private void setFinishedContent(final FinancialProject financialProject){
+
+
+        finishedAdapter = new FinishedAdapter(MyfinanceActivity.this,financialProject.getInformations(),content_rl);
+        content_rl.setAdapter(finishedAdapter);
+
+        finishedAdapter.setmOnItemClickListener(new FinishedAdapter.OnItemClickListener() {
+
+            @Override
+            public void onCheck(int position) {
+                showToast("查看  "+position);
+            }
+
+            @Override
+            public void onDownload(int position) {
+                showToast("下载  "+position);
+            }
+
+        });
     }
 }

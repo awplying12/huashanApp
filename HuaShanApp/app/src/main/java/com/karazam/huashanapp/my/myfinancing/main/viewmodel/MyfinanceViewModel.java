@@ -10,5 +10,7 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class MyfinanceViewModel extends BaseViewModel{
 
+    public boolean isEmpty = true;
+
     public abstract void Finanec(View view);
 }
