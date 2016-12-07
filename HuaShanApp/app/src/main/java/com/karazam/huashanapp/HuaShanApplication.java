@@ -52,6 +52,7 @@ public class HuaShanApplication extends Application {
     public static FinancialProject project1;
     public static FinancialProject project2;
     public static FinancialProject project3;
+    public static FinancialProject project4;
 
     @Override
     public void onCreate() {
@@ -117,6 +118,14 @@ public class HuaShanApplication extends Application {
         informations3.add(new FinancialInformation());
         informations3.add(new FinancialInformation());
         project3.setInformations(informations3);
+
+        project4= new FinancialProject();
+        ArrayList<FinancialInformation> informations4 = new ArrayList<>();
+        informations4.add(new FinancialInformation());
+        informations4.add(new FinancialInformation());
+        informations4.add(new FinancialInformation());
+        informations4.add(new FinancialInformation());
+        project4.setInformations(informations4);
 
 
     }

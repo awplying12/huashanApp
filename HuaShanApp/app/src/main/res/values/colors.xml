@@ -91,6 +91,11 @@
     <color name="Myfinance_content_text_color_1">#96000000</color>
     <color name="Myfinance_content_text_color_2">#32000000</color>
 
+    <!--AssignmentView-->
+    <color name="AssignmentView_text_color_1">#96000000</color>
+    <color name="AssignmentView_text_color_2">#32000000</color>
+
+
     <!--SpringIndicator-->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

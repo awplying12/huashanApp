@@ -8,14 +8,243 @@
 
     <android.support.percent.PercentFrameLayout
         android:layout_width="300dp"
-        app:layout_heightPercent="80%"
+        app:layout_heightPercent="75%"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
         android:background="@drawable/bg_fillet_f0f0f0_5dp"
         >
 
-        
+        <ImageView
+            android:id="@+id/btn_cancel"
+            app:layout_widthPercent="5%"
+            app:layout_heightPercent="5%"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:src="@drawable/cha_1"/>
+
+        <TextView
+            app:layout_widthPercent="85%"
+            app:layout_heightPercent="12%"
+            app:layout_marginLeftPercent="5%"
+            android:gravity="center_vertical"
+            android:text="债权转出"
+            android:textSize="@dimen/AssignmentView_text_size_1"/>
+
+        <TextView
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="12%"
+            android:gravity="center_vertical"
+            android:text="原始投资额："
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_1"/>
+
+        <TextView
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="17%"
+            android:gravity="center_vertical"
+            android:text="年化收益率："
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_1"/>
+
+        <TextView
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="22%"
+            android:gravity="center_vertical"
+            android:text="投资期限："
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_1"/>
+
+        <TextView
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="27%"
+            android:gravity="center_vertical"
+            android:text="还款方式："
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_1"/>
+
+        <TextView
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="32%"
+            android:gravity="center_vertical"
+            android:text="待收本息："
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_1"/>
+
+        <TextView
+            app:layout_widthPercent="40%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="32%"
+            app:layout_marginTopPercent="12%"
+            android:gravity="center_vertical"
+            android:text="￥ 100,000,000.00"
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_2"/>
+
+        <TextView
+            app:layout_widthPercent="40%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="32%"
+            app:layout_marginTopPercent="17%"
+            android:gravity="center_vertical"
+            android:text="8.4%"
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_2"/>
+
+        <TextView
+            app:layout_widthPercent="40%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="32%"
+            app:layout_marginTopPercent="22%"
+            android:gravity="center_vertical"
+            android:text="4个月"
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_2"/>
+
+        <TextView
+            app:layout_widthPercent="40%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="32%"
+            app:layout_marginTopPercent="27%"
+            android:gravity="center_vertical"
+            android:text="每月付息，到期还本"
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_2"/>
+
+        <TextView
+            app:layout_widthPercent="40%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="32%"
+            app:layout_marginTopPercent="32%"
+            android:gravity="center_vertical"
+            android:text="￥1,006,916.66"
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_2"/>
+
+        <!--分割线-->
+        <ImageView
+            app:layout_widthPercent="95%"
+            android:layout_height="5dp"
+            app:layout_marginTopPercent="42%"
+            android:layout_gravity="center_horizontal"
+            android:layerType="software"
+            android:background="@drawable/bg_dash_line"/>
+
+        <TextView
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="50%"
+            android:gravity="center_vertical"
+            android:text="转让本金："
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_1"/>
+
+        <TextView
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="55%"
+            android:gravity="center_vertical"
+            android:text="剩余期限："
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_1"/>
+
+        <TextView
+            app:layout_widthPercent="30%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="60%"
+            android:gravity="center_vertical"
+            android:text="转让费用："
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_1"/>
+
+        <TextView
+            app:layout_widthPercent="40%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="32%"
+            app:layout_marginTopPercent="50%"
+            android:gravity="center_vertical"
+            android:text="￥ 100,000,000.00"
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_2"/>
+
+        <TextView
+            app:layout_widthPercent="40%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="32%"
+            app:layout_marginTopPercent="55%"
+            android:gravity="center_vertical"
+            android:text="4个月"
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_2"/>
+
+        <TextView
+            app:layout_widthPercent="40%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="32%"
+            app:layout_marginTopPercent="60%"
+            android:gravity="center_vertical"
+            android:text="￥ 0.00"
+            android:textSize="@dimen/AssignmentView_text_size_2"
+            android:textColor="@color/AssignmentView_text_color_2"/>
+
+
+        <!--Button-->
+
+        <TextView
+            android:id="@+id/btn_transfer"
+            app:layout_widthPercent="85%"
+            app:layout_heightPercent="10%"
+            android:layout_gravity="center_horizontal|bottom"
+            app:layout_marginBottomPercent="10%"
+            android:gravity="center"
+            android:background="@drawable/btn_bg_img_0894ec_5dp"
+            android:text="确认转让"
+            android:textColor="#fff"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            app:layout_heightPercent="5%"
+            android:layout_gravity="bottom"
+            app:layout_marginBottomPercent="3%"
+            app:layout_marginLeftPercent="5%"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_marginTopPercent="70%"
+                android:button="@drawable/bg_checkbox"
+                android:paddingLeft="5dp"
+                android:text="我已阅读并同意签署"
+                android:textColor="#7b7b7b"
+                android:textSize="11dp"/>
+
+            <TextView
+                android:id="@+id/tv_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginTopPercent="68%"
+                android:text="《债权转让及受让协议》"
+                android:textColor="#0894EC"
+                android:textSize="11dp"
+                />
+
+        </LinearLayout>
 
 
     </android.support.percent.PercentFrameLayout>

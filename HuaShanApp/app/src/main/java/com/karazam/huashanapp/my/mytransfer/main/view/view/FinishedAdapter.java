@@ -1,8 +1,7 @@
-package com.karazam.huashanapp.my.myfinancing.main.view.view;
+package com.karazam.huashanapp.my.mytransfer.main.view.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +9,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.financialproject.FinancialInformation;
 
 import java.util.ArrayList;
 
+
 /**
  * Created by Administrator on 2016/12/5.
  */
 
-public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHolder> {
+public class FinishedAdapter extends RecyclerView.Adapter<FinishedAdapter.ViewHolder> {
 
     private Context context;
     private ArrayList<FinancialInformation> list = new ArrayList<>();
@@ -31,7 +30,7 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
     private FrameLayout fl;
     private ImageView open;
 
-    public HoldingAdapter(Context context, ArrayList<FinancialInformation> list, RecyclerView rl) {
+    public FinishedAdapter(Context context, ArrayList<FinancialInformation> list, RecyclerView rl) {
         this.context = context;
         this.list = list;
         this.rl = rl;
@@ -39,7 +38,7 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_holding_item,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_transferfinish_item,null);
         view.setLayoutParams(new RelativeLayout.LayoutParams(rl.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT));
         ViewHolder holder = new ViewHolder(view);
         return holder;
@@ -47,17 +46,6 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-
-
-        if(list.get(position).isState()){
-            holder.transfer_btn.setText("可转让");
-            holder.transfer_btn.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
-        }else {
-            holder.transfer_btn.setText("撤销转让");
-            holder.transfer_btn.setBackgroundResource(R.drawable.btn_bg_img_ff5722_5dp);
-        }
-
-
 
         if(holder.fl1 != null){
             holder.fl1.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +86,7 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
 
         private TextView check_btn;
         private TextView download_btn;
-        private TextView transfer_btn;
+//        private TextView transfer_btn;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -110,8 +98,8 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
             check_btn.setOnClickListener(this);
             download_btn = (TextView) itemView.findViewById(R.id.download_btn);
             download_btn.setOnClickListener(this);
-            transfer_btn = (TextView) itemView.findViewById(R.id.transfer_btn);
-            transfer_btn.setOnClickListener(this);
+//            transfer_btn = (TextView) itemView.findViewById(R.id.transfer_btn);
+//            transfer_btn.setOnClickListener(this);
         }
 
         @Override
@@ -125,23 +113,16 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
 
                     mOnItemClickListener.onDownload(getPosition());
                     break;
-                case R.id.transfer_btn:
-
-                    mOnItemClickListener.onTransfer(getPosition());
-                    break;
+//                case R.id.transfer_btn:
+//
+//                    mOnItemClickListener.onTransfer(getPosition());
+//                    break;
                 default:
                     break;
             }
         }
     }
 
-    public ArrayList<FinancialInformation> getList() {
-        return list;
-    }
-
-    public void setList(ArrayList<FinancialInformation> list) {
-        this.list = list;
-    }
 
     public interface OnItemClickListener{
 
@@ -149,7 +130,7 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
 
         void onDownload(int position);
 
-        void onTransfer(int position);
+//        void onTransfer(int position);
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -157,6 +138,6 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
     public void setmOnItemClickListener(OnItemClickListener onItemClickListener){
         this.mOnItemClickListener = onItemClickListener;
     }
-
 }
+
 

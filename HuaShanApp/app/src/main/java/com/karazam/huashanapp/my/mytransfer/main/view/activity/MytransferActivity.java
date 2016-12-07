@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.my.myfinancing.main.view.activity;
+package com.karazam.huashanapp.my.mytransfer.main.view.activity;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.LinearLayoutManager;
@@ -6,24 +6,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.databinding.ActivityMyfinanceBinding;
+import com.karazam.huashanapp.databinding.ActivityMytransferBinding;
 import com.karazam.huashanapp.main.adapter.TitleBarAdapter;
 import com.karazam.huashanapp.main.financialproject.FinancialProject;
-import com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEntity;
-import com.karazam.huashanapp.my.myfinancing.main.view.MyfinanceView;
+
 import com.karazam.huashanapp.my.myfinancing.main.view.view.AssignmentView;
-import com.karazam.huashanapp.my.myfinancing.main.view.view.BidingAdapter;
-import com.karazam.huashanapp.my.myfinancing.main.view.view.FinishedAdapter;
 import com.karazam.huashanapp.my.myfinancing.main.view.view.HoldingAdapter;
 import com.karazam.huashanapp.my.myfinancing.main.view.view.NofinanceView;
-import com.karazam.huashanapp.my.myfinancing.main.viewmodel.MyfinanceViewModel;
-import com.karazam.huashanapp.my.myfinancing.main.viewmodel.MyfinanceViewModelImpl;
+import com.karazam.huashanapp.my.mytransfer.main.model.databinding.MytransferEntity;
+import com.karazam.huashanapp.my.mytransfer.main.view.MytransferView;
+import com.karazam.huashanapp.my.mytransfer.main.view.view.FinishedAdapter;
+import com.karazam.huashanapp.my.mytransfer.main.viewmodel.MytransferViewModel;
+import com.karazam.huashanapp.my.mytransfer.main.viewmodel.MytransferViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -31,14 +30,14 @@ import com.ogaclejapan.rx.binding.RxView;
 import java.util.ArrayList;
 
 /**
- * Created by Administrator on 2016/12/5.
+ * Created by Administrator on 2016/12/7.
  */
 
-public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
+public class MytransferActivity extends BaseActivity implements MytransferView {
 
-    private ActivityMyfinanceBinding binding;
-    private MyfinanceViewModel mModel;
-    private MyfinanceEntity entity = new MyfinanceEntity();
+    private ActivityMytransferBinding binding;
+    private MytransferEntity entity = new MytransferEntity();
+    private MytransferViewModel mModel;
 
     private RecyclerView title_rl;
     private TitleBarAdapter titlebarAdapter;
@@ -53,8 +52,8 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
 
     @Override
     public void setContentLayout() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_myfinance);
-        mModel = new MyfinanceViewModelImpl(entity,this,this,this);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_mytransfer);
+        mModel = new MytransferViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
     }
@@ -83,8 +82,8 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
 
     @Override
     public void dealLogicAfterInitView() {
-            setTileRl();
-            setLayout();
+        setTileRl();
+        setLayout();
     }
 
     /**
@@ -93,8 +92,7 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
     private void setTileRl() {
 
         ArrayList<String> list = new ArrayList<>();
-        list.add("投标中");
-        list.add("已持有");
+        list.add("转让中");
         list.add("已完成");
 
         titlebarAdapter = new TitleBarAdapter(list,this,15);
@@ -104,14 +102,11 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
             @Override
             public void onItemClick(View view, int position) {
                 switch (position){
-                    case 0:     //投标中
-                        BidindMode.set(HuaShanApplication.project1);
+                    case 0:     //转让中
+                        transferMode.set(HuaShanApplication.project2);
                         break;
-                    case 1:     //已持有
-                        holdingMode.set(HuaShanApplication.project2);
-                        break;
-                    case 2:     //已完成
-                        finishedMode.set(HuaShanApplication.project3);
+                    case 1:     //已完成
+                        finishedMode.set(HuaShanApplication.project4);
                         break;
                     default:
                         break;
@@ -119,21 +114,21 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
             }
         });
 
-        BidindMode.set(HuaShanApplication.project1);
+        transferMode.set(HuaShanApplication.project2);
     }
 
     /**
      * 设置布局内容
      */
-    private RxProperty<FinancialProject> BidindMode = RxProperty.create();
-    private RxProperty<FinancialProject> holdingMode = RxProperty.create();
+    private RxProperty<FinancialProject> transferMode = RxProperty.create();
     private RxProperty<FinancialProject> finishedMode = RxProperty.create();
     private View view;
+    private int mPosition = 0;
     private void setLayout() {
-        NofinanceView nofinanceView = new NofinanceView(MyfinanceActivity.this);
+        NofinanceView nofinanceView = new NofinanceView(MytransferActivity.this);
         view = nofinanceView.setView();
 
-        RxView.findById(this,R.id.label_pl).bind(BidindMode, new Rx.Action<View, FinancialProject>() {  //投标中
+        RxView.findById(this,R.id.label_pl).bind(transferMode, new Rx.Action<View, FinancialProject>() {  //投标中
             @Override
             public void call(View target, FinancialProject financialProject) {
                 ViewGroup g = (ViewGroup) target;
@@ -143,29 +138,14 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
                     mModel.isEmpty = true;
                 }else {
                     g.removeView(view);
-                    setBidindContent(financialProject);
+                    setTransferContent(financialProject);
                     btn_finance.setText("买入");
                     mModel.isEmpty = false;
                 }
             }
         });
 
-        RxView.findById(this,R.id.label_pl).bind(holdingMode, new Rx.Action<View, FinancialProject>() {  //已持有
-            @Override
-            public void call(View target, FinancialProject financialProject) {
-                ViewGroup g = (ViewGroup) target;
-                if(financialProject.getInformations().size() == 0){ // 没有标
-                    g.addView(view);
-                    btn_finance.setText("立即前往购买");
-                    mModel.isEmpty = true;
-                }else {
-                    g.removeView(view);
-                    setHoldingContent(financialProject);
-                    btn_finance.setText("买入");
-                    mModel.isEmpty = false;
-                }
-            }
-        });
+
 
         RxView.findById(this,R.id.label_pl).bind(finishedMode, new Rx.Action<View, FinancialProject>() {  //已完成
             @Override
@@ -191,10 +171,10 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
                 showToast(pwd_view.getStrPassword());
                 if(HuaShanApplication.project2.getInformations().get(mPosition).isState()){
                     HuaShanApplication.project2.getInformations().get(mPosition).setState(false);
-                    holdingMode.set(HuaShanApplication.project2);
+                    transferMode.set(HuaShanApplication.project2);
                 }else {
                     HuaShanApplication.project2.getInformations().get(mPosition).setState(true);
-                    holdingMode.set(HuaShanApplication.project2);
+                    transferMode.set(HuaShanApplication.project2);
                 }
 
                 pwd_view.out();
@@ -226,26 +206,15 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
         });
     }
 
-    /**
-     * 投标中内容
-     */
-    private BidingAdapter bidingAdapter;
-    private void setBidindContent(final FinancialProject financialProject){
-
-
-        bidingAdapter = new BidingAdapter(MyfinanceActivity.this,financialProject.getInformations(),content_rl);
-        content_rl.setAdapter(bidingAdapter);
-    }
 
     /**
-     * 已持有内容
+     * 转让中内容
+     * @param project
      */
     private HoldingAdapter holdingAdapter;
-    private int mPosition = 0;
-    private void setHoldingContent(final FinancialProject financialProject){
+    private void setTransferContent(FinancialProject project) {
 
-
-        holdingAdapter = new HoldingAdapter(MyfinanceActivity.this,financialProject.getInformations(),content_rl);
+        holdingAdapter = new HoldingAdapter(MytransferActivity.this,project.getInformations(),content_rl);
         content_rl.setAdapter(holdingAdapter);
 
         holdingAdapter.setmOnItemClickListener(new HoldingAdapter.OnItemClickListener() {
@@ -269,17 +238,16 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
             }
 
         });
-
     }
 
     /**
      * 已完成内容
+     * @param project
      */
     private FinishedAdapter finishedAdapter;
-    private void setFinishedContent(final FinancialProject financialProject){
+    private void setFinishedContent(FinancialProject project) {
 
-
-        finishedAdapter = new FinishedAdapter(MyfinanceActivity.this,financialProject.getInformations(),content_rl);
+        finishedAdapter = new FinishedAdapter(MytransferActivity.this,project.getInformations(),content_rl);
         content_rl.setAdapter(finishedAdapter);
 
         finishedAdapter.setmOnItemClickListener(new FinishedAdapter.OnItemClickListener() {

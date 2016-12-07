@@ -216,6 +216,8 @@
                     android:id="@+id/cb_agreement"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:button="@drawable/bg_checkbox"
+                    android:paddingLeft="5dp"
                     app:layout_marginTopPercent="70%"
                     android:text="我已阅读并同意签署"
                     android:textColor="#7b7b7b"

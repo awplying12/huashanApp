@@ -212,11 +212,47 @@
                         android:layout_height="4dp"
                         />
 
+                    <!--我的转让-->
+                    <android.support.percent.PercentFrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="#fff"
+                        android:onClick="@{handler.Mytransfer}">
+
+                        <ImageView
+                            app:layout_widthPercent="6%"
+                            android:layout_height="match_parent"
+                            app:layout_marginLeftPercent="7%"
+                            android:src="@drawable/return_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:layout_marginLeftPercent="20%"
+                            android:text="我的转让"
+                            android:textSize="@dimen/my_pf3_content_text_size"/>
+
+                        <ImageView
+                            app:layout_widthPercent="4%"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            app:layout_marginRightPercent="5%"
+                            android:src="@drawable/goto2_icon"/>
+
+                    </android.support.percent.PercentFrameLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        />
+
                     <!--我的回款-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        android:background="#fff">
+                        android:background="#fff"
+                        android:onClick="@{handler.MyReturn}">
 
                         <ImageView
                             app:layout_widthPercent="6%"
@@ -264,7 +300,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             app:layout_marginLeftPercent="20%"
-                            android:text="我的理财"
+                            android:text="银行卡"
                             android:textSize="@dimen/my_pf3_content_text_size"/>
 
                         <ImageView

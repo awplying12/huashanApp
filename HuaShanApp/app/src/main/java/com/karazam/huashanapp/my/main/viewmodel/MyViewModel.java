@@ -17,4 +17,10 @@ public abstract class MyViewModel extends BaseViewModel{
     public abstract void Recharge(View view);
 
     public abstract void Myfinance(View view);
+
+    public abstract void Mytransfer(View view);
+
+    public abstract void MyReturn(View view);
+
+
 }

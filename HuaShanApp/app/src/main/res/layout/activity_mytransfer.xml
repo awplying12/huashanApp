@@ -4,11 +4,11 @@
     <data>
         <variable
             name="entity"
-            type="com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEntity"
+            type="com.karazam.huashanapp.my.mytransfer.main.model.databinding.MytransferEntity"
             ></variable>
         <variable
             name="handler"
-            type="com.karazam.huashanapp.my.myfinancing.main.viewmodel.MyfinanceViewModel"
+            type="com.karazam.huashanapp.my.mytransfer.main.viewmodel.MytransferViewModel"
             ></variable>
     </data>
     <android.support.percent.PercentRelativeLayout
@@ -49,7 +49,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="我的理财"
+                android:text="我的转让"
                 android:textColor="#fff"
                 android:textSize="@dimen/title_text_size"/>
 
@@ -148,7 +148,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
                         android:gravity="center"
-                        android:text="购买金额"/>
+                        android:text="转让金额"/>
 
                 </android.support.percent.PercentFrameLayout>
 
@@ -200,3 +200,5 @@
         </com.example.paymentpassword.PasswordView>
     </android.support.percent.PercentRelativeLayout>
 </layout>
+
+

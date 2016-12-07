@@ -10,6 +10,8 @@ import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
 import com.karazam.huashanapp.my.main.view.MyView;
 import com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEntity;
 import com.karazam.huashanapp.my.myfinancing.main.view.activity.MyfinanceActivity;
+import com.karazam.huashanapp.my.myreturn.main.view.activity.MyReturnActivity;
+import com.karazam.huashanapp.my.mytransfer.main.view.activity.MytransferActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
 import com.karazam.huashanapp.my.recharge.main.view.activity.RechargeActivity;
 import com.karazam.huashanapp.my.setup.view.activity.SetupActivity;
@@ -97,6 +99,25 @@ public class MyViewModelImpl extends MyViewModel {
     @Override
     public void Myfinance(View view) {
         mView.toOtherActivity(activity, MyfinanceActivity.class);
+    }
+
+    /**
+     * 我的转让
+     * @param view
+     */
+    @Override
+    public void Mytransfer(View view) {
+        mView.toOtherActivity(activity, MytransferActivity.class);
+    }
+
+    /**
+     * 我的回款
+     * @param view
+     */
+    @Override
+    public void MyReturn(View view) {
+
+        mView.toOtherActivity(activity, MyReturnActivity.class);
     }
 
     private void setCertificationDialog(){

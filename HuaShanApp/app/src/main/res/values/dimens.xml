@@ -83,4 +83,8 @@
     <!--Myfinance-->
     <dimen name="Myfinance_content_text_size_1">14dp</dimen>
     <dimen name="Myfinance_content_text_size_2">14dp</dimen>
+
+    <!--AssignmentView-->
+    <dimen name="AssignmentView_text_size_1">20dp</dimen>
+    <dimen name="AssignmentView_text_size_2">12dp</dimen>
 </resources>

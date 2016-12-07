@@ -20,9 +20,17 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.widget.RxTextView;
+import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
+import com.ogaclejapan.rx.binding.RxView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 public class PasswordView extends RelativeLayout {
 	Context context;
@@ -214,32 +222,25 @@ public class PasswordView extends RelativeLayout {
 //		if(tvList == null || tvList.length == 0){
 //			return;
 //		}
-		tvList[5].addTextChangedListener(new TextWatcher() {
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-										  int after) {
 
-			}
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-									  int count) {
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-				if (s.toString().length() == 1) {
-					strPassword = ""; // 每次触发都要先将strPassword置空，再重新获取，避免由于输入删除再输入造成混乱
-					for (int i = 0; i < 6; i++) {
-						strPassword += tvList[i].getText().toString().trim();
+		RxTextView.textChangeEvents(tvList[5])
+				.debounce(300, TimeUnit.MILLISECONDS)
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Action1<TextViewTextChangeEvent>() {
+					@Override
+					public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
+						String str = textViewTextChangeEvent.text().toString().trim();
+						if (str.length() == 1) {
+							strPassword = ""; // 每次触发都要先将strPassword置空，再重新获取，避免由于输入删除再输入造成混乱
+							for (int i = 0; i < 6; i++) {
+								strPassword += tvList[i].getText().toString().trim();
+							}
+							if (mpass!=null) {
+								mpass.inputFinish(); // 接口中要实现的方法，完成密码输入完成后的响应逻辑
+							}
+						}
 					}
-					if (mpass!=null) {
-						mpass.inputFinish(); // 接口中要实现的方法，完成密码输入完成后的响应逻辑
-					}
-				}
-			}
-		});
+				});
 	}
 
 	/* 获取输入的密码 */
