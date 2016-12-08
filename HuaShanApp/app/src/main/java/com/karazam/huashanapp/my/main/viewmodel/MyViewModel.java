@@ -22,5 +22,9 @@ public abstract class MyViewModel extends BaseViewModel{
 
     public abstract void MyReturn(View view);
 
+    public abstract void BankCard(View view);
+
+    public abstract void Transaction(View view);
+
 
 }

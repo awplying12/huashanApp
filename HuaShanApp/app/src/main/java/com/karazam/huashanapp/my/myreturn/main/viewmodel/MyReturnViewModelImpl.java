@@ -39,5 +39,7 @@ public class MyReturnViewModelImpl extends MyReturnViewModel {
             mView.showToast("买入");
         }
 
+        activity.setResult(67);
+        mView.FinishActivity(activity);
     }
 }

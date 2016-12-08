@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:background="@color/all_activity_background"
+    android:orientation="vertical">
+
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/fl_1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        >
+
+        <TextView
+            android:id="@+id/name"
+            app:layout_widthPercent="50%"
+            android:layout_height="wrap_content"
+            app:layout_marginLeftPercent="5%"
+            android:layout_gravity="center_vertical"
+            android:text="CR216001-31补充流动资金"
+            android:textSize="13dp"/>
+
+        <ImageView
+            app:layout_widthPercent="4%"
+            android:layout_height="wrap_content"
+            app:layout_marginLeftPercent="59%"
+            android:src="@drawable/sum_icon"/>
+
+        <TextView
+            android:id="@+id/sum"
+            app:layout_widthPercent="25%"
+            android:layout_height="wrap_content"
+            app:layout_marginLeftPercent="64%"
+            android:layout_gravity="center_vertical"
+            android:text="1,000,000.00"
+            android:textColor="#f67804"
+            android:textSize="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/open"
+            app:layout_widthPercent="5%"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            app:layout_marginRightPercent="5%"
+            android:src="@drawable/btn_open_img"/>
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/fl_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:visibility="gone">
+
+
+
+        <android.support.percent.PercentFrameLayout
+            app:layout_widthPercent="100%"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:background="@drawable/bg_single_c4e1ff_10dp"
+            android:descendantFocusability="blocksDescendants">
+
+            <TextView
+                app:layout_widthPercent="25%"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="期数"/>
+
+            <TextView
+                app:layout_widthPercent="25%"
+                android:layout_height="30dp"
+                app:layout_marginLeftPercent="25%"
+                android:gravity="center"
+                android:text="回收金额"/>
+
+            <TextView
+                app:layout_widthPercent="25%"
+                android:layout_height="30dp"
+                app:layout_marginLeftPercent="50%"
+                android:gravity="center"
+                android:text="回收日期"/>
+
+            <TextView
+                app:layout_widthPercent="25%"
+                android:layout_height="30dp"
+                app:layout_marginLeftPercent="75%"
+                android:gravity="center"
+                android:text="状态"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/records_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:isScrollContainer="false"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.percent.PercentFrameLayout>
+
+    </android.support.percent.PercentFrameLayout>
+
+</LinearLayout>
+
+

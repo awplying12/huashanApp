@@ -89,9 +89,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         });
 
 
-
-
-
     }
 
     /**

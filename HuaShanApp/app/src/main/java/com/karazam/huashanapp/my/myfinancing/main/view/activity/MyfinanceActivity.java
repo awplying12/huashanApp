@@ -224,6 +224,7 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
                 assignmentView.dismiss();
             }
         });
+
     }
 
     /**

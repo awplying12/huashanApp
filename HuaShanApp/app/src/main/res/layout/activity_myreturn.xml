@@ -112,21 +112,11 @@
             </android.support.percent.PercentFrameLayout>
 
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/title_rl"
-                android:layout_width="match_parent"
-                app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="22%"
-                android:overScrollMode="never"
-                android:background="#fff">
-
-            </android.support.v7.widget.RecyclerView>
-
             <android.support.percent.PercentFrameLayout
                 android:id="@+id/label_pl"
                 android:layout_width="match_parent"
-                app:layout_heightPercent="58%"
-                app:layout_marginTopPercent="32%"
+                app:layout_heightPercent="68%"
+                app:layout_marginTopPercent="22%"
                 android:background="@color/all_activity_background"
                 >
 
@@ -158,7 +148,7 @@
                     android:layout_width="match_parent"
                     app:layout_heightPercent="89%"
                     app:layout_marginTopPercent="11%"
-
+                    android:overScrollMode="never"
                     >
 
                 </android.support.v7.widget.RecyclerView>
@@ -195,9 +185,13 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:background="#60000000"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
         </com.example.paymentpassword.PasswordView>
     </android.support.percent.PercentRelativeLayout>
+
 </layout>
 

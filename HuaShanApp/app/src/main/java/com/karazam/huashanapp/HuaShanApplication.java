@@ -11,6 +11,8 @@ import com.example.utils.utils.PathUtil;
 import com.karazam.huashanapp.main.UserInformation;
 import com.karazam.huashanapp.main.financialproject.FinancialInformation;
 import com.karazam.huashanapp.main.financialproject.FinancialProject;
+import com.karazam.huashanapp.main.financialproject.ReturnRecords;
+import com.karazam.huashanapp.main.financialproject.ReturnRecordsItem;
 import com.ogaclejapan.rx.binding.RxProperty;
 
 import java.util.ArrayList;
@@ -53,6 +55,8 @@ public class HuaShanApplication extends Application {
     public static FinancialProject project2;
     public static FinancialProject project3;
     public static FinancialProject project4;
+
+    public static ArrayList<ReturnRecords> returnRecordses;
 
     @Override
     public void onCreate() {
@@ -126,6 +130,35 @@ public class HuaShanApplication extends Application {
         informations4.add(new FinancialInformation());
         informations4.add(new FinancialInformation());
         project4.setInformations(informations4);
+
+        returnRecordses = new ArrayList<>();
+        ArrayList<ReturnRecordsItem> item1 = new ArrayList<>();
+        item1.add(new ReturnRecordsItem());
+        item1.add(new ReturnRecordsItem());
+        item1.add(new ReturnRecordsItem());
+        item1.add(new ReturnRecordsItem());
+        item1.add(new ReturnRecordsItem());
+
+        ArrayList<ReturnRecordsItem> item2 = new ArrayList<>();
+        item2.add(new ReturnRecordsItem());
+        item2.add(new ReturnRecordsItem());
+        item2.add(new ReturnRecordsItem());
+        item2.add(new ReturnRecordsItem());
+
+        ArrayList<ReturnRecordsItem> item3 = new ArrayList<>();
+        item3.add(new ReturnRecordsItem());
+        item3.add(new ReturnRecordsItem());
+        item3.add(new ReturnRecordsItem());
+        item3.add(new ReturnRecordsItem());
+        item3.add(new ReturnRecordsItem());
+        item3.add(new ReturnRecordsItem());
+        item3.add(new ReturnRecordsItem());
+        item3.add(new ReturnRecordsItem());
+
+
+        returnRecordses.add(new ReturnRecords(item1));
+        returnRecordses.add(new ReturnRecords(item2));
+        returnRecordses.add(new ReturnRecords(item3));
 
 
     }

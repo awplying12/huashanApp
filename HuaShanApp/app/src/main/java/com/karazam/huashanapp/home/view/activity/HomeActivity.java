@@ -44,12 +44,12 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
     private TextView today_text;
     private TextView manage_text;
-    private TextView mall_text;
+//    private TextView mall_text;
     private TextView my_text;
 
     private ImageView today_img;
     private ImageView manage_img;
-    private ImageView mall_img;
+//    private ImageView mall_img;
     private ImageView my_img;
 
     private int isSelected;
@@ -86,12 +86,12 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
         today_text = (TextView) getView(R.id.today_text);
         manage_text = (TextView) getView(R.id.manage_text);
-        mall_text = (TextView) getView(R.id.mall_text);
+//        mall_text = (TextView) getView(R.id.mall_text);
         my_text = (TextView) getView(R.id.my_text);
 
         today_img = (ImageView) getView(R.id.today_img);
         manage_img = (ImageView) getView(R.id.manage_img);
-        mall_img = (ImageView) getView(R.id.mall_img);
+//        mall_img = (ImageView) getView(R.id.mall_img);
         my_img = (ImageView) getView(R.id.my_img);
 
     }
@@ -124,6 +124,11 @@ public class HomeActivity extends BaseActivity implements HomeView {
 //                }
                 break;
         }
+
+        if(resultCode ==67 && requestCode == 67){
+            viewPager.setCurrentItem(1);
+            manageFragment.setCurrentItem(0);
+        }
     }
 
     /**
@@ -133,7 +138,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
         ArrayList<Fragment> list = new ArrayList<>();
         list.add(todayFragment);
         list.add(manageFragment);
-        list.add(applyFragment);
+//        list.add(applyFragment);
         list.add(myFragment);
 
         viewPager.setScrollAble(true);
@@ -155,10 +160,10 @@ public class HomeActivity extends BaseActivity implements HomeView {
                     case 1:
                         mModel.toManage(null);
                         break;
+//                    case 2:
+//                        mModel.toApply(null);
+//                        break;
                     case 2:
-                        mModel.toApply(null);
-                        break;
-                    case 3:
                         mModel.toMy(null);
                         break;
                     default:
@@ -197,11 +202,11 @@ public class HomeActivity extends BaseActivity implements HomeView {
                 manage_text.setTextColor(isSelected);
                 manage_img.setSelected(true);
                 break;
+//            case 2:
+//                mall_text.setTextColor(isSelected);
+//                mall_img.setSelected(true);
+//                break;
             case 2:
-                mall_text.setTextColor(isSelected);
-                mall_img.setSelected(true);
-                break;
-            case 3:
                 my_text.setTextColor(isSelected);
                 my_img.setSelected(true);
                 break;
@@ -216,12 +221,12 @@ public class HomeActivity extends BaseActivity implements HomeView {
     private void initBottomLayout() {
         today_text.setTextColor(isDefault);
         manage_text.setTextColor(isDefault);
-        mall_text.setTextColor(isDefault);
+//        mall_text.setTextColor(isDefault);
         my_text.setTextColor(isDefault);
 
         today_img.setSelected(false);
         manage_img.setSelected(false);
-        mall_img.setSelected(false);
+//        mall_img.setSelected(false);
         my_img.setSelected(false);
     }
 

@@ -38,5 +38,8 @@ public class MytransferViewModelImpl extends MytransferViewModel {
         }else {
             mView.showToast("买入");
         }
+
+        activity.setResult(67);
+        mView.FinishActivity(activity);
     }
 }

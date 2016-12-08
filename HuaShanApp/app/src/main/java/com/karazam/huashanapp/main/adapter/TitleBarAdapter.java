@@ -102,6 +102,13 @@ public class TitleBarAdapter extends RecyclerView.Adapter<TitleBarAdapter.ViewHo
         }
     }
 
+    public void setCurrentItem(int posation){
+        notifyDataSetChanged();
+
+        selectPosition = posation;
+
+    }
+
     public interface onItemClickListener{
         void onItemClick(View view,int position);
     }

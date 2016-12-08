@@ -60,12 +60,12 @@ public class HomeViewModelImpl extends HomeViewModel {
     }
 
     /**
-     * 申请Fragment
+     * 积分Fragment
      * @param view
      */
     @Override
     public void toApply(View view) {
-        mView.setViewPagerCurrentItem(2,"申请");
+//        mView.setViewPagerCurrentItem(2,"申请");
     }
 
     /**
@@ -83,7 +83,7 @@ public class HomeViewModelImpl extends HomeViewModel {
 //                break;
 //        }
 
-        mView.setViewPagerCurrentItem(3,"我的");
+        mView.setViewPagerCurrentItem(2,"我的");
     }
 
     @Override

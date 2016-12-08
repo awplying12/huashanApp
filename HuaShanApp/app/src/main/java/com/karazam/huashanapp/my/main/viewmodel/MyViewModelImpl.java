@@ -2,6 +2,7 @@ package com.karazam.huashanapp.my.main.viewmodel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
@@ -12,9 +13,11 @@ import com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEnt
 import com.karazam.huashanapp.my.myfinancing.main.view.activity.MyfinanceActivity;
 import com.karazam.huashanapp.my.myreturn.main.view.activity.MyReturnActivity;
 import com.karazam.huashanapp.my.mytransfer.main.view.activity.MytransferActivity;
+import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
 import com.karazam.huashanapp.my.recharge.main.view.activity.RechargeActivity;
 import com.karazam.huashanapp.my.setup.view.activity.SetupActivity;
+import com.karazam.huashanapp.my.transactiondetails.main.view.activity.TransactionActivity;
 import com.karazam.huashanapp.my.withdrawals.main.view.activity.WithdrawalsActivity;
 
 /**
@@ -98,7 +101,9 @@ public class MyViewModelImpl extends MyViewModel {
      */
     @Override
     public void Myfinance(View view) {
-        mView.toOtherActivity(activity, MyfinanceActivity.class);
+
+        Intent intent = new Intent(activity,MyfinanceActivity.class);
+        activity.startActivityForResult(intent,67);
     }
 
     /**
@@ -107,7 +112,9 @@ public class MyViewModelImpl extends MyViewModel {
      */
     @Override
     public void Mytransfer(View view) {
-        mView.toOtherActivity(activity, MytransferActivity.class);
+
+        Intent intent = new Intent(activity,MytransferActivity.class);
+        activity.startActivityForResult(intent,67);
     }
 
     /**
@@ -117,7 +124,33 @@ public class MyViewModelImpl extends MyViewModel {
     @Override
     public void MyReturn(View view) {
 
-        mView.toOtherActivity(activity, MyReturnActivity.class);
+
+        Intent intent = new Intent(activity,MyReturnActivity.class);
+        activity.startActivityForResult(intent,67);
+    }
+
+    /**
+     * 银行卡
+     * @param view
+     */
+    @Override
+    public void BankCard(View view) {
+
+        if(HuaShanApplication.userInformation.isStatus()){
+            mView.toOtherActivity(activity, AuthenticatedActivity.class);
+        }else {
+            mView.toOtherActivity(activity, UnauthorizedActivity.class);
+        }
+
+    }
+
+    /**
+     * 交易记录
+     * @param view
+     */
+    @Override
+    public void Transaction(View view) {
+        mView.toOtherActivity(activity, TransactionActivity.class);
     }
 
     private void setCertificationDialog(){

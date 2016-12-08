@@ -104,6 +104,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 
                 switch (position){
                     case 0: //产融货
+                        showToast("产融货");
                         break;
                     case 1: //优企宝
                         break;
@@ -112,8 +113,13 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
                     default:
                         break;
                 }
+
             }
         });
+    }
+
+    public void setCurrentItem(int position){
+        titlebarAdapter.setCurrentItem(position);
     }
 
     /**
@@ -121,7 +127,6 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
      *  实现下拉刷新和上拉加载更多以及没有数据的显示
      *
      */
-
     private void setRefreshRecyclerView() {
 
 
