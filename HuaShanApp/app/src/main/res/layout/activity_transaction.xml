@@ -78,11 +78,20 @@
             >
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TransactionActivity"
-                />
+            <com.example.stickylistview_library.ExpandableStickyListHeadersListView
+                android:id="@+id/transaction_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:drawSelectorOnTop="true"
+                android:overScrollMode="never"
+                android:divider="#00000000"
+                android:scrollbars="none"
+                >
+
+            </com.example.stickylistview_library.ExpandableStickyListHeadersListView>
+
+
 
 
 

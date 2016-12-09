@@ -1,1 +1,1 @@
-include ':app', ':gesture_lock', ':utils', ':cacheutils', 'waveview', ':lib', ':recyclerviewpager', ':paymentpassword', ':progressbar'
+include ':app', ':gesture_lock', ':utils', ':cacheutils', 'waveview', ':lib', ':recyclerviewpager', ':paymentpassword', ':progressbar', ':stickylistview_library'

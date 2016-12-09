@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/data_tv_1"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="5%"
+            android:gravity="bottom"
+            android:text="周日"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/data_tv_2"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="5%"
+            android:layout_gravity="bottom"
+            android:gravity="top"
+            android:text="11-13"
+            android:textSize="15dp"/>
+
+
+        <TextView
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="35%"
+
+            android:gravity="bottom"
+            android:text="+3195.00"
+            android:textSize="18dp"/>
+
+        <TextView
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="35%"
+            android:layout_gravity="bottom"
+            android:gravity="top"
+            android:text="银行卡到余额账户-充值"
+            android:textSize="15dp"/>
+
+        <ImageView
+            app:layout_widthPercent="90%"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal|bottom"
+
+            android:background="@color/line_color"/>
+
+
+    </android.support.percent.PercentFrameLayout>
+
+</LinearLayout>

@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/paymentpassword/paymentpassword.iml" filepath="$PROJECT_DIR$/paymentpassword/paymentpassword.iml" />
       <module fileurl="file://$PROJECT_DIR$/progressbar/progressbar.iml" filepath="$PROJECT_DIR$/progressbar/progressbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/recyclerviewpager/recyclerviewpager.iml" filepath="$PROJECT_DIR$/recyclerviewpager/recyclerviewpager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stickylistview_library/stickylistview_library.iml" filepath="$PROJECT_DIR$/stickylistview_library/stickylistview_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/waveview/waveview.iml" filepath="$PROJECT_DIR$/waveview/waveview.iml" />
     </modules>

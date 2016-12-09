@@ -33,4 +33,5 @@ dependencies {
     compile project(':recyclerviewpager')
     compile project(':paymentpassword')
     compile project(':progressbar')
+    compile project(':stickylistview_library')
 }
