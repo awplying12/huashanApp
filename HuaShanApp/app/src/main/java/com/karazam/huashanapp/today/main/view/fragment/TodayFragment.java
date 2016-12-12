@@ -1,23 +1,36 @@
 package com.karazam.huashanapp.today.main.view.fragment;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.percent.PercentFrameLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.utils.base.BaseActivity;
 import com.example.utils.base.BaseFragment;
 
 import com.example.utils.custom.FullyLinearLayoutManager;
 import com.example.utils.custom.VpSwipeRefreshLayout;
 import com.example.utils.custom.views.AutoScrollViewPager;
+import com.example.utils.utils.BitmapUtil;
+import com.example.utils.utils.FastBlur;
 import com.google.common.collect.Lists;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
@@ -73,6 +86,10 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     private RecyclerView selected_rl;
     private RecyclerView experience_rl;
 
+    private PercentFrameLayout viewpager_pl;
+    private PercentFrameLayout title_pl;
+    private ImageView head_img;
+
     private ImageView line_1;
     private ImageView line_2;
 
@@ -112,8 +129,6 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
     }
 
-
-
     /**
      * 初始化日期
      */
@@ -131,6 +146,8 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     /**
      * 初始化View
      */
+//    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @SuppressLint("NewApi")
     private void initView() {
 
         swl = (VpSwipeRefreshLayout) getView(R.id.today_swipe_ly,view);
@@ -141,8 +158,32 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         pager = (AutoScrollViewPager) getView(R.id.today_scroll_pager,view);
         springIndicator = (SpringIndicator) getView(R.id.indicator,view);
 
+        viewpager_pl = (PercentFrameLayout) getView(R.id.viewpager_pl,view);
+        viewpager_pl.setLayoutParams(new LinearLayout.LayoutParams(BaseActivity.ScreeW, (int) (BaseActivity.ScreeW*0.4)));
+
+        head_img = (ImageView) getView(R.id.head_img,view);
+
+        title_pl = (PercentFrameLayout) getView(R.id.title_pl,view);
+
+        title_pl.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                         public boolean onPreDraw() {
+                        title_pl.getViewTreeObserver().removeOnPreDrawListener(this);
+                        title_pl.buildDrawingCache();
+
+                               Bitmap bmp = title_pl.getDrawingCache();
+                               BitmapUtil.blur(bmp,title_pl,getContext());
+                                return true;
+                            }
+                  });
+
+
+
+
+
         profit_num = (TextView) getView(R.id.profit_num,view);
-        final Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"FZXQJW.TTF");
+//        final Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"FZXQJW.TTF");
+        final Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"roboto/Roboto-Thin.ttf");
         profit_num.setTypeface(font);
 
         scrollview = (MyNestedScrollView) getView(R.id.scrollview,view);
@@ -217,7 +258,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
      * @return
      */
     private List<Integer> getBgRes(){
-        return Lists.newArrayList(R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4,R.drawable.image5);
+        return Lists.newArrayList(R.drawable.winter, R.drawable.winter1, R.drawable.winter2, R.drawable.winter3,R.drawable.winter4);
     }
 
     /**

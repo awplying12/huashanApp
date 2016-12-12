@@ -5,7 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="transparent">#00ffffff</color>
 
-    <color name="all_activity_background">#EEEEEE</color>
+    <!--<color name="all_activity_background">#EEEEEE</color>-->
+    <color name="all_activity_background">#f0f0f0</color>
 
     <color name="line_color">#20000000</color>
 

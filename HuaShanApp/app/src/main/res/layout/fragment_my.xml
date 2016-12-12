@@ -21,7 +21,7 @@
                 android:id="@+id/title_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/fw"
+                android:background="#0894EC"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_heightPercent="9%"
@@ -30,7 +30,7 @@
                 <ImageView
                     app:layout_widthPercent="7%"
                     android:layout_height="match_parent"
-                    android:layout_gravity="right"
+                    android:layout_gravity="right|center_vertical"
                     app:layout_marginRightPercent="7%"
                     android:src="@drawable/message_icon"/>
 
@@ -38,10 +38,20 @@
                     app:layout_widthPercent="6%"
                     android:layout_height="match_parent"
                     app:layout_marginRightPercent="20%"
-                    android:layout_gravity="right"
+                    android:layout_gravity="right|center_vertical"
                     android:src="@drawable/set_icon"
                     android:id="@+id/imageView4"
                     android:onClick="@{handler.setUp}"/>
+
+                <ImageView
+                    android:id="@+id/user_header"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/user_logo"
+                    android:layout_gravity="center_vertical"
+                    app:layout_marginTopPercent="2%"
+                    app:layout_marginLeftPercent="5%"
+                    android:gravity="center"/>
 
 
             </android.support.percent.PercentFrameLayout>
@@ -62,14 +72,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
+                    android:paddingBottom="4dp"
                     android:orientation="vertical">
 
                     <!--part1-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:background="#66b3ff"
+                        android:layout_height="170dp"
+                        android:background="#0894EC"
                         >
 
                         <TextView
@@ -78,18 +88,19 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
-                            app:layout_marginTopPercent="20%"
-                            android:text="总资产（元）"
+                            app:layout_marginTopPercent="15%"
+                            android:text="总资产(元)"
                             android:textColor="@color/my_pf1_content_text_color"
-                            android:textSize="13dp"/>
+                            android:textSize="15dp"/>
 
                         <TextView
                             android:id="@+id/det_income"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            app:layout_marginTopPercent="28%"
+                            app:layout_marginTopPercent="23%"
                             android:text="0.00"
+                            style="@style/Base.TextAppearance.AppCompat.Body2"
                             android:textColor="@color/my_pf1_content_text_color"
                             android:textSize="38dp"
                             />
@@ -100,8 +111,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:layout_gravity="left|bottom"
-                            app:layout_marginBottomPercent="25%"
-                            android:text="账户余额（元）"
+                            app:layout_marginBottomPercent="30%"
+                            android:text="账户余额(元)"
+                            android:textSize="10dp"
                             android:textColor="@color/my_pf1_content_text_color"
                             />
 
@@ -110,8 +122,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:layout_gravity="right|bottom"
-                            app:layout_marginBottomPercent="25%"
-                            android:text="累计收益（元）"
+                            app:layout_marginBottomPercent="30%"
+                            android:text="累计收益(元)"
+                            android:textSize="10dp"
                             android:textColor="@color/my_pf1_content_text_color"
                             />
 
@@ -120,10 +133,10 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:layout_gravity="left|bottom"
-                            app:layout_marginBottomPercent="6%"
+                            app:layout_marginBottomPercent="10%"
                             android:text="0.00"
                             android:textColor="@color/my_pf1_content_text_color"
-                            android:textSize="30dp"
+                            android:textSize="25dp"
                             />
 
                         <TextView
@@ -131,10 +144,10 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:layout_gravity="right|bottom"
-                            app:layout_marginBottomPercent="6%"
+                            app:layout_marginBottomPercent="10%"
                             android:text="0.00"
                             android:textColor="@color/my_pf1_content_text_color"
-                            android:textSize="30dp"
+                            android:textSize="25dp"
                             />
                         
                     </android.support.percent.PercentFrameLayout>
@@ -142,7 +155,7 @@
                     <!--充值 提现-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="60dp"
                         android:background="#fff">
 
                         <TextView
@@ -154,7 +167,8 @@
                             android:text="充值"
                             android:textSize="17dp"
                             android:textColor="#fff"
-                            android:background="@drawable/bg_recharge"
+                            android:background="@drawable/bg_fillet_0894ec_50dp"
+
                             android:onClick="@{handler.Recharge}"/>
 
                         <TextView
@@ -165,8 +179,8 @@
                             app:layout_marginLeftPercent="10%"
                             android:text="提现"
                             android:textSize="17dp"
-                            android:textColor="@color/title_color"
-                            android:background="@drawable/bg_withdrawals"
+                            android:textColor="#fff"
+                            android:background="@drawable/bg_fillet_ff9900_50dp"
                             android:id="@+id/textView3"
                             android:onClick="@{handler.Withdrawals}"/>
 
@@ -181,7 +195,7 @@
                     <!--我的理财-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="55dp"
                         android:background="#fff"
                         android:onClick="@{handler.Myfinance}">
 
@@ -210,13 +224,13 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="4dp"
+                        android:layout_height="1dp"
                         />
 
                     <!--我的转让-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="55dp"
                         android:background="#fff"
                         android:onClick="@{handler.Mytransfer}">
 
@@ -245,13 +259,13 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="4dp"
+                        android:layout_height="1dp"
                         />
 
                     <!--我的回款-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="55dp"
                         android:background="#fff"
                         android:onClick="@{handler.MyReturn}">
 
@@ -281,13 +295,13 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="4dp"
+                        android:layout_height="1dp"
                         />
 
                     <!--银行卡-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="55dp"
                         android:background="#fff"
                         android:onClick="@{handler.BankCard}">
 
@@ -316,13 +330,13 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="4dp"
+                        android:layout_height="1dp"
                         />
 
                     <!--交易记录-->
                     <android.support.percent.PercentFrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
+                        android:layout_height="55dp"
                         android:background="#fff"
                         android:onClick="@{handler.Transaction}">
 
@@ -357,14 +371,7 @@
         </android.support.percent.PercentFrameLayout>
 
 
-        <ImageView
-            android:id="@+id/user_header"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/user_logo"
-            app:layout_marginTopPercent="2%"
-            app:layout_marginLeftPercent="5%"
-            android:gravity="center"/>
+
 
     </android.support.percent.PercentFrameLayout>
 </layout>

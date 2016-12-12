@@ -1,5 +1,7 @@
 package com.example.utils.utils;
 
+import android.annotation.TargetApi;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,8 +12,14 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Environment;
+import android.renderscript.Allocation;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Base64;
+import android.view.View;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -221,4 +229,44 @@ public class BitmapUtil {
         byte[] bytes = baos.toByteArray();
         return Base64.encodeToString(bytes, 0);
     }
+
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+        public static void blur(Bitmap bkg, View view, Context context) {
+
+
+               float radius = 20;
+
+               Bitmap overlay = Bitmap.createBitmap((int) (view.getMeasuredWidth()),
+                             (int) (view.getMeasuredHeight()), Bitmap.Config.ARGB_8888);
+
+               Canvas canvas = new Canvas(overlay);
+
+              canvas.translate(-view.getLeft(), -view.getTop());
+               canvas.drawBitmap(bkg, 0, 0, null);
+
+             RenderScript rs = RenderScript.create(context);
+
+               Allocation overlayAlloc = Allocation.createFromBitmap(
+                              rs, overlay);
+
+                ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(
+                              rs, overlayAlloc.getElement());
+
+                 blur.setInput(overlayAlloc);
+
+              blur.setRadius(radius);
+
+               blur.forEach(overlayAlloc);
+
+                overlayAlloc.copyTo(overlay);
+
+             view.setBackground(new BitmapDrawable(
+                     context.getResources(), overlay));
+
+             rs.destroy();
+
+           }
+
+
 }

@@ -112,4 +112,10 @@ public class FullyLinearLayoutManager extends LinearLayoutManager {
         } finally {
         }
     }
+
+    @Override
+    public boolean canScrollVertically() {
+//        return super.canScrollVertically();
+        return false;
+    }
 }

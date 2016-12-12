@@ -92,7 +92,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:layout_marginTop="80dp"
+                            android:layout_marginTop="60dp"
                             android:text="今日最新收益(元)"
                             android:textSize="@dimen/todayfragment_profit_text_size_1"/>
 
@@ -207,13 +207,14 @@
 
                     </android.support.percent.PercentFrameLayout>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:background="@color/todayfragment_line_color"/>
+                    <!--<ImageView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="8dp"-->
+                        <!--android:background="@color/todayfragment_line_color"/>-->
 
                     <!--滚动广告条-->
                     <android.support.percent.PercentFrameLayout
+                        android:id="@+id/viewpager_pl"
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         >
@@ -256,19 +257,20 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="8dp"
+                        android:layout_height="18dp"
                         android:background="@color/todayfragment_line_color"/>
 
                     <!--每日精选—体检-->
-                    <android.support.percent.PercentFrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         >
 
                         <android.support.percent.PercentFrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:background="#fff"
+                            android:layout_height="wrap_content"
+                            android:background="@color/all_activity_background"
                             >
 
                             <TextView
@@ -292,32 +294,25 @@
 
                         </android.support.percent.PercentFrameLayout>
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/line_color"
-                            android:layout_marginTop="40dp"
-
-                            />
-
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:descendantFocusability="blocksDescendants">
+                            android:descendantFocusability="blocksDescendants"
+                            >
 
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/experience_rl"
                                 android:layout_width="match_parent"
-                                android:layout_marginTop="40dp"
+
                                 android:layout_height="wrap_content"
-                                android:isScrollContainer="false">
+                                android:background="@color/all_activity_background"
+                                android:isScrollContainer="false"
+                                >
 
                             </android.support.v7.widget.RecyclerView>
 
                         </RelativeLayout>
-
-
-                    </android.support.percent.PercentFrameLayout>
+                    </LinearLayout>
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -325,15 +320,16 @@
                         android:background="@color/todayfragment_line_color"/>
 
                     <!--每日精选—推荐-->
-                    <android.support.percent.PercentFrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         >
 
                         <android.support.percent.PercentFrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:background="#fff"
+                            android:layout_height="wrap_content"
+                            android:background="@color/all_activity_background"
                             >
 
                             <TextView
@@ -357,13 +353,7 @@
 
                         </android.support.percent.PercentFrameLayout>
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/line_color"
-                            android:layout_marginTop="40dp"
 
-                            />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -373,8 +363,9 @@
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/selected_rl"
                                 android:layout_width="match_parent"
-                                android:layout_marginTop="40dp"
+
                                 android:layout_height="wrap_content"
+                                android:background="@color/all_activity_background"
                                 android:isScrollContainer="false">
 
                             </android.support.v7.widget.RecyclerView>
@@ -382,7 +373,7 @@
                         </RelativeLayout>
 
 
-                    </android.support.percent.PercentFrameLayout>
+                    </LinearLayout>
 
 
 
@@ -488,9 +479,10 @@
 
 
         <android.support.percent.PercentFrameLayout
+            android:id="@+id/title_pl"
             android:layout_width="match_parent"
             android:layout_height="47dp"
-
+            android:background="#50ffffff"
             >
 
             <android.support.percent.PercentFrameLayout

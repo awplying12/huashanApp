@@ -126,9 +126,13 @@ public class HomeActivity extends BaseActivity implements HomeView {
         }
 
         if(resultCode ==67 && requestCode == 67){
-            viewPager.setCurrentItem(1);
-            manageFragment.setCurrentItem(0);
+            setCurrentItem(1,0);
         }
+    }
+
+    public void setCurrentItem(int position,int item){
+        viewPager.setCurrentItem(position);
+        manageFragment.setCurrentItem(item);
     }
 
     /**

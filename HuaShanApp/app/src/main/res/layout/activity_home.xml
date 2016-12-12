@@ -87,7 +87,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:overScrollMode="never"
-                app:layout_heightPercent="90%">
+                app:layout_heightPercent="92%">
 
             </com.example.utils.custom.ScrollableViewPager>
 
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:background="#f8f8f8"
                 android:layout_alignParentBottom="true"
-                app:layout_heightPercent="10%"
+                app:layout_heightPercent="8%"
                 >
 
                 <LinearLayout
@@ -111,8 +111,8 @@
 
                     <ImageView
                         android:id="@+id/today_img"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:padding="5dp"
                         android:background="@drawable/bg_today_img"
                     />
@@ -138,8 +138,8 @@
 
                     <ImageView
                         android:id="@+id/manage_img"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:padding="5dp"
                         android:background="@drawable/bg_inv_img"
                          />
@@ -193,8 +193,8 @@
 
                     <ImageView
                         android:id="@+id/my_img"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:padding="5dp"
                         android:background="@drawable/bg_me_img"
                         />

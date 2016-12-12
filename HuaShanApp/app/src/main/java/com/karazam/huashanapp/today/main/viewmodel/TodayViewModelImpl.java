@@ -58,8 +58,9 @@ public class TodayViewModelImpl extends TodayViewModel {
      */
     @Override
     public void onIndustryAndFinance(View view) {
-        mView.showToast("onIndustryAndFinance");
 
+        HomeActivity act = (HomeActivity) activity;
+        act.setCurrentItem(1,0);
     }
 
     /**
@@ -68,7 +69,9 @@ public class TodayViewModelImpl extends TodayViewModel {
      */
     @Override
     public void onExcellentprices(View view) {
-        mView.showToast("onExcellentprices");
+
+        HomeActivity act = (HomeActivity) activity;
+        act.setCurrentItem(1,1);
     }
 
     /**
@@ -77,7 +80,9 @@ public class TodayViewModelImpl extends TodayViewModel {
      */
     @Override
     public void onAllFinance(View view) {
-        mView.showToast("onAllFinance");
+
+        HomeActivity act = (HomeActivity) activity;
+        act.setCurrentItem(1,0);
     }
 
     /**
