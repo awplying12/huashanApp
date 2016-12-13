@@ -33,7 +33,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	/** �״���ʾ�����������룬����ѡ������ */
 	public static final String PARAM_IS_FIRST_ADVICE = "PARAM_IS_FIRST_ADVICE";
 	private TextView mTextTitle;
-	private TextView mTextCancel;
+//	private TextView mTextCancel;
 	private LockIndicator mLockIndicator;
 	private TextView mTextTip;
 	private FrameLayout mGestureContainer;
@@ -57,7 +57,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	
 	private void setUpViews() {
 		mTextTitle = (TextView) findViewById(R.id.text_title);
-		mTextCancel = (TextView) findViewById(R.id.text_cancel);
+//		mTextCancel = (TextView) findViewById(R.id.text_cancel);
 		mTextReset = (TextView) findViewById(R.id.text_reset);
 		mTextReset.setClickable(false);
 		mLockIndicator = (LockIndicator) findViewById(R.id.lock_indicator);
@@ -67,8 +67,11 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 		mGestureContentView = new GestureContentView(this, false, "", new GestureDrawline.GestureCallBack() {
 			@Override
 			public void onGestureCodeInput(String inputCode) {
+
+
+
 				if (!isInputPassValidate(inputCode)) {
-					mTextTip.setText(Html.fromHtml("<font color='#c70c1e'>密码过短!</font>"));
+					mTextTip.setText(Html.fromHtml("<font color='#ff0000'>密码过短!</font>"));
 					mGestureContentView.clearDrawlineState(0L);
 					return;
 				}
@@ -87,7 +90,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 						GestureEditActivity.this.setResult(GestureUtil.GESTURELOCK_EDIT_RESULTCODE,intent);
 						GestureEditActivity.this.finish();
 					} else {
-						mTextTip.setText(Html.fromHtml("<font color='#c70c1e'>两次密码不一致!</font>"));
+						mTextTip.setText(Html.fromHtml("<font color='#ff0000'>两次密码不一致!</font>"));
 						// �����ƶ�����
 						Animation shakeAnimation = AnimationUtils.loadAnimation(GestureEditActivity.this, R.anim.shake);
 						mTextTip.startAnimation(shakeAnimation);
@@ -96,6 +99,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 					}
 				}
 				mIsFirstInput = false;
+				mTextTip.setText(getString(R.string.setup_gesture_pattern_again));
 			}
 
 			@Override
@@ -114,7 +118,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	}
 	
 	private void setUpListeners() {
-		mTextCancel.setOnClickListener(this);
+//		mTextCancel.setOnClickListener(this);
 		mTextReset.setOnClickListener(this);
 	}
 	
@@ -126,10 +130,12 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		int i = v.getId();
-		if (i == R.id.text_cancel) {
-			this.finish();
-
-		} else if (i == R.id.text_reset) {
+//		if (i == R.id.text_cancel) {
+//			this.finish();
+//
+//		}
+//		else
+		if (i == R.id.text_reset) {
 			mIsFirstInput = true;
 			updateCodeList("");
 			mTextTip.setText(getString(R.string.set_gesture_pattern));

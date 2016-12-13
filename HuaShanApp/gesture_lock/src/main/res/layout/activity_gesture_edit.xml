@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/beijing" >
+    android:background="#fff" >
 
-    <RelativeLayout
-        android:id="@+id/top_layout"
-        android:layout_width="match_parent"
-        android:layout_height="46dip"
-        android:background="#0894EC"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
-        android:layout_alignParentTop="true" >
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/top_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="46dip"-->
+        <!--android:background="#0894EC"-->
+        <!--android:paddingLeft="20dip"-->
+        <!--android:paddingRight="20dip"-->
+        <!--android:layout_alignParentTop="true" >-->
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="@string/setup_gesture_code"
-            android:textSize="15dp"
-            android:textColor="#ffffff" />
+        <!--<TextView-->
+            <!--android:id="@+id/text_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/setup_gesture_code"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textColor="#ffffff" />-->
 
-        <TextView
-            android:id="@+id/text_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="right"
-            android:text="取消"
-            android:textSize="15dp"
-            android:textColor="#fff" />
-    </RelativeLayout>
+        <!--<TextView-->
+            <!--android:id="@+id/text_cancel"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:gravity="right"-->
+            <!--android:text="取消"-->
+            <!--android:textSize="15dp"-->
+            <!--android:textColor="#fff" />-->
+    <!--</RelativeLayout>-->
 
     <LinearLayout
         android:id="@+id/gesture_tip_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/top_layout"
+        app:layout_marginTopPercent="15%"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -54,8 +56,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@string/set_gesture_pattern"
-            android:textColor="#F98F12"
+            android:text="为了您的帐号安全，请设置手势密码"
+            android:textColor="#8ea7e7"
             android:layout_marginTop="10dip" />
     </LinearLayout>
 
@@ -63,9 +65,13 @@
         android:id="@+id/gesture_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_widthPercent="90%"
+
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/gesture_tip_layout"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dip" >
+
+        >
     </FrameLayout>
 
     <TextView
@@ -74,8 +80,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_below="@id/gesture_container"
-        android:layout_marginTop="20dip"
-        android:text="@string/set_gesture_pattern_reason"
-        android:textColor="#fff" />
+        app:layout_marginTopPercent="1%"
+        android:text="@string/reset_gesture_code"
+        android:textColor="#afafaf" />
 
-</RelativeLayout>
+</android.support.percent.PercentRelativeLayout>

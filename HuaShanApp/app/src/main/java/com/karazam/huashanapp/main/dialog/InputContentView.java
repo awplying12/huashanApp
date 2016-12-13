@@ -76,6 +76,7 @@ public class InputContentView implements View.OnClickListener{
             return;
         }
         layout.addView(view,layout.getLayoutParams());
+        input_ed.setText("");
     }
 
     public void dismiss() {

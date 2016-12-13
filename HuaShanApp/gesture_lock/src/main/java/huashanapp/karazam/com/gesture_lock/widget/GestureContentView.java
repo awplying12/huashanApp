@@ -46,7 +46,7 @@ public class GestureContentView extends ViewGroup {
 	public GestureContentView(Context context, boolean isVerify, String passWord, GestureDrawline.GestureCallBack callBack) {
 		super(context);
 		screenDispaly = AppUtil.getScreenDispaly(context);
-		blockWidth = screenDispaly[0]/3;
+		blockWidth = (int) ((screenDispaly[0]*0.9)/3);
 		this.list = new ArrayList<GesturePoint>();
 		this.context = context;
 		this.isVerify = isVerify;
@@ -79,6 +79,7 @@ public class GestureContentView extends ViewGroup {
 	public void setParentView(ViewGroup parent){
 		// �õ���Ļ�Ŀ��
 		int width = screenDispaly[0];
+//		int width = parent.getWidth()/3;
 		LayoutParams layoutParams = new LayoutParams(width, width);
 		this.setLayoutParams(layoutParams);
 		gestureDrawline.setLayoutParams(layoutParams);

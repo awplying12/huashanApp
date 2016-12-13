@@ -76,9 +76,9 @@ public class GestureDrawline extends View {
 		canvas = new Canvas();
 		canvas.setBitmap(bitmap);
 		paint.setStyle(Style.STROKE);// ���÷����
-		paint.setStrokeWidth(10);// �ʿ�5����
+		paint.setStrokeWidth(5);// �ʿ�5����
 //		paint.setColor(Color.rgb(245, 142, 33));// ����Ĭ��������ɫ
-		paint.setColor(Color.parseColor("#076892"));
+		paint.setColor(Color.parseColor("#00479d"));
 		paint.setAntiAlias(true);// ����ʾ���
 
 		this.list = list;
@@ -130,7 +130,7 @@ public class GestureDrawline extends View {
 		}
 //		paint.setColor(Color.rgb(245, 142, 33));// ����Ĭ��������ɫ
 
-		paint.setColor(Color.parseColor("#076892"));
+		paint.setColor(Color.parseColor("#00a0e9"));
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			mov_x = (int) event.getX();
@@ -308,7 +308,8 @@ public class GestureDrawline extends View {
 	 */
 	private void drawErrorPathTip() {
 		canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-		paint.setColor(Color.rgb(154, 7, 21));// ����Ĭ����·��ɫ
+//		paint.setColor(Color.rgb(154, 7, 21));// ����Ĭ����·��ɫ
+		paint.setColor(Color.parseColor("#e60012"));
 		for (Pair<GesturePoint, GesturePoint> pair : lineList) {
 			pair.first.setPointState(Constants.POINT_STATE_WRONG);
 			pair.second.setPointState(Constants.POINT_STATE_WRONG);

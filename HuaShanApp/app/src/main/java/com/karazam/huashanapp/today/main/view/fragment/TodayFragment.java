@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
@@ -14,6 +15,7 @@ import android.support.percent.PercentFrameLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +57,8 @@ import java.util.List;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
 import github.chenupt.springindicator.GuideFragment;
 import github.chenupt.springindicator.SpringIndicator;
+
+import static android.R.attr.alpha;
 
 /**
  * Created by Administrator on 2016/11/2.
@@ -165,20 +169,17 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
         title_pl = (PercentFrameLayout) getView(R.id.title_pl,view);
 
-        title_pl.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                         public boolean onPreDraw() {
-                        title_pl.getViewTreeObserver().removeOnPreDrawListener(this);
-                        title_pl.buildDrawingCache();
-
-                               Bitmap bmp = title_pl.getDrawingCache();
-                               BitmapUtil.blur(bmp,title_pl,getContext());
-                                return true;
-                            }
-                  });
-
-
-
+//        title_pl.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+//                    @Override
+//                         public boolean onPreDraw() {
+//                        title_pl.getViewTreeObserver().removeOnPreDrawListener(this);
+//                        title_pl.buildDrawingCache();
+//
+//                               Bitmap bmp = title_pl.getDrawingCache();
+//                               BitmapUtil.blur(bmp,title_pl,getContext());
+//                                return true;
+//                            }
+//                  });
 
 
         profit_num = (TextView) getView(R.id.profit_num,view);
@@ -285,10 +286,32 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
                 if((y1-y2) <= 0 ){
                     line_1.setBackgroundColor(getResources().getColor(R.color.transparent));
                     line_2.setBackgroundColor(getResources().getColor(R.color.line_color));
+
+//                    float scale = (float) t / BaseActivity.ScreeH;
+
+
                 }else {
                     line_2.setBackgroundColor(getResources().getColor(R.color.transparent));
                     line_1.setBackgroundColor(getResources().getColor(R.color.line_color));
+
+
                 }
+
+                if(y1 > y2){
+                    title_pl.setBackgroundColor(Color.parseColor("#00000000"));
+
+                } else {        //当第一道线碰触到第二道线是时开始渐变
+                    float scale = (float) t / y2;
+                    float alpha = (255 * scale);
+                    if(scale < 2){
+                        title_pl.setBackgroundColor(Color.argb((int) alpha, 255,255,255));
+                    }else {
+                        title_pl.setBackgroundColor(Color.parseColor("#ffffff"));
+                    }
+
+                }
+
+
             }
         });
 
