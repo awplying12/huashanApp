@@ -15,6 +15,7 @@ import android.support.percent.PercentFrameLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 
+import com.karazam.huashanapp.main.UserInformation;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
@@ -57,6 +59,9 @@ import java.util.List;
 import github.chenupt.multiplemodel.viewpager.PagerModelManager;
 import github.chenupt.springindicator.GuideFragment;
 import github.chenupt.springindicator.SpringIndicator;
+import rx.Subscriber;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
 import static android.R.attr.alpha;
 
@@ -109,6 +114,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
         initView();
 
+        setHeader();
         initTime();
         setScrollView();
         AutoScrollViewPager();
@@ -137,11 +143,19 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
      * 初始化日期
      */
     private void initTime() {
-        RxView.findById(view,R.id.today_time).bind(HuaShanApplication.day, new Rx.Action<View, String>() {
+//        RxView.findById(view,R.id.today_time).bind(HuaShanApplication.day, new Rx.Action<View, String>() {
+//            @Override
+//            public void call(View target, String s) {
+//                TextView textView = (TextView) target;
+//                textView.setText(s);
+//            }
+//        });
+
+        RxView.findById(view,R.id.today_time).bind(HuaShanApplication.day, new Rx.Action<View, Time>() {
             @Override
-            public void call(View target, String s) {
+            public void call(View target, Time time) {
                 TextView textView = (TextView) target;
-                textView.setText(s);
+                textView.setText(time.monthDay+"");
             }
         });
     }
@@ -242,6 +256,35 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
             public boolean onLongClick(View view, int position) {
                 showToast(position+"Long");
                 return true;
+            }
+        });
+    }
+
+    private void setHeader(){
+        RxView.of(head_img).bind(HuaShanApplication.userInformationR, new Rx.Action<ImageView, UserInformation>() {
+            @Override
+            public void call(final ImageView target, UserInformation userInformation) {
+                String url = userInformation.getHeaderImg();
+                RxImageLoader.getLoaderObservable(target,url).subscribe(new Subscriber<Data>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        target.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.userhead_icon));
+                    }
+
+                    @Override
+                    public void onNext(Data data) {
+                        Bitmap bitmap = data.bitmap;
+                        if (bitmap == null){
+                            target.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.userhead_icon));
+                        }
+                        target.setImageBitmap(BitmapUtil.toRoundBitmap(bitmap));
+                    }
+                });
             }
         });
     }

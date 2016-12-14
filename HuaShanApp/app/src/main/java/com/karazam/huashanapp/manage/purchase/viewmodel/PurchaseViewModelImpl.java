@@ -4,13 +4,17 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.paymentpassword.PasswordView;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 
+import com.karazam.huashanapp.main.UserInformation;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.manage.paymentmod.view.activity.PaymentmodActivity;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
+import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxView;
 
 /**
  * Created by Administrator on 2016/11/15.
@@ -57,8 +61,36 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
     @Override
     public void onPurchase(View view) {
         mView.showToast("购买");
+//        RxView.of(new View(context)).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+//            @Override
+//            public void call(View target, UserInformation userInformation) {
+//                String mode = userInformation.getPaymentmod();
+//
+//                if(mode.equals("")){  //余额支付
+//                    mView.showPasswordView();
+//                }else if(mode.equals("bankCard")){
+//                    mView.addSMSView();
+//                }
+//            }
+//        });
 
-        mView.addSMSView();
+        String mode = HuaShanApplication.userInformation.getPaymentmod();
+
+                if(mode.equals("")){  //余额支付
+                    checkPaymentpassword();
+
+                    mView.showPasswordView();
+                }else if(mode.equals("bankCard")){  //银行卡
+                    mView.addSMSView();
+                }
+
+    }
+
+    /**
+     * 检查支付密码
+     */
+    private void checkPaymentpassword() {
+
     }
 
     /**

@@ -34,6 +34,7 @@ import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModel;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModelImpl;
+import com.karazam.huashanapp.my.transactiondetails.investment.view.activity.InvestmentActivity;
 import com.karazam.huashanapp.my.withdrawals.main.view.activity.WithdrawalsActivity;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
@@ -264,8 +265,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             passwordView.setMoney(money);
             passwordView.show();
 
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     /**
@@ -295,7 +296,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             public void onResult(boolean result) {
                 if(result){
                     sms.dismiss();
-                    showPasswordView();
+
+                    dialog.show();
                 }
             }
         });
@@ -325,6 +327,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             @Override
             public void onleft(View view) {
                 showToast("查看详情");
+                toOtherActivity(PurchaseActivity.this, InvestmentActivity.class);
             }
 
             @Override

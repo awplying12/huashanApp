@@ -10,6 +10,7 @@ import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.main.MainActivity;
 import com.karazam.huashanapp.main.WaveActivity;
 import com.karazam.huashanapp.user.findpassword.main.view.activity.VerificationActivity;
+import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -67,7 +68,8 @@ public class loadingActivity extends BaseActivity {
 
             @Override
             public void onOtherAccount() {
-                showToast("onOtherAccount");
+//                showToast("onOtherAccount");
+                toOtherActivity(loadingActivity.this,LoginActivity.class);
             }
         });
     }
@@ -88,6 +90,7 @@ public class loadingActivity extends BaseActivity {
             Intent intent = new Intent(this, GestureVerifyActivity.class);
             intent.putExtra(GestureUtil.Password,HuaShanApplication.getGesturePassword());
             intent.putExtra(GestureUtil.PhoneNum,HuaShanApplication.account);
+            intent.putExtra(GestureUtil.HeaderImg,HuaShanApplication.userInformation.getHeaderImg());
             startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
         }else {
             Intent intent = new Intent(this, GestureEditActivity.class);
@@ -100,23 +103,29 @@ public class loadingActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == GestureUtil.GESTURELOCK_REQUESTCODE){
+
+            Intent intent = new Intent(loadingActivity.this, HomeActivity.class);
+
             switch (resultCode){
                 case GestureUtil.GESTURELOCK_EDIT_RESULTCODE:
                     String key = data.getStringExtra(GestureUtil.Password);
                     HuaShanApplication.editor.putString("gesture_lock",key).commit();
+
+                    startActivity(intent);
+                    finish();
                     break;
                 case GestureUtil.GESTURELOCK_VERIFY_RESULTCODE:
 
+                    startActivity(intent);
+                    finish();
+
                     break;
                 default:
+                    finish();
                     break;
             }
 
-            Intent intent = new Intent(loadingActivity.this, HomeActivity.class);
 
-//            Intent intent = new Intent(loadingActivity.this, WaveActivity.class);
-            startActivity(intent);
-            finish();
         }
 
     }

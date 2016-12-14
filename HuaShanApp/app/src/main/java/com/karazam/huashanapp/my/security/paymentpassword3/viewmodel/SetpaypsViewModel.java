@@ -16,6 +16,8 @@ public abstract class SetpaypsViewModel extends BaseViewModel {
     public String one;
     public String two;
 
+    public String tag;
+
     public abstract void onConfirm(View view);
 
     public abstract void setUp();

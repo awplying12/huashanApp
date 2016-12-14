@@ -44,7 +44,7 @@ public class HuaShanApplication extends Application {
 
     public static boolean certificationStatus = true;
 
-    public static RxProperty<String> day = RxProperty.create();
+    public static RxProperty<Time> day = RxProperty.create();
 
     public static RxProperty<UserInformation> userInformationR = RxProperty.create();
 
@@ -86,13 +86,13 @@ public class HuaShanApplication extends Application {
         Time time = new Time("GMT+8");
         time.setToNow();
 
-        day.set(time.monthDay+"");
+        day.set(time);
 
         userInformation = new UserInformation();
         userInformation.setBankCard("中国银行(尾号7634)");
         userInformation.setCardInformation("单笔限额5万,单日限额50万");
         userInformation.setUserbalance("6214.47");
-        userInformation.setPaymentmod("bankCard");
+        userInformation.setPaymentmod("");
         userInformation.setHeaderImg("http://tx.haiqq.com/uploads/allimg/150325/12215B540-0.jpg");
         userInformation.setUserName("王蕙");
         userInformation.setNickname("chayewala");

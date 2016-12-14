@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.my.realname.viewmodel.UnauthorizedViewModel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
@@ -8,6 +9,7 @@ import com.karazam.huashanapp.my.realname.model.databinding.RealnameEntity;
 import com.karazam.huashanapp.my.realname.view.UnauthorizedView;
 import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
+import com.karazam.huashanapp.my.security.paymentpassword3.view.activity.SetpaypsActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -111,7 +113,10 @@ public class UnauthorizedViewModelImpl extends UnauthorizedViewModel {
                         mView.showToast("绑定成功");
                         HuaShanApplication.userInformation.setStatus(true);
                         HuaShanApplication.userInformationR.set(HuaShanApplication.userInformation);
-                        mView.toOtherActivity(activity, AuthenticatedActivity.class);
+
+                        Intent intent = new Intent(activity, SetpaypsActivity.class);
+                        intent.putExtra("isRealName","realName");
+                        activity.startActivity(intent);
                         mView.FinishActivity(activity);
                         mView.disSMSView();
                         isshow = false;

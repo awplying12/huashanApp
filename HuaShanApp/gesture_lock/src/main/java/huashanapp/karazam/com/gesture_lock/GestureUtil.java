@@ -10,4 +10,5 @@ public class GestureUtil {
 
     public static final String Password = "Password";
     public static final String PhoneNum = "phoneNum";
+    public static final String HeaderImg = "header";
 }

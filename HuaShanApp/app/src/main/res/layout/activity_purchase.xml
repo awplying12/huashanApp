@@ -84,6 +84,33 @@
 
             >
 
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="18%"
+                android:background="#0894EC">
+
+                <TextView
+                    android:id="@+id/det_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginTopPercent="18%"
+                    app:layout_marginLeftPercent="7%"
+                    android:text="产融贷CR216001-30"
+                    android:textColor="@color/Investmentdetails_part1_text_size"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/det_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginBottomPercent="15%"
+                    app:layout_marginLeftPercent="7%"
+                    android:layout_gravity="bottom"
+                    android:text="年化收益率8.6     |     投资期限6个月"
+                    android:textColor="@color/Investmentdetails_part1_text_size"
+                    android:textSize="15dp"/>
+
+            </android.support.percent.PercentFrameLayout>
 
             <android.support.percent.PercentFrameLayout
                 android:id="@+id/pay_pl"
@@ -236,33 +263,7 @@
 
             </LinearLayout>
 
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                app:layout_heightPercent="18%"
-                android:background="#0894EC">
 
-                <TextView
-                    android:id="@+id/det_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_marginTopPercent="18%"
-                    app:layout_marginLeftPercent="7%"
-                    android:text="产融贷CR216001-30"
-                    android:textColor="@color/Investmentdetails_part1_text_size"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:id="@+id/det_content"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_marginBottomPercent="15%"
-                    app:layout_marginLeftPercent="7%"
-                    android:layout_gravity="bottom"
-                    android:text="年化收益率8.6     |     投资期限6个月"
-                    android:textColor="@color/Investmentdetails_part1_text_size"
-                    android:textSize="15dp"/>
-
-            </android.support.percent.PercentFrameLayout>
 
 
         </android.support.percent.PercentFrameLayout>

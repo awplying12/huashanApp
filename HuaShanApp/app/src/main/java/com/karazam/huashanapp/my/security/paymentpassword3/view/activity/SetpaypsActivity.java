@@ -46,6 +46,7 @@ public class SetpaypsActivity extends BaseActivity implements SetpaypsView {
     @Override
     public void dealLogicBeforeInitView() {
         securitysPayment.add(this);
+        mModel.tag = getIntent().getStringExtra("isRealName");
     }
 
     @Override

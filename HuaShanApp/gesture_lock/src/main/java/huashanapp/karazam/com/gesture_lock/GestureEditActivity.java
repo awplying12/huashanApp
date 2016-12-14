@@ -32,7 +32,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	public static final String PARAM_INTENT_CODE = "PARAM_INTENT_CODE";
 	/** �״���ʾ�����������룬����ѡ������ */
 	public static final String PARAM_IS_FIRST_ADVICE = "PARAM_IS_FIRST_ADVICE";
-	private TextView mTextTitle;
+//	private TextView mTextTitle;
 //	private TextView mTextCancel;
 	private LockIndicator mLockIndicator;
 	private TextView mTextTip;
@@ -56,7 +56,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	}
 	
 	private void setUpViews() {
-		mTextTitle = (TextView) findViewById(R.id.text_title);
+//		mTextTitle = (TextView) findViewById(R.id.text_title);
 //		mTextCancel = (TextView) findViewById(R.id.text_cancel);
 		mTextReset = (TextView) findViewById(R.id.text_reset);
 		mTextReset.setClickable(false);

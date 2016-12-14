@@ -127,14 +127,22 @@
                         </android.support.percent.PercentRelativeLayout>
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            app:layout_heightPercent="10%"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            app:layout_marginTopPercent="18%"
+                            android:text="产融贷CR216001-41"/>
+
+                        <TextView
                             android:id="@+id/withdrawals_money"
                             android:layout_width="wrap_content"
                             app:layout_heightPercent="10%"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
                             app:layout_marginTopPercent="30%"
-                            android:text="+0.40"
-                            android:textColor="#f00"
+                            android:text="-3,000.00"
+                            android:textColor="#0b0"
                             android:textSize="@dimen/transactiondetails_content_text_size"/>
 
                         <TextView
@@ -153,7 +161,7 @@
                             app:layout_marginTopPercent="60%"
                             android:gravity="center"
                             app:layout_marginLeftPercent="5%"
-                            android:text="付款方式"
+                            android:text="购买方式"
                             android:textSize="@dimen/transactiondetails_service_text_size"/>
 
                         <!--分割线-->
@@ -161,7 +169,7 @@
                             app:layout_widthPercent="90%"
                             android:layout_height="1dp"
                             android:layout_gravity="center_horizontal|bottom"
-                            app:layout_marginBottomPercent="14%"
+                            app:layout_marginBottomPercent="5%"
                             android:background="@color/line_color"/>
 
                         <TextView
@@ -170,7 +178,7 @@
                             app:layout_marginTopPercent="72%"
                             app:layout_marginLeftPercent="5%"
                             android:gravity="center"
-                            android:text="提现说明"
+                            android:text="标的说明"
                             android:textSize="@dimen/transactiondetails_text_size"/>
 
                         <TextView
@@ -180,7 +188,7 @@
                             app:layout_marginRightPercent="5%"
                             android:layout_gravity="right"
                             android:gravity="center"
-                            android:text="快捷支付-移动端"
+                            android:text="满标计息"
                             android:textSize="@dimen/transactiondetails_text_size"/>
 
 
@@ -188,8 +196,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_marginLeftPercent="5%"
-                            app:layout_marginBottomPercent="4%"
-                            android:layout_gravity="bottom"
+                            app:layout_marginTopPercent="84%"
+
                             android:gravity="center"
                             android:textSize="@dimen/transactiondetails_text_size"
                             android:text="创建时间"/>
@@ -198,9 +206,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_marginRightPercent="5%"
-                            app:layout_marginBottomPercent="4%"
+                            app:layout_marginTopPercent="84%"
                             android:gravity="center"
-                            android:layout_gravity="bottom|right"
+                            android:layout_gravity="right"
                             android:textSize="@dimen/transactiondetails_text_size"
                             android:text="2016-11-13 14:13"/>
 
@@ -211,7 +219,7 @@
                             android:layout_gravity="right"
                             app:layout_marginRightPercent="5%"
                             android:gravity="center"
-                            android:text="中国银行(7634)"
+                            android:text="账户余额-移动端"
                             android:textSize="@dimen/transactiondetails_service_text_size"
                             android:id="@+id/textView5" />
 

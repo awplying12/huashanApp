@@ -64,7 +64,7 @@ public class LoginViewModelImpl extends LoginViewModel {
     public void toRegister(View view) {
         mView.showToast("toRegister");
         activity.toOtherActivity(activity, Register1Activity.class);
-        activity.finish();
+//        activity.finish();
     }
 
 

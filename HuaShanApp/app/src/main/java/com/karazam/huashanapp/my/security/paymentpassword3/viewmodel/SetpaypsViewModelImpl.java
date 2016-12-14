@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.example.utils.base.BaseActivity;
+import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.security.paymentpassword3.model.datainding.SetpaypsEntity;
 import com.karazam.huashanapp.my.security.paymentpassword3.view.SetpaypsView;
 import com.karazam.huashanapp.my.security.paymentpassword3.view.activity.SetpaypsActivity;
@@ -66,6 +67,11 @@ public class SetpaypsViewModelImpl extends SetpaypsViewModel {
     @Override
     public void setUp() {
         mView.showToast("设置完成");
+
+        if(tag.equals("realName")){
+            mView.toOtherActivity(activity,AuthenticatedActivity.class);
+        }
+
         Observable.from(securitysPayment)
                 .map(new Func1<BaseActivity, BaseActivity>() {
                     @Override
@@ -89,5 +95,6 @@ public class SetpaypsViewModelImpl extends SetpaypsViewModel {
                         baseActivity.finish();
                     }
                 });
+
     }
 }
