@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.main.financialproject.ReturnRecords;
-import com.karazam.huashanapp.main.financialproject.ReturnRecordsItem;
+import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecords;
+import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecordsItem;
 
 import java.util.ArrayList;
 

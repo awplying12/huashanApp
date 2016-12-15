@@ -9,12 +9,11 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.utils.custom.FullyLinearLayoutManager;
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.main.financialproject.FinancialInformation;
-import com.karazam.huashanapp.main.financialproject.ReturnRecords;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
+import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecords;
 
 import java.util.ArrayList;
 

@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.user.findpassword.main.model.databinding.FindpasswordEntity;
+import com.karazam.huashanapp.user.findpassword.main.view.activity.FindpasswordActivity;
 import com.karazam.huashanapp.user.login.model.databinding.LoginEntity;
 import com.karazam.huashanapp.user.login.model.databinding.TokenData;
 import com.karazam.huashanapp.user.login.model.retrofit.LoginDataSource;
@@ -54,6 +56,7 @@ public class LoginViewModelImpl extends LoginViewModel {
     @Override
     public void toFindpassword(View view) {
         mView.showToast("toFindpassword");
+        activity.toOtherActivity(activity, FindpasswordActivity.class);
     }
 
     /**
@@ -76,31 +79,33 @@ public class LoginViewModelImpl extends LoginViewModel {
     @Override
     public void login(String account, String password) {
 //            mView.showToast(HuaShanApplication.imei);
-        dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
-            @Override
-            public void onCompleted() {
+//        dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
+//            @Override
+//            public void onCompleted() {
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                Log.i("login","e : "+e.toString());
+//                mView.loginFaile();
+//            }
+//
+//            @Override
+//            public void onNext(BaseReturn<TokenData> s) {
+//                Log.i("login",s.toString());
+//
+//                String status = s.getStatus();
+//                if(status.equals("success")){
+//                    mView.loginSuccess();
+//                    TokenData data = s.getData();
+//                }else {
+//                    mView.loginFaile();
+//                }
+//
+//            }
+//        });
 
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.i("login","e : "+e.toString());
-                mView.loginFaile();
-            }
-
-            @Override
-            public void onNext(BaseReturn<TokenData> s) {
-                Log.i("login",s.toString());
-
-                String status = s.getStatus();
-                if(status.equals("success")){
-                    mView.loginSuccess();
-                    TokenData data = s.getData();
-                }else {
-                    mView.loginFaile();
-                }
-
-            }
-        });
+        mView.loginSuccess();
     }
 }

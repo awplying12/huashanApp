@@ -17,7 +17,7 @@ import com.example.utils.utils.BitmapUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentMyBinding;
-import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
 import com.karazam.huashanapp.my.main.view.MyView;
 import com.karazam.huashanapp.my.main.viewmodel.MyViewModel;

@@ -12,7 +12,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityAuthenticatedBinding;
 import com.karazam.huashanapp.main.BankLogo;
-import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.realname.model.databinding.RealnameEntity;
 import com.karazam.huashanapp.my.realname.view.AuthenticatedView;
 import com.karazam.huashanapp.my.realname.viewmodel.AuthenticatedViewModel.AuthenticatedViewModel;

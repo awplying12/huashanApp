@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.main.financialproject.FinancialInformation;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
 
 import java.util.ArrayList;
 

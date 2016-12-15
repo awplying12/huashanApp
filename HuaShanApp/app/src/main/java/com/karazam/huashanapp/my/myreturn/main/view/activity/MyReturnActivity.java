@@ -11,7 +11,7 @@ import com.example.utils.base.BaseActivity;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityMyreturnBinding;
-import com.karazam.huashanapp.main.financialproject.ReturnRecords;
+import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecords;
 import com.karazam.huashanapp.my.myfinancing.main.view.view.NofinanceView;
 import com.karazam.huashanapp.my.myreturn.main.model.databinding.MyReturnEntity;
 import com.karazam.huashanapp.my.myreturn.main.view.MyReturnView;

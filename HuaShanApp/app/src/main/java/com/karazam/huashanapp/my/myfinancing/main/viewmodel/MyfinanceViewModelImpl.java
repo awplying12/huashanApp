@@ -3,13 +3,10 @@ package com.karazam.huashanapp.my.myfinancing.main.viewmodel;
 import android.content.Context;
 import android.view.View;
 
-import com.karazam.huashanapp.HuaShanApplication;
-import com.karazam.huashanapp.main.financialproject.FinancialProject;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
 import com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEntity;
 import com.karazam.huashanapp.my.myfinancing.main.view.MyfinanceView;
 import com.karazam.huashanapp.my.myfinancing.main.view.activity.MyfinanceActivity;
-import com.ogaclejapan.rx.binding.Rx;
-import com.ogaclejapan.rx.binding.RxView;
 
 /**
  * Created by Administrator on 2016/12/5.

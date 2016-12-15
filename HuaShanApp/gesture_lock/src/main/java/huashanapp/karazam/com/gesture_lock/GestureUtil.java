@@ -1,5 +1,9 @@
 package huashanapp.karazam.com.gesture_lock;
 
+import android.app.Activity;
+
+import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2016/10/8.
  */
@@ -11,4 +15,6 @@ public class GestureUtil {
     public static final String Password = "Password";
     public static final String PhoneNum = "phoneNum";
     public static final String HeaderImg = "header";
+
+    public static final ArrayList<Activity> activitys = new ArrayList<>();
 }

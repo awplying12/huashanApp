@@ -74,22 +74,23 @@ public class HomeViewModelImpl extends HomeViewModel {
      */
     @Override
     public void toMy(View view) {
-//        switch (HuaShanApplication.loginStatus){
-//            case 1:
-//                mView.setViewPagerCurrentItem(3,"我的");
-//                break;
-//            default:
-//                mView.toLoginActivity();
-//                break;
-//        }
+        switch (HuaShanApplication.loginStatus){
+            case 1:
+                mView.setViewPagerCurrentItem(2,"我的");
+                break;
+            default:
+                mView.toLoginActivity();
+                break;
+        }
 
-        mView.setViewPagerCurrentItem(2,"我的");
+
     }
 
     @Override
     public void setUp(View view) {
         HuaShanApplication.editor.putInt("loginStatus",2).commit();
         HuaShanApplication.loginStatus = 2;
+        HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
         mView.setViewPagerCurrentItem(0,"今日");
     }
 }

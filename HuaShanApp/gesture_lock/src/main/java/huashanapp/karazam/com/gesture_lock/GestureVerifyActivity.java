@@ -21,7 +21,10 @@ import com.example.utils.utils.BitmapUtil;
 
 import huashanapp.karazam.com.gesture_lock.widget.GestureContentView;
 import huashanapp.karazam.com.gesture_lock.widget.GestureDrawline;
+import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
+import rx.functions.Func1;
 import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
 import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
@@ -63,6 +66,7 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gesture_verify);
 
+		GestureUtil.activitys.add(this);
 		ObtainExtraData();
 		setUpViews();
 		setUpListeners();
@@ -114,7 +118,25 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 						mGestureContentView.clearDrawlineState(0L);
 						Toast.makeText(GestureVerifyActivity.this, "登陆成功!", Toast.LENGTH_SHORT).show();
 						GestureVerifyActivity.this.setResult(GestureUtil.GESTURELOCK_VERIFY_RESULTCODE);
-						GestureVerifyActivity.this.finish();
+
+						Observable.from(GestureUtil.activitys)
+								.filter(new Func1<Activity, Boolean>() {
+									@Override
+									public Boolean call(Activity activity) {
+										return activity != null;
+									}
+								})
+								.map(new Func1<Activity, Activity>() {
+									@Override
+									public Activity call(Activity activity) {
+										return activity;
+									}
+								}).subscribe(new Action1<Activity>() {
+							@Override
+							public void call(Activity activity) {
+								activity.finish();
+							}
+						});
 					}
 
 					@Override

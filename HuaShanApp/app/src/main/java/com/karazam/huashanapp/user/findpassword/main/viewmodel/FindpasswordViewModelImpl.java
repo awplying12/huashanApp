@@ -5,12 +5,10 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.utils.base.BaseViewModel;
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.user.findpassword.main.model.databinding.VerificationEntity;
-import com.karazam.huashanapp.user.findpassword.main.view.VerificationView;
-import com.karazam.huashanapp.user.findpassword.main.view.activity.VerificationActivity;
-import com.karazam.huashanapp.user.register.view.activity.Register3Activity;
+import com.karazam.huashanapp.user.findpassword.main.model.databinding.FindpasswordEntity;
+import com.karazam.huashanapp.user.findpassword.main.view.FindpasswordView;
+import com.karazam.huashanapp.user.findpassword.main.view.activity.FindpasswordActivity;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxView;
 
@@ -21,14 +19,14 @@ import java.util.TimerTask;
  * Created by Administrator on 2016/10/31.
  */
 
-public class VerificationViewModelImpl extends VerificationViewModel {
+public class FindpasswordViewModelImpl extends FindpasswordViewModel {
 
-    private VerificationEntity mEntity;
-    private VerificationView mView;
+    private FindpasswordEntity mEntity;
+    private FindpasswordView mView;
     private Context context;
-    private VerificationActivity activity;
+    private FindpasswordActivity activity;
 
-    public VerificationViewModelImpl(VerificationEntity mEntity, VerificationView mView, Context context, VerificationActivity activity) {
+    public FindpasswordViewModelImpl(FindpasswordEntity mEntity, FindpasswordView mView, Context context, FindpasswordActivity activity) {
         this.mEntity = mEntity;
         this.mView = mView;
         this.context = context;

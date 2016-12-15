@@ -9,7 +9,7 @@ import com.ogaclejapan.rx.binding.RxProperty;
  * Created by Administrator on 2016/10/31.
  */
 
-public abstract class VerificationViewModel extends BaseViewModel{
+public abstract class FindpasswordViewModel extends BaseViewModel{
 
     public RxProperty<String> VerifyCode = RxProperty.create();
 

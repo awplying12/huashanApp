@@ -6,13 +6,14 @@ import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 import android.text.format.Time;
 
+import com.example.utils.ACacheBase.ACache;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.PathUtil;
-import com.karazam.huashanapp.main.UserInformation;
-import com.karazam.huashanapp.main.financialproject.FinancialInformation;
-import com.karazam.huashanapp.main.financialproject.FinancialProject;
-import com.karazam.huashanapp.main.financialproject.ReturnRecords;
-import com.karazam.huashanapp.main.financialproject.ReturnRecordsItem;
+import com.karazam.huashanapp.main.Bean.UserInformation;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
+import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecords;
+import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecordsItem;
 import com.ogaclejapan.rx.binding.RxProperty;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class HuaShanApplication extends Application {
 
     public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
+    public static ACache mACache;
 
     public static String account;
 
@@ -38,7 +40,12 @@ public class HuaShanApplication extends Application {
     public static String client_id;
 
     public static int loginStatus;
+    public static RxProperty<Integer> loginStatusRx = RxProperty.create();
+
+
     public static String imei;
+    public static String mtype;
+    public static String VERSION;
 
     public static UserInformation userInformation;
 
@@ -72,16 +79,25 @@ public class HuaShanApplication extends Application {
         refresh_token = sharedPreferences.getString("refresh_token", "");
         client_id = sharedPreferences.getString("client_id", "");
 
-        loginStatus = sharedPreferences.getInt("loginStatus",-1);
+//        loginStatus = sharedPreferences.getInt("loginStatus",-1);
+
+        loginStatus = 1;
+
+        loginStatusRx.set(loginStatus);
 
 //        paymentmod = sharedPreferences.getString("paymentmod","");
 
+        mACache = ACache.get(this);
         RxImageLoader.init(getinstance());
         PathUtil.createDir();
 
         //IMEI（imei）
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); //手机的唯一标识
         imei = tm.getDeviceId();
+        //手机型号
+        mtype = android.os.Build.MODEL;
+        //系统版本
+        VERSION = android.os.Build.VERSION.RELEASE;
 
         Time time = new Time("GMT+8");
         time.setToNow();

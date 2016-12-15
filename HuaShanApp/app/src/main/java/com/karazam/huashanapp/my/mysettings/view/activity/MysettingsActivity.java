@@ -23,7 +23,7 @@ import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityMysettingsBinding;
-import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.mysettings.model.databinding.MysettingsEntity;
 import com.karazam.huashanapp.my.mysettings.view.MysettingsView;
 import com.karazam.huashanapp.my.mysettings.viewmodel.MysettingsViewModel.MysettingsViewModel;

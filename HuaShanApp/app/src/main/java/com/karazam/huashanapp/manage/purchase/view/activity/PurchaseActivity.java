@@ -1,24 +1,18 @@
 package com.karazam.huashanapp.manage.purchase.view.activity;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.support.percent.PercentFrameLayout;
 import android.support.percent.PercentRelativeLayout;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.StringUtil;
-import com.jakewharton.rxbinding.widget.RxCheckedTextView;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
@@ -26,7 +20,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityPurchaseBinding;
 import com.karazam.huashanapp.main.Method;
-import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
@@ -35,7 +29,6 @@ import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModel;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModelImpl;
 import com.karazam.huashanapp.my.transactiondetails.investment.view.activity.InvestmentActivity;
-import com.karazam.huashanapp.my.withdrawals.main.view.activity.WithdrawalsActivity;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -44,8 +37,6 @@ import java.util.concurrent.TimeUnit;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-
-import static com.google.repacked.kotlin.text.Typography.nbsp;
 
 /**
  * Created by Administrator on 2016/11/15.

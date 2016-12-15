@@ -7,13 +7,11 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.jakewharton.rxbinding.widget.RxCheckedTextView;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.main.financialproject.FinancialInformation;
-import com.karazam.huashanapp.main.financialproject.FinancialProject;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;

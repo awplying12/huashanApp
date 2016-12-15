@@ -3,18 +3,12 @@ package com.karazam.huashanapp.manage.purchase.viewmodel;
 import android.content.Context;
 import android.view.View;
 
-import com.example.paymentpassword.PasswordView;
 import com.karazam.huashanapp.HuaShanApplication;
-import com.karazam.huashanapp.R;
 
-import com.karazam.huashanapp.main.UserInformation;
-import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.manage.paymentmod.view.activity.PaymentmodActivity;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
-import com.ogaclejapan.rx.binding.Rx;
-import com.ogaclejapan.rx.binding.RxView;
 
 /**
  * Created by Administrator on 2016/11/15.

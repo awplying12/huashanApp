@@ -1,23 +1,33 @@
 package huashanapp.karazam.com.gesture_lock;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.gesture.Gesture;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import huashanapp.karazam.com.gesture_lock.widget.BackView;
 import huashanapp.karazam.com.gesture_lock.widget.GestureContentView;
 import huashanapp.karazam.com.gesture_lock.widget.GestureDrawline;
+import huashanapp.karazam.com.gesture_lock.widget.InputContentView;
 import huashanapp.karazam.com.gesture_lock.widget.LockIndicator;
+import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 
 /**
@@ -33,7 +43,7 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	/** �״���ʾ�����������룬����ѡ������ */
 	public static final String PARAM_IS_FIRST_ADVICE = "PARAM_IS_FIRST_ADVICE";
 //	private TextView mTextTitle;
-//	private TextView mTextCancel;
+	private ImageView img_cancel;
 	private LockIndicator mLockIndicator;
 	private TextView mTextTip;
 	private FrameLayout mGestureContainer;
@@ -46,18 +56,30 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	private String mConfirmPassword = null;
 	private int mParamIntentCode;
 
+	private BackView backView;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gesture_edit);
+
+
+		GestureUtil.activitys.add(this);
 		setUpViews();
+
+		String str = getIntent().getStringExtra("verification");
+		if(str.equals("verification")){
+			setView();
+		}
 		setUpListeners();
+		setBack();
 	}
 	
 	private void setUpViews() {
 //		mTextTitle = (TextView) findViewById(R.id.text_title);
-//		mTextCancel = (TextView) findViewById(R.id.text_cancel);
+		img_cancel = (ImageView) findViewById(R.id.img_cancel);
+		img_cancel.setOnClickListener(this);
 		mTextReset = (TextView) findViewById(R.id.text_reset);
 		mTextReset.setClickable(false);
 		mLockIndicator = (LockIndicator) findViewById(R.id.lock_indicator);
@@ -88,6 +110,26 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 						Intent intent = new Intent();
 						intent.putExtra(GestureUtil.Password,mFirstPassword);
 						GestureEditActivity.this.setResult(GestureUtil.GESTURELOCK_EDIT_RESULTCODE,intent);
+
+						Observable.from(GestureUtil.activitys)
+								.filter(new Func1<Activity, Boolean>() {
+									@Override
+									public Boolean call(Activity activity) {
+										return activity != null;
+									}
+								})
+								.map(new Func1<Activity, Activity>() {
+									@Override
+									public Activity call(Activity activity) {
+										return activity;
+									}
+								}).subscribe(new Action1<Activity>() {
+							@Override
+							public void call(Activity activity) {
+								activity.finish();
+							}
+						});
+
 						GestureEditActivity.this.finish();
 					} else {
 						mTextTip.setText(Html.fromHtml("<font color='#ff0000'>两次密码不一致!</font>"));
@@ -115,6 +157,29 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 		// �������ƽ�����ʾ���ĸ���������
 		mGestureContentView.setParentView(mGestureContainer);
 		updateCodeList("");
+
+
+
+	}
+
+	private void setBack(){
+		backView = new BackView(this);
+
+		backView.setView((ViewGroup) findViewById(R.id.content_pl), new BackView.OnBackViewListener() {
+			@Override
+			public void onLeft(View view) {
+
+				backView.dismiss();
+			}
+
+			@Override
+			public void onRight(View view) {
+
+				GestureEditActivity.this.finish();
+			}
+
+		});
+
 	}
 	
 	private void setUpListeners() {
@@ -130,11 +195,12 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		int i = v.getId();
-//		if (i == R.id.text_cancel) {
+		if (i == R.id.img_cancel) {
 //			this.finish();
-//
-//		}
-//		else
+			backView.show();
+
+		}
+		else
 		if (i == R.id.text_reset) {
 			mIsFirstInput = true;
 			updateCodeList("");
@@ -143,6 +209,30 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 		} else {
 		}
 	}
+
+	/**
+	 *  设置认证密码VIEW
+	 */
+	private InputContentView inputView;
+	private void setView() {
+
+		inputView = new InputContentView(this);
+
+		inputView.setView((ViewGroup) findViewById(R.id.content_pl), new InputContentView.OnInputContentListener() {
+			@Override
+			public void onLeft(View view) {
+				inputView.dismiss();
+				finish();
+			}
+
+			@Override
+			public void onRight(View view) {
+				inputView.dismiss();
+			}
+		});
+
+		inputView.show();
+	}
 	
 	private boolean isInputPassValidate(String inputPassword) {
 		if (TextUtils.isEmpty(inputPassword) || inputPassword.length() < 4) {
@@ -150,5 +240,15 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 		}
 		return true;
 	}
-	
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if(keyCode==KeyEvent.KEYCODE_BACK){
+			backView.show();
+			return true;
+		}
+
+		return super.onKeyDown(keyCode, event);
+	}
 }

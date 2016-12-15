@@ -10,10 +10,13 @@ import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
+import com.google.gson.Gson;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxCheckedTextView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -23,11 +26,13 @@ import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityLoginBinding;
 import com.karazam.huashanapp.user.login.model.databinding.LoginEntity;
 import com.karazam.huashanapp.user.login.view.LoginView;
+import com.karazam.huashanapp.user.login.view.view.AccountList;
 import com.karazam.huashanapp.user.login.viewmodel.LoginViewModel;
 import com.karazam.huashanapp.user.login.viewmodel.LoginViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import rx.android.schedulers.AndroidSchedulers;
@@ -45,13 +50,15 @@ public class LoginActivity extends BaseActivity implements LoginView {
     private LoginEntity entity = new LoginEntity();
 
 
-    private EditText ed_account;
+    private AutoCompleteTextView ed_account;
     private EditText ed_password;
 
     private TextView btn_login;
 
     private String account;
     private String password;
+
+    private ArrayList<String> accounts;
 
     private PercentFrameLayout content_pl;
     // 震动动画
@@ -83,7 +90,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void initView() {
-        ed_account = (EditText) getView(R.id.ed_account);
+        ed_account = (AutoCompleteTextView) getView(R.id.ed_account);
         ed_password = (EditText) getView(R.id.ed_password);
 
         btn_login = (TextView) getView(R.id.btn_login);
@@ -96,6 +103,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
         checkText();
         login();
+        setAutoComplete();
 
 
     }
@@ -134,10 +142,16 @@ public class LoginActivity extends BaseActivity implements LoginView {
         showToast("登录成功");
         loginText.set(false);
 
+        accounts.add(account);
+        AccountList accountList = new AccountList(accounts);
+        String accountJson = accountList.toJsonString();
+        HuaShanApplication.mACache.put("Account_List",accountJson);
+
         HuaShanApplication.editor.putInt("loginStatus",1).commit();
         HuaShanApplication.editor.putString("account",account).commit();
         HuaShanApplication.account = account;
         HuaShanApplication.loginStatus = 1;
+        HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
         setResult(101);
         finish();
     }
@@ -153,6 +167,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
         HuaShanApplication.editor.putInt("loginStatus",2).commit();
         HuaShanApplication.loginStatus = 2;
+        HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
 //        setResult(102);
 //        finish();
     }
@@ -201,6 +216,20 @@ public class LoginActivity extends BaseActivity implements LoginView {
                         isClickable();
                     }
                 });
+    }
+
+    /**
+     * 自动补全
+     */
+    private void setAutoComplete(){
+        String accountJson = HuaShanApplication.mACache.getAsString("Account_List");
+        AccountList accountList = new Gson().fromJson(accountJson,AccountList.class);
+        if(accountList == null){
+            accounts = new ArrayList<>();
+        }else {
+            accounts = accountList.getArrayList();
+        }
+        ed_account.setAdapter((new ArrayAdapter<String>(this, R.layout.autocomplete_item, accounts)));
     }
 
     /**

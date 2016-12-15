@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
@@ -16,7 +15,7 @@ import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityWithdrawalsBinding;
-import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.transactiondetails.withdrawals.view.activity.WithdrawalsdetailsActivity;
 import com.karazam.huashanapp.my.withdrawals.main.model.databinding.WithdrawalsEntity;
 import com.karazam.huashanapp.my.withdrawals.main.view.WithdrawalsView;

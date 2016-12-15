@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
@@ -14,7 +13,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityMyfinanceBinding;
 import com.karazam.huashanapp.main.adapter.TitleBarAdapter;
-import com.karazam.huashanapp.main.financialproject.FinancialProject;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
 import com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEntity;
 import com.karazam.huashanapp.my.myfinancing.main.view.MyfinanceView;
 import com.karazam.huashanapp.my.myfinancing.main.view.view.AssignmentView;

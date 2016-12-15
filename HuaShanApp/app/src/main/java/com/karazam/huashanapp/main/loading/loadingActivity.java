@@ -1,15 +1,13 @@
 package com.karazam.huashanapp.main.loading;
 
 import android.content.Intent;
-import android.view.animation.Animation;
 
 import com.example.utils.base.BaseActivity;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
-import com.karazam.huashanapp.main.MainActivity;
-import com.karazam.huashanapp.main.WaveActivity;
-import com.karazam.huashanapp.user.findpassword.main.view.activity.VerificationActivity;
+import com.karazam.huashanapp.my.security.findgesturepassword.view.activity.FindgesturepasswordActivity;
+import com.karazam.huashanapp.user.findpassword.main.view.activity.FindpasswordActivity;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
 import java.util.Timer;
@@ -61,7 +59,7 @@ public class loadingActivity extends BaseActivity {
             @Override
             public void onForgetGesture() {
 
-                Intent intent = new Intent(loadingActivity.this, VerificationActivity.class);
+                Intent intent = new Intent(loadingActivity.this, FindgesturepasswordActivity.class);
                 intent.putExtra("sign",2);
                 startActivity(intent);
             }
@@ -75,6 +73,13 @@ public class loadingActivity extends BaseActivity {
     }
 
     public void loadingAfter(){
+
+        if(HuaShanApplication.loginStatus != 1){
+            Intent intent = new Intent(loadingActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         boolean isLock = HuaShanApplication.checkSecurityInformation(this);
 

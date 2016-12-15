@@ -1,8 +1,6 @@
 package com.karazam.huashanapp.manage.paymentmod.view.activity;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +12,7 @@ import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityPaymentmodBinding;
-import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.manage.paymentmod.model.databinding.PaymentmodEntity;
 import com.karazam.huashanapp.manage.paymentmod.view.PaymentmodView;
 import com.karazam.huashanapp.manage.paymentmod.viewmodel.PaymentmodViewModel;

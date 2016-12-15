@@ -13,7 +13,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityMytransferBinding;
 import com.karazam.huashanapp.main.adapter.TitleBarAdapter;
-import com.karazam.huashanapp.main.financialproject.FinancialProject;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
 
 import com.karazam.huashanapp.my.myfinancing.main.view.view.AssignmentView;
 import com.karazam.huashanapp.my.myfinancing.main.view.view.HoldingAdapter;

@@ -2,7 +2,6 @@ package com.karazam.huashanapp.my.myfinancing.main.view.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +9,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.main.financialproject.FinancialInformation;
+import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
 
 import java.util.ArrayList;
 

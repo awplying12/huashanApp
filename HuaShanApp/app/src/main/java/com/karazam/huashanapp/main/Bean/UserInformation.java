@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.main;
+package com.karazam.huashanapp.main.Bean;
 
 /**
  * Created by Administrator on 2016/11/16.

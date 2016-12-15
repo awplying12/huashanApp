@@ -12,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.utils.utils.StringUtil;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
+import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -54,10 +56,24 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         holder.buy_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext,"立即购买  "+position,Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, InvestmentdetailsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
+//                Toast.makeText(mContext,"立即购买  "+position,Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(mContext, InvestmentdetailsActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                mContext.startActivity(intent);
+
+                if(HuaShanApplication.loginStatus == 1){
+                    Intent intent = new Intent(mContext, InvestmentdetailsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    mContext.startActivity(intent);
+                }else {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    mContext.startActivity(intent);
+                }
+
+
             }
         });
 

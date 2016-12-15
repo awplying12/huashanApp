@@ -9,11 +9,11 @@ import com.example.utils.base.BaseActivity;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.databinding.ActivityVerificationBinding;
-import com.karazam.huashanapp.user.findpassword.main.model.databinding.VerificationEntity;
-import com.karazam.huashanapp.user.findpassword.main.view.VerificationView;
-import com.karazam.huashanapp.user.findpassword.main.viewmodel.VerificationViewModel;
-import com.karazam.huashanapp.user.findpassword.main.viewmodel.VerificationViewModelImpl;
+import com.karazam.huashanapp.databinding.ActivityFindpasswordBinding;
+import com.karazam.huashanapp.user.findpassword.main.model.databinding.FindpasswordEntity;
+import com.karazam.huashanapp.user.findpassword.main.view.FindpasswordView;
+import com.karazam.huashanapp.user.findpassword.main.viewmodel.FindpasswordViewModel;
+import com.karazam.huashanapp.user.findpassword.main.viewmodel.FindpasswordViewModelImpl;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,12 +24,12 @@ import rx.functions.Action1;
  * Created by Administrator on 2016/10/31.
  */
 
-public class VerificationActivity extends BaseActivity implements VerificationView{
+public class FindpasswordActivity extends BaseActivity implements FindpasswordView {
 
-    private ActivityVerificationBinding binding;
+    private ActivityFindpasswordBinding binding;
 
-    private VerificationEntity entity = new VerificationEntity();
-    private VerificationViewModel mModel;
+    private FindpasswordEntity entity = new FindpasswordEntity();
+    private FindpasswordViewModel mModel;
 
     private int sign;
 
@@ -38,8 +38,8 @@ public class VerificationActivity extends BaseActivity implements VerificationVi
 
     @Override
     public void setContentLayout() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_verification);
-        mModel = new VerificationViewModelImpl(entity,this,this,this);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_findpassword);
+        mModel = new FindpasswordViewModelImpl(entity,this,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
     }

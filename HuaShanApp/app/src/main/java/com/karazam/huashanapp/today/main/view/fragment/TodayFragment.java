@@ -1,14 +1,11 @@
 package com.karazam.huashanapp.today.main.view.fragment;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.percent.PercentFrameLayout;
@@ -16,12 +13,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.Time;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,13 +27,12 @@ import com.example.utils.custom.FullyLinearLayoutManager;
 import com.example.utils.custom.VpSwipeRefreshLayout;
 import com.example.utils.custom.views.AutoScrollViewPager;
 import com.example.utils.utils.BitmapUtil;
-import com.example.utils.utils.FastBlur;
 import com.google.common.collect.Lists;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 
-import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
@@ -62,8 +55,6 @@ import github.chenupt.springindicator.SpringIndicator;
 import rx.Subscriber;
 import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
 import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
-
-import static android.R.attr.alpha;
 
 /**
  * Created by Administrator on 2016/11/2.

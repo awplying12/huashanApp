@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.main.financialproject;
+package com.karazam.huashanapp.main.Bean.financialproject;
 
 import java.util.ArrayList;
 

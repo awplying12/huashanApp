@@ -15,7 +15,7 @@ import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivitySetupBinding;
-import com.karazam.huashanapp.main.UserInformation;
+import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.setup.model.datanbinding.SetupEntity;
 import com.karazam.huashanapp.my.setup.view.SetupView;
 import com.karazam.huashanapp.my.setup.viewmodel.SetupViewModel;
