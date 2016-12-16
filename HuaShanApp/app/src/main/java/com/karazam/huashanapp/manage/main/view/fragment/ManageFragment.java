@@ -92,10 +92,11 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         ArrayList<String> list = new ArrayList<>();
         list.add("产融货");
         list.add("优企宝");
+        list.add("保理贷");
         list.add("债权转让");
 
 
-        titlebarAdapter = new TitleBarAdapter(list,getContext(),18);
+        titlebarAdapter = new TitleBarAdapter(list,getContext(),17);
         titlebar_rl.setAdapter(titlebarAdapter);
 
         titlebarAdapter.setmOnItemClickListener(new TitleBarAdapter.onItemClickListener() {
@@ -108,7 +109,9 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
                         break;
                     case 1: //优企宝
                         break;
-                    case 2: //债权转让
+                    case 2: //保理贷
+                        break;
+                    case 3: //债权转让
                         break;
                     default:
                         break;

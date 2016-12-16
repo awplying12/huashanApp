@@ -116,54 +116,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         >
-                        <android.support.percent.PercentFrameLayout
-                            android:layout_width="60dp"
-                            android:layout_height="match_parent"
-                            app:layout_marginLeftPercent="15%"
-                            android:descendantFocusability="beforeDescendants"
-                            android:onClick="@{handler.onIndustryAndFinance}">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="30dp"
-                                app:layout_marginTopPercent="12%"
-                                app:layout_marginLeftPercent="15%"
-                                android:layout_gravity="left"
-                                android:src="@drawable/chanye"
-                                />
-
-                            <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="wrap_content"
-                                app:layout_marginLeftPercent="15%"
-                                android:layout_gravity="bottom|left"
-                                android:gravity="center"
-                                app:layout_marginBottomPercent="10%"
-                                android:text="产融货"
-                                android:textSize="@dimen/todayfragment_part3_text_size"
-                                android:textColor="@color/todayfragment_part3_text_color"
-                                />
-
-                        </android.support.percent.PercentFrameLayout>
 
                         <android.support.percent.PercentFrameLayout
-                            android:layout_width="60dp"
+                            app:layout_widthPercent="25%"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal"
+                            app:layout_marginLeftPercent="25%"
                             android:descendantFocusability="beforeDescendants"
                             android:onClick="@{handler.onExcellentprices}">
 
                             <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="30dp"
+                                app:layout_widthPercent="80%"
+                                app:layout_heightPercent="50%"
                                 app:layout_marginTopPercent="12%"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/qiye"
                                 />
 
                             <TextView
-                                android:layout_width="40dp"
-                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="80%"
+                                app:layout_heightPercent="30%"
                                 android:layout_gravity="bottom|center_horizontal"
                                 android:gravity="center"
                                 app:layout_marginBottomPercent="10%"
@@ -176,28 +147,85 @@
                         </android.support.percent.PercentFrameLayout>
 
                         <android.support.percent.PercentFrameLayout
-                            android:layout_width="60dp"
+                            app:layout_widthPercent="25%"
                             android:layout_height="match_parent"
-                            app:layout_marginRightPercent="15%"
+                            app:layout_marginLeftPercent="50%"
+                            android:descendantFocusability="beforeDescendants"
+                            android:onClick="@{handler.onExcellentprices}">
+
+                            <ImageView
+                                app:layout_widthPercent="80%"
+                                app:layout_heightPercent="50%"
+                                app:layout_marginTopPercent="12%"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/baoli"
+                                />
+
+                            <TextView
+                                app:layout_widthPercent="80%"
+                                app:layout_heightPercent="30%"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:gravity="center"
+                                app:layout_marginBottomPercent="10%"
+                                android:text="保理贷"
+                                android:textSize="@dimen/todayfragment_part3_text_size"
+                                android:textColor="@color/todayfragment_part3_text_color"
+
+                                />
+
+                        </android.support.percent.PercentFrameLayout>
+
+                        <android.support.percent.PercentFrameLayout
+                            app:layout_widthPercent="25%"
+                            android:layout_height="match_parent"
+                            app:layout_marginRightPercent="0%"
                             android:layout_gravity="right"
                             android:descendantFocusability="beforeDescendants"
                             android:onClick="@{handler.onAllFinance}">
 
                             <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="30dp"
+                                app:layout_widthPercent="80%"
+                                app:layout_heightPercent="50%"
                                 app:layout_marginTopPercent="12%"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/caidan"
                                />
 
                             <TextView
-                                android:layout_width="60dp"
-                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="80%"
+                                app:layout_heightPercent="30%"
                                 android:layout_gravity="bottom|center_horizontal"
                                 android:gravity="center"
                                 app:layout_marginBottomPercent="10%"
                                 android:text="全部理财"
+                                android:textSize="@dimen/todayfragment_part3_text_size"
+                                android:textColor="@color/todayfragment_part3_text_color"
+                                />
+
+                        </android.support.percent.PercentFrameLayout>
+
+                        <android.support.percent.PercentFrameLayout
+                            app:layout_widthPercent="25%"
+                            android:layout_height="match_parent"
+                            app:layout_marginLeftPercent="0%"
+                            android:descendantFocusability="beforeDescendants"
+                            android:onClick="@{handler.onIndustryAndFinance}">
+
+                            <ImageView
+                                app:layout_widthPercent="80%"
+                                app:layout_heightPercent="50%"
+                                app:layout_marginTopPercent="12%"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/chanye"
+                                />
+
+                            <TextView
+                                app:layout_widthPercent="80%"
+                                app:layout_heightPercent="30%"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:gravity="center"
+                                app:layout_marginBottomPercent="10%"
+                                android:text="产融货"
                                 android:textSize="@dimen/todayfragment_part3_text_size"
                                 android:textColor="@color/todayfragment_part3_text_color"
                                 />

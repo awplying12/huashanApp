@@ -15,6 +15,10 @@ import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Created by Administrator on 2016/10/20.
@@ -46,7 +50,10 @@ public class Register2ViewModelImpl extends Register2ViewModel{
      * 检查信息
      */
     public void checkText(){
-        RxView.findById(activity, R.id.time).bind(time, new Rx.Action<View, Integer>() {
+
+        tv_time = (TextView) mView.getView(R.id.time);
+
+        RxView.of(tv_time).bind(time, new Rx.Action<View, Integer>() {
             @Override
             public void call(View target, Integer integer) {
                 TextView view = (TextView) target;
@@ -66,6 +73,15 @@ public class Register2ViewModelImpl extends Register2ViewModel{
             }
         });
 
+        com.jakewharton.rxbinding.view.RxView.clicks(tv_time)
+                .throttleFirst(300, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        reacQuire(null);
+                    }
+                });
 
     }
 
@@ -99,7 +115,7 @@ public class Register2ViewModelImpl extends Register2ViewModel{
         };
         timer.schedule(tk,1000,1000);
 
-
+        mView.showToast("123");
 
     }
 

@@ -14,6 +14,10 @@ import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Created by Administrator on 2016/10/31.
@@ -33,7 +37,7 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
         this.activity = activity;
 
         checkText();
-        reacQuire(null);
+//        reacQuire(null);
     }
 
     @Override
@@ -45,27 +49,37 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
      * 检查信息
      */
     public void checkText(){
-        RxView.findById(activity, R.id.time).bind(time, new Rx.Action<View, Integer>() {
+        tv_time = (TextView)mView.getView(R.id.time);
+
+        RxView.of(tv_time).bind(time, new Rx.Action<View, Integer>() {
             @Override
             public void call(View target, Integer integer) {
                 TextView view = (TextView) target;
 
 
                 if(integer == 0 ){
-                    view.setText("重新获取验证码");
-                    view.setTextColor(Color.parseColor("#0894EC"));
+                    view.setText("重新发送");
+//                    view.setTextColor(Color.parseColor("#ffffff"));
                     target.setClickable(true);
                 }else {
                     String time = integer >=100? integer+"" : (integer >= 10? "0"+integer: "00"+integer);
-                    view.setText("重新发送 "+"("+time+")");
-                    view.setTextColor(Color.parseColor("#d0d0d0"));
+                    view.setText("请稍后 "+"("+time+")");
+//                    view.setTextColor(Color.parseColor("#d0d0d0"));
                     target.setClickable(false);
                 }
 
             }
         });
 
-
+        com.jakewharton.rxbinding.view.RxView.clicks(tv_time)
+                .throttleFirst(300, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        reacQuire(null);
+                    }
+                });
     }
 
     /**
@@ -98,7 +112,7 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
         };
         timer.schedule(tk,1000,1000);
 
-
+        mView.showToast("123");
 
     }
 

@@ -1,6 +1,7 @@
 package huashanapp.karazam.com.gesture_lock;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -15,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -228,6 +230,9 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 			@Override
 			public void onRight(View view) {
 				inputView.dismiss();
+
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        			imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 			}
 		});
 

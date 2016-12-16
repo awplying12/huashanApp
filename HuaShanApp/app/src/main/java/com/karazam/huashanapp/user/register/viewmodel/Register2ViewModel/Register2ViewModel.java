@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.user.register.viewmodel.Register2ViewModel;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.utils.base.BaseViewModel;
 import com.ogaclejapan.rx.binding.RxProperty;
@@ -14,6 +15,8 @@ public abstract class Register2ViewModel extends BaseViewModel {
     public RxProperty<String> VerifyCode = RxProperty.create();
 
     public RxProperty<Integer> time = RxProperty.create();
+
+    public TextView tv_time;
 
     public abstract void reacQuire(View view);
 
