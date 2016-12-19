@@ -34,4 +34,5 @@ dependencies {
     compile project(':paymentpassword')
     compile project(':progressbar')
     compile project(':stickylistview_library')
+    compile project(':Indicator')
 }

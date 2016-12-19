@@ -104,16 +104,16 @@
 
                             </com.example.utils.custom.views.AutoScrollViewPager>
 
-                            <com.example.utils.custom.views.ViewGroupIndicator
-                                xmlns:indicator="http://schemas.android.com/apk/res-auto"
-                                android:id="@+id/scroll_pager_indicator"
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_gravity="bottom"
-                                indicator:selected_color="#F00"
-                                indicator:unselected_color="#ffffff"
-                                indicator:distance_from_two_indicator="10dp"
-                                indicator:radius="5dp"/>
+                            <!--<com.example.utils.custom.views.ViewGroupIndicator-->
+                                <!--xmlns:indicator="http://schemas.android.com/apk/res-auto"-->
+                                <!--android:id="@+id/scroll_pager_indicator"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="40dp"-->
+                                <!--android:layout_gravity="bottom"-->
+                                <!--indicator:selected_color="#F00"-->
+                                <!--indicator:unselected_color="#ffffff"-->
+                                <!--indicator:distance_from_two_indicator="10dp"-->
+                                <!--indicator:radius="5dp"/>-->
 
                         </android.support.percent.PercentFrameLayout>
 

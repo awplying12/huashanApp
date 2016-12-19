@@ -71,7 +71,9 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 		setUpViews();
 
 		String str = getIntent().getStringExtra("verification");
-		if(str.equals("verification")){
+
+
+		if(str != null && str.equals("verification")){
 			setView();
 		}
 		setUpListeners();

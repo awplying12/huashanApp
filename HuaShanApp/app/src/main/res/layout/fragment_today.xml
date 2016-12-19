@@ -151,7 +151,7 @@
                             android:layout_height="match_parent"
                             app:layout_marginLeftPercent="50%"
                             android:descendantFocusability="beforeDescendants"
-                            android:onClick="@{handler.onExcellentprices}">
+                            android:onClick="@{handler.onFactoringloan}">
 
                             <ImageView
                                 app:layout_widthPercent="80%"
@@ -255,6 +255,16 @@
                             android:background="#cfa">
 
                         </com.example.utils.custom.views.AutoScrollViewPager>
+
+                        <!--<com.example.utils.custom.bannerview.ViewFlow-->
+                            <!--android:id="@+id/today_scroll_pager"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="center_horizontal"-->
+                            <!--android:background="#cfa">-->
+
+
+                        <!--</com.example.utils.custom.bannerview.ViewFlow>-->
 
                         <!--<com.example.utils.custom.views.ViewGroupIndicator-->
                             <!--xmlns:indicator="http://schemas.android.com/apk/res-auto"-->

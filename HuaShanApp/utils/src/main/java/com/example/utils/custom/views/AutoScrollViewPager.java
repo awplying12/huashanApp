@@ -6,6 +6,7 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.AccelerateInterpolator;
 
@@ -26,8 +27,10 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
     private boolean isRunning = false;
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
+//            AutoScrollViewPager.this.setCurrentItem(getCurrentItem(), true);
             if (isRunning && msg.what == 0) {
                 //让viewPager 滑动到下一页
+
                 AutoScrollViewPager.this.setCurrentItem(getCurrentItem() + 1, true);
                 handler.sendEmptyMessageDelayed(0, time);
             }
@@ -150,13 +153,13 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
 
     @Override
     public void setCurrentItem(int item) {
-        super.setCurrentItem(item + 1);
+        super.setCurrentItem(item +1);
     }
 
     @Override
     public void setCurrentItem(int item, boolean smoothScroll) {
 
-        super.setCurrentItem(item + 1, smoothScroll);
+        super.setCurrentItem(item+1, smoothScroll);
         //   mIndicatorListener.setNext(getCurrentItem());
     }
 
@@ -210,7 +213,7 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
             case MotionEvent.ACTION_DOWN:
                 getParent().requestDisallowInterceptTouchEvent(true);
                 stopAutoScroll();
-                mDuration(100);
+                mDuration(200);
                 break;
 
 //                /**
@@ -237,18 +240,18 @@ public class AutoScrollViewPager extends ViewPager implements IndicatorParentImb
 //                lastX = x;
 //
 //                break;
-                        if(isRunning){
-                            getParent().requestDisallowInterceptTouchEvent(true);
-                            stopAutoScroll();
-                            mDuration(100);
-                        }
-            break;
+                if(isRunning){
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                    stopAutoScroll();
+                    mDuration(200);
+                }
+                break;
             case MotionEvent.ACTION_UP:
 
                 if(!isRunning){
                     getParent().requestDisallowInterceptTouchEvent(false);
                     startAutoScroll();
-                    mDuration(mTime);
+                    mDuration(200);
                 }
 
 

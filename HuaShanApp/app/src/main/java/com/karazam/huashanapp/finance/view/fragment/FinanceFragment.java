@@ -14,7 +14,6 @@ import com.example.utils.base.BaseFragment;
 
 import com.example.utils.custom.views.AutoScrollViewPager;
 import com.example.utils.custom.views.PercentLemon;
-import com.example.utils.custom.views.ViewGroupIndicator;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentFinanceBinding;
 import com.karazam.huashanapp.finance.model.databinding.FinanceEntity;
@@ -39,7 +38,7 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
     private FinanceViewModel mModel;
 
     private AutoScrollViewPager pager;
-    private ViewGroupIndicator indicator;
+//    private ViewGroupIndicator indicator;
     private AutoScrollAdapter autoScrollAdapter;
     private ArrayList<Integer> ids;
 
@@ -71,7 +70,7 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
      */
     private void initView() {
         pager = (AutoScrollViewPager) getView(R.id.scroll_pager,view);
-        indicator = (ViewGroupIndicator) getView(R.id.scroll_pager_indicator,view);
+//        indicator = (ViewGroupIndicator) getView(R.id.scroll_pager_indicator,view);
 
         //SwipeRefreshLayout 基础设置
         mSwipeLayout = (SwipeRefreshLayout) getView(R.id.id_swipe_ly,view);
@@ -98,7 +97,7 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
 
         autoScrollAdapter = new AutoScrollAdapter(ids,getContext(),pager);
         pager.setAdapter(autoScrollAdapter);
-        indicator.setParent(pager);
+//        indicator.setParent(pager);
 
         autoScrollAdapter.setOnAutoScrollPagerClickListener(new AutoScrollAdapter.OnAutoScrollPagerClickListener() {
 
@@ -132,14 +131,14 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
     public void onStart() {
         super.onStart();
         Log.i("Activity-->", "onStart");
-        indicator.start();
+//        indicator.start();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         //    if (isPowerOff()) {
-        indicator.stop();
+//        indicator.stop();
         //    }
         Log.i("Activity-->", "onStop");
 

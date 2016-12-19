@@ -58,21 +58,23 @@ public class AutoScrollAdapter extends ModelPagerAdapter {
         iv.setBackgroundResource(id);
         container.addView(iv);
 
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                pager.StopAutoScroll();
-                mAutoScrollPagerClickListener.onClick(v,position);
-            }
-        });
+//        iv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                pager.StopAutoScroll();
+//                mAutoScrollPagerClickListener.onClick(v,position);
+//            }
+//        });
+//
+//        iv.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+////                pager.StopAutoScroll();
+//                return mAutoScrollPagerClickListener.onLongClick(view,position);
+//            }
+//        });
 
-        iv.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-//                pager.StopAutoScroll();
-                return mAutoScrollPagerClickListener.onLongClick(view,position);
-            }
-        });
+        pager.setmDuration(500);
         return iv;
     }
 

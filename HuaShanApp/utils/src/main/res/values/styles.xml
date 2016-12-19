@@ -5,12 +5,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="DefaultIndicatorTheme">
-        <item name="selected_color">#ffffff</item>
-        <item name="unselected_color">#ffffff</item>
-        <item name="distance_from_two_indicator">10dp</item>
-        <item name="radius">10dp</item>
-    </style>
+    <!--<style name="DefaultIndicatorTheme">-->
+        <!--<item name="selected_color">#ffffff</item>-->
+        <!--<item name="unselected_color">#ffffff</item>-->
+        <!--<item name="distance_from_two_indicator">10dp</item>-->
+        <!--<item name="radius">10dp</item>-->
+    <!--</style>-->
 
     <style name="floatlabelededittext">
         <item name="android:textColor">#FF0000</item>

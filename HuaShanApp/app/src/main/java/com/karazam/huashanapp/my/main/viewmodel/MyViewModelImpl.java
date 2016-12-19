@@ -16,6 +16,7 @@ import com.karazam.huashanapp.my.mytransfer.main.view.activity.MytransferActivit
 import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
 import com.karazam.huashanapp.my.recharge.main.view.activity.RechargeActivity;
+import com.karazam.huashanapp.my.rechargecash.view.activity.RechargecashActivity;
 import com.karazam.huashanapp.my.setup.view.activity.SetupActivity;
 import com.karazam.huashanapp.my.transactiondetails.main.view.activity.TransactionActivity;
 import com.karazam.huashanapp.my.withdrawals.main.view.activity.WithdrawalsActivity;
@@ -55,6 +56,11 @@ public class MyViewModelImpl extends MyViewModel {
     @Override
     public void setUp(View view) {
             mView.toOtherActivity(activity, SetupActivity.class);
+    }
+
+    @Override
+    public void Rechargecash(View view) {
+        mView.toOtherActivity(activity, RechargecashActivity.class);
     }
 
     /**
@@ -151,6 +157,15 @@ public class MyViewModelImpl extends MyViewModel {
     @Override
     public void Transaction(View view) {
         mView.toOtherActivity(activity, TransactionActivity.class);
+    }
+
+    /**
+     * 信息
+     * @param view
+     */
+    @Override
+    public void Message(View view) {
+        mView.showToast("Message");
     }
 
     private void setCertificationDialog(){

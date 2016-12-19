@@ -18,6 +18,8 @@ public abstract class TodayViewModel extends BaseViewModel{
 
     public abstract void onExcellentprices(View view);
 
+    public abstract void onFactoringloan(View view);
+
     public abstract void onAllFinance(View view);
 
     public abstract void onIntegralMore(View view);

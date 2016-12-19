@@ -13,6 +13,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.example.utils.base.BaseFragment;
 
 import com.example.utils.custom.FullyLinearLayoutManager;
 import com.example.utils.custom.VpSwipeRefreshLayout;
+import com.example.utils.custom.bannerview.ViewFlow;
 import com.example.utils.custom.views.AutoScrollViewPager;
 import com.example.utils.utils.BitmapUtil;
 import com.google.common.collect.Lists;
@@ -41,6 +43,7 @@ import com.karazam.huashanapp.today.main.view.fragment.view.AutoScrollAdapter;
 import com.karazam.huashanapp.today.main.view.fragment.view.ExperienceAdapter;
 import com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView;
 
+import com.karazam.huashanapp.today.main.view.fragment.view.ViewFlowAdapter;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModel;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
@@ -73,6 +76,8 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     private VpSwipeRefreshLayout swl;
 
     private AutoScrollViewPager pager;
+
+//    private ViewFlow viewFlow;
 
     private AutoScrollAdapter autoScrollAdapter;
     private SpringIndicator springIndicator;
@@ -119,7 +124,6 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     @Override
     public void onStart() {
         super.onStart();
-
         pager.startAutoScroll();
     }
 
@@ -165,6 +169,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
         pager = (AutoScrollViewPager) getView(R.id.today_scroll_pager,view);
+//        viewFlow = (ViewFlow) getView(R.id.today_scroll_pager,view);
         springIndicator = (SpringIndicator) getView(R.id.indicator,view);
 
         viewpager_pl = (PercentFrameLayout) getView(R.id.viewpager_pl,view);
@@ -229,9 +234,12 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
 
         autoScrollAdapter = new AutoScrollAdapter(getActivity().getSupportFragmentManager(), manager,getBgRes(),getContext(),pager);
+//        Log.i("msh","123");
+//       pager.setCurrentItem(3);
         pager.setTime(5000);
         pager.setAdapter(autoScrollAdapter);
         pager.setmDuration(500);
+
 //        indicator.setParent(pager);
 
         springIndicator.setViewPager(pager);
@@ -249,6 +257,9 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
                 return true;
             }
         });
+
+
+
     }
 
     private void setHeader(){
@@ -292,8 +303,9 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
      * 设置广告图片
      * @return
      */
-    private List<Integer> getBgRes(){
+    private ArrayList<Integer> getBgRes(){
         return Lists.newArrayList(R.drawable.winter, R.drawable.winter1, R.drawable.winter2, R.drawable.winter3,R.drawable.winter4);
+//        return Lists.newArrayList(R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4,R.drawable.image5);
     }
 
     /**

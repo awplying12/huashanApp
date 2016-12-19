@@ -75,6 +75,17 @@ public class TodayViewModelImpl extends TodayViewModel {
     }
 
     /**
+     * 保理贷
+     * @param view
+     */
+    @Override
+    public void onFactoringloan(View view) {
+
+        HomeActivity act = (HomeActivity) activity;
+        act.setCurrentItem(1,2);
+    }
+
+    /**
      * 全部理财
      * @param view
      */

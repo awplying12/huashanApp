@@ -3,6 +3,7 @@ package com.karazam.huashanapp.my.main.viewmodel;
 import android.view.View;
 
 import com.example.utils.base.BaseViewModel;
+import com.ogaclejapan.rx.binding.RxProperty;
 
 /**
  * Created by Administrator on 2016/10/12.
@@ -10,7 +11,11 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class MyViewModel extends BaseViewModel{
 
+
+
     public abstract void setUp(View view);
+
+    public abstract void Rechargecash(View view);
 
     public abstract void Withdrawals(View view);
 
@@ -25,6 +30,8 @@ public abstract class MyViewModel extends BaseViewModel{
     public abstract void BankCard(View view);
 
     public abstract void Transaction(View view);
+
+    public abstract void Message(View view);
 
 
 }

@@ -131,7 +131,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
     }
 
     public void setCurrentItem(int position,int item){
-        viewPager.setCurrentItem(position);
+        viewPager.setCurrentItem(position,false);
         manageFragment.setCurrentItem(item);
     }
 
@@ -195,7 +195,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
     @Override
     public void setViewPagerCurrentItem(int position, String titleStr) {
         title_text.setText(StringUtil.interrupt(titleStr,0,""));
-        viewPager.setCurrentItem(position);
+        viewPager.setCurrentItem(position,false);
         initBottomLayout();
         switch (position){
             case 0:
