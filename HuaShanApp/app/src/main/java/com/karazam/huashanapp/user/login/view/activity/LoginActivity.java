@@ -35,8 +35,11 @@ import com.ogaclejapan.rx.binding.RxProperty;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
 
 /**
  * Created by Administrator on 2016/10/18.
@@ -136,16 +139,50 @@ public class LoginActivity extends BaseActivity implements LoginView {
         });
     }
 
+    /**
+     * 记录账号
+     */
+    private boolean isExistd = false;
+    private void addAccount(){
+        Observable.from(accounts)
+                .map(new Func1<String, Boolean>() {
+                    @Override
+                    public Boolean call(String s) {
+                        return s.equals(account);
+                    }
+                })
+                .subscribe(new Subscriber<Boolean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        isExistd = aBoolean;
+                    }
+                });
+
+        if(!isExistd){
+            accounts.add(account);
+            AccountList accountList = new AccountList(accounts);
+            String accountJson = accountList.toJsonString();
+            HuaShanApplication.mACache.put("Account_List",accountJson);
+        }
+    }
+
 
     @Override
     public void loginSuccess() {    //登录成功
         showToast("登录成功");
         loginText.set(false);
 
-        accounts.add(account);
-        AccountList accountList = new AccountList(accounts);
-        String accountJson = accountList.toJsonString();
-        HuaShanApplication.mACache.put("Account_List",accountJson);
+        addAccount();
 
         HuaShanApplication.editor.putInt("loginStatus",1).commit();
         HuaShanApplication.editor.putString("account",account).commit();

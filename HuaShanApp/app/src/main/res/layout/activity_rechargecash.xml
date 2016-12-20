@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.rechargecash.model.databinding.RechargecashEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.rechargecash.viewmodel.RechargecashViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#fff"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    app:layout_widthPercent="7%"
+                    app:layout_heightPercent="60%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/back_b"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="我的余额"
+                android:textColor="#272636"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="交易记录"
+                    android:textColor="@color/title_color"
+                    android:onClick="@{handler.Transaction}"
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ll"
+            app:layout_heightPercent="100%"
+            android:background="@color/all_activity_background"
+
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_marginTopPercent="18%"
+                style="@style/Base.TextAppearance.AppCompat.Body2"
+                android:layout_gravity="center_horizontal"
+                android:text="可用余额(元)"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_marginTopPercent="22%"
+                android:layout_gravity="center_horizontal"
+                android:text="0.00"
+                android:textSize="32dp"/>
+
+            <TextView
+                app:layout_widthPercent="90%"
+                app:layout_heightPercent="7%"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                app:layout_marginTopPercent="34%"
+                android:background="@drawable/btn_bg_img_0894ec_50dp"
+                android:text="充值"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:onClick="@{handler.Withdrawals}"
+                />
+
+            <TextView
+                app:layout_widthPercent="90%"
+                app:layout_heightPercent="7%"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                app:layout_marginTopPercent="43%"
+                android:background="@drawable/btn_bg_frame_img_0894ec_50dp"
+                android:text="提现"
+                android:textColor="#0894ec"
+                android:textSize="18dp"
+                android:onClick="@{handler.Recharge}"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                app:layout_marginBottomPercent="3%"
+                android:text="提现规则说明"
+                android:textColor="#0894ec"
+                android:textSize="10dp"/>
+
+            <ImageView
+                app:layout_widthPercent="15%"
+                app:layout_heightPercent="15%"
+                android:layout_gravity="center_horizontal"
+                app:layout_marginTopPercent="3%"
+                android:src="@drawable/balance_icon"
+                android:id="@+id/imageView5" />
+
+
+        </android.support.percent.PercentFrameLayout>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

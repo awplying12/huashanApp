@@ -48,6 +48,7 @@ import com.karazam.huashanapp.today.main.viewmodel.TodayViewModel;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxView;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,8 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 //    private ViewFlow viewFlow;
 
     private AutoScrollAdapter autoScrollAdapter;
-    private SpringIndicator springIndicator;
+//    private SpringIndicator springIndicator;
+    private CirclePageIndicator indicator;
 
     private MyNestedScrollView scrollview;
 
@@ -170,7 +172,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
         pager = (AutoScrollViewPager) getView(R.id.today_scroll_pager,view);
 //        viewFlow = (ViewFlow) getView(R.id.today_scroll_pager,view);
-        springIndicator = (SpringIndicator) getView(R.id.indicator,view);
+        indicator = (CirclePageIndicator) getView(R.id.indicator,view);
 
         viewpager_pl = (PercentFrameLayout) getView(R.id.viewpager_pl,view);
         viewpager_pl.setLayoutParams(new LinearLayout.LayoutParams(BaseActivity.ScreeW, (int) (BaseActivity.ScreeW*0.4)));
@@ -242,7 +244,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
 //        indicator.setParent(pager);
 
-        springIndicator.setViewPager(pager);
+        indicator.setViewPager(pager);
 
         autoScrollAdapter.setOnAutoScrollPagerClickListener(new AutoScrollAdapter.OnAutoScrollPagerClickListener() {
 

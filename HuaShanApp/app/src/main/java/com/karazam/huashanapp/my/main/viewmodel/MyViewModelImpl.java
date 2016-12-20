@@ -9,6 +9,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
 import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
 import com.karazam.huashanapp.my.main.view.MyView;
+import com.karazam.huashanapp.my.message.main.view.activity.MessageActivity;
 import com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEntity;
 import com.karazam.huashanapp.my.myfinancing.main.view.activity.MyfinanceActivity;
 import com.karazam.huashanapp.my.myreturn.main.view.activity.MyReturnActivity;
@@ -58,47 +59,13 @@ public class MyViewModelImpl extends MyViewModel {
             mView.toOtherActivity(activity, SetupActivity.class);
     }
 
+    /**
+     * 充值/提现 我的余额
+     * @param view
+     */
     @Override
     public void Rechargecash(View view) {
         mView.toOtherActivity(activity, RechargecashActivity.class);
-    }
-
-    /**
-     * 提现
-     * @param view
-     */
-    @Override
-    public void Withdrawals(View view) {
-        setCertificationDialog();
-        if(!HuaShanApplication.userInformation.isStatus()){
-
-            if(certificationDialog != null){
-                certificationDialog.setPrompt("提现需要实名认证","您要前往实名认证吗？");
-                certificationDialog.show();
-            }
-
-            return;
-        }
-        mView.toOtherActivity(activity, WithdrawalsActivity.class);
-    }
-
-    /**
-     * 充值
-     * @param view
-     */
-    @Override
-    public void Recharge(View view) {
-        setCertificationDialog();
-        if(!HuaShanApplication.userInformation.isStatus()){
-
-            if(certificationDialog != null){
-                certificationDialog.setPrompt("充值需要实名认证","您要前往实名认证吗？");
-                certificationDialog.show();
-            }
-
-            return;
-        }
-        mView.toOtherActivity(activity, RechargeActivity.class);
     }
 
     /**
@@ -118,7 +85,6 @@ public class MyViewModelImpl extends MyViewModel {
      */
     @Override
     public void Mytransfer(View view) {
-
         Intent intent = new Intent(activity,MytransferActivity.class);
         activity.startActivityForResult(intent,67);
     }
@@ -129,8 +95,6 @@ public class MyViewModelImpl extends MyViewModel {
      */
     @Override
     public void MyReturn(View view) {
-
-
         Intent intent = new Intent(activity,MyReturnActivity.class);
         activity.startActivityForResult(intent,67);
     }
@@ -165,7 +129,7 @@ public class MyViewModelImpl extends MyViewModel {
      */
     @Override
     public void Message(View view) {
-        mView.showToast("Message");
+        mView.toOtherActivity(activity, MessageActivity.class);
     }
 
     private void setCertificationDialog(){

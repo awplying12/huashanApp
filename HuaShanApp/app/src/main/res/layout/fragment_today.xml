@@ -256,6 +256,19 @@
 
                         </com.example.utils.custom.views.AutoScrollViewPager>
 
+                        <com.viewpagerindicator.CirclePageIndicator
+                            android:id="@+id/indicator"
+                            app:layout_heightPercent="8%"
+                            android:layout_width="fill_parent"
+                            android:layout_gravity="bottom"
+                            app:layout_marginBottomPercent="7%"
+                            app:radius="3dp"
+                            app:fillColor="#FFF"
+                            app:pageColor="#C0FFFFFF"
+                            app:strokeColor="#00ff00"
+                            app:strokeWidth="0dp"
+                            />
+
                         <!--<com.example.utils.custom.bannerview.ViewFlow-->
                             <!--android:id="@+id/today_scroll_pager"-->
                             <!--android:layout_width="match_parent"-->
@@ -277,19 +290,19 @@
                             <!--indicator:distance_from_two_indicator="20dp"-->
                             <!--indicator:radius="3dp"/>-->
 
-                        <github.chenupt.springindicator.SpringIndicator
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            app:siTextSize="8dp"
-                            app:siIndicatorColors="@array/indicator_colors"
-                            app:siTextColor="@color/cfa"
-                            app:siSelectedTextColor="@android:color/white"
-                            app:siIndicatorColor="@color/colorPrimary"
-                            android:layout_gravity="center_horizontal|bottom"
-                            android:id="@+id/indicator"
-                            app:layout_widthPercent="30%"
-                            app:layout_heightPercent="30%"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp" />
+                        <!--<github.chenupt.springindicator.SpringIndicator-->
+                            <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                            <!--app:siTextSize="8dp"-->
+                            <!--app:siIndicatorColors="@array/indicator_colors"-->
+                            <!--app:siTextColor="@color/cfa"-->
+                            <!--app:siSelectedTextColor="@android:color/white"-->
+                            <!--app:siIndicatorColor="@color/colorPrimary"-->
+                            <!--android:layout_gravity="center_horizontal|bottom"-->
+                            <!--android:id="@+id/indicator"-->
+                            <!--app:layout_widthPercent="30%"-->
+                            <!--app:layout_heightPercent="30%"-->
+                            <!--android:layout_marginLeft="10dp"-->
+                            <!--android:layout_marginRight="10dp" />-->
 
                     </android.support.percent.PercentFrameLayout>
 

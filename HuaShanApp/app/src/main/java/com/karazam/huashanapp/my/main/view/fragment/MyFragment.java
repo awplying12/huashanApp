@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.karazam.huashanapp.my.main.view.MyView;
 import com.karazam.huashanapp.my.main.view.view.AssetAdapter;
 import com.karazam.huashanapp.my.main.viewmodel.MyViewModel;
 import com.karazam.huashanapp.my.main.viewmodel.MyViewModelImpl;
+import com.karazam.huashanapp.my.myassets.view.activity.MyassetsActivity;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -75,6 +77,7 @@ public class MyFragment extends BaseFragment implements MyView {
 
         setAsset();
         setAssetClick();
+        setLayout();
         return view;
     }
 
@@ -127,6 +130,19 @@ public class MyFragment extends BaseFragment implements MyView {
         });
     }
 
+    /**
+     * 设置界面
+     */
+    private void setLayout() {
+        RxView.findById(view,R.id.tv_balance).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+            @Override
+            public void call(View target, UserInformation userInformation) {
+                TextView tv = (TextView) target;
+                tv.setText(Html.fromHtml("可用余额<font color='#ffffff'> 0.00 </font>元"));
+            }
+        });
+    }
+
 
     /**
      * 资产ViewPager
@@ -153,6 +169,8 @@ public class MyFragment extends BaseFragment implements MyView {
                 TextView text_p1 = (TextView) target.findViewById(R.id.text_p1);
                 TextView income = (TextView) target.findViewById(R.id.det_income);
                 text_p1.setText("总资产(元)");
+
+
             }
         });
 
@@ -195,7 +213,7 @@ public class MyFragment extends BaseFragment implements MyView {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-                        showToast("总资产(元)");
+                        toOtherActivity(getActivity(), MyassetsActivity.class);
                     }
                 });
 
@@ -209,4 +227,6 @@ public class MyFragment extends BaseFragment implements MyView {
                     }
                 });
     }
+
+
 }

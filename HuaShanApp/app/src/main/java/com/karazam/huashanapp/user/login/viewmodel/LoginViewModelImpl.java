@@ -78,34 +78,36 @@ public class LoginViewModelImpl extends LoginViewModel {
      */
     @Override
     public void login(String account, String password) {
-//            mView.showToast(HuaShanApplication.imei);
-//        dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
-//            @Override
-//            public void onCompleted() {
-//
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//                Log.i("login","e : "+e.toString());
-//                mView.loginFaile();
-//            }
-//
-//            @Override
-//            public void onNext(BaseReturn<TokenData> s) {
-//                Log.i("login",s.toString());
-//
-//                String status = s.getStatus();
-//                if(status.equals("success")){
-//                    mView.loginSuccess();
-//                    TokenData data = s.getData();
-//                }else {
-//                    mView.loginFaile();
-//                }
-//
-//            }
-//        });
 
-        mView.loginSuccess();
+
+        dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("login","e : "+e.toString());
+                mView.loginFaile();
+            }
+
+            @Override
+            public void onNext(BaseReturn<TokenData> s) {
+                Log.i("login",s.toString());
+
+                String status = s.getStatus();
+                if(status.equals("success")){
+                    mView.loginSuccess();
+                    TokenData data = s.getData();
+                }else {
+
+                    mView.loginFaile();
+                }
+
+            }
+        });
+
+//        mView.loginSuccess();
     }
 }

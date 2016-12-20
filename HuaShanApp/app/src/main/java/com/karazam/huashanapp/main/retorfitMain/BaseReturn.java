@@ -8,9 +8,9 @@ public class BaseReturn<Data> {
 
     private String code;
     private Data data;
-    private String msg;
+    private String message;
     private String status;
-
+    private boolean success;
 
     public String getCode() {
         return code;
@@ -28,12 +28,12 @@ public class BaseReturn<Data> {
         this.data = data;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getStatus() {
@@ -44,13 +44,22 @@ public class BaseReturn<Data> {
         this.status = status;
     }
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     @Override
     public String toString() {
         return "BaseReturn{" +
                 "code='" + code + '\'' +
-                ", data='" + data + '\'' +
-                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                ", message='" + message + '\'' +
                 ", status='" + status + '\'' +
+                ", success=" + success +
                 '}';
     }
 }

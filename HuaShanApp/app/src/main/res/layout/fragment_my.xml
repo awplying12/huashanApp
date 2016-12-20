@@ -189,12 +189,13 @@
                         android:onClick="@{handler.Rechargecash}">
 
                         <TextView
+                            android:id="@+id/tv_balance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             app:layout_marginLeftPercent="7%"
                             android:text="可用余额 0.00 元"
-                            android:textColor="#fff"
+                            android:textColor="#b0ffffff"
                             android:textSize="15dp"/>
 
                         <TextView
