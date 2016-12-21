@@ -13,4 +13,7 @@ public class Constants {
     public static final String PORT = "8081";
     public static String URL = BASEURL + ":" + PORT;
 
+    public static final String PORT1 = "9090";
+    public static String URL1 = BASEURL + ":" + PORT1;
+
 }

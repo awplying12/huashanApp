@@ -10,6 +10,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityGesturepwBinding;
 import com.karazam.huashanapp.main.MainActivity;
+import com.karazam.huashanapp.my.security.gesturepassword.model.databinding.GespwReturn;
 import com.karazam.huashanapp.my.security.gesturepassword.model.databinding.GesturepwEntity;
 import com.karazam.huashanapp.my.security.gesturepassword.view.GesturepwView;
 import com.karazam.huashanapp.my.security.gesturepassword.viewmodel.GesturepwViewModel.GesturepwViewModel;
@@ -60,6 +61,22 @@ public class GesturepwActivity extends BaseActivity implements GesturepwView{
         startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
     }
 
+    /**
+     * 同步成功
+     */
+    @Override
+    public void setGesPasswordSuccess(GespwReturn gespwReturn) {
+        showToast("同步成功");
+    }
+
+    /**
+     * 同步失败
+     */
+    @Override
+    public void setGesPasswordFaile(Throwable e) {
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == GestureUtil.GESTURELOCK_REQUESTCODE){
@@ -67,7 +84,9 @@ public class GesturepwActivity extends BaseActivity implements GesturepwView{
                 case GestureUtil.GESTURELOCK_EDIT_RESULTCODE: //创建手势密码返回值
 
                     String str = data.getStringExtra(GestureUtil.Password);
+
                     HuaShanApplication.editor.putString("gesture_lock", StringUtil.interrupt(str,0,"-1")).commit();
+                    mModel.setGesPassword(StringUtil.interrupt(str,0,"-1"));
                     finish();
                     break;
                 case GestureUtil.GESTURELOCK_VERIFY_RESULTCODE: //校检手势密码返回值

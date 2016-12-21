@@ -28,9 +28,9 @@ import com.karazam.huashanapp.my.main.view.MyView;
 import com.karazam.huashanapp.my.main.view.view.AssetAdapter;
 import com.karazam.huashanapp.my.main.viewmodel.MyViewModel;
 import com.karazam.huashanapp.my.main.viewmodel.MyViewModelImpl;
-import com.karazam.huashanapp.my.myassets.view.activity.MyassetsActivity;
+import com.karazam.huashanapp.my.myassets.main.view.activity.MyassetsActivity;
+import com.karazam.huashanapp.my.myprofits.main.view.activity.MyprofitsActivity;
 import com.ogaclejapan.rx.binding.Rx;
-import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -223,7 +223,7 @@ public class MyFragment extends BaseFragment implements MyView {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-                        showToast("累计收益(元)");
+                        toOtherActivity(getActivity(), MyprofitsActivity.class);
                     }
                 });
     }

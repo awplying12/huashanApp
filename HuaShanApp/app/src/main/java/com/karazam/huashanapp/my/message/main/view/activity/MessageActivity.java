@@ -1,9 +1,11 @@
 package com.karazam.huashanapp.my.message.main.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.RefreshRecyclerView;
@@ -16,6 +18,7 @@ import com.karazam.huashanapp.my.message.main.view.MessageView;
 import com.karazam.huashanapp.my.message.main.view.view.MessageAdapter;
 import com.karazam.huashanapp.my.message.main.viewmodel.MessageViewModel;
 import com.karazam.huashanapp.my.message.main.viewmodel.MessageViewModelImpl;
+import com.karazam.huashanapp.my.message.messagedetails.view.activity.MessagedetailsActivity;
 
 import java.util.ArrayList;
 
@@ -66,6 +69,7 @@ public class MessageActivity extends BaseActivity implements MessageView,SwipeRe
     /**
      * 设置MessageRecyclerView
      */
+    private MessageAdapter adapter;
     private void setMessageRecyclerView() {
 
         WrapContentLinearLayoutManager layoutManager = new WrapContentLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false){
@@ -83,8 +87,23 @@ public class MessageActivity extends BaseActivity implements MessageView,SwipeRe
         list.add(new MessageBean(R.drawable.msg_my,"我的消息"));
 
 
+        adapter = new MessageAdapter(this,list);
+        rl_message.setAdapter(adapter);
 
-        rl_message.setAdapter(new MessageAdapter(this,list));
+        adapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
+            @Override
+            public void onItem(View view, int position) {
+                showToast(""+position);
+
+//                toOtherActivity(MessageActivity.this,MessagedetailsActivity.class);
+                Intent intent = new Intent(MessageActivity.this,MessagedetailsActivity.class);
+                intent.putExtra("title",adapter.getList().get(position).getTitle());
+                intent.putExtra("position",position);
+                MessageActivity.this.startActivity(intent);
+
+
+            }
+        });
 
         rl_message.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
             @Override

@@ -11,4 +11,6 @@ import com.example.utils.base.BaseViewModel;
 public abstract class GesturepwViewModel extends BaseViewModel{
 
     public abstract void onGesture(View view);
+
+    public abstract void setGesPassword(String gesPassword);
 }

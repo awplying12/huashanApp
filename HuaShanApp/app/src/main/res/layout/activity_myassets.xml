@@ -4,11 +4,11 @@
     <data>
         <variable
             name="entity"
-            type="com.karazam.huashanapp.my.myassets.model.databinding.MyassetsEntity"
+            type="com.karazam.huashanapp.my.myassets.main.model.databinding.MyassetsEntity"
             ></variable>
         <variable
             name="handler"
-            type="com.karazam.huashanapp.my.myassets.viewmodel.MyassetsViewModel"
+            type="com.karazam.huashanapp.my.myassets.main.viewmodel.MyassetsViewModel"
             ></variable>
     </data>
     <android.support.percent.PercentFrameLayout

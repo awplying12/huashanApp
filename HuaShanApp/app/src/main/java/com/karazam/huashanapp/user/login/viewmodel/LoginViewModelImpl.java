@@ -77,7 +77,7 @@ public class LoginViewModelImpl extends LoginViewModel {
      * @param password
      */
     @Override
-    public void login(String account, String password) {
+    public void login(final String account, String password) {
 
 
         dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
@@ -100,6 +100,20 @@ public class LoginViewModelImpl extends LoginViewModel {
                 if(status.equals("success")){
                     mView.loginSuccess();
                     TokenData data = s.getData();
+
+                    HuaShanApplication.editor.putString("token",data.getSid()).commit();
+                    HuaShanApplication.token = data.getSid();
+
+                    HuaShanApplication.editor.putString("uuid",data.getUserId()).commit();
+                    HuaShanApplication.uuid = data.getUserId();
+
+                    HuaShanApplication.editor.putString("userKey",data.getUserKey()).commit();
+                    HuaShanApplication.userKey = data.getUserKey();
+
+                    HuaShanApplication.editor.putString("account",account).commit();
+                    HuaShanApplication.account = account;
+
+                    Log.i("TokenData",data.toString());
                 }else {
 
                     mView.loginFaile();

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/all_activity_background"
+    android:orientation="vertical">
+
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+
+        <TextView
+            android:id="@+id/data_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            android:text="2016-12-16 12:12"
+            android:textSize="12dp"
+            android:textColor="#fff"
+            android:background="@drawable/bg_fillet_d7d7d7_50dp"/>
+
+    </android.support.percent.PercentFrameLayout>
+    
+
+
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+       >
+        <android.support.v7.widget.CardView
+            app:layout_widthPercent="90%"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            
+            <TextView
+                android:id="@+id/content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+
+                android:text="text" />
+
+        </android.support.v7.widget.CardView>
+
+
+    </android.support.percent.PercentFrameLayout>
+
+
+</LinearLayout>
+

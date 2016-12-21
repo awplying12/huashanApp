@@ -1,12 +1,20 @@
 package com.karazam.huashanapp.home.viewmodel;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
+import com.karazam.huashanapp.home.model.databinding.CheckloginReturn;
 import com.karazam.huashanapp.home.model.databinding.HomeEntity;
+import com.karazam.huashanapp.home.model.retrofit.CheckloginDataSource;
 import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/10/11.
@@ -18,12 +26,15 @@ public class HomeViewModelImpl extends HomeViewModel {
     private HomeEntity mEntity;
     private HomeActivity activity;
     private Context context;
+    private CheckloginDataSource dataSource;
 
     public HomeViewModelImpl(HomeView mView, HomeEntity mEntity, HomeActivity activity, Context context) {
         this.mView = mView;
         this.mEntity = mEntity;
         this.activity = activity;
         this.context = context;
+
+        dataSource = new CheckloginDataSource();
     }
 
     @Override
@@ -92,5 +103,33 @@ public class HomeViewModelImpl extends HomeViewModel {
         HuaShanApplication.loginStatus = 2;
         HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
         mView.setViewPagerCurrentItem(0,"今日");
+    }
+
+    /**
+     * 同步登录状态
+     */
+    @Override
+    public void onChecklogin() {
+
+        dataSource.checkLoginStatus().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<CheckloginReturn>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("onChecklogin","e : "+e.toString());
+                mView.CheckloginFaile(e);
+            }
+
+            @Override
+            public void onNext(BaseReturn<CheckloginReturn> checkloginReturnBaseReturn) {
+                CheckloginReturn checkloginReturn = checkloginReturnBaseReturn.getData();
+                Log.i("onChecklogin",checkloginReturn.toString());
+                mView.CheckloginSuccess(checkloginReturn);
+            }
+        });
+
     }
 }

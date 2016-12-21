@@ -1,11 +1,11 @@
-package com.karazam.huashanapp.my.myassets.viewmodel;
+package com.karazam.huashanapp.my.myassets.main.viewmodel;
 
 import android.content.Context;
 import android.view.View;
 
-import com.karazam.huashanapp.my.myassets.model.databinding.MyassetsEntity;
-import com.karazam.huashanapp.my.myassets.view.MyassetsView;
-import com.karazam.huashanapp.my.myassets.view.activity.MyassetsActivity;
+import com.karazam.huashanapp.my.myassets.main.model.databinding.MyassetsEntity;
+import com.karazam.huashanapp.my.myassets.main.view.MyassetsView;
+import com.karazam.huashanapp.my.myassets.main.view.activity.MyassetsActivity;
 
 /**
  * Created by Administrator on 2016/12/20.

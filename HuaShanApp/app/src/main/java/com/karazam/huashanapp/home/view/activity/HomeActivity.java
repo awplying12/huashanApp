@@ -15,6 +15,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.apply.view.fragment.ApplyFragment;
 import com.karazam.huashanapp.databinding.ActivityHomeBinding;
+import com.karazam.huashanapp.home.model.databinding.CheckloginReturn;
 import com.karazam.huashanapp.home.model.databinding.HomeEntity;
 import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModel;
@@ -75,6 +76,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
     public void dealLogicBeforeInitView() {
         isSelected = getResources().getColor(R.color.homeactivity_textcolor_selected);
         isDefault = getResources().getColor(R.color.homeactivity_textcolor_default);
+
+        mModel.onChecklogin();
     }
 
     @Override
@@ -108,6 +111,24 @@ public class HomeActivity extends BaseActivity implements HomeView {
     public void toLoginActivity(){
         Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
         startActivityForResult(intent,10);
+    }
+
+    /**
+     * 同步成功
+     * @param checkloginReturn
+     */
+    @Override
+    public void CheckloginSuccess(CheckloginReturn checkloginReturn) {
+        showToast("同步成功");
+    }
+
+    /**
+     * 同步失败
+     * @param e
+     */
+    @Override
+    public void CheckloginFaile(Throwable e) {
+        showToast("同步失败");
     }
 
     @Override

@@ -2,14 +2,22 @@ package com.karazam.huashanapp.my.security.gesturepassword.viewmodel.GesturepwVi
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.dialog.InputContentView;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.my.security.gesturepassword.model.databinding.GespwReturn;
 import com.karazam.huashanapp.my.security.gesturepassword.model.databinding.GesturepwEntity;
+import com.karazam.huashanapp.my.security.gesturepassword.model.retrofit.GespasswordDataSource;
 import com.karazam.huashanapp.my.security.gesturepassword.view.GesturepwView;
 import com.karazam.huashanapp.my.security.gesturepassword.view.activity.GesturepwActivity;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/29.
@@ -24,13 +32,15 @@ public class GesturepwViewModelImpl extends GesturepwViewModel{
 
     private InputContentView inputContentView;
 
+    private GespasswordDataSource dataSource;
+
     public GesturepwViewModelImpl(GesturepwView mView, GesturepwEntity mEntity, Context context, GesturepwActivity activity) {
         this.mView = mView;
         this.mEntity = mEntity;
         this.context = context;
         this.activity = activity;
 
-
+        dataSource = new GespasswordDataSource();
         setInputContentView();
     }
 
@@ -66,6 +76,34 @@ public class GesturepwViewModelImpl extends GesturepwViewModel{
     @Override
     public void onGesture(View view) {
         inputContentView.show();
+    }
+
+    /**
+     * 同步手势密码
+     */
+    @Override
+    public void setGesPassword(String gesPassword) {
+
+        dataSource.setGesPassword(gesPassword).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<GespwReturn>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+                mView.setGesPasswordFaile(e);
+                Log.i("GespwReturn","e  :  "+e.toString());
+            }
+
+            @Override
+            public void onNext(BaseReturn<GespwReturn> gespwReturnBaseReturn) {
+                GespwReturn gespwReturn = gespwReturnBaseReturn.getData();
+                Log.i("GespwReturn",gespwReturn.toString());
+                mView.setGesPasswordSuccess(gespwReturn);
+            }
+        });
     }
 
     /**

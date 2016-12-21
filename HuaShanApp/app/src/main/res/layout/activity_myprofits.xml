@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="entity"
+            type="com.karazam.huashanapp.my.myprofits.main.model.databinding.MyprofitsEntity"
+            ></variable>
+        <variable
+            name="handler"
+            type="com.karazam.huashanapp.my.myprofits.main.viewmodel.MyprofitsViewModel"
+            ></variable>
+    </data>
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_heightPercent="8%"
+            android:background="#3BAAFE"
+            >
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="20dp"
+                android:onClick="@{handler.onBack}"
+                >
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="7%"
+                    app:layout_heightPercent="40%"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/back_icon"
+                    />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="我的收益"
+                android:textColor="#fff"
+                android:textSize="@dimen/title_text_size"/>
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp">
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    app:layout_widthPercent="5%"
+                    android:layout_height="match_parent"
+
+                    />
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_heightPercent="92.5%"
+            android:background="@color/all_activity_background"
+            android:layout_gravity="bottom"
+            >
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swl_pl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4dp"
+                        android:orientation="vertical">
+
+                        part1
+                        <android.support.percent.PercentFrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:background="#3BAAFE"
+                            >
+
+                            <TextView
+                                android:id="@+id/text_11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center"
+                                app:layout_marginTopPercent="18%"
+                                android:text="累计收益(元)"
+                                android:textColor="@color/my_pf1_content_text_color"
+                                android:textSize="15dp"/>
+
+                            <TextView
+                                android:id="@+id/det_income"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                app:layout_marginTopPercent="36%"
+                                android:text="0.00"
+                                style="@style/Base.TextAppearance.AppCompat.Body2"
+                                android:textColor="@color/my_pf1_content_text_color"
+                                android:textSize="40dp"
+                                />
+
+
+                        </android.support.percent.PercentFrameLayout>
+
+
+
+
+                        <android.support.percent.PercentFrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="#fff"
+                            >
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                app:layout_marginLeftPercent="7%"
+                                android:text="已收收益"
+                                android:textSize="16dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right|center_vertical"
+                                android:text="0.00"
+                                android:textColor="#0894EC"
+                                app:layout_marginRightPercent="7%"
+                                />
+
+                        </android.support.percent.PercentFrameLayout>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            />
+
+                        <android.support.percent.PercentFrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="#fff"
+                            >
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                app:layout_marginLeftPercent="7%"
+                                android:text="推荐费结算"
+                                android:textSize="16dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right|center_vertical"
+                                android:text="0.00"
+                                android:textColor="#0894EC"
+                                app:layout_marginRightPercent="7%"
+                                />
+
+                        </android.support.percent.PercentFrameLayout>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            />
+
+
+
+
+
+                    </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </android.support.percent.PercentFrameLayout>
+
+
+
+
+    </android.support.percent.PercentFrameLayout>
+</layout>
+
+

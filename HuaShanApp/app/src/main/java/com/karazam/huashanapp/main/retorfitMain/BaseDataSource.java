@@ -19,7 +19,11 @@ public class BaseDataSource {
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build();
 
-
+    public Retrofit retrofit1 = new Retrofit.Builder()
+            .baseUrl(Constants.URL1).client(new OkHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build();
 
 
 }

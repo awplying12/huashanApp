@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.my.myassets.view.activity;
+package com.karazam.huashanapp.my.myassets.main.view.activity;
 
 import android.databinding.DataBindingUtil;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -6,10 +6,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import com.example.utils.base.BaseActivity;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityMyassetsBinding;
-import com.karazam.huashanapp.my.myassets.model.databinding.MyassetsEntity;
-import com.karazam.huashanapp.my.myassets.view.MyassetsView;
-import com.karazam.huashanapp.my.myassets.viewmodel.MyassetsViewModel;
-import com.karazam.huashanapp.my.myassets.viewmodel.MyassetsViewModelImpl;
+import com.karazam.huashanapp.my.myassets.main.model.databinding.MyassetsEntity;
+import com.karazam.huashanapp.my.myassets.main.view.MyassetsView;
+import com.karazam.huashanapp.my.myassets.main.viewmodel.MyassetsViewModel;
+import com.karazam.huashanapp.my.myassets.main.viewmodel.MyassetsViewModelImpl;
 
 /**
  * Created by Administrator on 2016/12/20.

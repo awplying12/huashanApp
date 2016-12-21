@@ -66,7 +66,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView icon;
         private TextView title;
         private TextView content;
@@ -78,8 +78,35 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             title = (TextView) itemView.findViewById(R.id.title_tv);
             content = (TextView) itemView.findViewById(R.id.content_tv);
             time = (TextView) itemView.findViewById(R.id.time_tv);
+            itemView.setOnClickListener(this);
 
         }
+
+        @Override
+        public void onClick(View view) {
+            if(mOnItemClickListener == null){
+                return;
+            }
+            mOnItemClickListener.onItem(view,getPosition());
+        }
+    }
+
+    public ArrayList<MessageBean> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<MessageBean> list) {
+        this.list = list;
+    }
+
+    public interface OnItemClickListener{
+        void onItem(View view,int position);
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.mOnItemClickListener = onItemClickListener;
     }
 
 }

@@ -35,6 +35,7 @@ public class HuaShanApplication extends Application {
     public static String account;
 
     public static String uuid;
+    public static String userKey;
     public static String token;
     public static String refresh_token;
     public static String client_id;
@@ -75,6 +76,7 @@ public class HuaShanApplication extends Application {
 
         account = sharedPreferences.getString("account", "");
         uuid = sharedPreferences.getString("uuid", "-1");
+        userKey = sharedPreferences.getString("userKey", "-1");
         token = sharedPreferences.getString("token", "");
         refresh_token = sharedPreferences.getString("refresh_token", "");
         client_id = sharedPreferences.getString("client_id", "");

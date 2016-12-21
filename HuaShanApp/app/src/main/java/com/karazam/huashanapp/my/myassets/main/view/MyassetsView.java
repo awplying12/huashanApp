@@ -1,4 +1,4 @@
-package com.karazam.huashanapp.my.myassets.view;
+package com.karazam.huashanapp.my.myassets.main.view;
 
 import com.example.utils.base.BaseView;
 
