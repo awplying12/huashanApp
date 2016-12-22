@@ -10,9 +10,15 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class Register3ViewModel extends BaseViewModel{
 
+    public String mobilel;
+    public String password;
+    public String smsCode;
+
     public abstract void complete(View view);
 
     public abstract void userAgreement(View view);
 
     public abstract void stopUserAgreement(View view);
+
+    public abstract void onRegister();
 }

@@ -98,8 +98,12 @@ public class loadingActivity extends BaseActivity {
             intent.putExtra(GestureUtil.HeaderImg,HuaShanApplication.userInformation.getHeaderImg());
             startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
         }else {
-            Intent intent = new Intent(this, GestureEditActivity.class);
-            startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
+//            Intent intent = new Intent(this, GestureEditActivity.class);
+//            startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
+
+            Intent intent = new Intent(loadingActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
         }
 
 

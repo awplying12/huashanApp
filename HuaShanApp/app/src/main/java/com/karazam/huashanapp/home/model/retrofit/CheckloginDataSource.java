@@ -20,7 +20,7 @@ public class CheckloginDataSource extends BaseDataSource {
         CheckloginBean bean = new CheckloginBean();
         bean.setUserId(HuaShanApplication.uuid);
         bean.setUserKey(HuaShanApplication.userKey);
-//        return service.checkLoginStatus(bean,HuaShanApplication.token,"XMLHttpRequest");
-        return service.checkLoginStatus(HuaShanApplication.uuid,HuaShanApplication.userKey,HuaShanApplication.token,"XMLHttpRequest");
+        return service.checkLoginStatus(bean,HuaShanApplication.token,"XMLHttpRequest");
+//        return service.checkLoginStatus(HuaShanApplication.uuid,HuaShanApplication.userKey,HuaShanApplication.token,"XMLHttpRequest");
     }
 }

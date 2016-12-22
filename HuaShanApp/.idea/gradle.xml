@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Indicator" />
+            <option value="$PROJECT_DIR$/JPushExample" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/cacheutils" />
             <option value="$PROJECT_DIR$/gesture_lock" />

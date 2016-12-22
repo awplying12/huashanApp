@@ -20,6 +20,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityRegister3Binding;
 import com.karazam.huashanapp.main.registerMain.registerActivity;
+import com.karazam.huashanapp.user.login.model.databinding.TokenData;
 import com.karazam.huashanapp.user.register.model.databinbing.Register3Entity;
 import com.karazam.huashanapp.user.register.view.Register3View;
 import com.karazam.huashanapp.user.register.viewmodel.Register3ViewModel.Register3ViewModel;
@@ -206,6 +207,22 @@ public class Register3Activity extends BaseActivity implements Register3View {
                 }
             });
 //        }
+    }
+
+    /**
+     * 注册成功
+     */
+    @Override
+    public void registerSuccess(TokenData data) {
+
+    }
+
+    /**
+     * 注册失败
+     */
+    @Override
+    public void registerFaile(Throwable e) {
+
     }
 
 }

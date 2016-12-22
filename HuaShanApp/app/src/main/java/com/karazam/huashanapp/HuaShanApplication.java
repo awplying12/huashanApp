@@ -18,6 +18,7 @@ import com.ogaclejapan.rx.binding.RxProperty;
 
 import java.util.ArrayList;
 
+import cn.jpush.android.api.JPushInterface;
 import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
 /**
@@ -70,6 +71,8 @@ public class HuaShanApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+
 
         sharedPreferences = getinstance().getSharedPreferences("huashan", 0);
         editor = sharedPreferences.edit();

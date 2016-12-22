@@ -27,6 +27,8 @@ import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
 import java.util.ArrayList;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by Administrator on 2016/10/11.
  */
@@ -78,6 +80,9 @@ public class HomeActivity extends BaseActivity implements HomeView {
         isDefault = getResources().getColor(R.color.homeactivity_textcolor_default);
 
         mModel.onChecklogin();
+
+        JPushInterface.setDebugMode(true); // 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);  //推送初始化
     }
 
     @Override

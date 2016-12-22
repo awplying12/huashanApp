@@ -16,7 +16,7 @@ import rx.Observable;
 
 public interface CheckloginApi {
     @POST("/checkLoginStatus")
-//    Observable<BaseReturn<CheckloginReturn>> checkLoginStatus(@Body CheckloginBean check, @Header("sid") String token,@Header("X-Requested-With") String ID);
+    Observable<BaseReturn<CheckloginReturn>> checkLoginStatus(@Body CheckloginBean check, @Header("sid") String token,@Header("X-Requested-With") String ID);
 
-    Observable<BaseReturn<CheckloginReturn>> checkLoginStatus(@Query("userId") String userId, @Query("userKey") String userKey, @Header("sid") String token,@Header("X-Requested-With") String ID);
+//    Observable<BaseReturn<CheckloginReturn>> checkLoginStatus(@Query("userId") String userId, @Query("userKey") String userKey, @Header("sid") String token,@Header("X-Requested-With") String ID);
 }
