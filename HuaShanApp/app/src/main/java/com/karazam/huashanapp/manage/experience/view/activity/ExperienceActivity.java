@@ -34,6 +34,7 @@ public class ExperienceActivity extends BaseActivity implements ExperienceView{
         mModel = new ExperienceViewModelImpl(entity,this,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

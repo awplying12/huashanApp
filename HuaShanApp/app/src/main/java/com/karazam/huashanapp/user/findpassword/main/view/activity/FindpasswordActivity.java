@@ -45,6 +45,7 @@ public class FindpasswordActivity extends BaseActivity implements FindpasswordVi
         mModel = new FindpasswordViewModelImpl(entity,this,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override
@@ -174,5 +175,23 @@ public class FindpasswordActivity extends BaseActivity implements FindpasswordVi
             btn_next_step_2.setClickable(false);
         }
 
+    }
+
+    /**
+     * 修改密码成功
+     * @param msg
+     */
+    @Override
+    public void FindpasswordSuccess(String msg) {
+
+    }
+
+    /**
+     * 修改密码失败
+     * @param msg
+     */
+    @Override
+    public void FindpasswordFaile(String msg) {
+        showToast(msg);
     }
 }

@@ -37,7 +37,7 @@ public class Register1Activity extends BaseActivity implements Register1View{
     private Register1ViewModel mModel;
     private Register1Entity entity = new Register1Entity();
 
-    private EditText account_register;
+
     private TextView btn_next_step_1;
     private CheckPhoneNumberUtil ut;
 
@@ -47,6 +47,7 @@ public class Register1Activity extends BaseActivity implements Register1View{
         mModel = new Register1ViewModelImpl(entity,this,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class Register1Activity extends BaseActivity implements Register1View{
 
     @Override
     public void initView() {
-        account_register = (EditText) getView(R.id.ed_account_register);
+        mModel.account_register = (EditText) getView(R.id.ed_account_register);
 
         btn_next_step_1 = (TextView) getView(R.id.btn_next_step_1);
     }
@@ -75,9 +76,8 @@ public class Register1Activity extends BaseActivity implements Register1View{
      */
     private void checkText() {
 
-        RxTextView.textChangeEvents(account_register)     //账号
+        RxTextView.textChangeEvents(mModel.account_register)     //账号
                 .debounce(300, TimeUnit.MILLISECONDS)
-
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<TextViewTextChangeEvent>() {
                     @Override
@@ -116,5 +116,23 @@ public class Register1Activity extends BaseActivity implements Register1View{
     @Override
     public void introduction() {
         getView(R.id.pl_1).setVisibility(View.GONE);
+    }
+
+    /**
+     * 验证成功
+     * @param message
+     */
+    @Override
+    public void checkMobileSuccess(String message) {
+        nextStep();
+    }
+
+    /**
+     * 验证失败
+     * @param e
+     */
+    @Override
+    public void checkMobileFaile(String e) {
+        showToast(e);
     }
 }

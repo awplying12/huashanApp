@@ -45,6 +45,7 @@ public class MyReturnActivity extends BaseActivity implements MyReturnView {
         mModel = new MyReturnViewModelImpl(entity,this,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

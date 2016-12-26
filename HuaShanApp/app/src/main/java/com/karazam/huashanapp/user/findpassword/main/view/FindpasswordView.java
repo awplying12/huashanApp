@@ -7,4 +7,8 @@ import com.example.utils.base.BaseView;
  */
 
 public interface FindpasswordView extends BaseView{
+
+    void FindpasswordSuccess(String msg);
+
+    void FindpasswordFaile(String msg);
 }

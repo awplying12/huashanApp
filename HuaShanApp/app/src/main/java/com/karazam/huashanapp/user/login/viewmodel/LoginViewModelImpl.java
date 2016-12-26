@@ -17,6 +17,7 @@ import com.karazam.huashanapp.user.register.view.activity.Register1Activity;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -80,7 +81,10 @@ public class LoginViewModelImpl extends LoginViewModel {
     public void login(final String account, String password) {
 
 
-        dataSource.getToken(account,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
+        dataSource.getToken(account,password)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn<TokenData>>() {
             @Override
             public void onCompleted() {
 

@@ -32,6 +32,7 @@ public class ForgetActivity extends BaseActivity implements ForgetView{
         mModel = new ForgetViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

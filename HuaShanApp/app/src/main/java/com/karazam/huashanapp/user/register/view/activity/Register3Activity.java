@@ -43,7 +43,7 @@ public class Register3Activity extends BaseActivity implements Register3View {
     private Register3Entity entity = new Register3Entity();
     private Register3ViewModel mModel;
 
-    private EditText ed_password;
+
     private TextView btn_complete;
     private ImageView show_icon;
 
@@ -56,17 +56,21 @@ public class Register3Activity extends BaseActivity implements Register3View {
         mModel = new Register3ViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override
     public void dealLogicBeforeInitView() {
         registerActivity.allRegisterActivity.add(this);
+
+        mModel.mobilel = getIntent().getStringExtra("PhoneNum");
+        mModel.smsCode = getIntent().getStringExtra("VerifyCode");
     }
 
     @Override
     public void initView() {
         btn_complete = (TextView) getView(R.id.btn_complete);
-        ed_password = (EditText) getView(R.id.ed_password_register);
+        mModel.ed_password = (EditText) getView(R.id.ed_password_register);
         show_icon = (ImageView) getView(R.id.show_icon);
 
         useragreement_pl = (PercentFrameLayout) getView(R.id.useragreement_pl);
@@ -102,7 +106,7 @@ public class Register3Activity extends BaseActivity implements Register3View {
      * 检查信息
      */
     private void checkText() {
-        RxTextView.textChangeEvents(ed_password)
+        RxTextView.textChangeEvents(mModel.ed_password)
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<TextViewTextChangeEvent>() {
@@ -131,10 +135,10 @@ public class Register3Activity extends BaseActivity implements Register3View {
 
                         if(show_icon.isSelected()){
                             show_icon.setSelected(false);
-                            ed_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            mModel.ed_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         }else {
                             show_icon.setSelected(true);
-                            ed_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                            mModel.ed_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                         }
 
                     }

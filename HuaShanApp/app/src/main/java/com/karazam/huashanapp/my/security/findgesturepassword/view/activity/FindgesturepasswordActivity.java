@@ -38,6 +38,7 @@ public class FindgesturepasswordActivity extends BaseActivity implements Findges
         mModel = new FindgesturepasswordViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

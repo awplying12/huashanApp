@@ -2,12 +2,20 @@ package com.karazam.huashanapp.today.main.viewmodel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.today.calendar.view.activity.CalendarActivity;
+import com.karazam.huashanapp.today.main.model.databinding.TodayBean;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
+import com.karazam.huashanapp.today.main.model.retrofit.TaodayDataSource;
 import com.karazam.huashanapp.today.main.view.TodayView;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/2.
@@ -20,11 +28,16 @@ public class TodayViewModelImpl extends TodayViewModel {
     private Context context;
     private Activity activity;
 
+    private TaodayDataSource dataSource;
+
     public TodayViewModelImpl(TodayEntity mEntity, TodayView mView, Context context, Activity activity) {
         this.mEntity = mEntity;
         this.mView = mView;
         this.context = context;
         this.activity = activity;
+
+        dataSource = new TaodayDataSource();
+
     }
 
     @Override
@@ -114,6 +127,8 @@ public class TodayViewModelImpl extends TodayViewModel {
         mView.showToast("每日精选立即购买");
     }
 
+
+
     /**
      * 积分商城更多
      * @param view
@@ -124,6 +139,36 @@ public class TodayViewModelImpl extends TodayViewModel {
     }
 
 
+    /**
+     * 获取数据
+     */
+    @Override
+    public void getData() {
 
+        dataSource.getTodayData().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TodayBean>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("TodayData","e  :  "+e.toString());
+                mView.getTodayDataFaile(e.toString());
+            }
+
+            @Override
+            public void onNext(BaseReturn<TodayBean> todayBeanBaseReturn) {
+
+                if(todayBeanBaseReturn.isSuccess()){
+                    Log.i("TodayData",todayBeanBaseReturn.getData().toString());
+                    mView.getTodayDataSuccess(todayBeanBaseReturn.getData());
+                }else {
+                    mView.getTodayDataFaile(todayBeanBaseReturn.getMessage());
+                }
+
+            }
+        });
+    }
 
 }

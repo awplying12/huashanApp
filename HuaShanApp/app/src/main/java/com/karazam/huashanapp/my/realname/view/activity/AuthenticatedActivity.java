@@ -38,6 +38,7 @@ public class AuthenticatedActivity extends BaseActivity implements Authenticated
         mModel = new AuthenticatedViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

@@ -72,6 +72,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
         mModel = new  HomeViewModelImpl(this,mEntity,this,this);
         binding.setHandler(mModel);
         binding.setEntity(mEntity);
+        activities.add(this);
     }
 
     @Override

@@ -45,6 +45,7 @@ public class SetupActivity extends BaseActivity implements SetupView {
         mModel = new SetupViewModelImpl(this,entity,this,this);
         binding.setHandler(mModel);
         binding.setEntity(entity);
+        activities.add(this);
     }
 
     @Override

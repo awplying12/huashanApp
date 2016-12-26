@@ -12,6 +12,7 @@
             ></variable>
     </data>
     <android.support.percent.PercentRelativeLayout
+       android:id="@+id/content_wpl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -72,7 +73,7 @@
         </LinearLayout>
 
         <android.support.percent.PercentFrameLayout
-            android:id="@id/content_pl"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/title_ll"

@@ -29,6 +29,7 @@ public class RechargedetailsActivity extends BaseActivity implements Rechargedet
         mModel = new RechargedetailsViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

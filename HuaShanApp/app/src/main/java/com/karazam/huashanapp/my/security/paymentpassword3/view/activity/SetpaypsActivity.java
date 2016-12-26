@@ -41,6 +41,7 @@ public class SetpaypsActivity extends BaseActivity implements SetpaypsView {
         mModel = new SetpaypsViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

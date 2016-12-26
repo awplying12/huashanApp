@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.user.register.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -31,8 +32,10 @@ public class Register2Activity extends BaseActivity implements Register2View {
     private Register2Entity entity = new Register2Entity();
     private Register2ViewModel mModel;
 
-    private EditText ed_verify_code;
+
     private TextView btn_next_step_2;
+
+
 
     @Override
     public void setContentLayout() {
@@ -40,17 +43,22 @@ public class Register2Activity extends BaseActivity implements Register2View {
         mModel = new Register2ViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override
     public void dealLogicBeforeInitView() {
         registerActivity.allRegisterActivity.add(this);
+
+        mModel.phonenum = getIntent().getStringExtra("PhoneNum");
+        mModel.reacQuire(null);
+
     }
 
     @Override
     public void initView() {
 
-        ed_verify_code = (EditText) getView(R.id.ed_verify_code_register);
+        mModel.ed_verify_code = (EditText) getView(R.id.ed_verify_code_register);
 
         btn_next_step_2 = (TextView) getView(R.id.btn_next_step_2);
 
@@ -66,7 +74,7 @@ public class Register2Activity extends BaseActivity implements Register2View {
      */
     private void checkText() {
 
-        RxTextView.textChangeEvents(ed_verify_code)
+        RxTextView.textChangeEvents(mModel.ed_verify_code)
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<TextViewTextChangeEvent>() {
@@ -83,5 +91,26 @@ public class Register2Activity extends BaseActivity implements Register2View {
                         }
                     }
                 });
+    }
+
+    /**
+     * 验证成功
+     * @param msg
+     */
+    @Override
+    public void verifySmsSuccess(String msg) {
+        Intent intent = new Intent(this,Register3Activity.class);
+        intent.putExtra("PhoneNum",mModel.phonenum);
+        intent.putExtra("VerifyCode",mModel.ed_verify_code.getText().toString());
+        startActivity(intent);
+    }
+
+    /**
+     * 验证失败
+     * @param msg
+     */
+    @Override
+    public void verifySmsFaile(String msg) {
+            showToast(msg);
     }
 }

@@ -38,6 +38,7 @@ public class TransactionActivity extends BaseActivity implements TransactionView
         mModel = new TransactionViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

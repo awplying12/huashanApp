@@ -56,6 +56,7 @@ public class MytransferActivity extends BaseActivity implements MytransferView {
         mModel = new MytransferViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

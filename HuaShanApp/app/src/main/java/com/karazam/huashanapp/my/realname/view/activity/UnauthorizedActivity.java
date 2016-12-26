@@ -69,6 +69,7 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
         mModel = new UnauthorizedViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

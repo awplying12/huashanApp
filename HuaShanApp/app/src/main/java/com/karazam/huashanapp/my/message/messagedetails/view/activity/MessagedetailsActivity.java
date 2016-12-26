@@ -46,6 +46,7 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
         mModel = new MessagedetailsViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

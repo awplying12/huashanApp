@@ -37,6 +37,7 @@ import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
+import com.karazam.huashanapp.today.main.model.databinding.TodayBean;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
 import com.karazam.huashanapp.today.main.view.TodayView;
 import com.karazam.huashanapp.today.main.view.fragment.view.AutoScrollAdapter;
@@ -118,6 +119,9 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         AutoScrollViewPager();
         setExperience();
         setSelected();
+
+
+        mModel.getData();
 //        setCommodity();
 //        setNew();
         return view;
@@ -224,7 +228,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
     @Override
     public void onRefresh() {
-        swl.setRefreshing(false);
+        mModel.getData();
     }
 
     /**
@@ -393,6 +397,23 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
         selected_rl.setAdapter(adapter);
 
+    }
+
+    /**
+     * 获取数据成功
+     */
+    @Override
+    public void getTodayDataSuccess(TodayBean bean) {
+        swl.setRefreshing(false);
+    }
+
+    /**
+     * 获取数据失败
+     * @param msg
+     */
+    @Override
+    public void getTodayDataFaile(String msg) {
+        swl.setRefreshing(false);
     }
 
 //    /**

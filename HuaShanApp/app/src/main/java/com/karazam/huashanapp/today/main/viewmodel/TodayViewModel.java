@@ -28,5 +28,7 @@ public abstract class TodayViewModel extends BaseViewModel{
 
     public abstract void onBuyImmediately(View view);
 
+    public abstract void getData();
+
 
 }

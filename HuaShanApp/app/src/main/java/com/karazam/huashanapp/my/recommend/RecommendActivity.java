@@ -17,6 +17,7 @@ public class RecommendActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void setContentLayout() {
         setContentView(R.layout.activity_recommend);
+        activities.add(this);
     }
 
     @Override

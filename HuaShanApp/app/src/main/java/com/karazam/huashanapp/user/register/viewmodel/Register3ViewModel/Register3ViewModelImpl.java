@@ -17,6 +17,8 @@ import com.karazam.huashanapp.user.register.view.Register3View;
 import com.karazam.huashanapp.user.register.view.activity.Register3Activity;
 import com.karazam.huashanapp.user.register.viewmodel.Register1ViewModel.Register1ViewModel;
 
+import java.util.concurrent.TimeUnit;
+
 import huashanapp.karazam.com.gesture_lock.GestureEditActivity;
 import huashanapp.karazam.com.gesture_lock.GestureUtil;
 import rx.Observable;
@@ -93,7 +95,14 @@ public class Register3ViewModelImpl extends Register3ViewModel {
      */
     @Override
     public void onRegister() {
-        dataSource.onRegister(mobilel,password,smsCode).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TokenData>>() {
+
+        password = ed_password.getText().toString();
+
+        dataSource.onRegister(mobilel,password,smsCode)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn<TokenData>>() {
+
             @Override
             public void onCompleted() {
 
@@ -113,7 +122,6 @@ public class Register3ViewModelImpl extends Register3ViewModel {
                 if(success){    //注册成功
                     TokenData data = tokenDataBaseReturn.getData();
 
-
                     HuaShanApplication.editor.putString("token",data.getSid()).commit();
                     HuaShanApplication.token = data.getSid();
 
@@ -127,12 +135,12 @@ public class Register3ViewModelImpl extends Register3ViewModel {
                     HuaShanApplication.account = mobilel;
                     mView.registerSuccess(data);
 
-
                 }else {
                     mView.registerFaile(new Throwable("Faile"));
                 }
             }
         });
+
     }
 
 

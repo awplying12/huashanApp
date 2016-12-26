@@ -77,6 +77,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         mModel = new LoginViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

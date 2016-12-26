@@ -43,6 +43,7 @@ public class MessageActivity extends BaseActivity implements MessageView,SwipeRe
         mModel = new MessageViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

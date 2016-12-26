@@ -41,6 +41,7 @@ public class PaymentmodActivity extends BaseActivity implements PaymentmodView{
         mModel = new PaymentmodViewModelImpl(entity,this,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

@@ -44,6 +44,7 @@ public class ModifyActivity extends BaseActivity implements ModifyView {
         mModel = new ModifyViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

@@ -27,6 +27,7 @@ public class RechargecashActivity extends BaseActivity implements RechargecashVi
         mModel = new RechargecashViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

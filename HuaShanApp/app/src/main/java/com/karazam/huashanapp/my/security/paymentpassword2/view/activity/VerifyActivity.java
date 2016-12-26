@@ -33,6 +33,7 @@ public class VerifyActivity extends BaseActivity implements VerifyView {
         mModel = new VerifyViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class VerifyActivity extends BaseActivity implements VerifyView {
      */
     private void setSMSView() {
         smsview = new SMSauthenticationView(this);
-        smsview.setView((ViewGroup) getView(R.id.content_pl), new SMSauthenticationView.OnAuthenticationListener() {
+        smsview.setView((ViewGroup) getView(R.id.content_wpl), new SMSauthenticationView.OnAuthenticationListener() {
             @Override
             public void onLeft(View view) {
                 smsview.dismiss();
@@ -64,6 +65,7 @@ public class VerifyActivity extends BaseActivity implements VerifyView {
             @Override
             public void onRight(View view) {
                 smsview.verification();
+                showProgressDialog();
             }
 
             @Override
@@ -73,6 +75,7 @@ public class VerifyActivity extends BaseActivity implements VerifyView {
 
             @Override
             public void onResult(boolean result) {
+                dissmissProgressDialog();
                 if(result){
                     toOtherActivity(VerifyActivity.this, SetpaypsActivity.class);
                     smsview.dismiss();

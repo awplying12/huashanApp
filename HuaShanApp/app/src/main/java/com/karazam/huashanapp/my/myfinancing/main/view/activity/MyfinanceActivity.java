@@ -56,6 +56,7 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
         mModel = new MyfinanceViewModelImpl(entity,this,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

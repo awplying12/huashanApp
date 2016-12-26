@@ -24,6 +24,7 @@ public class SoftwareActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void setContentLayout() {
         setContentView(R.layout.activity_software);
+        activities.add(this);
     }
 
     @Override

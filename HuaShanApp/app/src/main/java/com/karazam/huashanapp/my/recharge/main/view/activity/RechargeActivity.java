@@ -47,6 +47,7 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
         mModel = new RechargeViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

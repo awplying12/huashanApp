@@ -29,6 +29,7 @@ public class InvestmentActivity extends BaseActivity implements InvestmentView,S
         mModel = new InvestmentViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

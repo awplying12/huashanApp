@@ -54,6 +54,7 @@ public class VerifyActivity2 extends BaseActivity implements VerifyView2 {
         mModel = new VerifyViewModelImpl2(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

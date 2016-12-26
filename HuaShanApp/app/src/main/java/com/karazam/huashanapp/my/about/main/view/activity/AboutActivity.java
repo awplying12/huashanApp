@@ -38,6 +38,7 @@ public class AboutActivity extends BaseActivity implements AboutView {
         mModel = new AboutViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

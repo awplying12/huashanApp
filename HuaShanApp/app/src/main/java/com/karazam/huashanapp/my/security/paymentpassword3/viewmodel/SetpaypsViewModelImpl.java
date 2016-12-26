@@ -68,7 +68,7 @@ public class SetpaypsViewModelImpl extends SetpaypsViewModel {
     public void setUp() {
         mView.showToast("设置完成");
 
-        if(tag.equals("realName")){
+        if(tag!=null && tag.equals("realName")){
             mView.toOtherActivity(activity,AuthenticatedActivity.class);
         }
 

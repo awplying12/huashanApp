@@ -13,6 +13,8 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.example.utils.custom.dialog.loadingDialog;
+
 import java.util.ArrayList;
 
 /**
@@ -23,15 +25,19 @@ public abstract class BaseActivity extends FragmentActivity implements BaseView{
 
     public static int ScreeW; //屏幕的宽
     public static int ScreeH; //屏幕的高
-    private ProgressDialog progressDialog;
+    private loadingDialog progressDialog;
 
-    private static ArrayList<BaseActivity> activities = new ArrayList<>();
+    public static ArrayList<BaseActivity> activities = new ArrayList<>();
 
     public static void finishAll(){
         for(int i = 0; i < activities.size(); i++){
             activities.get(i).finish();
         }
     }
+
+//    public void addActvity(BaseActivity activity){
+//        activities.add(activity);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,7 @@ public abstract class BaseActivity extends FragmentActivity implements BaseView{
         Display m = this.getWindowManager().getDefaultDisplay();
         ScreeW = m.getWidth();
         ScreeH = m.getHeight();
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new loadingDialog(this);
         progressDialog.setCanceledOnTouchOutside(false);
         setContentLayout();
         dealLogicBeforeInitView();

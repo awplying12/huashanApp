@@ -32,6 +32,7 @@ public class SecurityActivity extends BaseActivity implements SecurityView{
         mModel = new SecurityViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
 
     }
 

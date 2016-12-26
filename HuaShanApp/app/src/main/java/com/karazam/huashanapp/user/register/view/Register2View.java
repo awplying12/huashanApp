@@ -7,4 +7,8 @@ import com.example.utils.base.BaseView;
  */
 
 public interface Register2View extends BaseView{
+
+    void verifySmsSuccess(String msg);
+
+    void verifySmsFaile(String msg);
 }

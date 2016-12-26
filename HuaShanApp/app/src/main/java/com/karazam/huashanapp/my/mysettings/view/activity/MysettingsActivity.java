@@ -57,6 +57,7 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
         mModel = new MysettingsViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

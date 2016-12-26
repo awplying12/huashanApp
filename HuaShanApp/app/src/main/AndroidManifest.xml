@@ -409,7 +409,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <activity
-            android:name=".my.myprofits.main.view.activity.MyprofitsActivity"
+            android:name=".my.bankcard.main.view.activity.BankcardActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>

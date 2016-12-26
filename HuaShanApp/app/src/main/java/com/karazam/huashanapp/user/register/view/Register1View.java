@@ -11,4 +11,8 @@ public interface Register1View extends BaseView{
     void nextStep();
 
     void introduction();
+
+    void checkMobileSuccess(String message);
+
+    void checkMobileFaile(String e);
 }

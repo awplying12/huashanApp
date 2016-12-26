@@ -27,6 +27,7 @@ public class CalendarActivity extends BaseActivity implements CalendarView {
         mModel = new CalendarViewModelImpl(this,entity,this,this);
         binding.setHandler(mModel);
         binding.setEntity(entity);
+        activities.add(this);
     }
 
     @Override

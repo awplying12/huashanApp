@@ -2,11 +2,16 @@ package com.karazam.huashanapp.user.findpassword.main.viewmodel;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.karazam.huashanapp.R;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.main.retrofit.smsverification.SendSmsDataSource;
+import com.karazam.huashanapp.main.retrofit.smsverification.VerifySmsDataSource;
 import com.karazam.huashanapp.user.findpassword.main.model.databinding.FindpasswordEntity;
+import com.karazam.huashanapp.user.findpassword.main.model.retrofit.FindpasswordDataSource;
 import com.karazam.huashanapp.user.findpassword.main.view.FindpasswordView;
 import com.karazam.huashanapp.user.findpassword.main.view.activity.FindpasswordActivity;
 import com.ogaclejapan.rx.binding.Rx;
@@ -16,8 +21,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/10/31.
@@ -30,11 +37,20 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
     private Context context;
     private FindpasswordActivity activity;
 
+    private FindpasswordDataSource dataSource;
+
+    private SendSmsDataSource sendSmsDataSource;
+    private VerifySmsDataSource verifySmsDataSource;
+
     public FindpasswordViewModelImpl(FindpasswordEntity mEntity, FindpasswordView mView, Context context, FindpasswordActivity activity) {
         this.mEntity = mEntity;
         this.mView = mView;
         this.context = context;
         this.activity = activity;
+        dataSource = new FindpasswordDataSource();
+
+        sendSmsDataSource = new SendSmsDataSource();
+        verifySmsDataSource = new VerifySmsDataSource();
 
         checkText();
 //        reacQuire(null);
@@ -72,7 +88,7 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
         });
 
         com.jakewharton.rxbinding.view.RxView.clicks(tv_time)
-                .throttleFirst(300, TimeUnit.MILLISECONDS)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Void>() {
                     @Override
@@ -112,8 +128,7 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
         };
         timer.schedule(tk,1000,1000);
 
-        mView.showToast("123");
-
+        sendSms();
     }
 
     /**
@@ -122,6 +137,120 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
      */
     @Override
     public void onNextStep(View view) {
-            mView.showToast("onNextStep");
+
+        verifySms();
+        activity.showProgressDialog();
+    }
+
+
+    /**
+     * 找回密码
+     */
+    @Override
+    public void Findpassword() {
+
+        String phonenum = et_phonenum.getText().toString();
+        String code = ed_code.getText().toString();
+        String password = ed_password.getText().toString();
+
+        dataSource.findPassword(phonenum,password,code)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("Findpassword","e   :  "+e.toString());
+                        mView.FindpasswordFaile(e.toString());
+                        activity.dissmissProgressDialog();
+
+                    }
+
+                    @Override
+                    public void onNext(BaseReturn baseReturn) {
+
+                        if(baseReturn.isSuccess()){
+                            mView.FindpasswordSuccess(baseReturn.toString());
+                            activity.dissmissProgressDialog();
+                        }else {
+                            mView.FindpasswordFaile(baseReturn.toString());
+                            activity.dissmissProgressDialog();
+                        }
+                    }
+                });
+
+    }
+
+    /**
+     * 发送短信验证
+     */
+    private String smsType = "USER_FIND_PASSWORD_CODE";
+    @Override
+    public void sendSms() {
+
+        String phonenum = et_phonenum.getText().toString();
+
+        sendSmsDataSource.sendSms(phonenum,smsType)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseReturn baseReturn) {
+
+                    }
+                });
+    }
+
+    /**
+     * 验证短信验证
+     */
+    @Override
+    public void verifySms() {
+
+        String phonenum = et_phonenum.getText().toString();
+        String code = ed_code.getText().toString();
+        verifySmsDataSource.verifySms(phonenum,code,smsType)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("Findpassword","e   :  "+e.toString());
+
+                        mView.showToast("短信验证失败");
+                        activity.dissmissProgressDialog();
+                    }
+
+                    @Override
+                    public void onNext(BaseReturn baseReturn) {
+
+                        if(baseReturn.isSuccess()){
+                            Findpassword();
+                        }else {
+                            mView.showToast(baseReturn.getMessage());
+                            activity.dissmissProgressDialog();
+                        }
+
+                    }
+                });
     }
 }

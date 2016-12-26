@@ -29,6 +29,7 @@ public class MyassetsActivity extends BaseActivity implements MyassetsView,Swipe
         mModel = new MyassetsViewModelImpl(this,entity,this,this);
         binding.setEntity(entity);
         binding.setHandler(mModel);
+        activities.add(this);
     }
 
     @Override

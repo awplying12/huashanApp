@@ -24,4 +24,10 @@ public abstract class FindpasswordViewModel extends BaseViewModel{
     public abstract void reacQuire(View view);
 
     public abstract void onNextStep(View view);
+
+    public abstract void Findpassword();
+
+    public abstract void sendSms();
+
+    public abstract void verifySms();
 }

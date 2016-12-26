@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.user.register.viewmodel.Register3ViewModel;
 
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.utils.base.BaseViewModel;
 
@@ -13,6 +14,9 @@ public abstract class Register3ViewModel extends BaseViewModel{
     public String mobilel;
     public String password;
     public String smsCode;
+
+
+    public EditText ed_password;
 
     public abstract void complete(View view);
 
