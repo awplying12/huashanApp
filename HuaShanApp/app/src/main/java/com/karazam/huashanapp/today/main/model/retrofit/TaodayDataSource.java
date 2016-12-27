@@ -15,7 +15,7 @@ public class TaodayDataSource extends BaseDataSource {
     TodayApi service = retrofit1.create(TodayApi.class);
 
     public Observable<BaseReturn<TodayBean>> getTodayData(){
-        return service.getTodayData();
+        return service.getTodayData("XMLHttpRequest");
     }
 
 }

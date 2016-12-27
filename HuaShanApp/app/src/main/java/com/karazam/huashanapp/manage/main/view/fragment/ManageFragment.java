@@ -49,6 +49,9 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
     private RefreshRecyclerView content_rl;
     private ContentAdapter adapter;
 
+    private String type = "guarantee";
+    private int page = 1;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -94,7 +97,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         list.add("产融货");
         list.add("优企宝");
         list.add("保理贷");
-        list.add("债权转让");
+//        list.add("债权转让");
 
 
         titlebarAdapter = new TitleBarAdapter(list,getContext(),17);
@@ -106,17 +109,21 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 
                 switch (position){
                     case 0: //产融货
-                        showToast("产融货");
+                        type = "guarantee";
                         break;
                     case 1: //优企宝
+                        type = "mortgage";
                         break;
                     case 2: //保理贷
+                        type = "credit";
                         break;
-                    case 3: //债权转让
-                        break;
+//                    case 3: //债权转让
+//                        break;
                     default:
                         break;
                 }
+
+                Refresh();
 
             }
         });
@@ -182,6 +189,31 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
     @Override
     public void onRefresh() {
         showToast("onRefresh Down");
+        Refresh();
+    }
+
+    private void Refresh(){
+        page = 1;
+        mModel.getManageData(type,page);
+    }
+
+    /**
+     * 获取数据成功
+     */
+    @Override
+    public void getManageDataSuccess(ArrayList<HotProjects> datas) {
+        mSwipeLayout.setRefreshing(false);
+
+        adapter.setmData(datas);
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 获取数据失败
+     * @param e
+     */
+    @Override
+    public void getManageDataFaile(String e) {
         mSwipeLayout.setRefreshing(false);
     }
 }

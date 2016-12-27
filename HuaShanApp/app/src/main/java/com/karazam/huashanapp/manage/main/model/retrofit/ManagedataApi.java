@@ -1,8 +1,11 @@
 package com.karazam.huashanapp.manage.main.model.retrofit;
 
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.manage.main.model.databinding.ManagedataBean;
 
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -11,5 +14,5 @@ import rx.Observable;
 
 public interface ManagedataApi {
     @GET("/investment/list")
-    Observable<BaseReturn> getManagedata();
+    Observable<BaseReturn<ManagedataBean>> getManagedata(@Query("borrowingType") String borrowingType, @Query("currentPage") String currentPage, @Header("X-Requested-With") String ID);
 }

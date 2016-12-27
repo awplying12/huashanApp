@@ -7,4 +7,7 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class ManageViewModel extends BaseViewModel{
+
+    public abstract void getManageData(String type,int page);
+
 }
