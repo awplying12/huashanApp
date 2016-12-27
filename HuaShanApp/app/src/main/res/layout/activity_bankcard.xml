@@ -71,6 +71,8 @@
             </android.support.percent.PercentRelativeLayout>
         </LinearLayout>
 
+
+
         <android.support.percent.PercentFrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -81,14 +83,44 @@
             >
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BankcardActivity"
-                />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/titlebar_rl"
+                android:layout_width="match_parent"
+                app:layout_heightPercent="7%"
+                android:background="@color/manage_titlebar_bg_color">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swp_sl"
+                android:layout_width="match_parent"
+                app:layout_heightPercent="93%"
+                android:layout_gravity="bottom">
+
+                <com.example.utils.custom.RefreshRecyclerView
+                    android:id="@+id/content_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never">
+
+                </com.example.utils.custom.RefreshRecyclerView>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"
+                android:layout_gravity="top"/>
 
 
 
         </android.support.percent.PercentFrameLayout>
+
+
     </android.support.percent.PercentRelativeLayout>
 </layout>

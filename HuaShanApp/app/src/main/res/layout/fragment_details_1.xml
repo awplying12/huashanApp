@@ -124,6 +124,7 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="36%"
                 app:layout_marginTopPercent="24%"
+                android:background="#eee"
                 >
 
                 <android.support.percent.PercentFrameLayout
@@ -132,12 +133,14 @@
                     app:layout_marginLeftPercent="15%"
                     android:layout_below="@+id/colorChoice"
                     android:layout_gravity="center_vertical"
-                    android:background="#5066b3ff">
+                    android:background="#5066b3ff"
+                    >
 
                     <com.gelitenight.waveview.library.WaveView
                         android:id="@+id/wave_in"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+
                         />
 
                     <ImageView

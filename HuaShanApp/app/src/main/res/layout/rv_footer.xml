@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/btn_add"
+            app:layout_widthPercent="90%"
+            app:layout_heightPercent="100%"
+            android:background="@drawable/bg_addbankcard"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                app:layout_widthPercent="8%"
+                app:layout_heightPercent="40%"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_add"
+                android:src="@drawable/jiahuao_1"/>
+
+            <TextView
+                android:id="@+id/tv_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="添加银行卡"
+                android:textSize="15dp"
+                android:textColor="#0894EC"
+                />
+        </android.support.percent.PercentRelativeLayout>
+
+
+</android.support.percent.PercentFrameLayout>
+
+

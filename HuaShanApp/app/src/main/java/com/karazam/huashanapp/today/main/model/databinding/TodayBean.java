@@ -1,5 +1,7 @@
 package com.karazam.huashanapp.today.main.model.databinding;
 
+import com.karazam.huashanapp.main.Bean.HotProjects;
+
 import java.util.ArrayList;
 
 /**
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 public class TodayBean {
 
     private String todayProfits;
+    private ArrayList<String> bannerUrls;
     private ArrayList<HotProjects> hotProjects;
 
     public String getTodayProfits() {
@@ -17,6 +20,14 @@ public class TodayBean {
 
     public void setTodayProfits(String todayProfits) {
         this.todayProfits = todayProfits;
+    }
+
+    public ArrayList<String> getBannerUrls() {
+        return bannerUrls;
+    }
+
+    public void setBannerUrls(ArrayList<String> bannerUrls) {
+        this.bannerUrls = bannerUrls;
     }
 
     public ArrayList<HotProjects> getHotProjects() {
@@ -31,8 +42,8 @@ public class TodayBean {
     public String toString() {
         return "TodayBean{" +
                 "todayProfits='" + todayProfits + '\'' +
+                ", bannerUrls=" + bannerUrls +
                 ", hotProjects=" + hotProjects +
                 '}';
     }
-
 }

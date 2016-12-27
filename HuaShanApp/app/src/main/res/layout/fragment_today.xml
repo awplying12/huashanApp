@@ -77,10 +77,9 @@
             <com.karazam.huashanapp.today.main.view.fragment.view.MyNestedScrollView
                 android:id="@+id/scrollview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-
+                android:layout_height="match_parent"
+                android:overScrollMode="never">
+                
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -252,7 +251,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
-                            android:background="#cfa">
+                            android:background="@drawable/def_img">
 
                         </com.example.utils.custom.views.AutoScrollViewPager>
 
@@ -306,69 +305,69 @@
 
                     </android.support.percent.PercentFrameLayout>
 
+                    <!--<ImageView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="18dp"-->
+                        <!--android:background="@color/all_activity_background"/>-->
+
+                    <!--&lt;!&ndash;每日精选—体检&ndash;&gt;-->
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="vertical"-->
+                        <!--&gt;-->
+
+                        <!--<android.support.percent.PercentFrameLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:background="@color/all_activity_background"-->
+                            <!--&gt;-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="每日精选-体验理财"-->
+                                <!--style="@style/Base.TextAppearance.AppCompat.Body1"-->
+                                <!--app:layout_marginLeftPercent="5%"-->
+                                <!--android:layout_gravity="center_vertical"-->
+                                <!--android:textSize="@dimen/todayfragment_part4_text_size"-->
+                                <!--android:textColor="@color/todayfragment_part4_text_color"/>-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="即投即得"-->
+                                <!--app:layout_marginRightPercent="5%"-->
+                                <!--android:layout_gravity="center_vertical|right"-->
+                                <!--android:textSize="12dp"-->
+                                <!--android:textColor="@color/todayfragment_part4_text_color"/>-->
+
+                        <!--</android.support.percent.PercentFrameLayout>-->
+
+                        <!--<RelativeLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:descendantFocusability="blocksDescendants"-->
+                            <!--&gt;-->
+
+                            <!--<android.support.v7.widget.RecyclerView-->
+                                <!--android:id="@+id/experience_rl"-->
+                                <!--android:layout_width="match_parent"-->
+
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:background="@color/all_activity_background"-->
+                                <!--android:isScrollContainer="false"-->
+                                <!--&gt;-->
+
+                            <!--</android.support.v7.widget.RecyclerView>-->
+
+                        <!--</RelativeLayout>-->
+                    <!--</LinearLayout>-->
+
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
-                        android:background="@color/todayfragment_line_color"/>
-
-                    <!--每日精选—体检-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
-
-                        <android.support.percent.PercentFrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/all_activity_background"
-                            >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="每日精选-体验理财"
-                                style="@style/Base.TextAppearance.AppCompat.Body1"
-                                app:layout_marginLeftPercent="5%"
-                                android:layout_gravity="center_vertical"
-                                android:textSize="@dimen/todayfragment_part4_text_size"
-                                android:textColor="@color/todayfragment_part4_text_color"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="即投即得"
-                                app:layout_marginRightPercent="5%"
-                                android:layout_gravity="center_vertical|right"
-                                android:textSize="12dp"
-                                android:textColor="@color/todayfragment_part4_text_color"/>
-
-                        </android.support.percent.PercentFrameLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:descendantFocusability="blocksDescendants"
-                            >
-
-                            <android.support.v7.widget.RecyclerView
-                                android:id="@+id/experience_rl"
-                                android:layout_width="match_parent"
-
-                                android:layout_height="wrap_content"
-                                android:background="@color/all_activity_background"
-                                android:isScrollContainer="false"
-                                >
-
-                            </android.support.v7.widget.RecyclerView>
-
-                        </RelativeLayout>
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:background="@color/todayfragment_line_color"/>
+                        android:background="@color/all_activity_background"/>
 
                     <!--每日精选—推荐-->
                     <LinearLayout
@@ -410,6 +409,21 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:descendantFocusability="blocksDescendants">
+
+                            <android.support.percent.PercentFrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="165dp"
+                                android:background="@color/all_activity_background">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    app:layout_heightPercent="80%"
+                                    android:src="@drawable/nopro_icon"/>
+
+
+
+                            </android.support.percent.PercentFrameLayout>
+
 
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/selected_rl"

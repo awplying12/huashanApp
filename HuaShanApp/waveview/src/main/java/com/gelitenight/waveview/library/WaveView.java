@@ -220,6 +220,7 @@ public class WaveView extends View {
         mDefaultWaterLevel = getHeight() * DEFAULT_WATER_LEVEL_RATIO;
         mDefaultWaveLength = getWidth();
 
+
         Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
 
@@ -287,6 +288,7 @@ public class WaveView extends View {
                             (getWidth() - borderWidth) / 2f - 1f, mBorderPaint);
                     }
                     float radius = getWidth() / 2f - borderWidth;
+                    mViewPaint.setColor(Color.parseColor("#50ff0000"));
                     canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, radius, mViewPaint);
                     break;
                 case SQUARE:

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
+import com.karazam.huashanapp.main.Bean.HotProjects;
 import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
@@ -28,12 +29,14 @@ import java.util.ArrayList;
  */
 
 public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHolder> {
-    private ArrayList<Project> mData;
+
+
+    private ArrayList<HotProjects> mData = new ArrayList<>();
     private final LayoutInflater mLayoutInflater;
     private Context mContext;
 
 
-    public ContentAdapter(Context context, ArrayList<Project> data) {
+    public ContentAdapter(Context context, ArrayList<HotProjects> data) {
         this.mContext = context;
         this.mData = data;
         this.mLayoutInflater = LayoutInflater.from(mContext);
@@ -79,30 +82,30 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
 
 
-        RxProperty<Project> status = RxProperty.create();
-        status.set(mData.get(position));
-        RxView.of(holder.buy_now).bind(status, new Rx.Action<TextView, Project>() {
-            @Override
-            public void call(TextView target, Project project) {
-                String tx = project.getStatus_tx();
-                target.setText(StringUtil.interrupt(tx,0,""));
-
-                int status = mData.get(position).getStatus();
-
-                switch (status){
-                    case 0:
-                        target.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
-                        target.setClickable(true);
-                        break;
-                    case 1:
-                        target.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
-                        target.setClickable(false);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+//        RxProperty<HotProjects> status = RxProperty.create();
+//        status.set(mData.get(position));
+//        RxView.of(holder.buy_now).bind(status, new Rx.Action<TextView, Project>() {
+//            @Override
+//            public void call(TextView target, Project project) {
+//                String tx = project.getStatus_tx();
+//                target.setText(StringUtil.interrupt(tx,0,""));
+//
+//                int status = mData.get(position).getStatus();
+//
+//                switch (status){
+//                    case 0:
+//                        target.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
+//                        target.setClickable(true);
+//                        break;
+//                    case 1:
+//                        target.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
+//                        target.setClickable(false);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
 
 
     }
@@ -114,15 +117,19 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
      */
     private void setTextView(ContentAdapter.ViewHolder holder, final int position) {
 
-        String annualIncome = "8.60";
+//        String annualIncome = "8.60";
+        String annualIncome = mData.get(position).getInterestRate();
         Spanned text1 = Html.fromHtml(StringUtil.interrupt(annualIncome,0,"")+"<font color='#505050'><small><small>%<small><small>");
         holder.Annual_Income.setText(text1);
 
-        String projectDuration = "20";
-        Spanned text2 = Html.fromHtml(StringUtil.interrupt(projectDuration,0,"")+"<small><small>万元<small><small>");
+//        String projectDuration = "20";
+        double projectDuration = mData.get(position).getResidualAmount();
+        String projectDurationStr = String.valueOf(projectDuration/10000);
+        Spanned text2 = Html.fromHtml(StringUtil.interrupt(projectDurationStr,0,"")+"<small><small>万元<small><small>");
         holder.Project_Duration.setText(text2);
 
-        String projectScale = "6";
+//        String projectScale = "6";
+        String projectScale = mData.get(position).getPeriod();
         Spanned text3 = Html.fromHtml(StringUtil.interrupt(projectScale,0,"")+"<small><small>月<small><small>");
         holder.Project_Scale.setText(text3);
     }
@@ -162,7 +169,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
     //添加数据
-    public void addItem(ArrayList<Project> newDatas) {
+    public void addItem(ArrayList<HotProjects> newDatas) {
         //mTitles.add(position, data);
         //notifyItemInserted(position);
         newDatas.addAll(mData);
@@ -171,9 +178,17 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         notifyDataSetChanged();
     }
 
-    public void addMoreItem(ArrayList<Project> newDatas) {
+    public void addMoreItem(ArrayList<HotProjects> newDatas) {
         mData.addAll(newDatas);
         notifyDataSetChanged();
+    }
+
+    public ArrayList<HotProjects> getmData() {
+        return mData;
+    }
+
+    public void setmData(ArrayList<HotProjects> mData) {
+        this.mData = mData;
     }
 
     public interface onItemClickListener{

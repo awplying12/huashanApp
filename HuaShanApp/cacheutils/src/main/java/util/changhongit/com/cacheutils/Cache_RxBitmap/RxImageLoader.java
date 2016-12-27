@@ -1,6 +1,7 @@
 package util.changhongit.com.cacheutils.Cache_RxBitmap;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
 
 import java.util.Collections;
@@ -31,6 +32,33 @@ public class RxImageLoader {
         return source.doOnNext(data -> {
             if(imageView!=null&&url.equals(cachekeysmap.get(imageView.hashCode()))){
                 imageView.setImageBitmap(data.bitmap);
+            }
+        });
+
+
+    }
+
+    public static Observable<Data> getLoaderObservable(ImageView imageView,String url,int type){
+        if(imageView!=null){
+            cachekeysmap.put(imageView.hashCode(),url);
+        }
+        Observable<Data> source = Observable.concat(sources.memory(url),
+                sources.disk(url),sources.network(url)).first(data -> data!=null&&data.isAvailiable()
+                &&url.equals(data.url));
+        return source.doOnNext(data -> {
+            if(imageView!=null&&url.equals(cachekeysmap.get(imageView.hashCode()))){
+                switch (type){
+                    case 1:
+                        imageView.setImageBitmap(data.bitmap);
+                        break;
+                    case 2:
+                        imageView.setBackgroundDrawable(new BitmapDrawable(data.bitmap));
+                        break;
+                    default:
+                        imageView.setImageBitmap(data.bitmap);
+                        break;
+                }
+
             }
         });
 

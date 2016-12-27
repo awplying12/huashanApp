@@ -29,11 +29,13 @@ import com.example.utils.custom.VpSwipeRefreshLayout;
 import com.example.utils.custom.bannerview.ViewFlow;
 import com.example.utils.custom.views.AutoScrollViewPager;
 import com.example.utils.utils.BitmapUtil;
+import com.example.utils.utils.StringUtil;
 import com.google.common.collect.Lists;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 
+import com.karazam.huashanapp.main.Bean.HotProjects;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
@@ -48,6 +50,7 @@ import com.karazam.huashanapp.today.main.view.fragment.view.ViewFlowAdapter;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModel;
 import com.karazam.huashanapp.today.main.viewmodel.TodayViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -81,7 +84,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
 //    private ViewFlow viewFlow;
 
-    private AutoScrollAdapter autoScrollAdapter;
+//    private AutoScrollAdapter autoScrollAdapter;
 //    private SpringIndicator springIndicator;
     private CirclePageIndicator indicator;
 
@@ -101,6 +104,8 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     private ImageView line_1;
     private ImageView line_2;
 
+    private RxProperty<TodayBean> todayBeanRxProperty;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -112,32 +117,20 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         binding.setHandler(mModel);
 
         initView();
-
+        setLayout();
         setHeader();
         initTime();
         setScrollView();
-        AutoScrollViewPager();
-        setExperience();
+
+//        setExperience();
         setSelected();
 
 
         mModel.getData();
+
 //        setCommodity();
 //        setNew();
         return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        pager.startAutoScroll();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        pager.stopAutoScroll();
-
     }
 
     /**
@@ -169,6 +162,9 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     @SuppressLint("NewApi")
     private void initView() {
 
+        todayBeanRxProperty = RxProperty.create();
+
+
         swl = (VpSwipeRefreshLayout) getView(R.id.today_swipe_ly,view);
         swl.setOnRefreshListener(this);
         swl.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
@@ -185,17 +181,6 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
         title_pl = (PercentFrameLayout) getView(R.id.title_pl,view);
 
-//        title_pl.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-//                    @Override
-//                         public boolean onPreDraw() {
-//                        title_pl.getViewTreeObserver().removeOnPreDrawListener(this);
-//                        title_pl.buildDrawingCache();
-//
-//                               Bitmap bmp = title_pl.getDrawingCache();
-//                               BitmapUtil.blur(bmp,title_pl,getContext());
-//                                return true;
-//                            }
-//                  });
 
 
         profit_num = (TextView) getView(R.id.profit_num,view);
@@ -221,9 +206,37 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         FullyLinearLayoutManager lm2 = new FullyLinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         selected_rl.setLayoutManager(lm2);
 
-        experience_rl = (RecyclerView) getView(R.id.experience_rl,view);
-        FullyLinearLayoutManager lm3 = new FullyLinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-        experience_rl.setLayoutManager(lm3);
+//        experience_rl = (RecyclerView) getView(R.id.experience_rl,view);
+//        FullyLinearLayoutManager lm3 = new FullyLinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+//        experience_rl.setLayoutManager(lm3);
+    }
+
+
+    /**
+     * 设置界面
+     */
+    private void setLayout() {
+
+        RxView.of(profit_num).bind(todayBeanRxProperty, new Rx.Action<TextView, TodayBean>() {
+            @Override
+            public void call(TextView target, TodayBean todayBean) {
+
+                String todayProfits = todayBean.getTodayProfits();
+                target.setText(StringUtil.interrupt(todayProfits,0,""));
+
+
+//                adapter.addItem(todayBean.getHotProjects());
+                adapter.setmData(todayBean.getHotProjects());
+                adapter.notifyDataSetChanged();
+
+                ArrayList<String> urls = todayBean.getBannerUrls();
+//                autoScrollAdapter.setUrls(urls);
+//                autoScrollAdapter.notifyDataSetChanged();
+
+                AutoScrollViewPager( urls);
+            }
+        });
+
     }
 
     @Override
@@ -234,12 +247,24 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     /**
      * 设置滚动ViewPager
      */
-    private void AutoScrollViewPager(){
+    private void AutoScrollViewPager(ArrayList<String> ulrs){
+
+        ArrayList<String> list = new ArrayList<String>();
+        if(ulrs == null || ulrs.size() == 0){
+
+            list.add("");
+            list.add("");
+            list.add("");
+        }else {
+            list = ulrs;
+        }
+
+
 
         PagerModelManager manager = new PagerModelManager();
-        manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
+        manager.addCommonFragment(GuideFragment.class, ulrs);
 
-        autoScrollAdapter = new AutoScrollAdapter(getActivity().getSupportFragmentManager(), manager,getBgRes(),getContext(),pager);
+        AutoScrollAdapter  autoScrollAdapter = new AutoScrollAdapter(getActivity().getSupportFragmentManager(), manager,ulrs,getContext(),pager);
 //        Log.i("msh","123");
 //       pager.setCurrentItem(3);
         pager.setTime(5000);
@@ -259,7 +284,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
             @Override
             public boolean onLongClick(View view, int position) {
-                showToast(position+"Long");
+
                 return true;
             }
         });
@@ -302,7 +327,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
      * @return
      */
     private List<String> getTitles(){
-        return Lists.newArrayList("1", "2", "3", "4","5");
+        return Lists.newArrayList("1", "2");
     }
 
     /**
@@ -385,15 +410,19 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     /**
      * 每日精选——推荐RecyclerView
      */
+    private ContentAdapter adapter;
     private void setSelected(){
 
 
-        ArrayList<Project> list = new ArrayList<>();
-        list.add(new Project(0,"立即购买"));
-        list.add(new Project(0,"立即购买"));
-        list.add(new Project(0,"立即购买"));
+        ArrayList<HotProjects> list = new ArrayList<>();
+////        list.add(new Project(0,"立即购买"));
+////        list.add(new Project(0,"立即购买"));
+////        list.add(new Project(0,"立即购买"));
+//        list.add(new HotProjects());
+//        list.add(new HotProjects());
+//        list.add(new HotProjects());
 
-        ContentAdapter adapter = new ContentAdapter(getContext(),list);
+        adapter = new ContentAdapter(getContext(),list);
 
         selected_rl.setAdapter(adapter);
 
@@ -405,6 +434,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     @Override
     public void getTodayDataSuccess(TodayBean bean) {
         swl.setRefreshing(false);
+        todayBeanRxProperty.set(bean);
     }
 
     /**
@@ -413,9 +443,22 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
      */
     @Override
     public void getTodayDataFaile(String msg) {
+
         swl.setRefreshing(false);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        pager.startAutoScroll();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        pager.stopAutoScroll();
+
+    }
 //    /**
 //     * 积分商城RecyclerView
 //     */

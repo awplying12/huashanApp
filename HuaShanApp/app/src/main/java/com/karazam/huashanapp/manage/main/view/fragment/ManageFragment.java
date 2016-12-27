@@ -16,6 +16,7 @@ import com.example.utils.custom.WrapContentLinearLayoutManager;
 
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentManageBinding;
+import com.karazam.huashanapp.main.Bean.HotProjects;
 import com.karazam.huashanapp.manage.main.model.databinding.ManageEntity;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.ManageView;
@@ -141,16 +142,22 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         };
         content_rl.setLayoutManager(layoutManager);
 
-        ArrayList<Project> list = new ArrayList<>();
-        list.add(new Project(1,"还款中"));
-        list.add(new Project(0,"立即购买"));
-        list.add(new Project(0,"立即购买"));
-        list.add(new Project(1,"已满额"));
-        list.add(new Project(1,"已完成"));
-        list.add(new Project(1,"还款中"));
-        list.add(new Project(0,"立即购买"));
-        list.add(new Project(0,"立即购买"));
-        list.add(new Project(1,"已满额"));
+        ArrayList<HotProjects> list = new ArrayList<>();
+//        list.add(new Project(1,"还款中"));
+//        list.add(new Project(0,"立即购买"));
+//        list.add(new Project(0,"立即购买"));
+//        list.add(new Project(1,"已满额"));
+//        list.add(new Project(1,"已完成"));
+//        list.add(new Project(1,"还款中"));
+//        list.add(new Project(0,"立即购买"));
+//        list.add(new Project(0,"立即购买"));
+//        list.add(new Project(1,"已满额"));
+
+        list.add(new HotProjects());
+        list.add(new HotProjects());
+        list.add(new HotProjects());
+        list.add(new HotProjects());
+        list.add(new HotProjects());
 
         adapter = new ContentAdapter(getContext(),list);
         content_rl.setAdapter(adapter);

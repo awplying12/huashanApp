@@ -62,7 +62,7 @@ public class TodayViewModelImpl extends TodayViewModel {
      */
     @Override
     public void toCalendar(View view) {
-        mView.toOtherActivity(activity, CalendarActivity.class);
+//        mView.toOtherActivity(activity, CalendarActivity.class);
     }
 
     /**

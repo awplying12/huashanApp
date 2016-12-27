@@ -54,23 +54,8 @@ public class AuthenticatedActivity extends BaseActivity implements Authenticated
 
     @Override
     public void dealLogicAfterInitView() {
-        setBankCard();
+
     }
 
-    /**
-     * 银行哈卡
-     */
-    private void setBankCard() {
 
-        RxView.findById(this,R.id.bankcard).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-            @Override
-            public void call(View target, UserInformation userInformation) {
-                ImageView logo = (ImageView) target.findViewById(R.id.img_logo);
-
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.zgyh_icon);
-
-                logo.setImageBitmap(BitmapUtil.toRoundBitmap(BankLogo.setLogo(bitmap,AuthenticatedActivity.this)));
-            }
-        });
-    }
 }

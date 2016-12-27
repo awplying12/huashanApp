@@ -25,6 +25,9 @@ import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by Administrator on 2016/11/10.
  */
@@ -107,10 +110,29 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
         mWaveHelper = new WaveHelper(waveView,getActivity(),t);
         waveView.setShapeType(WaveView.ShapeType.SQUARE);
 
-//        waveView.setWaveColor(
-//                Color.parseColor("#0080FF"),
-//                Color.parseColor("#0080FF"));
+//        waveView.setShapeType(WaveView.ShapeType.CIRCLE);
+
+
 //        waveView.setBorder(1, mBorderColor);
+
+
+//        Timer timer = new Timer();
+//        TimerTask tk = new TimerTask() {
+//            @Override
+//            public void run() {
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                                waveView.setWaveColor(
+//                                        Color.parseColor("#0080FF"),
+//                                        Color.parseColor("#500080FF"));
+//                                }
+//                });
+//            }
+//        };
+//        timer.schedule(tk,100);
+
 
 
         mWaveHelper.start();

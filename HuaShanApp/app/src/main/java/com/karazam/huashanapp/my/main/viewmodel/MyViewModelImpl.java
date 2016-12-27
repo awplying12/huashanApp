@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.my.bankcard.main.view.activity.BankcardActivity;
 import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
 import com.karazam.huashanapp.my.main.view.MyView;
 import com.karazam.huashanapp.my.message.main.view.activity.MessageActivity;
@@ -106,11 +107,13 @@ public class MyViewModelImpl extends MyViewModel {
     @Override
     public void BankCard(View view) {
 
-        if(HuaShanApplication.userInformation.isStatus()){
-            mView.toOtherActivity(activity, AuthenticatedActivity.class);
-        }else {
-            mView.toOtherActivity(activity, UnauthorizedActivity.class);
-        }
+//        if(HuaShanApplication.userInformation.isStatus()){
+//            mView.toOtherActivity(activity, AuthenticatedActivity.class);
+//        }else {
+//            mView.toOtherActivity(activity, UnauthorizedActivity.class);
+//        }
+
+        mView.toOtherActivity(activity, BankcardActivity.class);
 
     }
 
