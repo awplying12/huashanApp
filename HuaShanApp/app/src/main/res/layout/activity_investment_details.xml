@@ -68,6 +68,10 @@
         </android.support.percent.PercentRelativeLayout>
         </LinearLayout>
 
+
+
+
+
         <android.support.percent.PercentFrameLayout
             android:id="@+id/content_pl"
             android:layout_width="match_parent"
@@ -85,17 +89,6 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="26%"
                 android:background="#66b3ff">
-
-                <TextView
-                    android:id="@+id/det_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_marginTopPercent="7%"
-                    app:layout_marginLeftPercent="7%"
-                    android:background="#66b3ff"
-                    android:text="产融贷CR216001-30"
-                    android:textColor="@color/Investmentdetails_part1_text_size"
-                    android:textSize="18dp"/>
 
                 <TextView
                     android:id="@+id/text_11"
@@ -146,6 +139,17 @@
 
                 </android.support.percent.PercentRelativeLayout>
 
+                <TextView
+                    android:id="@+id/det_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginTopPercent="7%"
+                    app:layout_marginLeftPercent="7%"
+                    android:background="#66b3ff"
+                    android:text="产融贷CR216001-30"
+                    android:textColor="@color/Investmentdetails_part1_text_size"
+                    android:textSize="18dp"/>
+
 
             </android.support.percent.PercentFrameLayout>
 
@@ -187,8 +191,8 @@
             </android.support.percent.PercentFrameLayout>
 
 
-
-
         </android.support.percent.PercentFrameLayout>
+
+
     </android.support.percent.PercentRelativeLayout>
 </layout>

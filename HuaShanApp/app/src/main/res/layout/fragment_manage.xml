@@ -92,14 +92,21 @@
                             android:id="@+id/manage_sl"
                             android:layout_width="match_parent"
                             app:layout_heightPercent="90%"
-                            android:layout_gravity="bottom">
+                            android:layout_gravity="bottom"
+                            android:background="#00000000">
 
-                            <com.example.utils.custom.RefreshRecyclerView
-                                android:id="@+id/content_rl"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
 
-                            </com.example.utils.custom.RefreshRecyclerView>
+                                <com.example.utils.custom.RefreshRecyclerView
+                                    android:id="@+id/content_rl"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/all_activity_background"
+                                    android:visibility="gone"
+                                    >
+
+                                </com.example.utils.custom.RefreshRecyclerView>
+
+
 
                         </android.support.v4.widget.SwipeRefreshLayout>
 

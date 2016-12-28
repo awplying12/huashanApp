@@ -12,6 +12,16 @@ public class ManagedataBean {
 
     private ArrayList<HotProjects> rows;
 
+    private int pages;
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
     public ArrayList<HotProjects> getRows() {
         return rows;
     }
@@ -24,6 +34,7 @@ public class ManagedataBean {
     public String toString() {
         return "ManagedataBean{" +
                 "rows=" + rows +
+                ", pages=" + pages +
                 '}';
     }
 }

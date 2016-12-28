@@ -141,12 +141,14 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
         list.add("");
 
         recyclerView.setAdapter(new ImgAdapter(list,getContext()));
-        RxView.of(recyclerView).bind(InvestmentdetailsActivity.project, new Rx.Action<View, Project>() {
-            @Override
-            public void call(View target, Project project) {
 
-            }
-        });
+//        InvestmentdetailsActivity activity = (InvestmentdetailsActivity) getActivity();
+//        RxView.of(recyclerView).bind(activity.project, new Rx.Action<View, Project>() {
+//            @Override
+//            public void call(View target, Project project) {
+//
+//            }
+//        });
 
     }
 

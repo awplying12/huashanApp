@@ -8,6 +8,8 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class ManageViewModel extends BaseViewModel{
 
+    public int allpage = 1;
+
     public abstract void getManageData(String type,int page);
 
 }

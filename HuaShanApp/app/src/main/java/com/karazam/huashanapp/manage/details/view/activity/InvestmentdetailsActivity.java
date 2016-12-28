@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.percent.PercentFrameLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
@@ -18,12 +19,15 @@ import android.widget.TextView;
 import com.example.utils.Adapter.PagerFragmentAdapter;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.VerticalViewPager.VerticalViewPager;
+import com.example.utils.utils.StringUtil;
 import com.gelitenight.waveview.library.WaveHelper;
 import com.gelitenight.waveview.library.WaveView;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityInvestmentDetailsBinding;
 import com.karazam.huashanapp.manage.details.model.databinding.InvestmentdetailsEntity;
 
+import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
+import com.karazam.huashanapp.manage.details.model.databinding.Project;
 import com.karazam.huashanapp.manage.details.view.InvestmentdetailsView;
 import com.karazam.huashanapp.manage.details.view.view.VerticalAdapter;
 
@@ -31,7 +35,6 @@ import com.karazam.huashanapp.manage.details.viewmodel.InvestmentdetailsViewMode
 import com.karazam.huashanapp.manage.details.viewmodel.InvestmentdetailsViewModelImpl;
 import com.karazam.huashanapp.manage.details_fragment.view.fragment.DetailsFragment1;
 import com.karazam.huashanapp.manage.details_fragment.view.fragment.DetailsFragment2;
-import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -57,8 +60,8 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     private int eh;
 
     private VerticalViewPager ViewPager;
-    private TextView text_11;
-    private TextView det_income;
+    private TextView text_11,det_name,det_income,release_time;
+
 
     private PercentFrameLayout tab_det;
 
@@ -67,9 +70,9 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     private int mActionBarHeight;
     private TypedValue mTypedValue = new TypedValue();
 
+    private SwipeRefreshLayout swp_rl;
 
-
-
+    private String borrowingId;
 
     @Override
     public void setContentLayout() {
@@ -82,7 +85,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
     @Override
     public void dealLogicBeforeInitView() {
-        project.set(new Project(1,""));
+
 
         H = BaseActivity.ScreeH;
         sh = (int) (H*0.9);
@@ -92,14 +95,16 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
         mMinHeaderTranslation = -((int) (BaseActivity.ScreeH*0.1));
 //        mMinHeaderTranslation = ((int) (BaseActivity.ScreeH*0.1)+ getActionBarHeight());
 
+        borrowingId = getIntent().getStringExtra("borrowingId");
     }
 
     @Override
     public void initView() {
 
-
+        det_name = (TextView) getView(R.id.det_name);
         text_11 = (TextView) getView(R.id.text_11);
         det_income = (TextView) getView(R.id.det_income);
+        release_time = (TextView) getView(R.id.release_time);
 
         ViewPager = (VerticalViewPager) getView(R.id.viewpager_ve);
 
@@ -113,6 +118,8 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 //            setWaveView();
             setLayout();
             setVerticalViewPager();
+
+        mModel.getManagedetailsData(borrowingId);
     }
 
     /**
@@ -137,18 +144,22 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      * 设置界面
      */
 
-    public static RxProperty<Project> project =  RxProperty.create();
+    private RxProperty<ManagedetailsBean> project = RxProperty.create();
     private void setLayout() {
 
-        RxView.findById(this, R.id.content_pl).bind(project, new Rx.Action<View, Project>() {
+        RxView.findById(this,R.id.content_pl).bind(project, new Rx.Action<View, ManagedetailsBean>() {
             @Override
-            public void call(View target, Project project) {
-               TextView name = (TextView) target.findViewById(R.id.det_name);
-                TextView income = (TextView) target.findViewById(R.id.det_income);
+            public void call(View target, ManagedetailsBean managedetailsBean) {
+                Project project = managedetailsBean.getProject();
 
-//                name.setText("你大爷");
-//                income.setText("9.30");
+                String title = project.getTitle();
+                det_name.setText(StringUtil.interrupt(title,0,""));
 
+                String interestRate = project.getInterestRate();
+                det_income.setText(StringUtil.interrupt(interestRate,0,""));
+
+                String publishDate = project.getPublishDate();
+                release_time.setText("发布日期："+StringUtil.interrupt(publishDate,0,""));
             }
         });
 
@@ -161,6 +172,32 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     public void setTab(int num) {
 
         fragment2.setCurrentItem(num);
+
+    }
+
+    /**
+     * 获取数据成功
+     */
+    @Override
+    public void getManagedetailsDataSuccess(ManagedetailsBean data) {
+        project.set(data);
+    }
+
+    /**
+     * 获取数据失败
+     * @param e
+     */
+    @Override
+    public void getManagedetailsDataFaile(String e) {
+
+    }
+
+    /**
+     * 获取数据故障
+     * @param e
+     */
+    @Override
+    public void getManagedetailsDataError(Throwable e) {
 
     }
 

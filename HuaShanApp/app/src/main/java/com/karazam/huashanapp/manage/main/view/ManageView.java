@@ -14,4 +14,6 @@ public interface ManageView extends BaseView {
     void getManageDataSuccess(ArrayList<HotProjects> datas);
 
     void getManageDataFaile(String e);
+
+    void getManageDataError(Throwable e);
 }

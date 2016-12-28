@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.utils.base.BaseFragment;
 import com.example.utils.custom.RefreshRecyclerView;
@@ -52,6 +53,8 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
     private String type = "guarantee";
     private int page = 1;
 
+    private ImageView faile_img;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,18 +69,21 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         setTitlebBar();
         setRefreshRecyclerView();
 
+
+        Refresh();
         return view;
     }
-
-
 
     /**
      * 初始化View
      */
     private void initView() {
+
         titlebar_rl = (RecyclerView) getView(R.id.manage_titlebar_rl,view);
         LinearLayoutManager  lm = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         titlebar_rl.setLayoutManager(lm);
+
+//        faile_img = (ImageView) getView(R.id.faile_img);
 
         mSwipeLayout = (SwipeRefreshLayout) getView(R.id.manage_sl,view);
         mSwipeLayout.setOnRefreshListener(this);
@@ -139,8 +145,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
      *
      */
     private void setRefreshRecyclerView() {
-
-
+//        mSwipeLayout.addView();
         WrapContentLinearLayoutManager layoutManager = new WrapContentLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false){
             @Override
             protected int getExtraLayoutSpace(RecyclerView.State state) {
@@ -149,22 +154,14 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         };
         content_rl.setLayoutManager(layoutManager);
 
-        ArrayList<HotProjects> list = new ArrayList<>();
-//        list.add(new Project(1,"还款中"));
-//        list.add(new Project(0,"立即购买"));
-//        list.add(new Project(0,"立即购买"));
-//        list.add(new Project(1,"已满额"));
-//        list.add(new Project(1,"已完成"));
-//        list.add(new Project(1,"还款中"));
-//        list.add(new Project(0,"立即购买"));
-//        list.add(new Project(0,"立即购买"));
-//        list.add(new Project(1,"已满额"));
 
-        list.add(new HotProjects());
-        list.add(new HotProjects());
-        list.add(new HotProjects());
-        list.add(new HotProjects());
-        list.add(new HotProjects());
+        ArrayList<HotProjects> list = new ArrayList<>();
+//
+//        list.add(new HotProjects());
+//        list.add(new HotProjects());
+//        list.add(new HotProjects());
+//        list.add(new HotProjects());
+//        list.add(new HotProjects());
 
         adapter = new ContentAdapter(getContext(),list);
         content_rl.setAdapter(adapter);
@@ -179,7 +176,8 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         content_rl.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
             @Override
             public void onRefreshUp() {
-                showToast("onRefresh up");
+//                showToast("onRefresh up");
+                addData();
             }
         });
 
@@ -188,24 +186,65 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 
     @Override
     public void onRefresh() {
-        showToast("onRefresh Down");
+//        showToast("onRefresh Down");
         Refresh();
     }
 
+    /**
+     * 刷新数据
+     */
     private void Refresh(){
         page = 1;
         mModel.getManageData(type,page);
     }
 
     /**
+     * 添加数据
+     */
+    private void addData(){
+        if(page >mModel.allpage){
+            showToast("到最后一页了！");
+            return;
+        }
+
+        mModel.getManageData(type,page);
+    }
+
+
+    /**
      * 获取数据成功
      */
     @Override
     public void getManageDataSuccess(ArrayList<HotProjects> datas) {
+
         mSwipeLayout.setRefreshing(false);
 
-        adapter.setmData(datas);
-        adapter.notifyDataSetChanged();
+
+
+        if(content_rl.getVisibility() != View.VISIBLE){
+            content_rl.setVisibility(View.VISIBLE);
+        }
+
+
+        if(page == 1){
+
+            adapter.setmData(datas);
+            adapter.notifyDataSetChanged();
+
+        }else {
+
+            ArrayList<HotProjects> data = adapter.getmData();
+            data.addAll(datas);
+            adapter.setmData(data);
+            adapter.notifyDataSetChanged();
+
+        }
+
+//        if(page >= mModel.allpage){
+//            return;
+//        }
+        page ++;
+
     }
 
     /**
@@ -215,5 +254,28 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
     @Override
     public void getManageDataFaile(String e) {
         mSwipeLayout.setRefreshing(false);
+        if(content_rl.getVisibility() == View.VISIBLE ){
+            content_rl.setVisibility(View.GONE);
+        }
+//        else {
+//            showToast("获取数据失败");
+//        }
     }
+
+    /**
+     * 获取数据故障
+     * @param e
+     */
+    @Override
+    public void getManageDataError(Throwable e) {
+        mSwipeLayout.setRefreshing(false);
+        if(content_rl.getVisibility() == View.VISIBLE ){
+            content_rl.setVisibility(View.GONE);
+        }
+//        else {
+//            showToast("获取数据失败");
+//        }
+
+    }
+
 }

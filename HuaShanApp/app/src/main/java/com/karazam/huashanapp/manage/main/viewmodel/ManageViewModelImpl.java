@@ -49,7 +49,7 @@ public class ManageViewModelImpl extends ManageViewModel {
     public void getManageData(String type, int page) {
 
                 dataSource.getManagedata(type,page+"")
-                        .throttleFirst(1000, TimeUnit.MILLISECONDS)
+                        .throttleFirst(2000, TimeUnit.MILLISECONDS)
                         .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
                         .subscribe(new Subscriber<BaseReturn<ManagedataBean>>() {
                             @Override
@@ -60,13 +60,18 @@ public class ManageViewModelImpl extends ManageViewModel {
                             @Override
                             public void onError(Throwable e) {
                                 Log.i("ManageData","e  :  "+e.toString());
+                                mView.getManageDataError(e);
+
                             }
 
                             @Override
                             public void onNext(BaseReturn<ManagedataBean> managedataBeanBaseReturn) {
 
                                     if(managedataBeanBaseReturn.isSuccess()){
+
+
                                         ManagedataBean bean = managedataBeanBaseReturn.getData();
+                                        allpage = bean.getPages();
                                         mView.getManageDataSuccess(bean.getRows());
 
                                     }else {

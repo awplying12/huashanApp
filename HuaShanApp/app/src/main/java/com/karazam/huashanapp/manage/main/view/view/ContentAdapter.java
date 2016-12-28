@@ -66,8 +66,8 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
                 if(HuaShanApplication.loginStatus == 1){
                     Intent intent = new Intent(mContext, InvestmentdetailsActivity.class);
+                    intent.putExtra("borrowingId",StringUtil.interrupt(mData.get(position).getBorrowingId(),0,"-1"));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
                     mContext.startActivity(intent);
                 }else {
                     Intent intent = new Intent(mContext, LoginActivity.class);
@@ -80,34 +80,25 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
             }
         });
 
+        RxProperty<HotProjects> status = RxProperty.create();
+        status.set(mData.get(position));
+            RxView.of(holder.buy_now).bind(status, new Rx.Action<TextView, HotProjects>() {
+                @Override
+                public void call(TextView target, HotProjects hotProjects) {
+                    String tx = hotProjects.getProgressDes();
+                    target.setText(StringUtil.interrupt(tx,0,""));
 
+                    String status = mData.get(position).getProgress();
 
-//        RxProperty<HotProjects> status = RxProperty.create();
-//        status.set(mData.get(position));
-//        RxView.of(holder.buy_now).bind(status, new Rx.Action<TextView, Project>() {
-//            @Override
-//            public void call(TextView target, Project project) {
-//                String tx = project.getStatus_tx();
-//                target.setText(StringUtil.interrupt(tx,0,""));
-//
-//                int status = mData.get(position).getStatus();
-//
-//                switch (status){
-//                    case 0:
-//                        target.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
-//                        target.setClickable(true);
-//                        break;
-//                    case 1:
-//                        target.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
-//                        target.setClickable(false);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        });
-
-
+                    if(status.equals("investing")){
+                        target.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
+                        target.setClickable(true);
+                    }else {
+                        target.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
+                        target.setClickable(false);
+                    }
+                }
+            });
     }
 
     /**
@@ -116,6 +107,9 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
      * @param position
      */
     private void setTextView(ContentAdapter.ViewHolder holder, final int position) {
+
+        String title = mData.get(position).getTitle();
+        holder.tv_title.setText(StringUtil.interrupt(title,0,""));
 
 //        String annualIncome = "8.60";
         String annualIncome = mData.get(position).getInterestRate();
@@ -141,6 +135,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        private TextView tv_title;
         public onItemClickListener listener;
         private TextView Annual_Income;
         private TextView Project_Duration;
@@ -155,7 +150,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
             Project_Duration = (TextView) itemView.findViewById(R.id.tv_2_2);
             Project_Scale = (TextView) itemView.findViewById(R.id.tv_3_2);
             buy_now = (TextView) itemView.findViewById(R.id.buy_now_item);
-
+            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
 
         }
 

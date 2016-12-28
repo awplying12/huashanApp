@@ -1,16 +1,24 @@
 package com.karazam.huashanapp.manage.details.viewmodel;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.manage.details.model.databinding.InvestmentdetailsEntity;
 
+import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
+import com.karazam.huashanapp.manage.details.model.retrofit.ManagedetailsDataSource;
 import com.karazam.huashanapp.manage.details.view.InvestmentdetailsView;
 import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
 import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/8.
@@ -25,11 +33,14 @@ public class InvestmentdetailsViewModelImpl extends InvestmentdetailsViewModel {
 
     private PromptDialog certificationDialog;
 
+    private ManagedetailsDataSource dataSource;
+
     public InvestmentdetailsViewModelImpl(InvestmentdetailsEntity mEntity, InvestmentdetailsView mView, Context context, InvestmentdetailsActivity activity) {
         this.mEntity = mEntity;
         this.mView = mView;
         this.context = context;
         this.activity = activity;
+        dataSource = new ManagedetailsDataSource();
 
         setCertificationDialog();
     }
@@ -86,6 +97,7 @@ public class InvestmentdetailsViewModelImpl extends InvestmentdetailsViewModel {
         mView.toOtherActivity(activity, PurchaseActivity.class);
     }
 
+
     private void setCertificationDialog(){
         certificationDialog = new PromptDialog(context);
         certificationDialog.setMod(PromptDialog.MOD1);
@@ -108,6 +120,40 @@ public class InvestmentdetailsViewModelImpl extends InvestmentdetailsViewModel {
             }
         });
 
+
+    }
+
+    /**
+     * 获取数据
+     * @param projectId
+     */
+    @Override
+    public void getManagedetailsData(String projectId) {
+
+        dataSource.getDetails(projectId).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<ManagedetailsBean>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("getManagedetailsData","e  :  "+e.toString());
+                mView.getManagedetailsDataError(e);
+            }
+
+            @Override
+            public void onNext(BaseReturn<ManagedetailsBean> managedetailsBeanBaseReturn) {
+
+                if (managedetailsBeanBaseReturn.isSuccess()){
+                    ManagedetailsBean bean = managedetailsBeanBaseReturn.getData();
+                    Log.i("getManagedetailsData",bean.toString());
+                    mView.getManagedetailsDataSuccess(bean);
+                }else {
+                    mView.getManagedetailsDataFaile(managedetailsBeanBaseReturn.getMessage());
+                }
+            }
+        });
 
     }
 }

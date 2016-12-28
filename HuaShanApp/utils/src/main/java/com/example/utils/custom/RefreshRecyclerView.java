@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 
 /**
  * Created by Administrator on 2016/10/18.
@@ -42,8 +43,12 @@ public class RefreshRecyclerView extends RecyclerView {
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
 
+                    if(lastVisibleItem == -1){
+                        lastVisibleItem = 0;
+                    }
+                    Log.i("newState",RecyclerView.SCROLL_STATE_IDLE+"    lastVisibleItem : "+lastVisibleItem+"  getItemCount  :  "+adapter.getItemCount());
 
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter.getItemCount()) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 >= adapter.getItemCount()) {
 
                         if(mOnRefreshListener == null){
                             return;

@@ -17,4 +17,6 @@ public abstract class InvestmentdetailsViewModel extends BaseViewModel {
     public abstract void onSpeed(View view);
 
     public abstract void toPurchase(View view);
+
+    public abstract void getManagedetailsData(String projectId);
 }

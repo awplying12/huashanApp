@@ -77,24 +77,24 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
 
 
     private void setLayout() {
+        InvestmentdetailsActivity activity = (InvestmentdetailsActivity) getActivity();
 
-
-        RxView.findById(getActivity(), R.id.content_pl).bind(InvestmentdetailsActivity.project, new Rx.Action<View, Project>() {
-            @Override
-            public void call(View target, Project project) {
-
-                TextView tv_playenough = (TextView) target.findViewById(R.id.det_playenough);
-                TextView tv_time = (TextView) target.findViewById(R.id.det_time);
-
-
-//                tv_playenough.setText("50");
-                TextView tv_money = (TextView) target.findViewById(R.id.det_money);
-                String money = "200,000.00";
-                tv_money.setText(Html.fromHtml(money + "<font color='#7b7b7b'>/1,000,000.00</font>"));
-
-                mWaveHelper.setPercent(0.3f);
-            }
-        });
+//        RxView.findById(getActivity(), R.id.content_pl).bind(activity.project, new Rx.Action<View, Project>() {
+//            @Override
+//            public void call(View target, Project project) {
+//
+//                TextView tv_playenough = (TextView) target.findViewById(R.id.det_playenough);
+//                TextView tv_time = (TextView) target.findViewById(R.id.det_time);
+//
+//
+////                tv_playenough.setText("50");
+//                TextView tv_money = (TextView) target.findViewById(R.id.det_money);
+//                String money = "200,000.00";
+//                tv_money.setText(Html.fromHtml(money + "<font color='#7b7b7b'>/1,000,000.00</font>"));
+//
+//                mWaveHelper.setPercent(0.3f);
+//            }
+//        });
 
     }
 
