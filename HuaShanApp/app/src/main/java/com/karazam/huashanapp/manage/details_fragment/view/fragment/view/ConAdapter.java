@@ -2,13 +2,16 @@ package com.karazam.huashanapp.manage.details_fragment.view.fragment.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
+import com.karazam.huashanapp.manage.details_fragment.model.databinding.RecordsItem;
 
 import java.util.ArrayList;
 
@@ -21,12 +24,12 @@ public class ConAdapter extends RecyclerView.Adapter<ConAdapter.ViewHolder> {
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_NORMAL = 1;
 
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<RecordsItem> list = new ArrayList<>();
     private Context context;
 
     private View mHeaderView;
 
-    public ConAdapter(ArrayList<String> list, Context context) {
+    public ConAdapter(ArrayList<RecordsItem> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -56,9 +59,24 @@ public class ConAdapter extends RecyclerView.Adapter<ConAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(getItemViewType(position) == TYPE_HEADER) return;
+        if(getItemViewType(position) == TYPE_HEADER)
+            return;
 
         final int pos = getRealPosition(holder);
+
+        String name = list.get(pos).getInvestor();
+        holder.name.setText(StringUtil.interrupt(name,0,""));
+
+        String time = list.get(pos).getBuyTime();
+        holder.time.setText(StringUtil.interrupt(time,0,""));
+
+        String mon = list.get(pos).getAmount();
+        Log.i("mon",mon);
+        holder.mon.setText(StringUtil.interrupt(mon,0,""));
+
+        String model = list.get(pos).getOperationMethodStr();
+        holder.model.setText(StringUtil.interrupt(model,0,"")+"购买");
+
 
     }
 
@@ -74,12 +92,30 @@ public class ConAdapter extends RecyclerView.Adapter<ConAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        private TextView name;
+        private TextView time;
+        private TextView mon;
+        private TextView model;
+
         public ViewHolder(View itemView) {
 
             super(itemView);
-            if(itemView == mHeaderView) return;
+            if(itemView == mHeaderView)
+                return;
+
+            name = (TextView) itemView.findViewById(R.id.det_user);
+            time = (TextView) itemView.findViewById(R.id.det_time);
+            mon = (TextView) itemView.findViewById(R.id.det_mon);
+            model = (TextView) itemView.findViewById(R.id.det_mod);
+
         }
     }
 
+    public ArrayList<RecordsItem> getList() {
+        return list;
+    }
 
+    public void setList(ArrayList<RecordsItem> list) {
+        this.list = list;
+    }
 }

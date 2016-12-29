@@ -13,13 +13,14 @@
         android:text="a***2"/>
 
     <TextView
+        android:id="@+id/det_time"
         app:layout_widthPercent="50%"
         app:layout_heightPercent="50%"
         android:layout_gravity="bottom"
-
         android:text="2016-11-11 12;00;00"/>
 
     <TextView
+        android:id="@+id/det_mon"
         app:layout_widthPercent="50%"
         app:layout_heightPercent="50%"
         android:layout_gravity="right"
@@ -27,6 +28,7 @@
         android:text="200.000.00"/>
 
     <TextView
+        android:id="@+id/det_mod"
         app:layout_widthPercent="50%"
         app:layout_heightPercent="50%"
         android:layout_gravity="right|bottom"

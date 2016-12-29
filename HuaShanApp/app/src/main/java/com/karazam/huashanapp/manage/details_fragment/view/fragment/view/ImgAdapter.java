@@ -39,9 +39,11 @@ public class ImgAdapter extends RecyclerView.Adapter<ImgAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {   //"https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/267f9e2f07082838eda9ce18b899a9014c08f112.jpg"
         RxImageLoader.init(context);
-        RxImageLoader.getLoaderObservable(null,"https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/267f9e2f07082838eda9ce18b899a9014c08f112.jpg").subscribe(new Subscriber<Data>() {
+
+        String url = list.get(position);
+        RxImageLoader.getLoaderObservable(null,url).subscribe(new Subscriber<Data>() {
             @Override
             public void onCompleted() {
 
@@ -73,5 +75,13 @@ public class ImgAdapter extends RecyclerView.Adapter<ImgAdapter.ViewHolder> {
 
             img = (ImageView) itemView.findViewById(R.id.img_item);
         }
+    }
+
+    public ArrayList<String> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<String> list) {
+        this.list = list;
     }
 }

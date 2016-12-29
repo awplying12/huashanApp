@@ -83,10 +83,17 @@ public class StringUtil {
         return sb.toString();
     }
 
-    public static<T> T reservedDecimal(T data,int num){
+    /**
+     * 保留小数点
+     * @param data
+     * @param num
+     * @param <T>
+     * @return
+     */
+    public static<T> String reservedDecimal(T data,int num){
         BigDecimal bd = new BigDecimal(String.valueOf(data));
         bd = bd.setScale(num,BigDecimal.ROUND_HALF_UP);
-        return (T)bd;
+        return String.valueOf(bd);
     }
 
 }

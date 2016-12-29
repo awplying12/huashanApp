@@ -10,9 +10,15 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class DetailsFragment2ViewModel extends BaseViewModel{
 
+    public int allpage;
+
     public abstract void onInformation(View view);
 
     public abstract void onRecord(View view);
 
     public abstract void onSpeed(View view);
+
+    public abstract void getManageRecords(String projectId,int page);
+
+    public abstract void getManageOpinions(String projectId);
 }

@@ -21,6 +21,7 @@
                 android:text="项目描述"/>
 
             <TextView
+                android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="40dp"
@@ -35,6 +36,7 @@
                 android:text="资金用途"/>
 
             <TextView
+                android:id="@+id/tv_purpose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="40dp"
@@ -49,6 +51,7 @@
                 android:text="还款来源"/>
 
             <TextView
+                android:id="@+id/tv_repaymentInquiry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="40dp"

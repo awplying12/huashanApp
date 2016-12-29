@@ -98,6 +98,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
         borrowingId = getIntent().getStringExtra("borrowingId");
     }
 
+
     @Override
     public void initView() {
 
@@ -130,8 +131,13 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     private  DetailsFragment2 fragment2 = new DetailsFragment2();
     private void setVerticalViewPager() {
 
+
+
         ArrayList<Fragment> list = new ArrayList<>();
+
         list.add(fragment1);
+
+        fragment2.setBorrowingId(borrowingId);
         list.add(fragment2);
 
         PagerFragmentAdapter adapter = new PagerFragmentAdapter(getSupportFragmentManager(),list);
@@ -144,7 +150,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      * 设置界面
      */
 
-    private RxProperty<ManagedetailsBean> project = RxProperty.create();
+    public RxProperty<ManagedetailsBean> project = RxProperty.create();
     private void setLayout() {
 
         RxView.findById(this,R.id.content_pl).bind(project, new Rx.Action<View, ManagedetailsBean>() {
@@ -156,7 +162,8 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
                 det_name.setText(StringUtil.interrupt(title,0,""));
 
                 String interestRate = project.getInterestRate();
-                det_income.setText(StringUtil.interrupt(interestRate,0,""));
+                interestRate = StringUtil.reservedDecimal(StringUtil.interrupt(interestRate,0,"0"),2);
+                det_income.setText(interestRate);
 
                 String publishDate = project.getPublishDate();
                 release_time.setText("发布日期："+StringUtil.interrupt(publishDate,0,""));

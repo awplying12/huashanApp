@@ -37,13 +37,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="290dp">
 
-                            <android.support.v7.widget.RecyclerView
+                            <com.example.utils.custom.RefreshRecyclerView
                                 android:id="@+id/con_rl"
                                 app:layout_widthPercent="90%"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 >
 
-                            </android.support.v7.widget.RecyclerView>
+                            </com.example.utils.custom.RefreshRecyclerView>
                     </android.support.percent.PercentFrameLayout>
 </LinearLayout>

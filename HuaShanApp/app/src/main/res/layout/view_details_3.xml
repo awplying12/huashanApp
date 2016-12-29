@@ -27,12 +27,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/img_1"
                             android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:background="@drawable/oo"
-                            android:id="@+id/imageView3" />
+                             />
 
                         <TextView
+                            android:id="@+id/tv_img_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -42,12 +44,13 @@
                             android:textColor="#fff"/>
 
                         <TextView
+                            android:id="@+id/tv_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2016-10-31   12:00       调查人：wanghui"
                             android:layout_marginLeft="60dp"
                             android:layout_gravity="center_vertical"
-                            android:id="@+id/textView2" />
+                             />
 
                     </android.support.percent.PercentFrameLayout>
 
@@ -57,12 +60,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/img_2"
                             android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:background="@drawable/oo"
                              />
 
                         <TextView
+                            android:id="@+id/tv_img_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -72,11 +77,13 @@
                             android:textColor="#fff"/>
 
                         <TextView
+                            android:id="@+id/tv_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="60dp"
                             android:text="2016-10-31   12:00       调查人：wanghui"
                             android:layout_gravity="center_vertical"/>
+
                     </android.support.percent.PercentFrameLayout>
 
                     <android.support.percent.PercentFrameLayout
@@ -85,12 +92,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/img_3"
                             android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:background="@drawable/lo"
                              />
 
                         <TextView
+                            android:id="@+id/tv_img_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -99,12 +108,13 @@
                             android:textSize="11dp"
                             android:textColor="#fff"/>
 
+                        <!--android:textColor="#ff8000"-->
                         <TextView
+                            android:id="@+id/tv_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="60dp"
                             android:text="2016-10-31   12:00       购买中"
-                            android:textColor="#ff8000"
                             android:layout_gravity="center_vertical"/>
 
                     </android.support.percent.PercentFrameLayout>
@@ -115,12 +125,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/img_4"
                             android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:background="@drawable/ol"
                              />
 
                         <TextView
+                            android:id="@+id/tv_img_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -130,6 +142,7 @@
                             android:textColor="#4f4f4f"/>
 
                         <TextView
+                            android:id="@+id/tv_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="60dp"
@@ -143,11 +156,13 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/img_5"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:background="@drawable/o"/>
 
                         <TextView
+                            android:id="@+id/tv_img_5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -157,6 +172,7 @@
                             android:textColor="#4f4f4f"/>
 
                         <TextView
+                            android:id="@+id/tv_5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="60dp"

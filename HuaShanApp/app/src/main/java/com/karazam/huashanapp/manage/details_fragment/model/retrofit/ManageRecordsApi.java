@@ -15,5 +15,5 @@ import rx.Observable;
 public interface ManageRecordsApi {
 
     @GET("/investment/investmentRecords")
-    Observable<BaseReturn<ManageRecordsBean>> getRecords(@Query("projectId") String projectId, @Header("X-Requested-With") String ID);
+    Observable<BaseReturn<ManageRecordsBean>> getRecords(@Query("projectId") String projectId ,@Query("currentPage") String currentPage, @Header("X-Requested-With") String ID);
 }

@@ -113,31 +113,41 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
             @Override
             public void onItemClick(View view, int position) {
 
-                switch (position){
-                    case 0: //产融货
-                        type = "guarantee";
-                        break;
-                    case 1: //优企宝
-                        type = "mortgage";
-                        break;
-                    case 2: //保理贷
-                        type = "credit";
-                        break;
-//                    case 3: //债权转让
-//                        break;
-                    default:
-                        break;
-                }
-
-                Refresh();
+                onItem(position);
 
             }
         });
     }
 
     public void setCurrentItem(int position){
+
         titlebarAdapter.setCurrentItem(position);
+        onItem(position);
+
     }
+
+    private void onItem(int position){
+
+        switch (position){
+            case 0: //产融货
+                type = "guarantee";
+                break;
+            case 1: //优企宝
+                type = "mortgage";
+                break;
+            case 2: //保理贷
+                type = "credit";
+                break;
+//                    case 3: //债权转让
+//                        break;
+            default:
+                break;
+        }
+
+        Refresh();
+
+    }
+
 
     /**
      *  SwipeRefreshLayout配合RecyclerView

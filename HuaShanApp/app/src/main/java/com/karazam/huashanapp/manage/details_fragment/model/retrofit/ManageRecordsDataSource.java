@@ -14,8 +14,8 @@ public class ManageRecordsDataSource extends BaseDataSource {
 
     ManageRecordsApi service = retrofit1.create(ManageRecordsApi.class);
 
-    public Observable<BaseReturn<ManageRecordsBean>> getDetails(String projectId){
-        return service.getRecords(projectId,"XMLHttpRequest");
+    public Observable<BaseReturn<ManageRecordsBean>> getDetails(String projectId,String pager){
+        return service.getRecords(projectId,pager,"XMLHttpRequest");
     }
 
 }

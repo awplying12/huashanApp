@@ -86,7 +86,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                 @Override
                 public void call(TextView target, HotProjects hotProjects) {
                     String tx = hotProjects.getProgressDes();
-                    target.setText(StringUtil.interrupt(tx,0,""));
 
                     String status = mData.get(position).getProgress();
 
@@ -94,6 +93,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                         target.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
                         target.setClickable(true);
                     }else {
+                        target.setText(StringUtil.interrupt(tx,0,""));
                         target.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
                         target.setClickable(false);
                     }
@@ -113,18 +113,20 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
 //        String annualIncome = "8.60";
         String annualIncome = mData.get(position).getInterestRate();
-        Spanned text1 = Html.fromHtml(StringUtil.interrupt(annualIncome,0,"")+"<font color='#505050'><small><small>%<small><small>");
+        annualIncome = StringUtil.reservedDecimal(StringUtil.interrupt(annualIncome,0,"0"),2);
+
+        Spanned text1 = Html.fromHtml(annualIncome+"<font color='#505050'><small><small>%<small><small>");
         holder.Annual_Income.setText(text1);
 
 //        String projectDuration = "20";
         double projectDuration = mData.get(position).getResidualAmount();
-        String projectDurationStr = String.valueOf(projectDuration/10000);
+        String projectDurationStr = StringUtil.reservedDecimal(projectDuration/10000,2);
         Spanned text2 = Html.fromHtml(StringUtil.interrupt(projectDurationStr,0,"")+"<small><small>万元<small><small>");
         holder.Project_Duration.setText(text2);
 
 //        String projectScale = "6";
         String projectScale = mData.get(position).getPeriod();
-        Spanned text3 = Html.fromHtml(StringUtil.interrupt(projectScale,0,"")+"<small><small>月<small><small>");
+        Spanned text3 = Html.fromHtml(StringUtil.interrupt(projectScale,0,"0")+"<small><small>月<small><small>");
         holder.Project_Scale.setText(text3);
     }
 

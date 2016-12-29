@@ -11,16 +11,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseFragment;
+import com.example.utils.utils.StringUtil;
 import com.gelitenight.waveview.library.WaveHelper;
 import com.gelitenight.waveview.library.WaveView;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentDetails1Binding;
+import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
+import com.karazam.huashanapp.manage.details.model.databinding.Project;
 import com.karazam.huashanapp.manage.details.view.activity.InvestmentdetailsActivity;
 import com.karazam.huashanapp.manage.details_fragment.model.databinding.DetailsFragment1Entity;
 import com.karazam.huashanapp.manage.details_fragment.view.DetailsFragment1View;
 import com.karazam.huashanapp.manage.details_fragment.viewmodel.DetailsFragmentViewModel_1.DetailsFragment1ViewModel;
 import com.karazam.huashanapp.manage.details_fragment.viewmodel.DetailsFragmentViewModel_1.DetailsFragment1ViewModelImpl;
-import com.karazam.huashanapp.manage.main.model.databinding.Project;
+
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -95,6 +98,45 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
 //                mWaveHelper.setPercent(0.3f);
 //            }
 //        });
+        RxView.findById(getActivity(), R.id.content_pl).bind(activity.project, new Rx.Action<View, ManagedetailsBean>() {
+            @Override
+            public void call(View target, ManagedetailsBean managedetailsBean) {
+
+                Project project = managedetailsBean.getProject();
+
+                TextView tv_playenough = (TextView) target.findViewById(R.id.det_playenough);
+                String investmentMinimum = project.getInvestmentMinimum();      //起始金额
+                investmentMinimum = StringUtil.reservedDecimal(StringUtil.interrupt(investmentMinimum,0,"0"),2);
+                tv_playenough.setText(investmentMinimum);
+
+
+                TextView tv_time = (TextView) target.findViewById(R.id.det_time);
+                String period = project.getPeriod();    //期限
+                period = StringUtil.interrupt(period,0,"0");
+                tv_time.setText(period);
+
+                TextView tv_money = (TextView) target.findViewById(R.id.det_money);
+                String amount = project.getAmount();    //总金额
+                amount = StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2);
+
+                String residualAmount = project.getResidualAmount();  //剩余可投金额
+                residualAmount = StringUtil.reservedDecimal(StringUtil.interrupt(residualAmount,0,"0"),2);
+
+                tv_money.setText(Html.fromHtml(residualAmount + "<font color='#7b7b7b'>/"+amount+"</font>"));
+
+                if(residualAmount.equals("0")){
+                    return;
+                }
+                float Percent = Float.parseFloat(residualAmount)/Float.parseFloat(amount);
+                mWaveHelper.setPercent(Percent);
+
+                String repaymentMethodDes = project.getRepaymentMethodDes();
+                TextView re_model = (TextView) target.findViewById(R.id.re_model);
+                re_model.setText(StringUtil.interrupt(repaymentMethodDes,10,"未知"));
+
+
+            }
+        });
 
     }
 
