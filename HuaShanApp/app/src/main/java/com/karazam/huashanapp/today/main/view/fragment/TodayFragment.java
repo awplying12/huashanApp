@@ -36,6 +36,7 @@ import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 
 import com.karazam.huashanapp.main.Bean.HotProjects;
+import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
@@ -295,10 +296,38 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     }
 
     private void setHeader(){
-        RxView.of(head_img).bind(HuaShanApplication.userInformationR, new Rx.Action<ImageView, UserInformation>() {
+//        RxView.of(head_img).bind(HuaShanApplication.userInformationR, new Rx.Action<ImageView, UserInformation>() {
+//            @Override
+//            public void call(final ImageView target, UserInformation userInformation) {
+//                String url = userInformation.getHeaderImg();
+//                RxImageLoader.getLoaderObservable(target,url).subscribe(new Subscriber<Data>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        target.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.userhead_icon));
+//                    }
+//
+//                    @Override
+//                    public void onNext(Data data) {
+//                        Bitmap bitmap = data.bitmap;
+//                        if (bitmap == null){
+//                            target.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.userhead_icon));
+//                        }
+//                        target.setImageBitmap(BitmapUtil.toRoundBitmap(bitmap));
+//                    }
+//                });
+//            }
+//        });
+
+        RxView.of(head_img).bind(HuaShanApplication.baseInfoBeanRX, new Rx.Action<ImageView, BaseInfoBean>() {
             @Override
-            public void call(final ImageView target, UserInformation userInformation) {
-                String url = userInformation.getHeaderImg();
+            public void call(final ImageView target, BaseInfoBean baseInfoBean) {
+                String url = baseInfoBean.getAvatar();
+
                 RxImageLoader.getLoaderObservable(target,url).subscribe(new Subscriber<Data>() {
                     @Override
                     public void onCompleted() {
@@ -319,6 +348,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
                         target.setImageBitmap(BitmapUtil.toRoundBitmap(bitmap));
                     }
                 });
+
             }
         });
     }

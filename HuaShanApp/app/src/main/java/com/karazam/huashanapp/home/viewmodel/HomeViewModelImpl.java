@@ -10,10 +10,15 @@ import com.karazam.huashanapp.home.model.databinding.HomeEntity;
 import com.karazam.huashanapp.home.model.retrofit.CheckloginDataSource;
 import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
+import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.MyInformationBean;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.main.retrofit.user.MyAssetsDataSource;
+import com.karazam.huashanapp.main.retrofit.user.MyInformationDataSource;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -26,7 +31,10 @@ public class HomeViewModelImpl extends HomeViewModel {
     private HomeEntity mEntity;
     private HomeActivity activity;
     private Context context;
+
     private CheckloginDataSource dataSource;
+    private MyInformationDataSource informationDataSource;
+    private MyAssetsDataSource assetsDataSource;
 
     public HomeViewModelImpl(HomeView mView, HomeEntity mEntity, HomeActivity activity, Context context) {
         this.mView = mView;
@@ -35,6 +43,8 @@ public class HomeViewModelImpl extends HomeViewModel {
         this.context = context;
 
         dataSource = new CheckloginDataSource();
+        informationDataSource = new MyInformationDataSource();
+        assetsDataSource = new MyAssetsDataSource();
     }
 
     @Override
@@ -131,5 +141,66 @@ public class HomeViewModelImpl extends HomeViewModel {
             }
         });
 
+    }
+
+    /**
+     * 获取我的信息
+     */
+    @Override
+    public void getMyInformation() {
+
+        informationDataSource.getMyInformation().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<MyInformationBean>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("getMyInformation","e : "+e.toString());
+            }
+
+            @Override
+            public void onNext(BaseReturn<MyInformationBean> myInformationBeanBaseReturn) {
+
+                if(myInformationBeanBaseReturn.isSuccess()){
+                    HuaShanApplication.setMyInformation(myInformationBeanBaseReturn.getData());
+                    Log.i("getMyInformation",HuaShanApplication.myInformation.toString());
+                }else {
+                    mView.showToast(myInformationBeanBaseReturn.getMessage());
+                }
+
+            }
+        });
+    }
+
+    /**
+     * 获取我的资产
+     */
+    @Override
+    public void getMyAssets(){
+
+        assetsDataSource.getMyAssets().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<MyAssetsBean>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("getMyAssets","e : "+e.toString());
+            }
+
+            @Override
+            public void onNext(BaseReturn<MyAssetsBean> myAssetsBeanBaseReturn) {
+
+                if(myAssetsBeanBaseReturn.isSuccess()){
+                    Log.i("getMyAssets",myAssetsBeanBaseReturn.getData().toString());
+                    HuaShanApplication.setMyAssets(myAssetsBeanBaseReturn.getData());
+                }else {
+                    mView.showToast(myAssetsBeanBaseReturn.getMessage());
+                }
+            }
+        });
     }
 }

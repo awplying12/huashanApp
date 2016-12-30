@@ -55,7 +55,7 @@ public class SetupViewModelImpl extends SetupViewModel {
     @Override
     public void toRealname(View view) {
 
-        if(HuaShanApplication.userInformation.isStatus()){
+        if(HuaShanApplication.certificationStatus){
             mView.toOtherActivity(activity, AuthenticatedActivity.class);
         }else {
             mView.toOtherActivity(activity, UnauthorizedActivity.class);

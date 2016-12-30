@@ -349,7 +349,7 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
                     TextView tvImg5= (TextView) target.findViewById(R.id.tv_img_5);
                     TextView tv5 = (TextView) target.findViewById(R.id.tv_5);
 
-                    setImg(img5,repay.getFlag(),0);
+                    setImg(img5,repay.getFlag(),1);
                     tvImg5.setText(StringUtil.interrupt(repay.getT1(),2,"未知"));
                     setTv(tv5,repay);
             }

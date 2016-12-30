@@ -86,7 +86,7 @@ public class InvestmentdetailsViewModelImpl extends InvestmentdetailsViewModel {
      */
     @Override
     public void toPurchase(View view) {
-        if(!HuaShanApplication.userInformation.isStatus()){
+        if(!HuaShanApplication.certificationStatus){
 
             if(certificationDialog != null){
                 certificationDialog.show();

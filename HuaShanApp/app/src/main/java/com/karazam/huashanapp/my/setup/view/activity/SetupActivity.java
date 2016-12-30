@@ -15,6 +15,7 @@ import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivitySetupBinding;
+import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.setup.model.datanbinding.SetupEntity;
 import com.karazam.huashanapp.my.setup.view.SetupView;
@@ -69,16 +70,19 @@ public class SetupActivity extends BaseActivity implements SetupView {
      * 设置头像
      */
     private void setHeader() {
-        RxView.findById(this,R.id.use_header).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
 
+        RxView.findById(this,R.id.use_header).bind(HuaShanApplication.baseInfoBeanRX, new Rx.Action<View, BaseInfoBean>() {
             @Override
-            public void call(View target, UserInformation userInformation) {
+            public void call(View target, BaseInfoBean baseInfoBean) {
                 final ImageView header = (ImageView) target;
-                if(TextUtils.isEmpty(userInformation.getHeaderImg())){
+
+                if(TextUtils.isEmpty(baseInfoBean.getAvatar())){
                     header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     return;
                 }
-                RxImageLoader.getLoaderObservable(null,userInformation.getHeaderImg()).subscribe(new Subscriber<Data>() {
+
+
+                RxImageLoader.getLoaderObservable(null,baseInfoBean.getAvatar()).subscribe(new Subscriber<Data>() {
                     @Override
                     public void onCompleted() {
 
@@ -100,6 +104,7 @@ public class SetupActivity extends BaseActivity implements SetupView {
                 });
             }
         });
+
     }
 
     /**
@@ -107,22 +112,22 @@ public class SetupActivity extends BaseActivity implements SetupView {
      */
     private void setData() {
 
-        RxView.findById(this,R.id.data_ll).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+
+        RxView.findById(this,R.id.data_ll).bind(HuaShanApplication.baseInfoBeanRX, new Rx.Action<View, BaseInfoBean>() {
             @Override
-            public void call(View target, UserInformation userInformation) {
+            public void call(View target, BaseInfoBean baseInfoBean) {
                 TextView name = (TextView) target.findViewById(R.id.user_name);
                 TextView nickname = (TextView) target.findViewById(R.id.user_nickname);
                 TextView status = (TextView) target.findViewById(R.id.status);
                 TextView phonenum = (TextView) target.findViewById(R.id.phonenum);
 
+                String nameStr = baseInfoBean.getRealname();
 
-                String nameStr = userInformation.getUserName();
+                String nicknameStr = baseInfoBean.getName();
 
+                nickname.setText(StringUtil.interrupt(nicknameStr,12,HuaShanApplication.account));
 
-                String nicknameStr = userInformation.getNickname();
-                nickname.setText(StringUtil.interrupt(nicknameStr,12,userInformation.getPhonenum()));
-
-                boolean statusStr = userInformation.isStatus();
+                boolean statusStr = HuaShanApplication.certificationStatus;
                 if(statusStr){
                     status.setText("已认证");
                     name.setText(StringUtil.interrupt(nameStr,0,"未认证"));
@@ -132,8 +137,9 @@ public class SetupActivity extends BaseActivity implements SetupView {
                 }
 
 
-                String phone = userInformation.getPhonenum();
-                phonenum.setText(phone);
+                String phone = baseInfoBean.getMobile();
+                phonenum.setText(StringUtil.interrupt(phone,0,""));
+
             }
         });
     }

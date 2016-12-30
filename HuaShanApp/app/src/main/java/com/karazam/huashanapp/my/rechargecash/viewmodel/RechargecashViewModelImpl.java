@@ -46,7 +46,7 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
     @Override
     public void Withdrawals(View view) {
         setCertificationDialog();
-        if(!HuaShanApplication.userInformation.isStatus()){
+        if(!HuaShanApplication.certificationStatus){
 
             if(certificationDialog != null){
                 certificationDialog.setPrompt("提现需要实名认证","您要前往实名认证吗？");
@@ -65,7 +65,7 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
     @Override
     public void Recharge(View view) {
         setCertificationDialog();
-        if(!HuaShanApplication.userInformation.isStatus()){
+        if(!HuaShanApplication.certificationStatus){
 
             if(certificationDialog != null){
                 certificationDialog.setPrompt("充值需要实名认证","您要前往实名认证吗？");

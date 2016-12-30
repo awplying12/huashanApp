@@ -78,17 +78,17 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
      */
 
     private void setLayout() {
-        RxView.of(avail_moneny).bind(HuaShanApplication.userInformationR, new Rx.Action<TextView, UserInformation>() {
-            @Override
-            public void call(TextView target, UserInformation userInformation) {
-
-                String availStr = StringUtil.interrupt(userInformation.getUserbalance(),0,"0");
-                mModel.avail = Double.parseDouble(availStr);
-                target.setText("可用余额"+availStr+"元");
-
-                checkContent(mModel.avail);
-            }
-        });
+//        RxView.of(avail_moneny).bind(HuaShanApplication.userInformationR, new Rx.Action<TextView, UserInformation>() {
+//            @Override
+//            public void call(TextView target, UserInformation userInformation) {
+//
+//                String availStr = StringUtil.interrupt(userInformation.getUserbalance(),0,"0");
+//                mModel.avail = Double.parseDouble(availStr);
+//                target.setText("可用余额"+availStr+"元");
+//
+//                checkContent(mModel.avail);
+//            }
+//        });
     }
 
 

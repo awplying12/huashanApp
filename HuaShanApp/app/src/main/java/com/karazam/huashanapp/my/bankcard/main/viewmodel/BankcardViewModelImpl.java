@@ -47,7 +47,7 @@ public class BankcardViewModelImpl extends BankcardViewModel{
     @Override
     public void toBindcard(View view) {
 
-        if(!HuaShanApplication.userInformation.isStatus()){
+        if(!HuaShanApplication.certificationStatus){
 
             if(certificationDialog != null){
                 certificationDialog.show();

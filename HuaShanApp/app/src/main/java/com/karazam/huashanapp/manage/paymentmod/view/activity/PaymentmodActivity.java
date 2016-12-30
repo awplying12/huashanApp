@@ -70,21 +70,21 @@ public class PaymentmodActivity extends BaseActivity implements PaymentmodView{
     private void setPaymentmodView1() {
 
         view1 = LayoutInflater.from(this).inflate(R.layout.view_paymentmod_item,null);
-        RxView.of(view1).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-            @Override
-            public void call(View target, UserInformation userInformation) {
-                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
-                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
-                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
-
-                pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zhye_icon));
-                pay_method.setText("账户余额");
-
-                String userbalance = StringUtil.interrupt(userInformation.getUserbalance(),0,"0.00");
-                pay_content.setText("可用余额 "+userbalance);
-
-            }
-        });
+//        RxView.of(view1).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+//            @Override
+//            public void call(View target, UserInformation userInformation) {
+//                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
+//                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
+//                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
+//
+//                pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zhye_icon));
+//                pay_method.setText("账户余额");
+//
+//                String userbalance = StringUtil.interrupt(userInformation.getUserbalance(),0,"0.00");
+//                pay_content.setText("可用余额 "+userbalance);
+//
+//            }
+//        });
 
         TextView bt_recharge = (TextView) view1.findViewById(R.id.bt_recharge);
         bt_recharge.setVisibility(View.VISIBLE);
@@ -111,22 +111,22 @@ public class PaymentmodActivity extends BaseActivity implements PaymentmodView{
     private void setPaymentmodView2() {
 
         view2 = LayoutInflater.from(this).inflate(R.layout.view_paymentmod_item,null);
-        RxView.of(view2).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-            @Override
-            public void call(View target, UserInformation userInformation) {
-                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
-                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
-                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
-
-                pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zgyh_icon));
-
-                String bankCard = StringUtil.interrupt(userInformation.getBankCard(),0,"未知");
-                pay_method.setText(bankCard);
-
-                String cardInformation = StringUtil.interrupt(userInformation.getCardInformation(),0,"未知");
-                pay_content.setText(cardInformation);
-            }
-        });
+//        RxView.of(view2).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+//            @Override
+//            public void call(View target, UserInformation userInformation) {
+//                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
+//                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
+//                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
+//
+//                pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zgyh_icon));
+//
+//                String bankCard = StringUtil.interrupt(userInformation.getBankCard(),0,"未知");
+//                pay_method.setText(bankCard);
+//
+//                String cardInformation = StringUtil.interrupt(userInformation.getCardInformation(),0,"未知");
+//                pay_content.setText(cardInformation);
+//            }
+//        });
 
         view2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,8 +138,8 @@ public class PaymentmodActivity extends BaseActivity implements PaymentmodView{
     }
 
     private void choicePaymentmod(String mod){
-        HuaShanApplication.userInformation.setPaymentmod(mod);
-        HuaShanApplication.userInformationR.set(HuaShanApplication.userInformation);
+//        HuaShanApplication.userInformation.setPaymentmod(mod);
+//        HuaShanApplication.userInformationR.set(HuaShanApplication.userInformation);
     }
 
 }

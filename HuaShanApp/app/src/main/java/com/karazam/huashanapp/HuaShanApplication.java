@@ -5,16 +5,26 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.telephony.TelephonyManager;
 import android.text.format.Time;
+import android.util.Log;
+import android.view.View;
 
 import com.example.utils.ACacheBase.ACache;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.PathUtil;
+
+import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.MyInformationBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
 import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
 import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecords;
 import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecordsItem;
+
+import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
+import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
 
@@ -49,13 +59,26 @@ public class HuaShanApplication extends Application {
     public static String mtype;
     public static String VERSION;
 
-    public static UserInformation userInformation;
+//    public static UserInformation userInformation;
+
+    public static String paymentMethod = "";
 
     public static boolean certificationStatus = true;
 
     public static RxProperty<Time> day = RxProperty.create();
 
-    public static RxProperty<UserInformation> userInformationR = RxProperty.create();
+//    public static RxProperty<UserInformation> userInformationR = RxProperty.create();
+
+    //个人信息
+    public static MyInformationBean myInformation = new MyInformationBean();
+    public static RxProperty<MyInformationBean> myInformationRX = RxProperty.create();
+    public static RxProperty<BaseInfoBean> baseInfoBeanRX = RxProperty.create();
+    public static RxProperty<CardBean> withdrawCarRx = RxProperty.create();
+    public static RxProperty<ArrayList<CardBean>> quickCardsRX = RxProperty.create();
+
+    //个人资产
+    public static MyAssetsBean myAssetsBean = new MyAssetsBean();
+    public static RxProperty<MyAssetsBean> myAssetsBeanRX = RxProperty.create();
 
     public static ArrayList<BaseActivity> securitysPayment = new ArrayList<>();
     public static ArrayList<BaseActivity> securitysGesture = new ArrayList<>();
@@ -84,6 +107,8 @@ public class HuaShanApplication extends Application {
         refresh_token = sharedPreferences.getString("refresh_token", "");
         client_id = sharedPreferences.getString("client_id", "");
 
+        paymentMethod = sharedPreferences.getString("paymentMethod", "");
+
 //        loginStatus = sharedPreferences.getInt("loginStatus",-1);
 
         loginStatus = 1;
@@ -109,18 +134,19 @@ public class HuaShanApplication extends Application {
 
         day.set(time);
 
-        userInformation = new UserInformation();
-        userInformation.setBankCard("中国银行(尾号7634)");
-        userInformation.setCardInformation("单笔限额5万,单日限额50万");
-        userInformation.setUserbalance("6214.47");
-        userInformation.setPaymentmod("");
-        userInformation.setHeaderImg("http://tx.haiqq.com/uploads/allimg/150325/12215B540-0.jpg");
-        userInformation.setUserName("王蕙");
-        userInformation.setNickname("chayewala");
-        userInformation.setStatus(certificationStatus);
-        userInformation.setPhonenum("130*****017");
-//        paymentmod = userInformation.getPaymentmod();
-        userInformationR.set(userInformation);
+//        userInformation = new UserInformation();
+//        userInformation.setBankCard("中国银行(尾号7634)");
+//        userInformation.setCardInformation("单笔限额5万,单日限额50万");
+//        userInformation.setUserbalance("6214.47");
+//        userInformation.setPaymentmod("");
+//        userInformation.setHeaderImg("http://tx.haiqq.com/uploads/allimg/150325/12215B540-0.jpg");
+//        userInformation.setUserName("王蕙");
+//        userInformation.setNickname("chayewala");
+//        userInformation.setStatus(certificationStatus);
+//        userInformation.setPhonenum("130*****017");
+////        paymentmod = userInformation.getPaymentmod();
+//        userInformationR.set(userInformation);
+
 
 
         project1= new FinancialProject();
@@ -184,6 +210,7 @@ public class HuaShanApplication extends Application {
 
     }
 
+
     public static HuaShanApplication getinstance() {
         return instance;
     }
@@ -197,5 +224,26 @@ public class HuaShanApplication extends Application {
         return sharedPreferences.getString("gesture_lock", "-1");
     }
 
+    /**
+     * 设置用户信息
+     */
+    public static void setMyInformation(MyInformationBean bean){
+        HuaShanApplication.myInformation = bean;
+
+        certificationStatus = bean.getBaseInfo().isAuthentication();
+        HuaShanApplication.myInformationRX.set(HuaShanApplication.myInformation);
+        HuaShanApplication.baseInfoBeanRX.set(HuaShanApplication.myInformation.getBaseInfo());
+        HuaShanApplication.withdrawCarRx.set(HuaShanApplication.myInformation.getWithdrawCardl());
+        HuaShanApplication.quickCardsRX.set((HuaShanApplication.myInformation.getQuickCards()));
+    }
+
+    /**
+     * 设置用户资产
+     */
+    public static void setMyAssets(MyAssetsBean bean){
+        HuaShanApplication.myAssetsBean = bean;
+
+        HuaShanApplication.myAssetsBeanRX.set(HuaShanApplication.myAssetsBean);
+    }
 
 }

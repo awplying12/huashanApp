@@ -68,7 +68,7 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
 //            }
 //        });
 
-        String mode = HuaShanApplication.userInformation.getPaymentmod();
+        String mode = HuaShanApplication.paymentMethod;
 
                 if(mode.equals("")){  //余额支付
                     checkPaymentpassword();

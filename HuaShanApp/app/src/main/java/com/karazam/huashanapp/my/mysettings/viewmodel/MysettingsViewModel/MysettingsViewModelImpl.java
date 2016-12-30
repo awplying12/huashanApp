@@ -63,7 +63,7 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
      */
     @Override
     public void toRealname(View view) {
-        if(HuaShanApplication.userInformation.isStatus()){
+        if(HuaShanApplication.certificationStatus){
             return;
         }
        mView.toOtherActivity(activity, UnauthorizedActivity.class);

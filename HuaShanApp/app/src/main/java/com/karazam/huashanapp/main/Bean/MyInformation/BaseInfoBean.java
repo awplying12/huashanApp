@@ -15,7 +15,8 @@ public class BaseInfoBean {
     private String realname;
     private String idno;
     private String name;
-    private String authentication;
+    private String avatar;
+    private boolean authentication;
 
     public String getMobile() {
         return mobile;
@@ -49,12 +50,20 @@ public class BaseInfoBean {
         this.name = name;
     }
 
-    public String getAuthentication() {
+    public boolean isAuthentication() {
         return authentication;
     }
 
-    public void setAuthentication(String authentication) {
+    public void setAuthentication(boolean authentication) {
         this.authentication = authentication;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override
@@ -64,7 +73,8 @@ public class BaseInfoBean {
                 ", realname='" + realname + '\'' +
                 ", idno='" + idno + '\'' +
                 ", name='" + name + '\'' +
-                ", authentication='" + authentication + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", authentication=" + authentication +
                 '}';
     }
 }

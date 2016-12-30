@@ -111,8 +111,8 @@ public class UnauthorizedViewModelImpl extends UnauthorizedViewModel {
                     @Override
                     public void run() {
                         mView.showToast("绑定成功");
-                        HuaShanApplication.userInformation.setStatus(true);
-                        HuaShanApplication.userInformationR.set(HuaShanApplication.userInformation);
+//                        HuaShanApplication.userInformation.setStatus(true);
+//                        HuaShanApplication.userInformationR.set(HuaShanApplication.userInformation);
 
                         Intent intent = new Intent(activity, SetpaypsActivity.class);
                         intent.putExtra("isRealName","realName");

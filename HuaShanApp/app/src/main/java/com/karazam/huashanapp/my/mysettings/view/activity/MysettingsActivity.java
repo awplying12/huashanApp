@@ -23,6 +23,7 @@ import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityMysettingsBinding;
+import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.mysettings.model.databinding.MysettingsEntity;
 import com.karazam.huashanapp.my.mysettings.view.MysettingsView;
@@ -81,32 +82,32 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
      * 设置界面数据
      */
     private void setData() {
-        RxView.findById(this,R.id.content_pl).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+
+        RxView.findById(this,R.id.content_pl).bind(HuaShanApplication.baseInfoBeanRX, new Rx.Action<View, BaseInfoBean>() {
             @Override
-            public void call(View target, UserInformation userInformation) {
+            public void call(View target, BaseInfoBean baseInfoBean) {
                 TextView name = (TextView) target.findViewById(R.id.user_name);
                 TextView nickname = (TextView) target.findViewById(R.id.user_nickname);
                 TextView phonenum = (TextView) target.findViewById(R.id.phonenum);
                 PercentFrameLayout name_ll = (PercentFrameLayout) target.findViewById(R.id.name_ll);
 
-                String nameStr = userInformation.getUserName();
+                String nameStr = baseInfoBean.getRealname();
 
 
-                String nicknameStr = userInformation.getNickname();
-                nickname.setText(StringUtil.interrupt(nicknameStr,12,userInformation.getPhonenum()));
+                String nicknameStr = baseInfoBean.getName();
+                nickname.setText(StringUtil.interrupt(nicknameStr,12,HuaShanApplication.account));
 
-                boolean status = userInformation.isStatus();
+                boolean status = HuaShanApplication.certificationStatus;
                 if(status){
                     name.setText(StringUtil.interrupt(nameStr,0,"去认证"));
                 }else {
                     name.setText("去认证");
                 }
 
-                String phonenumStr = userInformation.getPhonenum();
+                String phonenumStr = baseInfoBean.getMobile();
                 phonenum.setText(StringUtil.interrupt(phonenumStr,0,""));
             }
         });
-
 
     }
 
@@ -114,17 +115,17 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
      * 设置头像
      */
     private void setHeader() {
-        RxView.findById(this,R.id.use_header).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
 
+        RxView.findById(this,R.id.use_header).bind(HuaShanApplication.baseInfoBeanRX, new Rx.Action<View, BaseInfoBean>() {
             @Override
-            public void call(View target, UserInformation userInformation) {
+            public void call(View target, BaseInfoBean baseInfoBean) {
                 final ImageView header = (ImageView) target;
-                Log.i("e","1");
-                if(TextUtils.isEmpty(userInformation.getHeaderImg())){
+
+                if(TextUtils.isEmpty(baseInfoBean.getAvatar())){
                     header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     return;
                 }
-                RxImageLoader.getLoaderObservable(null,userInformation.getHeaderImg()).subscribe(new Subscriber<Data>() {
+                RxImageLoader.getLoaderObservable(null,baseInfoBean.getAvatar()).subscribe(new Subscriber<Data>() {
                     @Override
                     public void onCompleted() {
 

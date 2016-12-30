@@ -126,38 +126,38 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             }
         });
 
-        RxView.findById(this,R.id.pay_pl).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-            @Override
-            public void call(View target, UserInformation userInformation) {
-
-
-                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
-                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
-                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
-
-//                String paymentmod = StringUtil.interrupt(HuaShanApplication.paymentmod,0,"");
-
-                String paymentmod = StringUtil.interrupt(userInformation.getPaymentmod(),0,"");
-
-                if(paymentmod.equals("bankCard")){
-                    pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zgyh_icon));
-
-                    String bankCard = StringUtil.interrupt(userInformation.getBankCard(),0,"未知");
-                    pay_method.setText(bankCard);
-
-                    String cardInformation = StringUtil.interrupt(userInformation.getCardInformation(),0,"未知");
-                    pay_content.setText(cardInformation);
-
-                }else {
-                    pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zhye_icon));
-
-                    pay_method.setText("账户余额");
-
-                    String userbalance = StringUtil.interrupt(userInformation.getUserbalance(),0,"0.00");
-                    pay_content.setText("可用余额 "+userbalance);
-                }
-            }
-        });
+//        RxView.findById(this,R.id.pay_pl).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+//            @Override
+//            public void call(View target, UserInformation userInformation) {
+//
+//
+//                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
+//                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
+//                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
+//
+////                String paymentmod = StringUtil.interrupt(HuaShanApplication.paymentmod,0,"");
+//
+//                String paymentmod = StringUtil.interrupt(userInformation.getPaymentmod(),0,"");
+//
+//                if(paymentmod.equals("bankCard")){
+//                    pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zgyh_icon));
+//
+//                    String bankCard = StringUtil.interrupt(userInformation.getBankCard(),0,"未知");
+//                    pay_method.setText(bankCard);
+//
+//                    String cardInformation = StringUtil.interrupt(userInformation.getCardInformation(),0,"未知");
+//                    pay_content.setText(cardInformation);
+//
+//                }else {
+//                    pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zhye_icon));
+//
+//                    pay_method.setText("账户余额");
+//
+//                    String userbalance = StringUtil.interrupt(userInformation.getUserbalance(),0,"0.00");
+//                    pay_content.setText("可用余额 "+userbalance);
+//                }
+//            }
+//        });
 
     }
 

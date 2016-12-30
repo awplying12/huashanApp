@@ -56,8 +56,8 @@ public class MysettingsViewModelImpl2 extends MysettingsViewModel2 {
         String str = ed_nick.getText().toString();
         if(!TextUtils.isEmpty(str)){
 
-            HuaShanApplication.userInformation.setNickname(str);
-            HuaShanApplication.userInformationR.set(HuaShanApplication.userInformation);
+//            HuaShanApplication.userInformation.setNickname(str);
+//            HuaShanApplication.userInformationR.set(HuaShanApplication.userInformation);
         }
         mView.FinishActivity(activity);
     }

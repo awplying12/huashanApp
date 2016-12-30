@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class MyInformationBean {
 
         private BaseInfoBean baseInfo;
-        private CardBean withdrawCardl;
+        private CardBean withdrawCard;
         private ArrayList<CardBean> quickCards;
 
     public BaseInfoBean getBaseInfo() {
@@ -21,11 +21,11 @@ public class MyInformationBean {
     }
 
     public CardBean getWithdrawCardl() {
-        return withdrawCardl;
+        return withdrawCard;
     }
 
     public void setWithdrawCardl(CardBean withdrawCardl) {
-        this.withdrawCardl = withdrawCardl;
+        this.withdrawCard = withdrawCardl;
     }
 
     public ArrayList<CardBean> getQuickCards() {
@@ -40,7 +40,7 @@ public class MyInformationBean {
     public String toString() {
         return "MyInformationBean{" +
                 "baseInfo=" + baseInfo +
-                ", withdrawCardl=" + withdrawCardl +
+                ", withdrawCardl=" + withdrawCard +
                 ", quickCards=" + quickCards +
                 '}';
     }

@@ -41,7 +41,7 @@ public class ExperienceViewModelImpl extends ExperienceViewModel {
 
     @Override
     public void toPurchase(View view) {
-        if(!HuaShanApplication.userInformation.isStatus()){
+        if(!HuaShanApplication.certificationStatus){
 
                 if(certificationDialog != null){
                     certificationDialog.show();

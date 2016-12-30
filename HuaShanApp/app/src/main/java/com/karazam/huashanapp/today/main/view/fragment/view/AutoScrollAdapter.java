@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -85,7 +86,7 @@ public class AutoScrollAdapter extends ModelPagerAdapter {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("bbb","e  :  "+e.toString());
                     }
 
                     @Override

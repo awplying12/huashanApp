@@ -126,6 +126,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
     @Override
     public void CheckloginSuccess(CheckloginReturn checkloginReturn) {
         showToast("同步成功");
+
+        getBaseData();
     }
 
     /**
@@ -142,7 +144,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
         switch (requestCode){
             case 10: //homeActivity
                 if(resultCode == 101){  //登录
-                    showToast("登录 ： "+ HuaShanApplication.loginStatus);
+//                    showToast("登录 ： "+ HuaShanApplication.loginStatus);
+                    getBaseData();
                     setViewPagerCurrentItem(3,"我的");
                 }
 //                else if(resultCode == 102){
@@ -261,6 +264,11 @@ public class HomeActivity extends BaseActivity implements HomeView {
         my_img.setSelected(false);
     }
 
-
-
+    /**
+     * 获取基本数据
+     */
+    private void getBaseData(){
+        mModel.getMyInformation();
+        mModel.getMyAssets();
+    }
 }

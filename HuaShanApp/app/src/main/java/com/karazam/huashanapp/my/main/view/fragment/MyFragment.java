@@ -22,6 +22,8 @@ import com.example.utils.utils.BitmapUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentMyBinding;
+import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
 import com.karazam.huashanapp.my.main.view.MyView;
@@ -97,16 +99,17 @@ public class MyFragment extends BaseFragment implements MyView {
     */
     private void setHeader() {
 
-        RxView.findById(view,R.id.user_header).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-
+        RxView.findById(view,R.id.user_header).bind(HuaShanApplication.baseInfoBeanRX, new Rx.Action<View, BaseInfoBean>() {
             @Override
-            public void call(View target, UserInformation userInformation) {
+            public void call(View target, BaseInfoBean baseInfoBean) {
                 final ImageView header = (ImageView) target;
-                if(TextUtils.isEmpty(userInformation.getHeaderImg())){
+
+                if(TextUtils.isEmpty(baseInfoBean.getAvatar())){
                     header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     return;
                 }
-                RxImageLoader.getLoaderObservable(null,userInformation.getHeaderImg()).subscribe(new Subscriber<Data>() {
+
+                RxImageLoader.getLoaderObservable(null,baseInfoBean.getAvatar()).subscribe(new Subscriber<Data>() {
                     @Override
                     public void onCompleted() {
 
@@ -134,13 +137,13 @@ public class MyFragment extends BaseFragment implements MyView {
      * 设置界面
      */
     private void setLayout() {
-        RxView.findById(view,R.id.tv_balance).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-            @Override
-            public void call(View target, UserInformation userInformation) {
-                TextView tv = (TextView) target;
-                tv.setText(Html.fromHtml("可用余额<font color='#ffffff'> 0.00 </font>元"));
-            }
-        });
+//        RxView.findById(view,R.id.tv_balance).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+//            @Override
+//            public void call(View target, UserInformation userInformation) {
+//                TextView tv = (TextView) target;
+//                tv.setText(Html.fromHtml("可用余额<font color='#ffffff'> 0.00 </font>元"));
+//            }
+//        });
     }
 
 
@@ -163,25 +166,36 @@ public class MyFragment extends BaseFragment implements MyView {
         vp_asset.setAdapter(adapter);
         indicator.setViewPager(vp_asset);
 
-        RxView.of(view1).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+//        RxView.of(view1).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+//            @Override
+//            public void call(View target, UserInformation userInformation) {
+//                TextView text_p1 = (TextView) target.findViewById(R.id.text_p1);
+//                TextView income = (TextView) target.findViewById(R.id.det_income);
+//                text_p1.setText("总资产(元)");
+//
+//
+//            }
+//        });
+        RxView.of(view1).bind(HuaShanApplication.myAssetsBeanRX, new Rx.Action<View, MyAssetsBean>() {
             @Override
-            public void call(View target, UserInformation userInformation) {
+            public void call(View target, MyAssetsBean myAssetsBean) {
                 TextView text_p1 = (TextView) target.findViewById(R.id.text_p1);
                 TextView income = (TextView) target.findViewById(R.id.det_income);
                 text_p1.setText("总资产(元)");
 
-
+//                String
             }
         });
 
-        RxView.of(view2).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-            @Override
-            public void call(View target, UserInformation userInformation) {
-                TextView text_p1 = (TextView) target.findViewById(R.id.text_p1);
-                TextView income = (TextView) target.findViewById(R.id.det_income);
-                text_p1.setText("累计收益(元)");
-            }
-        });
+//
+//        RxView.of(view2).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
+//            @Override
+//            public void call(View target, UserInformation userInformation) {
+//                TextView text_p1 = (TextView) target.findViewById(R.id.text_p1);
+//                TextView income = (TextView) target.findViewById(R.id.det_income);
+//                text_p1.setText("累计收益(元)");
+//            }
+//        });
 
         vp_asset.setOnTouchListener(new View.OnTouchListener() {
             @Override
