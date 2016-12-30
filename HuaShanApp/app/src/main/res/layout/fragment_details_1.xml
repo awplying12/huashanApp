@@ -104,7 +104,7 @@
                     app:layout_heightPercent="55%"
                     android:layout_gravity="bottom"
                     android:gravity="center_horizontal"
-                    android:text="100.00"
+                    android:text="0.00"
                     android:textSize="25dp"/>
 
                 <TextView
@@ -113,7 +113,7 @@
                     app:layout_heightPercent="55%"
                     android:layout_gravity="right|bottom"
                     android:gravity="center_horizontal"
-                    android:text="6"
+                    android:text="0"
                     android:textSize="25dp"/>
 
             </android.support.percent.PercentFrameLayout>
@@ -172,7 +172,7 @@
                         android:layout_width="match_parent"
                         app:layout_heightPercent="49%"
                         android:gravity="center_horizontal|bottom"
-                        android:text="200,000.00/1,000,000.00"
+                        android:text="0.00/0.00"
                         android:textSize="17dp"
                         android:textColor="#ff8000"
                         />
@@ -212,7 +212,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
                     android:gravity="center"
-                    android:text="每月付息   到期还本"/>
+                    android:text=""/>
 
             </android.support.percent.PercentFrameLayout>
 

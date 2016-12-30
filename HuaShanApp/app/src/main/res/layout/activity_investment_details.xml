@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     app:layout_marginTopPercent="45%"
-                    android:text="8.60"
+                    android:text="0.00"
                     android:textColor="@color/Investmentdetails_part1_text_size"
                     android:textSize="40dp"
                     />
@@ -133,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_centerInParent="true"
-                        android:text="发布日期：2016-11-09 00:05"
+                        android:text="发布日期："
                         android:textColor="#fff"
                         android:textSize="12dp"/>
 
@@ -146,7 +146,7 @@
                     app:layout_marginTopPercent="7%"
                     app:layout_marginLeftPercent="7%"
                     android:background="#66b3ff"
-                    android:text="产融贷CR216001-30"
+                    android:text="产品名称"
                     android:textColor="@color/Investmentdetails_part1_text_size"
                     android:textSize="18dp"/>
 

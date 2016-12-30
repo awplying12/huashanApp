@@ -39,6 +39,8 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
     private RefreshRecyclerView content_rl;
     private SwipeRefreshLayout mSwipeLayout;
 
+
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_bankcard);
@@ -111,11 +113,11 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
                 switch (position){
                     case 0: //快捷卡
                         setBankcardRecyclerView();
-
+                        mModel.flag = 1;
                         break;
                     case 1: //提现卡
                         setWithdrawalscardRecyclerView();
-
+                        mModel.flag = 2;
                         break;
                     default:
                         break;
@@ -172,7 +174,8 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
 
             @Override
             public void onBottomView(View view) {
-                showToast("onBottomView");
+//                showToast("onBottomView");
+                mModel.toBindcard(null);
             }
         });
 
@@ -213,7 +216,8 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
 
             @Override
             public void onBottomView(View view) {
-                showToast("onBottomView");
+//                showToast("onBottomView");
+                mModel.toBindcard(null);
             }
         });
 

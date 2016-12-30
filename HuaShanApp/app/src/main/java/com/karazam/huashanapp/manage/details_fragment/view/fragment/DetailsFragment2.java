@@ -389,6 +389,7 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
                 img.setBackgroundResource(imgId1);
                 break;
             default:
+                img.setBackgroundResource(imgId2);
                 break;
 
         }
