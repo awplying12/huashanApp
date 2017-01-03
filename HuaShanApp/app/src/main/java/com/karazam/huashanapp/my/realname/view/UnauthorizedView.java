@@ -11,4 +11,10 @@ public interface UnauthorizedView extends BaseView{
     void addSMSView();
 
     void disSMSView();
+
+    void onRealnameSuccess();
+
+    void onRealnameFaile(String s);
+
+    void onRealnameError(Throwable e);
 }

@@ -31,4 +31,6 @@ public abstract class UnauthorizedViewModel extends BaseViewModel {
     public abstract void cleanPhonenum(View view);
 
     public abstract void onAuthentication();
+
+    public abstract void onRealname();
 }

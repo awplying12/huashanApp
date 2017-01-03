@@ -14,7 +14,8 @@ public class MyAssetsBean {
 //    alreadyReferralFees	已收推荐费
 //    withdrawFee	提现手续费
 
-
+    private String allCapitalSum;
+    private String alreadyProfitsSum;
     private String watingCapital;
     private String investFrozen;
     private String watingProfits;
@@ -23,6 +24,23 @@ public class MyAssetsBean {
     private String available;
     private String alreadyReferralFees;
     private String withdrawing;
+
+
+    public String getAllCapitalSum() {
+        return allCapitalSum;
+    }
+
+    public void setAllCapitalSum(String allCapitalSum) {
+        this.allCapitalSum = allCapitalSum;
+    }
+
+    public String getAlreadyProfitsSum() {
+        return alreadyProfitsSum;
+    }
+
+    public void setAlreadyProfitsSum(String alreadyProfitsSum) {
+        this.alreadyProfitsSum = alreadyProfitsSum;
+    }
 
     public String getWatingCapital() {
         return watingCapital;
@@ -91,7 +109,9 @@ public class MyAssetsBean {
     @Override
     public String toString() {
         return "MyAssetsBean{" +
-                "watingCapital='" + watingCapital + '\'' +
+                "allCapitalSum='" + allCapitalSum + '\'' +
+                ", alreadyProfitsSum='" + alreadyProfitsSum + '\'' +
+                ", watingCapital='" + watingCapital + '\'' +
                 ", investFrozen='" + investFrozen + '\'' +
                 ", watingProfits='" + watingProfits + '\'' +
                 ", withdrawFee='" + withdrawFee + '\'' +

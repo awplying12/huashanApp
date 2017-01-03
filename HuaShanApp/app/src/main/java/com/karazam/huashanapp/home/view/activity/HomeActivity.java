@@ -132,12 +132,22 @@ public class HomeActivity extends BaseActivity implements HomeView {
 
     /**
      * 同步失败
+     */
+    @Override
+    public void CheckloginFaile(String s) {
+        showToast(s);
+    }
+
+    /**
+     * 同步错误
      * @param e
      */
     @Override
-    public void CheckloginFaile(Throwable e) {
-        showToast("同步失败");
+    public void CheckloginError(Throwable e) {
+
+        showToast("网络故障！");
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

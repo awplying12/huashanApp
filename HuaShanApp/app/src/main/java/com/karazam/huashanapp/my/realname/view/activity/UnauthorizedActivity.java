@@ -190,89 +190,89 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
                     }
                 });
 
-        RxTextView.textChangeEvents( mModel.card_num)  //银行卡号
-                .debounce(300, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<TextViewTextChangeEvent>() {
-                    @Override
-                    public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
-                        String str = textViewTextChangeEvent.text().toString().trim();
-
-                        if(TextUtils.isEmpty(str)){
-                            hint3_img.setVisibility(View.GONE);
-                            clean_cardnum.setVisibility(View.GONE);
-                            card_num = false;
-                        }else if(str.matches("^(\\d{15,20})$")){
-                            hint3_img.setVisibility(View.VISIBLE);
-                            hint3_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.correct_icon));
-                            clean_cardnum.setVisibility(View.VISIBLE);
-                            card_num = true;
-                        }else {
-                            hint3_img.setVisibility(View.VISIBLE);
-                            hint3_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.error_icon));
-                            clean_cardnum.setVisibility(View.VISIBLE);
-                            card_num = false;
-                        }
-
-                        checkButton();
-                    }
-                });
-
-        RxTextView.textChangeEvents( mModel.bank)  //银行类
-                .debounce(300, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<TextViewTextChangeEvent>() {
-                    @Override
-                    public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
-                        String str = textViewTextChangeEvent.text().toString().trim();
-
-                        if(TextUtils.isEmpty(str)){
-                            hint4_img.setVisibility(View.GONE);
-                            clean_bank.setVisibility(View.GONE);
-                            bank = false;
-                        }else if(str.matches("^[\\u4e00-\\u9fa5]*$")){
-                            hint4_img.setVisibility(View.VISIBLE);
-                            hint4_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.correct_icon));
-                            clean_bank.setVisibility(View.VISIBLE);
-                            bank = true;
-                        }else {
-                            hint4_img.setVisibility(View.VISIBLE);
-                            hint4_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.error_icon));
-                            clean_bank.setVisibility(View.VISIBLE);
-                            bank = false;
-                        }
-
-                        checkButton();
-                    }
-                });
-
-        RxTextView.textChangeEvents( mModel.phone_num)  //电话号码
-                .debounce(300, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<TextViewTextChangeEvent>() {
-                    @Override
-                    public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
-                        String str = textViewTextChangeEvent.text().toString().trim();
-
-                        if(TextUtils.isEmpty(str)){
-                            hint5_img.setVisibility(View.GONE);
-                            clean_phonenum.setVisibility(View.GONE);
-                            phone_num = false;
-                        }else if(phoneUtil.CheckPhoneNumber(str)){
-                            hint5_img.setVisibility(View.VISIBLE);
-                            hint5_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.correct_icon));
-                            clean_phonenum.setVisibility(View.VISIBLE);
-                            phone_num = true;
-                        }else {
-                            hint5_img.setVisibility(View.VISIBLE);
-                            hint5_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.error_icon));
-                            clean_phonenum.setVisibility(View.VISIBLE);
-                            phone_num = false;
-                        }
-
-                        checkButton();
-                    }
-                });
+//        RxTextView.textChangeEvents( mModel.card_num)  //银行卡号
+//                .debounce(300, TimeUnit.MILLISECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<TextViewTextChangeEvent>() {
+//                    @Override
+//                    public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
+//                        String str = textViewTextChangeEvent.text().toString().trim();
+//
+//                        if(TextUtils.isEmpty(str)){
+//                            hint3_img.setVisibility(View.GONE);
+//                            clean_cardnum.setVisibility(View.GONE);
+//                            card_num = false;
+//                        }else if(str.matches("^(\\d{15,20})$")){
+//                            hint3_img.setVisibility(View.VISIBLE);
+//                            hint3_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.correct_icon));
+//                            clean_cardnum.setVisibility(View.VISIBLE);
+//                            card_num = true;
+//                        }else {
+//                            hint3_img.setVisibility(View.VISIBLE);
+//                            hint3_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.error_icon));
+//                            clean_cardnum.setVisibility(View.VISIBLE);
+//                            card_num = false;
+//                        }
+//
+//                        checkButton();
+//                    }
+//                });
+//
+//        RxTextView.textChangeEvents( mModel.bank)  //银行类
+//                .debounce(300, TimeUnit.MILLISECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<TextViewTextChangeEvent>() {
+//                    @Override
+//                    public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
+//                        String str = textViewTextChangeEvent.text().toString().trim();
+//
+//                        if(TextUtils.isEmpty(str)){
+//                            hint4_img.setVisibility(View.GONE);
+//                            clean_bank.setVisibility(View.GONE);
+//                            bank = false;
+//                        }else if(str.matches("^[\\u4e00-\\u9fa5]*$")){
+//                            hint4_img.setVisibility(View.VISIBLE);
+//                            hint4_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.correct_icon));
+//                            clean_bank.setVisibility(View.VISIBLE);
+//                            bank = true;
+//                        }else {
+//                            hint4_img.setVisibility(View.VISIBLE);
+//                            hint4_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.error_icon));
+//                            clean_bank.setVisibility(View.VISIBLE);
+//                            bank = false;
+//                        }
+//
+//                        checkButton();
+//                    }
+//                });
+//
+//        RxTextView.textChangeEvents( mModel.phone_num)  //电话号码
+//                .debounce(300, TimeUnit.MILLISECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<TextViewTextChangeEvent>() {
+//                    @Override
+//                    public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
+//                        String str = textViewTextChangeEvent.text().toString().trim();
+//
+//                        if(TextUtils.isEmpty(str)){
+//                            hint5_img.setVisibility(View.GONE);
+//                            clean_phonenum.setVisibility(View.GONE);
+//                            phone_num = false;
+//                        }else if(phoneUtil.CheckPhoneNumber(str)){
+//                            hint5_img.setVisibility(View.VISIBLE);
+//                            hint5_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.correct_icon));
+//                            clean_phonenum.setVisibility(View.VISIBLE);
+//                            phone_num = true;
+//                        }else {
+//                            hint5_img.setVisibility(View.VISIBLE);
+//                            hint5_img.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.error_icon));
+//                            clean_phonenum.setVisibility(View.VISIBLE);
+//                            phone_num = false;
+//                        }
+//
+//                        checkButton();
+//                    }
+//                });
 
 
         RxCompoundButton.checkedChanges(cb_agreement)
@@ -290,7 +290,17 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
      */
     private void checkButton() {
 
-        if(use_name && id_num && card_num && bank && phone_num && agreement){
+//        if(use_name && id_num && card_num && bank && phone_num && agreement){
+//            btn_next_step.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
+//            btn_next_step.setClickable(true);
+//
+//        }else {
+//            btn_next_step.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
+//            btn_next_step.setClickable(false);
+//
+//        }
+
+        if(use_name && id_num){
             btn_next_step.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
             btn_next_step.setClickable(true);
 
@@ -351,5 +361,31 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
     @Override
     public void disSMSView() {
         smsview.dismiss();
+    }
+
+    /**
+     * 实名成功
+     */
+    @Override
+    public void onRealnameSuccess() {
+
+    }
+
+    /**
+     * 实名失败
+     * @param s
+     */
+    @Override
+    public void onRealnameFaile(String s) {
+
+    }
+
+    /**
+     * 实名错误
+     * @param e
+     */
+    @Override
+    public void onRealnameError(Throwable e) {
+
     }
 }

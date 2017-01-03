@@ -15,6 +15,7 @@ import com.karazam.huashanapp.main.Bean.MyInformation.MyInformationBean;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.main.retrofit.user.MyAssetsDataSource;
 import com.karazam.huashanapp.main.retrofit.user.MyInformationDataSource;
+import com.karazam.huashanapp.user.login.model.databinding.TokenData;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -130,14 +131,34 @@ public class HomeViewModelImpl extends HomeViewModel {
             @Override
             public void onError(Throwable e) {
                 Log.i("onChecklogin","e : "+e.toString());
-                mView.CheckloginFaile(e);
+                mView.CheckloginError(e);
             }
 
             @Override
             public void onNext(BaseReturn<CheckloginReturn> checkloginReturnBaseReturn) {
-                CheckloginReturn checkloginReturn = checkloginReturnBaseReturn.getData();
-                Log.i("onChecklogin",checkloginReturn.toString());
-                mView.CheckloginSuccess(checkloginReturn);
+
+
+
+                if(checkloginReturnBaseReturn.isSuccess()){
+                    CheckloginReturn checkloginReturn = checkloginReturnBaseReturn.getData();
+
+                    Log.i("onChecklogin",checkloginReturn.toString());
+
+                    HuaShanApplication.editor.putString("token",checkloginReturn.getSid()).commit();
+                    HuaShanApplication.token = checkloginReturn.getSid();
+
+                    HuaShanApplication.editor.putString("uuid",checkloginReturn.getUserId()).commit();
+                    HuaShanApplication.uuid = checkloginReturn.getUserId();
+
+                    HuaShanApplication.editor.putString("userKey",checkloginReturn.getUserKey()).commit();
+                    HuaShanApplication.userKey = checkloginReturn.getUserKey();
+
+                    mView.CheckloginSuccess(checkloginReturn);
+
+                }else {
+                    mView.CheckloginFaile(checkloginReturnBaseReturn.getMessage());
+                }
+
             }
         });
 
@@ -166,6 +187,8 @@ public class HomeViewModelImpl extends HomeViewModel {
                 if(myInformationBeanBaseReturn.isSuccess()){
                     HuaShanApplication.setMyInformation(myInformationBeanBaseReturn.getData());
                     Log.i("getMyInformation",HuaShanApplication.myInformation.toString());
+
+
                 }else {
                     mView.showToast(myInformationBeanBaseReturn.getMessage());
                 }

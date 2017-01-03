@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.my.security.paymentpassword.viewmodel.ModifyViewModel;
 
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.utils.base.BaseViewModel;
 
@@ -10,5 +11,9 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class ModifyViewModel extends BaseViewModel {
 
+    public EditText payment_pw;
+
     public abstract void onNextstep(View view);
+
+    public abstract void checkPayment();
 }

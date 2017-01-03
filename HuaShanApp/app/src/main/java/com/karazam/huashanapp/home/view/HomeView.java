@@ -15,5 +15,7 @@ public interface HomeView extends BaseView{
 
     void CheckloginSuccess(CheckloginReturn checkloginReturn);
 
-    void CheckloginFaile(Throwable e);
+    void CheckloginFaile(String s);
+
+    void CheckloginError(Throwable e);
 }

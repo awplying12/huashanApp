@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.utils.base.BaseFragment;
 import com.example.utils.utils.BitmapUtil;
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentMyBinding;
@@ -166,16 +167,7 @@ public class MyFragment extends BaseFragment implements MyView {
         vp_asset.setAdapter(adapter);
         indicator.setViewPager(vp_asset);
 
-//        RxView.of(view1).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-//            @Override
-//            public void call(View target, UserInformation userInformation) {
-//                TextView text_p1 = (TextView) target.findViewById(R.id.text_p1);
-//                TextView income = (TextView) target.findViewById(R.id.det_income);
-//                text_p1.setText("总资产(元)");
-//
-//
-//            }
-//        });
+
         RxView.of(view1).bind(HuaShanApplication.myAssetsBeanRX, new Rx.Action<View, MyAssetsBean>() {
             @Override
             public void call(View target, MyAssetsBean myAssetsBean) {
@@ -183,19 +175,24 @@ public class MyFragment extends BaseFragment implements MyView {
                 TextView income = (TextView) target.findViewById(R.id.det_income);
                 text_p1.setText("总资产(元)");
 
-//                String
+                String allCapitalSum =  StringUtil.interrupt(myAssetsBean.getAllCapitalSum(),0,"0");
+                income.setText(StringUtil.reservedDecimal(allCapitalSum,2));
             }
         });
 
-//
-//        RxView.of(view2).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-//            @Override
-//            public void call(View target, UserInformation userInformation) {
-//                TextView text_p1 = (TextView) target.findViewById(R.id.text_p1);
-//                TextView income = (TextView) target.findViewById(R.id.det_income);
-//                text_p1.setText("累计收益(元)");
-//            }
-//        });
+
+        RxView.of(view2).bind(HuaShanApplication.myAssetsBeanRX, new Rx.Action<View, MyAssetsBean>() {
+            @Override
+            public void call(View target, MyAssetsBean myAssetsBean) {
+                TextView text_p1 = (TextView) target.findViewById(R.id.text_p1);
+                TextView income = (TextView) target.findViewById(R.id.det_income);
+                text_p1.setText("累计收益(元)");
+
+                String alreadyProfitsSum = StringUtil.interrupt(myAssetsBean.getAlreadyProfitsSum(),0,"0");
+                income.setText(StringUtil.reservedDecimal(alreadyProfitsSum,2));
+            }
+        });
+
 
         vp_asset.setOnTouchListener(new View.OnTouchListener() {
             @Override

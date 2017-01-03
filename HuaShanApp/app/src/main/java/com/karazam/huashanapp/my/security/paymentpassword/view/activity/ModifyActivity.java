@@ -35,7 +35,7 @@ public class ModifyActivity extends BaseActivity implements ModifyView {
     private PaymentpwEntity entity = new PaymentpwEntity();
 
     private FloatLabeledEditText fet_paymentpw;
-    private EditText payment_pw;
+
     private TextView next_step;
 
     @Override
@@ -56,7 +56,7 @@ public class ModifyActivity extends BaseActivity implements ModifyView {
     public void initView() {
         fet_paymentpw = (FloatLabeledEditText) getView(R.id.fet_paymentpw);
         fet_paymentpw.setHintTextViewColor(Color.parseColor("#0894EC"));
-        payment_pw = (EditText) getView(R.id.payment_pw);
+        mModel.payment_pw = (EditText) getView(R.id.payment_pw);
         next_step = (TextView) getView(R.id.next_step);
     }
 
@@ -70,7 +70,7 @@ public class ModifyActivity extends BaseActivity implements ModifyView {
      */
     private void checkContent() {
 
-        RxTextView.textChangeEvents(payment_pw)
+        RxTextView.textChangeEvents(mModel.payment_pw)
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<TextViewTextChangeEvent>() {

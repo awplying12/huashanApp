@@ -82,14 +82,332 @@
             >
 
 
+            <!--提示-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="5%">
+
+                <ImageView
+                    app:layout_widthPercent="4%"
+                    android:layout_height="match_parent"
+                    app:layout_marginLeftPercent="5%"
+                    android:src="@drawable/mark_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginLeftPercent="10%"
+                    android:layout_gravity="center_vertical"
+                    android:text="请填写您的真实信息,通过后将不能修改"
+                    android:textSize="13dp"
+                    />
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--真实姓名-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                app:layout_marginTopPercent="5%"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/clean_name"
+                    app:layout_widthPercent="6%"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/clean_icon"
+                    app:layout_marginRightPercent="5%"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanName}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint1_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="22%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="gone"
+                    />
+
+                <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
+                    android:id="@+id/fet_name"
+                    app:layout_widthPercent="84%"
+                    app:layout_heightPercent="65%"
+                    app:layout_marginTopPercent="10%"
+                    app:layout_marginLeftPercent="5%"
+                    >
+                    <EditText
+                        android:id="@+id/use_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:hint="真实姓名"
+                        android:background="#00ffffff"
+                        android:textSize="15dp"
+                        />
+                </com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--身份证号-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                app:layout_marginTopPercent="17.1%"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/clean_idnum"
+                    app:layout_widthPercent="6%"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/clean_icon"
+                    app:layout_marginRightPercent="5%"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanIdnum}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint2_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="22%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="gone"
+                    />
+
+                <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
+                    android:id="@+id/fet_idnum"
+                    app:layout_widthPercent="84%"
+                    app:layout_heightPercent="65%"
+                    app:layout_marginTopPercent="10%"
+                    app:layout_marginLeftPercent="5%"
+                    >
+                    <EditText
+                        android:id="@+id/id_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="number"
+                        android:hint="身份证号"
+                        android:background="#00ffffff"
+                        android:textSize="15dp"
+                        />
+                </com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--银行卡号-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                app:layout_marginTopPercent="31.1%"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/clean_cardnum"
+                    app:layout_widthPercent="6%"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/clean_icon"
+                    app:layout_marginRightPercent="5%"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanCardnum}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint3_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="22%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="gone"
+                    />
+
+                <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
+                    android:id="@+id/fet_cardnum"
+                    app:layout_widthPercent="84%"
+                    app:layout_heightPercent="65%"
+                    app:layout_marginTopPercent="10%"
+                    app:layout_marginLeftPercent="5%"
+                    >
+                    <EditText
+                        android:id="@+id/card_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="number"
+                        android:hint="银行卡号"
+                        android:background="#00ffffff"
+                        android:textSize="15dp"
+                        />
+                </com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--卡类型/发卡行-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                app:layout_marginTopPercent="43.2%"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/clean_bank"
+                    app:layout_widthPercent="6%"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/clean_icon"
+                    app:layout_marginRightPercent="5%"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanBank}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint4_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="31%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="gone"
+                    />
+
+                <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
+                    android:id="@+id/fet_bank"
+                    app:layout_widthPercent="84%"
+                    app:layout_heightPercent="65%"
+                    app:layout_marginTopPercent="10%"
+                    app:layout_marginLeftPercent="5%"
+                    >
+                    <EditText
+                        android:id="@+id/bank"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:maxLength="12"
+                        android:hint="卡类型/发卡行"
+                        android:background="#00ffffff"
+                        android:textSize="15dp"
+                        />
+                </com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText>
+
+            </android.support.percent.PercentFrameLayout>
+
+            <!--预留手机号-->
+            <android.support.percent.PercentFrameLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="12%"
+                app:layout_marginTopPercent="55.4%"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/clean_phonenum"
+                    app:layout_widthPercent="6%"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/clean_icon"
+                    app:layout_marginRightPercent="5%"
+                    android:layout_gravity="right"
+                    android:visibility="gone"
+                    android:onClick="@{handler.cleanPhonenum}"
+                    />
+
+                <ImageView
+                    android:id="@+id/hint5_img"
+                    app:layout_widthPercent="5%"
+                    app:layout_heightPercent="15%"
+                    app:layout_marginLeftPercent="26%"
+                    app:layout_marginTopPercent="15%"
+                    android:src="@drawable/error_icon"
+                    android:visibility="gone"
+                    />
+
+                <com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText
+                    android:id="@+id/fet_phonenum"
+                    app:layout_widthPercent="84%"
+                    app:layout_heightPercent="65%"
+                    app:layout_marginTopPercent="10%"
+                    app:layout_marginLeftPercent="5%"
+                    >
+                    <EditText
+                        android:id="@+id/phone_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:inputType="number"
+                        android:hint="预留手机号"
+                        android:background="#00ffffff"
+                        android:textSize="15dp"
+                        />
+                </com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText>
+
+            </android.support.percent.PercentFrameLayout>
+
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BindcardActivity"
-                />
+                android:layout_width="match_parent"
+                app:layout_heightPercent="5%"
+                app:layout_marginTopPercent="67.4%"
+                app:layout_marginLeftPercent="5%"
+                android:gravity="center_vertical"
+                android:text="12345"
+                android:textColor="#f00"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/btn_next_step"
+                app:layout_widthPercent="90%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="73%"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="#fff"
+                android:textSize="17dp"
+                android:background="@drawable/btn_bg_img_0894ec_5dp"
+                android:onClick="@{handler.onNextstep}"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                app:layout_heightPercent="5%"
+                app:layout_marginTopPercent="85%"
+                app:layout_marginLeftPercent="5%"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_agreement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:button="@drawable/bg_checkbox"
+                    android:paddingLeft="5dp"
+                    app:layout_marginTopPercent="70%"
+                    android:text="我已阅读"
+                    android:textColor="#7b7b7b"
+                    android:textSize="11dp"/>
+
+                <TextView
+                    android:id="@+id/tv_agreement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginLeftPercent="5%"
+                    app:layout_marginTopPercent="68%"
+                    android:text="《华善金融快捷支付协议》"
+                    android:textColor="#0894EC"
+                    android:textSize="11dp"
+                    />
+
+            </LinearLayout>
+
 
 
 
         </android.support.percent.PercentFrameLayout>
+
+
     </android.support.percent.PercentRelativeLayout>
 </layout>

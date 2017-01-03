@@ -2,10 +2,14 @@ package com.karazam.huashanapp.my.realname.viewmodel.UnauthorizedViewModel;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.my.realname.model.databinding.RealnameBean;
 import com.karazam.huashanapp.my.realname.model.databinding.RealnameEntity;
+import com.karazam.huashanapp.my.realname.model.retrofit.RealnameDataSource;
 import com.karazam.huashanapp.my.realname.view.UnauthorizedView;
 import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
@@ -13,6 +17,11 @@ import com.karazam.huashanapp.my.security.paymentpassword3.view.activity.Setpayp
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/24.
@@ -25,11 +34,15 @@ public class UnauthorizedViewModelImpl extends UnauthorizedViewModel {
     private Context context;
     private UnauthorizedActivity activity;
 
+    private RealnameDataSource dataSource;
+
     public UnauthorizedViewModelImpl(UnauthorizedView mView, RealnameEntity mEntity, Context context, UnauthorizedActivity activity) {
         this.mView = mView;
         this.mEntity = mEntity;
         this.context = context;
         this.activity = activity;
+
+        dataSource = new RealnameDataSource();
     }
 
     @Override
@@ -44,7 +57,9 @@ public class UnauthorizedViewModelImpl extends UnauthorizedViewModel {
     @Override
     public void onNextstep(View view) {
 //        mView.showToast("onNextstep");
-        mView.addSMSView();
+//        mView.addSMSView();
+
+        onRealname();
     }
 
     /**
@@ -125,5 +140,64 @@ public class UnauthorizedViewModelImpl extends UnauthorizedViewModel {
             }
         };
         timer.schedule(tk,3000);
+    }
+
+    /**
+     * 实名认证
+     */
+    @Override
+    public void onRealname() {
+
+        String name = use_name.getText().toString();
+        String id = id_num.getText().toString();
+//        dataSource.onRealname(name,id)
+//                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+//                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+//                .subscribe(new Subscriber<BaseReturn>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.i("onRealname"," e  :  "+e.toString());
+//                        mView.onRealnameError(e);
+//                    }
+//
+//                    @Override
+//                    public void onNext(BaseReturn baseReturn) {
+//
+//                        if(baseReturn.isSuccess()){
+//                            mView.onRealnameSuccess();
+//                        }else {
+//                            mView.onRealnameFaile(baseReturn.getMessage());
+//                        }
+//                    }
+//                });
+        dataSource.onRealname(name,id)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn<RealnameBean>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("onRealname"," e  :  "+e.toString());
+                        mView.onRealnameError(e);
+                    }
+
+                    @Override
+                    public void onNext(BaseReturn<RealnameBean> realnameBeanBaseReturn) {
+                        if(realnameBeanBaseReturn.isSuccess()){
+                            mView.onRealnameSuccess();
+                        }else {
+                            mView.onRealnameFaile(realnameBeanBaseReturn.getMessage());
+                        }
+                    }
+                });
     }
 }

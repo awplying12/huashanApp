@@ -36,4 +36,54 @@ public class BindcardViewModelImpl extends BindcardViewModel {
     }
 
 
+    @Override
+    public void onNextstep(View view) {
+        mView.showToast("onNextstep");
+    }
+
+    /**
+     * 清除姓名
+     * @param view
+     */
+    @Override
+    public void cleanName(View view) {
+        use_name.setText("");
+    }
+
+    /**
+     * 清除身份证号
+     * @param view
+     */
+    @Override
+    public void cleanIdnum(View view) {
+        id_num.setText("");
+    }
+
+    /**
+     * 清除银行卡号
+     * @param view
+     */
+    @Override
+    public void cleanCardnum(View view) {
+        card_num.setText("");
+    }
+
+    /**
+     * 清除银行
+     * @param view
+     */
+    @Override
+    public void cleanBank(View view) {
+        bank.setText("");
+    }
+
+    /**
+     * 清除电话号码
+     * @param view
+     */
+    @Override
+    public void cleanPhonenum(View view) {
+        phone_num.setText("");
+    }
+
 }
