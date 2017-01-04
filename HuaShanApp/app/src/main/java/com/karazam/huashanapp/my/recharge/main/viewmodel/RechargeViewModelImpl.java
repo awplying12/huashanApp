@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.my.recharge.main.model.databinding.RechargeEntity;
@@ -64,7 +65,7 @@ public class RechargeViewModelImpl extends RechargeViewModel {
     private void setSMSview() {
         smsview = new SMSauthenticationView(context);
 
-        smsview.setView((ViewGroup) mView.getView(R.id.content_pl), new SMSauthenticationView.OnAuthenticationListener() {
+        smsview.setView(HuaShanApplication.account,"",(ViewGroup) mView.getView(R.id.content_pl), new SMSauthenticationView.OnAuthenticationListener() {
             @Override
             public void onLeft(View view) {
                 smsview.dismiss();

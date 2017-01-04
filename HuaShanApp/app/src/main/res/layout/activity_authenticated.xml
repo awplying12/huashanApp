@@ -72,6 +72,7 @@
         </LinearLayout>
 
         <android.support.percent.PercentFrameLayout
+            android:id="@+id/content_pl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/title_ll"
@@ -120,6 +121,7 @@
 
 
                 <TextView
+                    android:id="@+id/tx_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|right"
@@ -148,6 +150,7 @@
                     android:textColor="@color/AuthenticatedActivity_text_color_1"/>
 
                 <TextView
+                    android:id="@+id/tx_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|right"

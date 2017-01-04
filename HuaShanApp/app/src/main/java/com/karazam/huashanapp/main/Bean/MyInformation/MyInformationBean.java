@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class MyInformationBean {
 
         private BaseInfoBean baseInfo;
-        private CardBean withdrawCard;
-        private ArrayList<CardBean> quickCards;
+        private CardBean withdrawCard = new CardBean();
+        private ArrayList<CardBean> quickCards = new ArrayList<>();
 
     public BaseInfoBean getBaseInfo() {
         return baseInfo;

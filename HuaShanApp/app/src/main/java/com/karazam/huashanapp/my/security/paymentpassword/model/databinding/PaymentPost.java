@@ -31,4 +31,5 @@ public class PaymentPost {
                 ", type='" + type + '\'' +
                 '}';
     }
+
 }

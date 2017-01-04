@@ -30,7 +30,7 @@ public class SetpaypsActivity extends BaseActivity implements SetpaypsView {
     private SetpaypsViewModel mModel;
     private SetpaypsEntity entity = new SetpaypsEntity();
 
-    private SetpasswordView spwd_view;
+
 
     private TextView hint_text;
     private TextView btn_confirm;
@@ -48,11 +48,13 @@ public class SetpaypsActivity extends BaseActivity implements SetpaypsView {
     public void dealLogicBeforeInitView() {
         securitysPayment.add(this);
         mModel.tag = getIntent().getStringExtra("isRealName");
+
+        mModel.type = getIntent().getStringExtra("type");
     }
 
     @Override
     public void initView() {
-        spwd_view = (SetpasswordView) getView(R.id.spwd_view);
+        mModel.spwd_view = (SetpasswordView) getView(R.id.spwd_view);
 
         hint_text = (TextView) getView(R.id.hint_text);
         btn_confirm = (TextView) getView(R.id.btn_confirm);
@@ -90,17 +92,17 @@ public class SetpaypsActivity extends BaseActivity implements SetpaypsView {
      * 设置支付密码控件PasswordView
      */
     private void setPasswordView(){
-        spwd_view.setOnPasswordViewListener(new SetpasswordView.OnPasswordViewListener() {
+        mModel.spwd_view.setOnPasswordViewListener(new SetpasswordView.OnPasswordViewListener() {
             @Override
             public void inputFinish() {
 
 
 
                 if(TextUtils.isEmpty(mModel.one) && TextUtils.isEmpty(mModel.two)){
-                    mModel.one =spwd_view.getStrPassword();
-                    spwd_view.initContent();
+                    mModel.one =mModel.spwd_view.getStrPassword();
+                    mModel.spwd_view.initContent();
                 }else if(!TextUtils.isEmpty(mModel.one) && TextUtils.isEmpty(mModel.two)){
-                    mModel.two =spwd_view.getStrPassword();
+                    mModel.two =mModel.spwd_view.getStrPassword();
                 }
                 mModel.pw.set("");
 
@@ -116,7 +118,7 @@ public class SetpaypsActivity extends BaseActivity implements SetpaypsView {
     public void Reset() {
         mModel.one = "";
         mModel.two = "";
-        spwd_view.initContent();
+        mModel.spwd_view.initContent();
         mModel.pw.set("");
     }
 

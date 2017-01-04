@@ -71,27 +71,31 @@
             </android.support.percent.PercentRelativeLayout>
         </LinearLayout>
 
-        <android.support.percent.PercentFrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/title_ll"
             app:layout_heightPercent="100%"
             android:background="@color/all_activity_background"
             android:id="@+id/content_pl"
+            android:orientation="vertical"
             >
+
             <TextView
-                app:layout_widthPercent="95%"
-                app:layout_heightPercent="5%"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
                 android:gravity="center_vertical"
-                app:layout_marginLeftPercent="5%"
+                android:layout_marginLeft="20dp"
                 android:text="请输入相关银行卡信息验证身份"
                 android:textSize="12dp"/>
 
             <android.support.percent.PercentFrameLayout
+                android:id="@+id/pf_bankcard"
                 android:layout_width="match_parent"
-                app:layout_heightPercent="12%"
+                android:layout_height="50dp"
                 android:background="#fff"
-                app:layout_marginTopPercent="5%">
+                app:layout_marginTopPercent="5%"
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/tv_bankcard"
@@ -99,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     app:layout_marginLeftPercent="5%"
-                    android:text="中国银行(尾号7634)"
+                    android:text="请确定绑定银行卡"
                     style="@style/Base.TextAppearance.AppCompat.Body1"
                     android:textSize="15dp"/>
 
@@ -107,10 +111,12 @@
 
             <!--卡号-->
             <android.support.percent.PercentFrameLayout
+                android:id="@+id/pf_cardnum"
                 android:layout_width="match_parent"
-                app:layout_heightPercent="12%"
+                android:layout_height="60dp"
                 android:background="#fff"
                 app:layout_marginTopPercent="17.1%"
+                android:visibility="visible"
                 >
 
                 <ImageView
@@ -158,7 +164,7 @@
             <!--身份证-->
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
-                app:layout_heightPercent="12%"
+                android:layout_height="60dp"
                 android:background="#fff"
                 app:layout_marginTopPercent="29.2%"
                 >
@@ -208,9 +214,9 @@
 
             <TextView
                 android:id="@+id/next_step"
-                app:layout_widthPercent="90%"
-                app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="45%"
+                android:layout_width="330dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:background="@drawable/btn_bg_img_0894ec_5dp"
@@ -220,6 +226,6 @@
                 android:onClick="@{handler.onNextstep}"/>
 
 
-        </android.support.percent.PercentFrameLayout>
+        </LinearLayout>
     </android.support.percent.PercentRelativeLayout>
 </layout>

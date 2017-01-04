@@ -8,7 +8,7 @@ public class RealnamePost {
     private String name;
     private String idNo;
 
-    private String userIdKey;
+//    private String userIdKey;
 
 
     public String getName() {
@@ -27,20 +27,20 @@ public class RealnamePost {
         this.idNo = idNo;
     }
 
-    public String getUserIdKey() {
-        return userIdKey;
-    }
-
-    public void setUserIdKey(String userIdKey) {
-        this.userIdKey = userIdKey;
-    }
+//    public String getUserIdKey() {
+//        return userIdKey;
+//    }
+//
+//    public void setUserIdKey(String userIdKey) {
+//        this.userIdKey = userIdKey;
+//    }
 
     @Override
     public String toString() {
         return "RealnamePost{" +
                 "name='" + name + '\'' +
                 ", idNo='" + idNo + '\'' +
-                ", userIdKey='" + userIdKey + '\'' +
+//                ", userIdKey='" + userIdKey + '\'' +
                 '}';
     }
 }

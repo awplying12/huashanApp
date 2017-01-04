@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.my.realname.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -17,13 +18,16 @@ import com.example.utils.utils.CheckPhoneNumberUtil;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityUnauthorizedBinding;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
+import com.karazam.huashanapp.my.realname.model.databinding.RealnameBean;
 import com.karazam.huashanapp.my.realname.model.databinding.RealnameEntity;
 import com.karazam.huashanapp.my.realname.view.UnauthorizedView;
 import com.karazam.huashanapp.my.realname.viewmodel.UnauthorizedViewModel.UnauthorizedViewModel;
 import com.karazam.huashanapp.my.realname.viewmodel.UnauthorizedViewModel.UnauthorizedViewModelImpl;
+import com.karazam.huashanapp.my.security.paymentpassword3.view.activity.SetpaypsActivity;
 import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -317,7 +321,7 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
     private SMSauthenticationView smsview;
     private void initSMSView() {
         smsview = new SMSauthenticationView(this);
-        smsview.setView((ViewGroup) getView(R.id.content_pl), new SMSauthenticationView.OnAuthenticationListener() {
+        smsview.setView(HuaShanApplication.account,"",(ViewGroup) getView(R.id.content_pl), new SMSauthenticationView.OnAuthenticationListener() {
             @Override
             public void onLeft(View view) {
                 smsview.dismiss();
@@ -367,8 +371,18 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
      * 实名成功
      */
     @Override
-    public void onRealnameSuccess() {
+    public void onRealnameSuccess(RealnameBean bean) {
 
+        if(HuaShanApplication.myInformation != null){
+            HuaShanApplication.myInformation.setBaseInfo(bean.getBaseInfo());
+            HuaShanApplication.setMyInformation(HuaShanApplication.myInformation);
+        }
+
+
+        Intent intent = new Intent(this, SetpaypsActivity.class);
+        intent.putExtra("isRealName","realName");
+        intent.putExtra("type","create");
+        startActivity(intent);
     }
 
     /**
@@ -377,7 +391,7 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
      */
     @Override
     public void onRealnameFaile(String s) {
-
+            showToast(s);
     }
 
     /**
@@ -386,6 +400,6 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
      */
     @Override
     public void onRealnameError(Throwable e) {
-
+            showToast("网络故障！");
     }
 }

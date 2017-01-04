@@ -266,7 +266,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
      */
     private void setSMSView(){
 //        smsView = sms.getView();
-        sms.setView(purchase_pl, new SMSauthenticationView.OnAuthenticationListener() {
+        sms.setView(HuaShanApplication.account,"",purchase_pl, new SMSauthenticationView.OnAuthenticationListener() {
 
             @Override
             public void onLeft(View view) {

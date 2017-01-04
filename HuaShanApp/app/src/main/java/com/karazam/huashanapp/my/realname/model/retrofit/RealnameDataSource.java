@@ -20,7 +20,7 @@ public class RealnameDataSource extends BaseDataSource{
         RealnamePost post = new RealnamePost();
         post.setName(name);
         post.setIdNo(idNo);
-        post.setUserIdKey(HuaShanApplication.userKey);
+//        post.setUserIdKey(HuaShanApplication.userKey);
         return service.onRealname(post,HuaShanApplication.token,"XMLHttpRequest");
     }
 }

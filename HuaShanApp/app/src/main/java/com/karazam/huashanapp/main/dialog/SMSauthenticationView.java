@@ -20,6 +20,9 @@ import com.jakewharton.rxbinding.widget.RxCheckedTextView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.R;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.main.retrofit.smsverification.SendSmsDataSource;
+import com.karazam.huashanapp.main.retrofit.smsverification.VerifySmsDataSource;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -28,8 +31,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -41,6 +46,8 @@ public class SMSauthenticationView implements View.OnClickListener{
     private View view;
     private Context context;
     private ViewGroup layout;
+    private String type;
+    private String mobile;
 
     private TextView sms_tv_1;
     private TextView sms_tv_2_1;
@@ -55,6 +62,9 @@ public class SMSauthenticationView implements View.OnClickListener{
     private TextView bt_sms_r;
 
     private boolean status = false;
+
+    private SendSmsDataSource sendSmsDataSource;
+    private VerifySmsDataSource verifySmsDataSource;
 
     private String code = "asdf";
 
@@ -76,14 +86,16 @@ public class SMSauthenticationView implements View.OnClickListener{
         void onResult(boolean result);
     }
 
-    public View setView(ViewGroup layout,OnAuthenticationListener onAuthenticationListener){
+    public View setView(String mobile,String type,ViewGroup layout,OnAuthenticationListener onAuthenticationListener){
         this.layout = layout;
+        this.type = type;
+        this.mobile = mobile;
         this.mOnAuthenticationListener = onAuthenticationListener;
         view = LayoutInflater.from(context).inflate(R.layout.dialog_smsauthentication,null);
 
         initView();
         initTime();
-        reacQuire();
+//        reacQuire();
 
 
         return view;
@@ -93,6 +105,10 @@ public class SMSauthenticationView implements View.OnClickListener{
      * 初始化View
      */
     private void initView() {
+
+        sendSmsDataSource = new SendSmsDataSource();
+        verifySmsDataSource = new VerifySmsDataSource();
+
         sms_tv_1 = (TextView) view.findViewById(R.id.sms_tv_1);
         sms_tv_2_1 = (TextView) view.findViewById(R.id.sms_tv_2_1);
         sms_tv_2_2 = (TextView) view.findViewById(R.id.sms_tv_2_2);
@@ -118,10 +134,21 @@ public class SMSauthenticationView implements View.OnClickListener{
 
         sim = 60;
         sms_ed.setText("");
-        if(thread.isAlive()){
-            return;
+
+//        if(thread == null || thread.isAlive()){
+//
+//            return;
+//        }
+
+        if(thread == null){
+            reacQuire();
+        }else if(thread.isAlive()){
+            sendSms();
+
+        }else {
+            reacQuire();
         }
-        reacQuire();
+
     }
 
     public void dismiss() {
@@ -132,6 +159,7 @@ public class SMSauthenticationView implements View.OnClickListener{
     }
 
     private boolean isVerification = false;
+
     public void verification(){
 
         String ver = sms_ed.getText().toString();
@@ -140,12 +168,6 @@ public class SMSauthenticationView implements View.OnClickListener{
                 wrong.setVisibility(View.VISIBLE);
             }
             wrong.setText("验证码不能为空");
-            return;
-        }else if(!status){
-            if(wrong.getVisibility() == View.GONE){
-                wrong.setVisibility(View.VISIBLE);
-            }
-            wrong.setText("验证码错误");
             return;
         }else {
             if(wrong.getVisibility() == View.VISIBLE){
@@ -158,22 +180,7 @@ public class SMSauthenticationView implements View.OnClickListener{
         }
         isVerification = true;
 
-        Timer time = new Timer();
-        TimerTask tk = new TimerTask() {
-            @Override
-            public void run() {
-                Activity activity = (Activity) context;
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mOnAuthenticationListener.onResult(status);
-                        isVerification = false;
-                    }
-                });
-
-            }
-        };
-        time.schedule(tk,3000);
+        verifySms();
 
     }
 
@@ -232,6 +239,78 @@ public class SMSauthenticationView implements View.OnClickListener{
             }
         });
         thread.start();
+
+        sendSms();
+    }
+
+    /**
+     * 发短信
+     */
+    private void sendSms() {
+        sendSmsDataSource.sendSms(mobile,type)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseReturn baseReturn) {
+
+                    }
+                });
+    }
+
+    /**
+     * 验证短信
+     */
+    public void verifySms(){
+
+        String code = sms_ed.getText().toString();
+        verifySmsDataSource.verifySms(mobile,code,type)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn>() {
+                    @Override
+                    public void onCompleted() {
+                        isVerification = false;
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        isVerification = false;
+
+                        if (mOnAuthenticationListener == null){
+                            return;
+                        }
+                        mOnAuthenticationListener.onResult(false);
+                    }
+
+                    @Override
+                    public void onNext(BaseReturn baseReturn) {
+
+                        if (mOnAuthenticationListener == null){
+                            return;
+                        }
+
+                        if(baseReturn.isSuccess()){
+                            mOnAuthenticationListener.onResult(true);
+                        }else {
+                            mOnAuthenticationListener.onResult(false);
+                        }
+
+
+                    }
+                });
+
+
     }
 
     /**

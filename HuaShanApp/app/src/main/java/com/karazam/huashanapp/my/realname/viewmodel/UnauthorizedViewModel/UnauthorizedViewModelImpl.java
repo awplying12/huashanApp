@@ -193,7 +193,8 @@ public class UnauthorizedViewModelImpl extends UnauthorizedViewModel {
                     @Override
                     public void onNext(BaseReturn<RealnameBean> realnameBeanBaseReturn) {
                         if(realnameBeanBaseReturn.isSuccess()){
-                            mView.onRealnameSuccess();
+                            RealnameBean bean = realnameBeanBaseReturn.getData();
+                            mView.onRealnameSuccess(bean);
                         }else {
                             mView.onRealnameFaile(realnameBeanBaseReturn.getMessage());
                         }

@@ -11,11 +11,13 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class BindcardViewModel extends BaseViewModel {
 
-    public EditText use_name;
-    public EditText id_num;
+//    public EditText use_name;
+//    public EditText id_num;
     public EditText card_num;
-    public EditText bank;
+//    public EditText bank;
     public EditText phone_num;
+
+    public int falg;
 
     public abstract void onNextstep(View view);
 
@@ -28,4 +30,6 @@ public abstract class BindcardViewModel extends BaseViewModel {
     public abstract void cleanBank(View view);
 
     public abstract void cleanPhonenum(View view);
+
+    public abstract void getBankData(View view);
 }

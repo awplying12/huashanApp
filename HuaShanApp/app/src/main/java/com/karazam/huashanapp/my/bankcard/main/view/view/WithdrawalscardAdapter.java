@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.utils.base.BaseActivity;
 import com.karazam.huashanapp.R;
+import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
 
 import java.util.ArrayList;
 
@@ -26,11 +27,11 @@ public class WithdrawalscardAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private int mBottomCount=1;//底部View个数
 
     private Context context;
-    private ArrayList<BankcardBean> list = new ArrayList<>();
+    private ArrayList<CardBean> list = new ArrayList<>();
 
 
 
-    public WithdrawalscardAdapter(Context context, ArrayList<BankcardBean> list) {
+    public WithdrawalscardAdapter(Context context, ArrayList<CardBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -80,7 +81,7 @@ public class WithdrawalscardAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         } else if (viewType == ITEM_TYPE_BOTTOM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_footer_1,null);
             RecyclerView.LayoutParams lm = new RecyclerView.LayoutParams(BaseActivity.ScreeW, (int) (BaseActivity.ScreeH*0.08));
-            lm.setMargins(0,0,0,(int) (BaseActivity.ScreeH*0.05));
+            lm.setMargins(0,(int) (BaseActivity.ScreeH*0.05),0,(int) (BaseActivity.ScreeH*0.05));
             view.setLayoutParams(lm);
 
             return new BottomViewHolder(view);
@@ -149,11 +150,11 @@ public class WithdrawalscardAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    public ArrayList<BankcardBean> getList() {
+    public ArrayList<CardBean> getList() {
         return list;
     }
 
-    public void setList(ArrayList<BankcardBean> list) {
+    public void setList(ArrayList<CardBean> list) {
         this.list = list;
     }
 

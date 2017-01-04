@@ -47,7 +47,7 @@ public class BindcardViewModelImpl extends BindcardViewModel {
      */
     @Override
     public void cleanName(View view) {
-        use_name.setText("");
+//        use_name.setText("");
     }
 
     /**
@@ -56,7 +56,7 @@ public class BindcardViewModelImpl extends BindcardViewModel {
      */
     @Override
     public void cleanIdnum(View view) {
-        id_num.setText("");
+//        id_num.setText("");
     }
 
     /**
@@ -74,7 +74,7 @@ public class BindcardViewModelImpl extends BindcardViewModel {
      */
     @Override
     public void cleanBank(View view) {
-        bank.setText("");
+//        bank.setText("");
     }
 
     /**
@@ -84,6 +84,15 @@ public class BindcardViewModelImpl extends BindcardViewModel {
     @Override
     public void cleanPhonenum(View view) {
         phone_num.setText("");
+    }
+
+    /**
+     * 设置银行卡类型
+     * @param view
+     */
+    @Override
+    public void getBankData(View view) {
+        mView.showToast("getBankData");
     }
 
 }

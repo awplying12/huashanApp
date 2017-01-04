@@ -3,6 +3,7 @@ package com.karazam.huashanapp.my.security.paymentpassword2.view.activity;
 import android.databinding.DataBindingUtil;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.support.percent.PercentFrameLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityVerify2Binding;
 import com.karazam.huashanapp.my.security.paymentpassword2.model.databinding.VerifyEntity;
@@ -48,6 +50,9 @@ public class VerifyActivity2 extends BaseActivity implements VerifyView2 {
 
     private TextView btn_next_step;
 
+    private PercentFrameLayout pf_bankcard;
+    private PercentFrameLayout pf_cardnum;
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_verify2);
@@ -79,10 +84,25 @@ public class VerifyActivity2 extends BaseActivity implements VerifyView2 {
         hint2_img = (ImageView) getView(R.id.hint2_img);
 
         btn_next_step = (TextView) getView(R.id.next_step);
+
+        pf_bankcard = (PercentFrameLayout) getView(R.id.pf_bankcard);
+        pf_cardnum = (PercentFrameLayout) getView(R.id.pf_cardnum);
     }
 
     @Override
     public void dealLogicAfterInitView() {
+
+        if(HuaShanApplication.myInformation.getQuickCards().size() == 0 && HuaShanApplication.myInformation.getWithdrawCardl().getBankCardId() == null){
+            pf_bankcard.setVisibility(View.GONE);
+            pf_cardnum.setVisibility(View.GONE);
+            mModel.hasCard = false;
+        }else {
+            pf_bankcard.setVisibility(View.VISIBLE);
+            pf_cardnum.setVisibility(View.VISIBLE);
+
+            mModel.hasCard = true;
+        }
+
         checkContent();
     }
 
@@ -155,14 +175,29 @@ public class VerifyActivity2 extends BaseActivity implements VerifyView2 {
      * 检查按钮“下一步”
      */
     private void checkButton() {
+        if(mModel.hasCard) {
 
-        if(id_num && card_num ){
-            btn_next_step.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
-            btn_next_step.setClickable(true);
+            if (id_num && card_num) {
+                btn_next_step.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
+                btn_next_step.setClickable(true);
 
-        }else {
-            btn_next_step.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
-            btn_next_step.setClickable(false);
+            } else {
+                btn_next_step.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
+                btn_next_step.setClickable(false);
+
+            }
+
+        } else {
+
+            if (id_num ) {
+                btn_next_step.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
+                btn_next_step.setClickable(true);
+
+            } else {
+                btn_next_step.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
+                btn_next_step.setClickable(false);
+
+            }
 
         }
     }

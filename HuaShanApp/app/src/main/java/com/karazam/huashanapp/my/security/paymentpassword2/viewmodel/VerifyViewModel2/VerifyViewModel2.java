@@ -14,9 +14,14 @@ public abstract class VerifyViewModel2 extends BaseViewModel {
     public EditText ed_card;
     public EditText ed_id;
 
+    public boolean hasCard = false;
+
     public abstract void onNextstep(View view);
 
     public abstract void cleanCard(View view);
 
     public abstract void cleanID(View view);
+
+    public abstract void VerifyidentitybyID(String type);
+
 }

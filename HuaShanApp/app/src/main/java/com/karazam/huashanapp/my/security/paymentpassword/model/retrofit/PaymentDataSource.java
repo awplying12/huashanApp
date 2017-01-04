@@ -3,6 +3,7 @@ package com.karazam.huashanapp.my.security.paymentpassword.model.retrofit;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.retorfitMain.BaseDataSource;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.main.retorfitMain.DigestUtils;
 import com.karazam.huashanapp.my.security.paymentpassword.model.databinding.PaymentPost;
 
 import rx.Observable;
@@ -16,6 +17,7 @@ public class PaymentDataSource extends BaseDataSource {
     PaymentApi service = retrofit1.create(PaymentApi.class);
 
     public Observable<BaseReturn> onPayment(String payPassword,String type){
+        payPassword = DigestUtils.encrypt(payPassword);
         PaymentPost post = new PaymentPost();
         post.setPayPassword(payPassword);
         post.setType(type);
