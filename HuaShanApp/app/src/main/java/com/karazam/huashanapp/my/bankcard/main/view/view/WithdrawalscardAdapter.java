@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
 import com.karazam.huashanapp.R;
@@ -91,7 +93,20 @@ public class WithdrawalscardAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            if(holder instanceof HeaderViewHolder){
 
+            }else if(holder instanceof BottomViewHolder){
+                BottomViewHolder bottomholder = (BottomViewHolder) holder;
+                if(list.size() == 0){
+                    bottomholder.img_add.setVisibility(View.VISIBLE);
+                    bottomholder.tv_add.setText("添加银行卡");
+                } else {
+                    bottomholder.img_add.setVisibility(View.GONE);
+                    bottomholder.tv_add.setText("点击更换");
+                }
+            }else if(holder instanceof ViewHolder){
+
+            }
     }
 
     @Override
@@ -133,12 +148,17 @@ public class WithdrawalscardAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     //底部 ViewHolder
     public static class BottomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private PercentRelativeLayout btn_add;
+        private ImageView img_add;
+        private TextView tv_add;
 
         public BottomViewHolder(View itemView) {
             super(itemView);
 
             btn_add = (PercentRelativeLayout) itemView.findViewById(R.id.btn_add);
+            img_add = (ImageView) itemView.findViewById(R.id.img_add);
+            tv_add = (TextView) itemView.findViewById(R.id.tv_add);
             btn_add.setOnClickListener(this);
+
         }
 
         @Override

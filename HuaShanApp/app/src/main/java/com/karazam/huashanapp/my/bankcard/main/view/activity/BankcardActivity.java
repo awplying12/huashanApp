@@ -228,6 +228,11 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
             @Override
             public void onBottomView(View view) {
 //                showToast("onBottomView");
+                if(mModel.flag == 2&& wadapter.getList().size() == 0){
+                    mModel.flag = 2;
+                } else if(mModel.flag == 2&& wadapter.getList().size() != 0){
+                    mModel.flag = 3;
+                }
                 mModel.toBindcard(null);
             }
         });

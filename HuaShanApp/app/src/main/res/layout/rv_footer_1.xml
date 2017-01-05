@@ -12,13 +12,21 @@
         android:background="@drawable/bg_addbankcard"
         android:layout_gravity="center_horizontal">
 
+        <ImageView
+            android:id="@+id/img_add"
+            app:layout_widthPercent="8%"
+            app:layout_heightPercent="40%"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_add"
+            android:src="@drawable/jiahuao_1"/>
+
         <TextView
             android:id="@+id/tv_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="点击更换"
+            android:text="添加银行卡"
             android:textSize="15dp"
             android:textColor="#0894EC"
             />

@@ -1,25 +1,29 @@
-package com.karazam.huashanapp.my.bankcard.main.view.view;
+package com.karazam.huashanapp.my.bankcard.bindcard.view.view;
 
 import android.content.Context;
-import android.support.percent.PercentRelativeLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
-import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
-import com.karazam.huashanapp.my.myreturn.main.view.view.RecordsAdapter;
+import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BankBean;
 
 import java.util.ArrayList;
 
+import rx.Subscriber;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
+
 /**
- * Created by Administrator on 2016/12/27.
+ * Created by Administrator on 2017/1/5.
  */
 
-public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class BankAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static final int ITEM_TYPE_HEADER = 0;
     public static final int ITEM_TYPE_CONTENT = 1;
@@ -29,11 +33,11 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private int mBottomCount=1;//底部View个数
 
     private Context context;
-    private ArrayList<CardBean> list = new ArrayList<>();
+    private ArrayList<BankBean> list = new ArrayList<>();
 
     private View mFooteView;
 
-    public BankcardAdapter(Context context, ArrayList<CardBean> list) {
+    public BankAdapter(Context context, ArrayList<BankBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -72,20 +76,18 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         if (viewType ==ITEM_TYPE_HEADER) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_header,null);
+            View view = new View(parent.getContext());
+            view.setLayoutParams(new RecyclerView.LayoutParams(BaseActivity.ScreeW, (int) (BaseActivity.ScreeH*0.03)));
             return new HeaderViewHolder(view);
         } else if (viewType == mHeaderCount) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_bankcard_item,null);
-            view.setLayoutParams(new RecyclerView.LayoutParams(BaseActivity.ScreeW, (int) (BaseActivity.ScreeH*0.2)));
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_bank_item,null);
+            view.setLayoutParams(new RecyclerView.LayoutParams(BaseActivity.ScreeW, (int) (BaseActivity.ScreeH*0.08)));
             ViewHolder holder = new ViewHolder(view);
 
             return holder;
         } else if (viewType == ITEM_TYPE_BOTTOM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_footer,null);
-            RecyclerView.LayoutParams lm = new RecyclerView.LayoutParams(BaseActivity.ScreeW, (int) (BaseActivity.ScreeH*0.08));
-            lm.setMargins(0,(int) (BaseActivity.ScreeH*0.05),0,(int) (BaseActivity.ScreeH*0.05));
-            view.setLayoutParams(lm);
-
+            View view = new View(parent.getContext());
+            view.setLayoutParams(new RecyclerView.LayoutParams(BaseActivity.ScreeW, (int) (BaseActivity.ScreeH*0.03)));
             return new BottomViewHolder(view);
         }
         return null;
@@ -99,13 +101,31 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }else if(holder instanceof BottomViewHolder){
             //底部View
         } else {
-           final int pos = position-1;
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            final int pos = position-1;
+            ViewHolder holder1 = (ViewHolder) holder;
+
+            String name = list.get(pos).getName();
+            holder1.back_name.setText(StringUtil.interrupt(name,0,""));
+
+            String logoUrl = StringUtil.interrupt(list.get(pos).getLogo(),0,"");
+
+            RxImageLoader.getLoaderObservable(holder1.back_logo,logoUrl).subscribe(new Subscriber<Data>() {
                 @Override
-                public void onClick(View view) {
-                    Toast.makeText(context,pos+"",Toast.LENGTH_SHORT).show();
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(Data data) {
+
                 }
             });
+
 
         }
 
@@ -118,10 +138,16 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        private ImageView back_logo;
+        private TextView back_name;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this);
+
+            back_logo = (ImageView) itemView.findViewById(R.id.back_logo);
+            back_name = (TextView) itemView.findViewById(R.id.back_name);
         }
 
         @Override
@@ -129,7 +155,7 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if(mOnItemClickListener == null){
                 return;
             }
-            mOnItemClickListener.onItem(view,getPosition());
+            mOnItemClickListener.onItem(view,getPosition()-1);
         }
     }
 
@@ -149,13 +175,10 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
     //底部 ViewHolder
     public static class BottomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private PercentRelativeLayout btn_add;
 
         public BottomViewHolder(View itemView) {
             super(itemView);
 
-            btn_add = (PercentRelativeLayout) itemView.findViewById(R.id.btn_add);
-            btn_add.setOnClickListener(this);
         }
 
         @Override
@@ -167,11 +190,11 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public ArrayList<CardBean> getList() {
+    public ArrayList<BankBean> getList() {
         return list;
     }
 
-    public void setList(ArrayList<CardBean> list) {
+    public void setList(ArrayList<BankBean> list) {
         this.list = list;
     }
 

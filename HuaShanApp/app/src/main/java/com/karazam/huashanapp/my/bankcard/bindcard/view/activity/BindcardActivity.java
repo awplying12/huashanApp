@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.percent.PercentFrameLayout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -25,17 +26,23 @@ import com.karazam.huashanapp.databinding.ActivityBankcardBinding;
 import com.karazam.huashanapp.databinding.ActivityBindcardBinding;
 import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
+import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BankBean;
+import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardBean;
 import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardEntity;
 import com.karazam.huashanapp.my.bankcard.bindcard.view.BindcardView;
 import com.karazam.huashanapp.my.bankcard.bindcard.viewmodel.BindcardViewModel;
 import com.karazam.huashanapp.my.bankcard.bindcard.viewmodel.BindcardViewModelImpl;
 import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.concurrent.TimeUnit;
 
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
 /**
  * Created by Administrator on 2016/12/30.
@@ -72,8 +79,13 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
 
     private PercentFrameLayout pf_phonenum;
 
+    private PercentFrameLayout pf_bankk;
+
     private TextView tv_name;
     private TextView tv_id;
+
+
+    public static RxProperty<BankBean> BankBeanRX = RxProperty.create();
 
     @Override
     public void setContentLayout() {
@@ -87,7 +99,8 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
     public void dealLogicBeforeInitView() {
         phoneUtil = new CheckPhoneNumberUtil();
 
-        mModel.falg = getIntent().getIntExtra("flag",-1);
+        mModel.flag = getIntent().getIntExtra("flag",-1);
+        BankBeanRX = RxProperty.create();
     }
 
     @Override
@@ -109,10 +122,11 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
         fet_phonenum.setHintTextViewColor(Color.parseColor("#0894EC"));
 
         pf_phonenum = (PercentFrameLayout) getView(R.id.pf_phonenum);
-        if(mModel.falg == 2){
+        if(mModel.flag == 2 || mModel.flag == 3){
             pf_phonenum.setVisibility(View.GONE);
         }
 
+        pf_bankk = (PercentFrameLayout) getView(R.id.pf_bankk);
 
 //        hint1_img = (ImageView) getView(R.id.hint1_img);
 //        hint2_img = (ImageView) getView(R.id.hint2_img);
@@ -181,7 +195,7 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
 //                        checkButton();
 //                    }
 //                });
-//
+
 //        RxTextView.textChangeEvents( mModel.id_num)  //身份证号
 //                .debounce(300, TimeUnit.MILLISECONDS)
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -210,7 +224,7 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
 //                    }
 //                });
 
-        RxView.of(new View(this)).bind(HuaShanApplication.baseInfoBeanRX, new Rx.Action<View, BaseInfoBean>() {
+        RxView.of(new View(this)).bind(HuaShanApplication.baseInfoBeanRX,   new Rx.Action<View, BaseInfoBean>() {
             @Override
             public void call(View target, BaseInfoBean baseInfoBean) {
 
@@ -315,6 +329,48 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
                         checkButton();
                     }
                 });
+
+        RxView.findById(this,R.id.pf_bankk).bind(BankBeanRX, new Rx.Action<View, BankBean>() {
+            @Override
+            public void call(View target, BankBean bankBean) {
+
+                mModel.bankId = StringUtil.interrupt(bankBean.getId(),0,"-1");
+                if(mModel.bankId.equals("-1")){
+                    bank = false;
+                }else {
+                    bank = true;
+                }
+
+
+                final ImageView logo = (ImageView) target.findViewById(R.id.back_logo);
+                TextView name = (TextView) target.findViewById(R.id.back_name);
+
+                String nameStr = bankBean.getName();
+                name.setText(StringUtil.interrupt(nameStr,10,""));
+
+                RxImageLoader.getLoaderObservable(logo,StringUtil.interrupt(bankBean.getLogo(),0,"")).subscribe(new Subscriber<Data>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        logo.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.bankdef_logo));
+                    }
+
+                    @Override
+                    public void onNext(Data data) {
+                        if(data.bitmap == null){
+                            logo.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.bankdef_logo));
+                        }
+                    }
+                });
+
+                checkButton();
+            }
+        });
+
     }
 
     /**
@@ -331,7 +387,7 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
 //            btn_next_step.setClickable(false);
 //
 //        }
-        if(mModel.falg == 1){
+        if(mModel.flag == 1){
             if(card_num && bank && phone_num && agreement){
                 btn_next_step.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
                 btn_next_step.setClickable(true);
@@ -341,7 +397,7 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
                 btn_next_step.setClickable(false);
 
             }
-        }else if(mModel.falg == 2){
+        }else if(mModel.flag == 2 || mModel.flag == 3){
             if(card_num && bank && agreement){
                 btn_next_step.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
                 btn_next_step.setClickable(true);
@@ -358,18 +414,18 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
     /**
      * 初始化短息验证VIEW
      */
-    private SMSauthenticationView smsview;
+
     private void initSMSView() {
-        smsview = new SMSauthenticationView(this);
-        smsview.setView(HuaShanApplication.account,"",(ViewGroup) getView(R.id.content_pl), new SMSauthenticationView.OnAuthenticationListener() {
+        mModel.smsview = new SMSauthenticationView(this);
+        mModel.smsview.setView(HuaShanApplication.account,"",(ViewGroup) getView(R.id.content_pl), new SMSauthenticationView.OnAuthenticationListener() {
             @Override
             public void onLeft(View view) {
-                smsview.dismiss();
+                mModel.smsview.dismiss();
             }
 
             @Override
             public void onRight(View view) {
-                smsview.verification();
+                mModel.smsview.toResult();
             }
 
             @Override
@@ -379,12 +435,14 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
 
             @Override
             public void onResult(boolean result) {
+                showToast("onResult");
                 if(result){
 //                    mModel.onAuthentication();
+                    mModel.onAddcard(true);
                 }
             }
         });
-        smsview.setText1("快捷支付绑定");
+        mModel.smsview.setText1("快捷支付绑定");
 
 
     }
@@ -395,8 +453,8 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
     @Override
     public void addSMSView() {
         String endnum = mModel.phone_num.getText().toString().substring(7,11);
-        smsview.setText2("请输入手机尾号"+endnum+"接受的验证码");
-        smsview.show();
+        mModel.smsview.setText2("请输入手机尾号"+endnum+"接受的验证码");
+        mModel.smsview.show();
     }
 
     /**
@@ -404,6 +462,32 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
      */
     @Override
     public void disSMSView() {
-        smsview.dismiss();
+        mModel.smsview.dismiss();
+    }
+
+    /**
+     * 结果成功
+     */
+    @Override
+    public void getResultSuccess(BindcardBean bean) {
+
+    }
+
+    /**
+     * 结果失败
+     * @param s
+     */
+    @Override
+    public void getResultFail(String s) {
+
+    }
+
+    /**
+     * 结果错误
+     * @param e
+     */
+    @Override
+    public void getResultError(Throwable e) {
+
     }
 }

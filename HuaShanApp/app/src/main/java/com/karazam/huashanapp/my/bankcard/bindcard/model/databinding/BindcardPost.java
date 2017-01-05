@@ -4,7 +4,7 @@ package com.karazam.huashanapp.my.bankcard.bindcard.model.databinding;
  * Created by Administrator on 2017/1/4.
  */
 
-public class BindcarPost {
+public class BindcardPost {
 
 //    isQuick	是否快捷卡
 //    bank	银行ID
@@ -12,18 +12,18 @@ public class BindcarPost {
 //    mobile	预留手机号码(快捷必填)
 //    captch	验证码(快捷必填)
 
-    private String isQuick;
+    private boolean isQuick;
     private String bank;
     private String card;
     private String mobile;
     private String captch;
 
-    public String getIsQuick() {
+    public boolean isQuick() {
         return isQuick;
     }
 
-    public void setIsQuick(String isQuick) {
-        this.isQuick = isQuick;
+    public void setQuick(boolean quick) {
+        isQuick = quick;
     }
 
     public String getBank() {
@@ -60,7 +60,7 @@ public class BindcarPost {
 
     @Override
     public String toString() {
-        return "BindcarPost{" +
+        return "BindcardPost{" +
                 "isQuick='" + isQuick + '\'' +
                 ", bank='" + bank + '\'' +
                 ", card='" + card + '\'' +

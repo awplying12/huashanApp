@@ -69,6 +69,13 @@
 
             >
 
+        <com.example.utils.custom.RefreshRecyclerView
+            android:id="@+id/rv_bank"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+        </com.example.utils.custom.RefreshRecyclerView>
 
     </android.support.percent.PercentFrameLayout>
 

@@ -135,10 +135,9 @@ public class SMSauthenticationView implements View.OnClickListener{
         sim = 60;
         sms_ed.setText("");
 
-//        if(thread == null || thread.isAlive()){
-//
-//            return;
-//        }
+        if(type.equals("")){
+            return;
+        }
 
         if(thread == null){
             reacQuire();
@@ -181,6 +180,31 @@ public class SMSauthenticationView implements View.OnClickListener{
         isVerification = true;
 
         verifySms();
+
+    }
+
+    public void toResult(){
+
+        String ver = sms_ed.getText().toString();
+        if(TextUtils.isEmpty(ver)){
+            if(wrong.getVisibility() == View.GONE){
+                wrong.setVisibility(View.VISIBLE);
+            }
+            wrong.setText("验证码不能为空");
+            return;
+        }else {
+            if(wrong.getVisibility() == View.VISIBLE){
+                wrong.setVisibility(View.GONE);
+            }
+
+
+        }
+
+        if (mOnAuthenticationListener == null){
+            return;
+        }
+        mOnAuthenticationListener.onResult(true);
+
 
     }
 
@@ -352,6 +376,13 @@ public class SMSauthenticationView implements View.OnClickListener{
                         }
                     }
                 });
+    }
+
+    public String getCode(){
+        if(sms_ed == null){
+            return null;
+        }
+        return sms_ed.getText().toString();
     }
 
     /**
