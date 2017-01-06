@@ -51,7 +51,6 @@ public class TodayViewModelImpl extends TodayViewModel {
      */
     @Override
     public void onHead(View view) {
-        mView.showToast("onHead");
         HomeActivity act = (HomeActivity) activity;
         act.toLoginActivity();
     }

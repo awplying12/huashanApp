@@ -77,6 +77,11 @@ public class VerifyActivity extends BaseActivity implements VerifyView {
             }
 
             @Override
+            public void onResend(View view) {
+
+            }
+
+            @Override
             public void onResult(boolean result) {
                 dissmissProgressDialog();
                 if(result){

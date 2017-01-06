@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.my.bankcard.main.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,8 +43,6 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
 
     private RefreshRecyclerView content_rl;
     private SwipeRefreshLayout mSwipeLayout;
-
-
 
     @Override
     public void setContentLayout() {
@@ -89,10 +88,8 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
         setTitlebBar();
         setBankcardRecyclerView();
 
+//        setRecyclerView();
     }
-
-
-
 
     /**
      * 设置标题栏
@@ -157,10 +154,7 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
         content_rl.setLayoutManager(layoutManager);
 
         ArrayList<CardBean> list = new ArrayList<>();
-//        list.add(new BankcardBean());
-//        list.add(new BankcardBean());
-//        list.add(new BankcardBean());
-//        list.add(new BankcardBean());
+        list.addAll(HuaShanApplication.myInformation.getQuickCards());
 
         adapter = new BankcardAdapter(this,list);
         content_rl.setAdapter(adapter);
@@ -186,6 +180,7 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
         RxView.of(new View(this)).bind(HuaShanApplication.quickCardsRX, new Rx.Action<View, ArrayList<CardBean>>() {
             @Override
             public void call(View target, ArrayList<CardBean> cardBeen) {
+    //                showToast("bindffffff");
                 adapter.setList(cardBeen);
                 adapter.notifyDataSetChanged();
             }
@@ -208,9 +203,11 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
         content_rl.setLayoutManager(layoutManager);
 
         ArrayList<CardBean> list = new ArrayList<>();
+//        list.add(HuaShanApplication.myInformation.getWithdrawCardl());
 //        list.add(new BankcardBean());
 
         wadapter = new WithdrawalscardAdapter(this,list);
+//        wadapter.setList(list);
         content_rl.setAdapter(wadapter);
 
 
@@ -238,20 +235,37 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
         });
 
 
-        RxView.of(new View(this)).bind(HuaShanApplication.withdrawCarRx, new Rx.Action<View, CardBean>() {
-            @Override
-            public void call(View target, CardBean cardBean) {
-                if(cardBean == null || cardBean.getBankCardId() == null){
-                    return;
+            RxView.of(new View(this)).bind(HuaShanApplication.withdrawCarRx, new Rx.Action<View, CardBean>() {
+                @Override
+                public void call(View target, CardBean cardBean) {
+                    if(cardBean == null || cardBean.getBankCardId() == null){
+                        return;
+                    }
+                    ArrayList<CardBean> cardBeens = new ArrayList<CardBean>();
+                    cardBeens.add(cardBean);
+                    wadapter.setList(cardBeens);
+                    wadapter.notifyDataSetChanged();
                 }
-                ArrayList<CardBean> cardBeens = new ArrayList<CardBean>();
-                cardBeens.add(cardBean);
-                wadapter.setList(cardBeens);
-                wadapter.notifyDataSetChanged();
-            }
-        });
+            });
 
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 101){
+            switch (resultCode){
+                case 1:
+                    setBankcardRecyclerView();
+                    break;
+                case 2:
+                    setWithdrawalscardRecyclerView();
+                    break;
+                case 3:
+                    setWithdrawalscardRecyclerView();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

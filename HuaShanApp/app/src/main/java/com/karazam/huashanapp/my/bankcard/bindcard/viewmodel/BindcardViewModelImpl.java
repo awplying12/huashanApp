@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.main.retorfitMain.DigestUtils;
 import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardBean;
 import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardEntity;
 import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardPost;
@@ -66,10 +67,11 @@ public class BindcardViewModelImpl extends BindcardViewModel {
 
                 break;
             case 2:
-
+                onAddcard(false);
                 break;
             case 3:
-
+//                upDatecard();
+                pwd_view.show();
                 break;
             default:
                 break;
@@ -140,14 +142,12 @@ public class BindcardViewModelImpl extends BindcardViewModel {
         String card = StringUtil.interrupt(card_num.getText().toString(),0,"");
         String bank = StringUtil.interrupt(bankId,0,"-1");
 
-
-
         Log.i("BindcardActivity",smsview.getCode());
 
         BindcardPost post = new BindcardPost();
         post.setQuick(isQuick);
 //        post.setCard(card);
-        post.setCard("6217003870045555210");
+        post.setCard("6217553803643445210");
         post.setBank(bank);
 
 
@@ -192,9 +192,19 @@ public class BindcardViewModelImpl extends BindcardViewModel {
      * 修改银行卡
      */
     @Override
-    public void upDatecard() {
+    public void upDatecard(String payPassword) {
+
+        String card = StringUtil.interrupt(card_num.getText().toString(),0,"");
+        String bank = StringUtil.interrupt(bankId,0,"-1");
+        payPassword = DigestUtils.encrypt(payPassword);
+
 
         UpDatecardPost post = new UpDatecardPost();
+//        post.setCard(card);
+        post.setCard("6217003870043444210");
+        post.setBank(bank);
+        post.setPayPassword(payPassword);
+
         addcardDataSource.upDatecard(post)
                 .throttleFirst(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
@@ -221,6 +231,7 @@ public class BindcardViewModelImpl extends BindcardViewModel {
                         }
                     }
                 });
+
     }
 
     /**
@@ -237,7 +248,7 @@ public class BindcardViewModelImpl extends BindcardViewModel {
         BindcardPost post = new BindcardPost();
         post.setQuick(true);
 //        post.setCard(card);
-        post.setCard("6217003870045555210");
+        post.setCard("6217553803643445210");
         post.setBank(bank);
         post.setMobile(phone);
 
@@ -259,7 +270,9 @@ public class BindcardViewModelImpl extends BindcardViewModel {
                     public void onNext(BaseReturn baseReturn) {
 
                     }
+
                 });
+
     }
 
 }

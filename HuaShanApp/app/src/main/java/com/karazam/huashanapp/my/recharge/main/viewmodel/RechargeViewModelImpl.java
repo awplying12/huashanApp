@@ -82,6 +82,11 @@ public class RechargeViewModelImpl extends RechargeViewModel {
             }
 
             @Override
+            public void onResend(View view) {
+
+            }
+
+            @Override
             public void onResult(boolean result) {
                 if(result){
                     Recharge();

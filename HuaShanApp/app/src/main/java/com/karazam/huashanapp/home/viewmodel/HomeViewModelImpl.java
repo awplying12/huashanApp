@@ -153,6 +153,10 @@ public class HomeViewModelImpl extends HomeViewModel {
                     HuaShanApplication.editor.putString("userKey",checkloginReturn.getUserKey()).commit();
                     HuaShanApplication.userKey = checkloginReturn.getUserKey();
 
+    //                    HuaShanApplication.editor.putInt("loginStatus",1).commit();
+    //                    HuaShanApplication.loginStatus = 1;
+    //                    HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
+
                     mView.CheckloginSuccess(checkloginReturn);
 
                 }else {

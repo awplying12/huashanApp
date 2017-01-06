@@ -109,9 +109,9 @@ public class HuaShanApplication extends Application {
 
         paymentMethod = sharedPreferences.getString("paymentMethod", "");
 
-//        loginStatus = sharedPreferences.getInt("loginStatus",-1);
+        loginStatus = sharedPreferences.getInt("loginStatus",-1);
 
-        loginStatus = 1;
+//        loginStatus = -1;
 
         loginStatusRx.set(loginStatus);
 

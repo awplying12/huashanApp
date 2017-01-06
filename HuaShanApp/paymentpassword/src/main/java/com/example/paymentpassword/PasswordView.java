@@ -305,6 +305,6 @@ public class PasswordView extends RelativeLayout {
 	}
 
 	public void setMoney(String mondey){
-		tv_money.setText("投资金额 "+mondey);
+		tv_money.setText(mondey);
 	}
 }

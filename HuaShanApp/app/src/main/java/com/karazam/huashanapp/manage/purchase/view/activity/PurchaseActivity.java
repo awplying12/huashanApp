@@ -254,7 +254,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             return;
         }
         String money = ed_amountofmoney.getText().toString();
-            passwordView.setMoney(money);
+            passwordView.setMoney("投资金额:"+money);
             passwordView.show();
 
 //        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -282,6 +282,11 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             @Override
             public void onHelp(View view) {
                 showToast("onhelp");
+            }
+
+            @Override
+            public void onResend(View view) {
+
             }
 
             @Override

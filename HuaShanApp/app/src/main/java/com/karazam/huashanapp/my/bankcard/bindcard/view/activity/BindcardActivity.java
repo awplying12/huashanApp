@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.FloatLabeledEditText.FloatLabeledEditText;
 import com.example.utils.utils.CheckPhoneNumberUtil;
@@ -25,6 +26,7 @@ import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityBankcardBinding;
 import com.karazam.huashanapp.databinding.ActivityBindcardBinding;
 import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BankBean;
 import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardBean;
@@ -36,6 +38,7 @@ import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import rx.Subscriber;
@@ -109,6 +112,8 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
         tv_name = (TextView) getView(R.id.tv_name);
         tv_id = (TextView) getView(R.id.tv_id);
 
+        mModel.pwd_view = (PasswordView) getView(R.id.pwd_view);
+
 
 //        fet_name = (FloatLabeledEditText) getView(R.id.fet_name);
 //        fet_name.setHintTextViewColor(Color.parseColor("#0894EC"));
@@ -155,6 +160,7 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
         checkContent();
         checkButton();
         initSMSView();
+        setPasswordView();
     }
 
     /**
@@ -434,8 +440,14 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
             }
 
             @Override
+            public void onResend(View view) {
+//                showToast("onResend");
+                mModel.sendSMS();
+            }
+
+            @Override
             public void onResult(boolean result) {
-                showToast("onResult");
+
                 if(result){
 //                    mModel.onAuthentication();
                     mModel.onAddcard(true);
@@ -447,6 +459,32 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
 
     }
 
+    /**
+     * 设置支付密码控件PasswordView
+     */
+    private void setPasswordView(){
+
+        mModel.pwd_view.setOnPasswordViewListener(new PasswordView.OnPasswordViewListener() {
+            @Override
+            public void inputFinish() {
+//                showToast(mModel.pwd_view.getStrPassword());
+                mModel.pwd_view.out();
+//                dialog.show();
+                mModel.upDatecard(StringUtil.interrupt(mModel.pwd_view.getStrPassword(),0,""));
+            }
+
+            @Override
+            public void onBack(View v) {
+                mModel.pwd_view.out();
+            }
+
+            @Override
+            public void onForgetpassword(View v) {
+
+            }
+        });
+        mModel.pwd_view.setMoney("银行卡操作");
+    }
     /**
      * 弹出短息认证
      */
@@ -471,6 +509,32 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
     @Override
     public void getResultSuccess(BindcardBean bean) {
 
+        switch (mModel.flag){
+            case 1:
+                ArrayList<CardBean> cardBeens = bean.getQuickCards();
+                HuaShanApplication.myInformation.setQuickCards(cardBeens);
+                HuaShanApplication.quickCardsRX.set(cardBeens);
+
+
+                break;
+            case 2:
+               CardBean cardBeen = bean.getWithdrawCard();
+                HuaShanApplication.myInformation.setWithdrawCardl(cardBeen);
+                HuaShanApplication.withdrawCarRx.set(cardBeen);
+
+                break;
+            case 3:
+
+                CardBean cardBeen1 = bean.getWithdrawCard();
+                HuaShanApplication.myInformation.setWithdrawCardl(cardBeen1);
+                HuaShanApplication.withdrawCarRx.set(cardBeen1);
+                break;
+            default:
+                break;
+        }
+
+        this.setResult(mModel.flag);
+        this.finish();
     }
 
     /**

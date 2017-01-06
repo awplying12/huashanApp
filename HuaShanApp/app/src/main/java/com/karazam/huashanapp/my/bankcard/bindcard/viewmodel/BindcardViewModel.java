@@ -3,6 +3,7 @@ package com.karazam.huashanapp.my.bankcard.bindcard.viewmodel;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseViewModel;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 
@@ -17,6 +18,7 @@ public abstract class BindcardViewModel extends BaseViewModel {
     public EditText card_num;
 //    public EditText bank;
     public EditText phone_num;
+    public PasswordView pwd_view;
     public String bankId = "-1";
 
     public SMSauthenticationView smsview;
@@ -39,7 +41,7 @@ public abstract class BindcardViewModel extends BaseViewModel {
 
     public abstract void onAddcard(boolean isQuick);
 
-    public abstract void upDatecard();
+    public abstract void upDatecard(String payPassword);
 
     public abstract void sendSMS();
 }

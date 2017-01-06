@@ -338,6 +338,11 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
             }
 
             @Override
+            public void onResend(View view) {
+
+            }
+
+            @Override
             public void onResult(boolean result) {
                 if(result){
                     mModel.onAuthentication();

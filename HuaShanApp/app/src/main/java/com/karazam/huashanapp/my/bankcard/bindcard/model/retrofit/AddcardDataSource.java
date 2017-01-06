@@ -23,6 +23,7 @@ public class AddcardDataSource extends BaseDataSource{
 
 
     public Observable<BaseReturn<BindcardBean>> upDatecard(UpDatecardPost post){
+
         return service.upDatecard(post, HuaShanApplication.token,"XMLHttpRequest");
     }
 

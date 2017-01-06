@@ -83,6 +83,8 @@ public class SMSauthenticationView implements View.OnClickListener{
 
         void onHelp(View view);
 
+        void onResend(View view);
+
         void onResult(boolean result);
     }
 
@@ -135,17 +137,18 @@ public class SMSauthenticationView implements View.OnClickListener{
         sim = 60;
         sms_ed.setText("");
 
-        if(type.equals("")){
-            return;
-        }
+//        if(type.equals("")){
+//            return;
+//        }
 
-        if(thread == null){
+        if(thread == null || type.equals("") ){
             reacQuire();
         }else if(thread.isAlive()){
             sendSms();
 
         }else {
             reacQuire();
+            sendSms();
         }
 
     }
@@ -225,6 +228,11 @@ public class SMSauthenticationView implements View.OnClickListener{
                 mOnAuthenticationListener.onHelp(view);
                 break;
             case R.id.sms_tv_3:
+                if(type.equals("")){
+                    mOnAuthenticationListener.onResend(view);
+                }else {
+                    sendSms();
+                }
                 reacQuire();
                 break;
             default:
@@ -264,7 +272,7 @@ public class SMSauthenticationView implements View.OnClickListener{
         });
         thread.start();
 
-        sendSms();
+
     }
 
     /**

@@ -58,7 +58,8 @@ public class BankcardViewModelImpl extends BankcardViewModel{
 
         Intent intent = new Intent(activity, BindcardActivity.class);
         intent.putExtra("flag",flag);
-        activity.startActivity(intent);
+//        activity.startActivity(intent);
+        activity.startActivityForResult(intent,101);
     }
 
 

@@ -3,6 +3,7 @@ package com.karazam.huashanapp.my.bankcard.main.view.view;
 import android.content.Context;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
 
 import java.util.ArrayList;
+
+import rx.Subscriber;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
 /**
  * Created by Administrator on 2016/12/27.
@@ -106,6 +112,43 @@ public class WithdrawalscardAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 }
             }else if(holder instanceof ViewHolder){
 
+                final int pos = position-1;
+                ViewHolder holder1 = (ViewHolder) holder;
+
+                String name = list.get(pos).getBankName();
+                holder1.name.setText(StringUtil.interrupt(name,10,"银行卡"));
+
+                String  phone = StringUtil.interrupt(list.get(pos).getMobile(),0,"-1");
+                if(phone.equals(-1)){
+                    phone = phone.substring(7,11);
+                    holder1.phoneNum.setText("手机尾号"+StringUtil.interrupt(phone,0,""));
+                }else {
+                    holder1.phoneNum.setText("");
+                }
+
+
+                String card = list.get(pos).getCardNo();
+                card = card.substring(8,12);
+                holder1.cardNum.setText(card);
+
+                String logo = StringUtil.interrupt(list.get(pos).getBankLogo(),0,"");
+                RxImageLoader.getLoaderObservable(holder1.logo,logo).subscribe(new Subscriber<Data>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Data data) {
+
+                    }
+                });
+
             }
     }
 
@@ -116,10 +159,21 @@ public class WithdrawalscardAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        public ImageView logo;
+        public TextView name;
+        public TextView phoneNum;
+        public TextView cardNum;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this);
+
+            logo = (ImageView) itemView.findViewById(R.id.img_logo);
+            name = (TextView) itemView.findViewById(R.id.bank_name);
+            phoneNum = (TextView) itemView.findViewById(R.id.tv_phonenum);
+            cardNum = (TextView) itemView.findViewById(R.id.tv_cardnum);
+
         }
 
         @Override
