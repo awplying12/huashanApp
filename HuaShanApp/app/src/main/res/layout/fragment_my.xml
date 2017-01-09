@@ -250,6 +250,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:visibility="gone"
                         />
 
                     <!--我的转让-->
@@ -257,6 +258,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:background="#fff"
+                        android:visibility="gone"
                         android:onClick="@{handler.Mytransfer}">
 
                         <ImageView

@@ -7,4 +7,10 @@ import com.example.utils.base.BaseView;
  */
 
 public interface WithdrawalsView extends BaseView{
+
+    void withdrawalsSuccess(String detailsId);
+
+    void withdrawalsFail(String s);
+
+    void withdrawalsError(Throwable e);
 }

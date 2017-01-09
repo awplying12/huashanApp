@@ -83,6 +83,7 @@
 
             <!--银行卡-->
             <android.support.percent.PercentFrameLayout
+                android:id="@+id/card_pf"
                 android:layout_width="match_parent"
                 app:layout_heightPercent="15%"
                 app:layout_marginTopPercent="3%"
@@ -115,6 +116,17 @@
                     android:layout_gravity="center_vertical"
                     app:layout_marginLeftPercent="5%"
                     android:src="@drawable/zgyh_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    app:layout_heightPercent="55%"
+                    android:layout_gravity="center_vertical|right"
+                    android:gravity="center"
+                    app:layout_marginRightPercent="5%"
+                    android:text="更换充值银行卡"
+                    android:textSize="8dp"
+                    android:textColor="#0894EC"
+                    android:onClick="@{handler.changeCard}"/>
 
 
             </android.support.percent.PercentFrameLayout>
@@ -183,14 +195,16 @@
         </android.support.percent.PercentFrameLayout>
 
 
-
         <com.example.paymentpassword.PasswordView
             android:id="@+id/pwd_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
             android:background="#60000000"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
         </com.example.paymentpassword.PasswordView>
     </android.support.percent.PercentRelativeLayout>

@@ -2,15 +2,27 @@ package com.karazam.huashanapp.my.bankcard.main.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.main.retorfitMain.DigestUtils;
+import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardBean;
 import com.karazam.huashanapp.my.bankcard.bindcard.view.activity.BindcardActivity;
 import com.karazam.huashanapp.my.bankcard.main.model.databinding.BankcardEntity;
+import com.karazam.huashanapp.my.bankcard.main.model.databinding.DeletecardPost;
+import com.karazam.huashanapp.my.bankcard.main.model.retrofit.DeletecardDataSource;
 import com.karazam.huashanapp.my.bankcard.main.view.BankcardView;
 import com.karazam.huashanapp.my.bankcard.main.view.activity.BankcardActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/12/26.
@@ -25,12 +37,15 @@ public class BankcardViewModelImpl extends BankcardViewModel{
 
     private PromptDialog certificationDialog;
 
+    private DeletecardDataSource deletecardDataSource;
+
     public BankcardViewModelImpl(BankcardView mView, BankcardEntity mEntity, Context context, BankcardActivity activity) {
         this.mView = mView;
         this.mEntity = mEntity;
         this.context = context;
         this.activity = activity;
 
+        deletecardDataSource = new DeletecardDataSource();
 
         setCertificationDialog();
     }
@@ -62,6 +77,53 @@ public class BankcardViewModelImpl extends BankcardViewModel{
         activity.startActivityForResult(intent,101);
     }
 
+    /**
+     * 解绑银行卡
+     * @param payPassword
+     */
+    @Override
+    public void toUnbundling(String payPassword) {
+
+        if(id.equals("-1")){
+            mView.showToast("银行卡不存在");
+            return;
+        }
+
+        DeletecardPost post = new DeletecardPost();
+        post.setId(id);
+        payPassword = DigestUtils.encrypt(payPassword);
+        post.setPayPassword(payPassword);
+        deletecardDataSource.deletaCard(post)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn<BindcardBean>>() {
+                    @Override
+                    public void onCompleted() {
+                        id = "-1";
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        id = "-1";
+                        Log.i("toUnbundling","  e : "+e.toString());
+                        mView.unBundlingError(e);
+                    }
+
+                    @Override
+                    public void onNext(BaseReturn<BindcardBean> bindcardBeanBaseReturn) {
+
+                        if(bindcardBeanBaseReturn.isSuccess()){
+                            BindcardBean bean = bindcardBeanBaseReturn.getData();
+                            HuaShanApplication.myInformation.setQuickCards(bean.getQuickCards());
+                            HuaShanApplication.quickCardsRX.set(bean.getQuickCards());
+                            mView.unBundlingSuccess(bean);
+                        } else {
+                            mView.unBundlingFail(bindcardBeanBaseReturn.getMessage());
+                        }
+                    }
+                });
+
+    }
 
 
     private void setCertificationDialog(){

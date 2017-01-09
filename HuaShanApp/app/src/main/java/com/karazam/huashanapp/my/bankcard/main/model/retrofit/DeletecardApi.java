@@ -1,8 +1,8 @@
-package com.karazam.huashanapp.my.bankcard.bindcard.model.retrofit;
+package com.karazam.huashanapp.my.bankcard.main.model.retrofit;
 
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardBean;
-import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.DeletecardPost;
+import com.karazam.huashanapp.my.bankcard.main.model.databinding.DeletecardPost;
 
 import retrofit2.http.Body;
 import retrofit2.http.Header;

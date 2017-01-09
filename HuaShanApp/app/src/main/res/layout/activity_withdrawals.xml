@@ -83,6 +83,7 @@
 
             <!--银行卡-->
             <android.support.percent.PercentFrameLayout
+                android:id="@+id/card_pf"
                 android:layout_width="match_parent"
                 app:layout_heightPercent="15%"
                 app:layout_marginTopPercent="3%"

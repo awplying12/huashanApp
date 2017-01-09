@@ -145,6 +145,16 @@ public class MyFragment extends BaseFragment implements MyView {
 //                tv.setText(Html.fromHtml("可用余额<font color='#ffffff'> 0.00 </font>元"));
 //            }
 //        });
+        RxView.findById(view,R.id.tv_balance).bind(HuaShanApplication.myAssetsBeanRX, new Rx.Action<View, MyAssetsBean>() {
+            @Override
+            public void call(View target, MyAssetsBean myAssetsBean) {
+                TextView tv = (TextView) target;    //available
+                String available =StringUtil.interrupt(myAssetsBean.getAvailable(),0,"0");
+                available = StringUtil.reservedDecimal(available,2);
+                tv.setText(Html.fromHtml("可用余额<font color='#ffffff'> "+available+" </font>元"));
+            }
+        });
+
     }
 
 

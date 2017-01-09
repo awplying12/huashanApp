@@ -90,12 +90,16 @@ public class HuaShanApplication extends Application {
 
     public static ArrayList<ReturnRecords> returnRecordses;
 
+    public static String RegistrationID;
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
 
-
+        JPushInterface.setDebugMode(true); // 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);  //推送初始化
+        RegistrationID =JPushInterface.getRegistrationID(this);
 
         sharedPreferences = getinstance().getSharedPreferences("huashan", 0);
         editor = sharedPreferences.edit();

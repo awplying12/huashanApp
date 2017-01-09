@@ -7,9 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.RefreshRecyclerView;
 import com.example.utils.custom.WrapContentLinearLayoutManager;
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityBankcardBinding;
@@ -17,6 +19,7 @@ import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
 import com.karazam.huashanapp.main.adapter.TitleBarAdapter;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
+import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardBean;
 import com.karazam.huashanapp.my.bankcard.main.model.databinding.BankcardEntity;
 import com.karazam.huashanapp.my.bankcard.main.view.BankcardView;
 import com.karazam.huashanapp.my.bankcard.main.view.view.BankcardAdapter;
@@ -72,6 +75,13 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
 
 
         content_rl = (RefreshRecyclerView) getView(R.id.content_rl);
+        WrapContentLinearLayoutManager layoutManager = new WrapContentLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false){
+            @Override
+            protected int getExtraLayoutSpace(RecyclerView.State state) {
+                return 6000;
+            }
+        };
+        content_rl.setLayoutManager(layoutManager);
 
 
         content_rl.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
@@ -81,6 +91,9 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
             }
         });
 
+
+        mModel.pwd_view = (PasswordView) getView(R.id.pwd_view);
+
     }
 
     @Override
@@ -88,6 +101,7 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
         setTitlebBar();
         setBankcardRecyclerView();
 
+        setPasswordView();
 //        setRecyclerView();
     }
 
@@ -145,14 +159,6 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
     private BankcardAdapter adapter;
     private void setBankcardRecyclerView() {
 
-        WrapContentLinearLayoutManager layoutManager = new WrapContentLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false){
-            @Override
-            protected int getExtraLayoutSpace(RecyclerView.State state) {
-                return 6000;
-            }
-        };
-        content_rl.setLayoutManager(layoutManager);
-
         ArrayList<CardBean> list = new ArrayList<>();
         list.addAll(HuaShanApplication.myInformation.getQuickCards());
 
@@ -168,6 +174,14 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
             @Override
             public void onItem(View view, int position) {
 
+            }
+
+            @Override
+            public void onItemLong(View view, int position) {
+                showToast(position+"");
+                mModel.id = adapter.getList().get(position).getBankCardId();
+                mModel.pwd_view.show();
+//                mModel.toUnbundling(1,"");
             }
 
             @Override
@@ -193,14 +207,6 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
      */
     private WithdrawalscardAdapter wadapter;
     private void setWithdrawalscardRecyclerView() {
-
-        WrapContentLinearLayoutManager layoutManager = new WrapContentLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false){
-            @Override
-            protected int getExtraLayoutSpace(RecyclerView.State state) {
-                return 6000;
-            }
-        };
-        content_rl.setLayoutManager(layoutManager);
 
         ArrayList<CardBean> list = new ArrayList<>();
 //        list.add(HuaShanApplication.myInformation.getWithdrawCardl());
@@ -267,5 +273,61 @@ public class BankcardActivity extends BaseActivity implements BankcardView,Swipe
                     break;
             }
         }
+    }
+
+
+    /**
+     * 设置支付密码控件PasswordView
+     */
+    private void setPasswordView(){
+
+        mModel.pwd_view.setOnPasswordViewListener(new PasswordView.OnPasswordViewListener() {
+            @Override
+            public void inputFinish() {
+//                showToast(mModel.pwd_view.getStrPassword());
+                mModel.pwd_view.out();
+//                dialog.show();
+//                mModel.upDatecard(StringUtil.interrupt(mModel.pwd_view.getStrPassword(),0,""));
+                mModel.toUnbundling(mModel.pwd_view.getStrPassword());
+            }
+
+            @Override
+            public void onBack(View v) {
+                mModel.pwd_view.out();
+            }
+
+            @Override
+            public void onForgetpassword(View v) {
+
+            }
+        });
+        mModel.pwd_view.setMoney("银行卡操作");
+    }
+
+    /**
+     * 解绑成功
+     */
+    @Override
+    public void unBundlingSuccess(BindcardBean bean) {
+        adapter.setList(bean.getQuickCards());
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 解绑失败
+     * @param s
+     */
+    @Override
+    public void unBundlingFail(String s) {
+        showToast(s);
+    }
+
+    /**
+     * 解绑错误
+     * @param e
+     */
+    @Override
+    public void unBundlingError(Throwable e) {
+
     }
 }

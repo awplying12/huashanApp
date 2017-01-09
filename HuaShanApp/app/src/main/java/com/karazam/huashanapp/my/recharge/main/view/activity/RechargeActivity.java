@@ -5,24 +5,34 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
+import com.example.utils.utils.StringUtil;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityRechargeBinding;
+import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
 import com.karazam.huashanapp.my.recharge.main.model.databinding.RechargeEntity;
 import com.karazam.huashanapp.my.recharge.main.view.RechargeView;
 import com.karazam.huashanapp.my.recharge.main.viewmodel.RechargeViewModel;
 import com.karazam.huashanapp.my.recharge.main.viewmodel.RechargeViewModelImpl;
 import com.karazam.huashanapp.my.transactiondetails.recharge.view.activity.RechargedetailsActivity;
+import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxProperty;
+import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.concurrent.TimeUnit;
 
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
 /**
  * Created by Administrator on 2016/12/1.
@@ -41,6 +51,9 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
 
     private PromptDialog dialog;
 
+    public static RxProperty<CardBean> cardBeanRx;
+
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_recharge);
@@ -52,7 +65,9 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
 
     @Override
     public void dealLogicBeforeInitView() {
-
+        cardBeanRx = RxProperty.create();
+        mModel.card = HuaShanApplication.myInformation.getQuickCards().get(0);
+        cardBeanRx.set(mModel.card);
     }
 
     @Override
@@ -76,6 +91,44 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
      */
     private boolean moneny = false;
     private void checkContent() {
+
+
+        RxView.findById(this,R.id.card_pf).bind(cardBeanRx, new Rx.Action<View, CardBean>() {
+            @Override
+            public void call(View target, CardBean cardBean) {
+                mModel.card = cardBean;
+
+                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
+                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
+                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
+
+                String url = cardBean.getBankLogo();
+                RxImageLoader.getLoaderObservable(pay_img,url).subscribe(new Subscriber<Data>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Data data) {
+
+                    }
+                });
+
+                String bankName = StringUtil.interrupt(cardBean.getBankName(),6,"");
+                String cardNo = StringUtil.interrupt(cardBean.getCardNo(),0,"");
+                if(!cardNo.equals("")){
+                    cardNo = "(尾号"+cardNo.substring(8,12)+")";
+                }
+                pay_method.setText(bankName+cardNo);
+            }
+        });
+
 
         RxTextView.textChangeEvents(mModel.ed_money)
                 .debounce(300, TimeUnit.MILLISECONDS)
@@ -123,7 +176,7 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
      * 充值成功
      */
     @Override
-    public void rechargeSuccess() {
+    public void rechargeSuccess(String detailsId) {
         setDialog("购买成功！",
                 Html.fromHtml("<font color='#00ff00'>查看详情").toString(),
                 Html.fromHtml("<font color='#ff0000'>继续充值").toString());
@@ -134,11 +187,16 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
      * 充值失败
      */
     @Override
-    public void rechargeFail() {
+    public void rechargeFail(String s) {
         setDialog("购买失败！",
                 Html.fromHtml("<font color='#00ff00'>查看详情").toString(),
                 Html.fromHtml("<font color='#ff0000'>重新充值").toString());
         dialog.show();
+    }
+
+    @Override
+    public void rechargeeError(Throwable e) {
+        showToast("网络故障！");
     }
 
     /**

@@ -8,7 +8,9 @@ import com.example.utils.base.BaseView;
 
 public interface RechargeView extends BaseView{
 
-    void rechargeSuccess();
+    void rechargeSuccess(String detailsId);
 
-    void rechargeFail();
+    void rechargeFail(String s);
+
+    void rechargeeError(Throwable e);
 }

@@ -121,6 +121,17 @@
 
         </android.support.percent.PercentFrameLayout>
 
+        <com.example.paymentpassword.PasswordView
+
+            android:id="@+id/pwd_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:background="#60000000"
+            android:visibility="gone">
+
+        </com.example.paymentpassword.PasswordView>
+
 
     </android.support.percent.PercentRelativeLayout>
 </layout>

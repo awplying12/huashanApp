@@ -112,12 +112,16 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             String name = list.get(pos).getBankName();
             holder1.name.setText(StringUtil.interrupt(name,10,"银行卡"));
 
-            String  phone = list.get(pos).getMobile();
-            phone = phone.substring(7,11);
+            String  phone = StringUtil.interrupt(list.get(pos).getMobile(),0,"");
+            if(!phone.equals("")){
+                phone = phone.substring(7,11);
+            }
             holder1.phoneNum.setText("手机尾号"+StringUtil.interrupt(phone,0,""));
 
-            String card = list.get(pos).getCardNo();
-            card = card.substring(8,12);
+            String card = StringUtil.interrupt(list.get(pos).getCardNo(),0,"");
+            if(!card.equals("")){
+                card = card.substring(8,12);
+            }
             holder1.cardNum.setText(card);
 
             String logo = StringUtil.interrupt(list.get(pos).getBankLogo(),0,"");
@@ -148,7 +152,7 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return mHeaderCount + getContentItemCount() + mBottomCount;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
 
         public ImageView logo;
         public TextView name;
@@ -159,6 +163,7 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
 
             logo = (ImageView) itemView.findViewById(R.id.img_logo);
             name = (TextView) itemView.findViewById(R.id.bank_name);
@@ -172,7 +177,16 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if(mOnItemClickListener == null){
                 return;
             }
-            mOnItemClickListener.onItem(view,getPosition());
+            mOnItemClickListener.onItem(view,getPosition()-1);
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            if(mOnItemClickListener == null){
+                return false;
+            }
+            mOnItemClickListener.onItemLong(view,getPosition()-1);
+            return false;
         }
     }
 
@@ -223,6 +237,8 @@ public class BankcardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         void isHeaderView(View view);
 
         void onItem(View view,int position);
+
+        void onItemLong(View view,int position);
 
         void onBottomView(View view);
 

@@ -146,8 +146,8 @@ public class BindcardViewModelImpl extends BindcardViewModel {
 
         BindcardPost post = new BindcardPost();
         post.setQuick(isQuick);
-//        post.setCard(card);
-        post.setCard("6217553803643445210");
+        post.setCard(card);
+//        post.setCard("6217553803643445210");
         post.setBank(bank);
 
 
@@ -200,8 +200,8 @@ public class BindcardViewModelImpl extends BindcardViewModel {
 
 
         UpDatecardPost post = new UpDatecardPost();
-//        post.setCard(card);
-        post.setCard("6217003870043444210");
+        post.setCard(card);
+//        post.setCard("6217003870043444210");
         post.setBank(bank);
         post.setPayPassword(payPassword);
 
@@ -247,8 +247,8 @@ public class BindcardViewModelImpl extends BindcardViewModel {
 
         BindcardPost post = new BindcardPost();
         post.setQuick(true);
-//        post.setCard(card);
-        post.setCard("6217553803643445210");
+        post.setCard(card);
+//        post.setCard("6217553803643445210");
         post.setBank(bank);
         post.setMobile(phone);
 

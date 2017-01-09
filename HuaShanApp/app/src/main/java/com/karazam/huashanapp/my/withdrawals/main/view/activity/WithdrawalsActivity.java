@@ -5,6 +5,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.paymentpassword.PasswordView;
@@ -15,6 +16,8 @@ import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityWithdrawalsBinding;
+import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.my.transactiondetails.withdrawals.view.activity.WithdrawalsdetailsActivity;
 import com.karazam.huashanapp.my.withdrawals.main.model.databinding.WithdrawalsEntity;
@@ -26,8 +29,11 @@ import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.concurrent.TimeUnit;
 
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
 /**
  * Created by Administrator on 2016/11/30.
@@ -78,17 +84,55 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
      */
 
     private void setLayout() {
-//        RxView.of(avail_moneny).bind(HuaShanApplication.userInformationR, new Rx.Action<TextView, UserInformation>() {
-//            @Override
-//            public void call(TextView target, UserInformation userInformation) {
-//
-//                String availStr = StringUtil.interrupt(userInformation.getUserbalance(),0,"0");
-//                mModel.avail = Double.parseDouble(availStr);
-//                target.setText("可用余额"+availStr+"元");
-//
-//                checkContent(mModel.avail);
-//            }
-//        });
+
+        RxView.of(avail_moneny).bind(HuaShanApplication.myAssetsBeanRX, new Rx.Action<TextView, MyAssetsBean>() {
+            @Override
+            public void call(TextView target, MyAssetsBean myAssetsBean) {
+
+                String availStr = StringUtil.interrupt(myAssetsBean.getAvailable(),0,"0");
+                mModel.avail = Double.parseDouble(availStr);
+                target.setText("可用余额"+availStr+"元");
+
+
+                checkContent(mModel.avail);
+            }
+        });
+
+        RxView.findById(this,R.id.card_pf).bind(HuaShanApplication.withdrawCarRx, new Rx.Action<View, CardBean>() {
+            @Override
+            public void call(View target, CardBean cardBean) {
+                mModel.card = cardBean;
+
+                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
+                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
+                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
+
+                String url = cardBean.getBankLogo();
+                RxImageLoader.getLoaderObservable(pay_img,url).subscribe(new Subscriber<Data>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Data data) {
+
+                    }
+                });
+
+                String bankName = StringUtil.interrupt(cardBean.getBankName(),6,"");
+                String cardNo = StringUtil.interrupt(cardBean.getCardNo(),0,"");
+                if(!cardNo.equals("")){
+                    cardNo = "(尾号"+cardNo.substring(8,12)+")";
+                }
+                pay_method.setText(bankName+cardNo);
+            }
+        });
     }
 
 
@@ -110,7 +154,7 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
 
                         if(TextUtils.isEmpty(str)){
                             moneny = false;
-                        } else if(str.equals("0")){
+                        } else if(str.equals("0")||str.equals("0.0")||str.equals("0.00")){
                             avail_moneny.setText(Html.fromHtml("<font color='#ff0000'>提价金额不能为或是0"));
                             moneny = false;
                         }else if(!TextUtils.isEmpty(str) && Double.parseDouble(str) > avail){
@@ -153,10 +197,10 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
         mModel.pwd_view.setOnPasswordViewListener(new PasswordView.OnPasswordViewListener() {
             @Override
             public void inputFinish() {
-                showToast(mModel.pwd_view.getStrPassword());
+//                showToast(mModel.pwd_view.getStrPassword());
                 mModel.pwd_view.out();
-
-                toOtherActivity(WithdrawalsActivity.this, WithdrawalsdetailsActivity.class);
+                mModel.toWithdrawals();
+//                toOtherActivity(WithdrawalsActivity.this, WithdrawalsdetailsActivity.class);
             }
 
             @Override
@@ -169,5 +213,32 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
 
             }
         });
+    }
+
+    /**
+     * 提现成功
+     * @param detailsId
+     */
+    @Override
+    public void withdrawalsSuccess(String detailsId) {
+        showToast("ok");
+    }
+
+    /**
+     * 提现失败
+     * @param s
+     */
+    @Override
+    public void withdrawalsFail(String s) {
+        showToast(s);
+    }
+
+    /**
+     * 提现错误
+     * @param e
+     */
+    @Override
+    public void withdrawalsError(Throwable e) {
+        showToast("网络故障!");
     }
 }

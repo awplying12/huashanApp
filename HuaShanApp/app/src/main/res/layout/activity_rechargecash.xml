@@ -92,6 +92,7 @@
                 android:textSize="16dp"/>
 
             <TextView
+                android:id="@+id/tv_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_marginTopPercent="22%"
@@ -109,7 +110,7 @@
                 android:text="充值"
                 android:textColor="#fff"
                 android:textSize="18dp"
-                android:onClick="@{handler.Withdrawals}"
+                android:onClick="@{handler.Recharge}"
                 />
 
             <TextView
@@ -122,7 +123,7 @@
                 android:text="提现"
                 android:textColor="#0894ec"
                 android:textSize="18dp"
-                android:onClick="@{handler.Recharge}"
+                android:onClick="@{handler.Withdrawals}"
                 />
 
             <TextView

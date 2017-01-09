@@ -485,6 +485,7 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
         });
         mModel.pwd_view.setMoney("银行卡操作");
     }
+
     /**
      * 弹出短息认证
      */

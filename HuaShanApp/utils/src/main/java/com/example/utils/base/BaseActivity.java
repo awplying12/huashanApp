@@ -142,4 +142,15 @@ public abstract class BaseActivity extends FragmentActivity implements BaseView{
         im.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        JPushInterface.onResume(this);
+//    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        JPushInterface.onPause(this);
+//    }
+
 }
