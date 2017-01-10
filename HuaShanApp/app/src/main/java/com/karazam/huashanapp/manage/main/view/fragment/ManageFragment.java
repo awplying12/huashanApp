@@ -51,7 +51,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
     private ContentAdapter adapter;
 
     private String type = "guarantee";
-    private int page = 1;
+    private static int page = 1;
 
     private ImageView faile_img;
 

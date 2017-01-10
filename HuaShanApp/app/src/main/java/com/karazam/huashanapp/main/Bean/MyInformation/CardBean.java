@@ -10,11 +10,13 @@ public class CardBean {
 //            "bankCardId":1,
 //            "bankName":"交通银行",
 //            "bankLogo":"/upload/image/201404/f1c9a7c5-849d-401b-bd3e-05059dc26224.jpg"
+//             quickPayMemo 卡描述
     private String mobile;
     private String cardNo;
     private String bankCardId;
     private String bankName;
     private String bankLogo;
+    private String quickPayMemo;
 
     public String getMobile() {
         return mobile;
@@ -56,6 +58,14 @@ public class CardBean {
         this.bankLogo = bankLogo;
     }
 
+    public String getQuickPayMemo() {
+        return quickPayMemo;
+    }
+
+    public void setQuickPayMemo(String quickPayMemo) {
+        this.quickPayMemo = quickPayMemo;
+    }
+
     @Override
     public String toString() {
         return "CardBean{" +
@@ -64,6 +74,7 @@ public class CardBean {
                 ", bankCardId='" + bankCardId + '\'' +
                 ", bankName='" + bankName + '\'' +
                 ", bankLogo='" + bankLogo + '\'' +
+                ", quickPayMemo='" + quickPayMemo + '\'' +
                 '}';
     }
 }

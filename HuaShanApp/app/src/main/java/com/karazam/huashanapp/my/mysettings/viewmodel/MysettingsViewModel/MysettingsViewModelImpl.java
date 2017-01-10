@@ -1,14 +1,25 @@
 package com.karazam.huashanapp.my.mysettings.viewmodel.MysettingsViewModel;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.my.mysettings.model.databinding.MysettingsEntity;
 import com.karazam.huashanapp.my.mysettings.view.MysettingsView;
 import com.karazam.huashanapp.my.mysettings.view.activity.MysettingsActivity;
 import com.karazam.huashanapp.my.mysettings.view.activity.MysettingsActivity2;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
+import com.karazam.huashanapp.my.setup.model.datanbinding.SetupBean;
+import com.karazam.huashanapp.my.setup.model.datanbinding.SetupPost;
+import com.karazam.huashanapp.my.setup.model.retrofit.SetupDataSource;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/22.
@@ -21,6 +32,8 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
     private Context context;
     private MysettingsActivity activity;
 
+    private SetupDataSource setupDataSource;
+
 
     public MysettingsViewModelImpl(MysettingsView mView, MysettingsEntity mEntity, Context context, MysettingsActivity activity) {
         this.mView = mView;
@@ -28,7 +41,7 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
         this.context = context;
         this.activity = activity;
 
-
+        setupDataSource = new SetupDataSource();
     }
 
 
@@ -44,7 +57,7 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
      */
     @Override
     public void setupHeader(View view) {
-            mView.showToast("setupHeader");
+//            mView.showToast("setupHeader");
             mView.addPicturedialog();
     }
 
@@ -67,6 +80,41 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
             return;
         }
        mView.toOtherActivity(activity, UnauthorizedActivity.class);
+    }
+
+    /**
+     * 修改头像接口
+     * @param bitmapBase
+     */
+    @Override
+    public void setHeader(String bitmapBase) {
+
+        SetupPost post = new SetupPost();
+        post.setAvatar(bitmapBase);
+        setupDataSource.setUp(post)
+                .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<BaseReturn<SetupBean>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("setHeader"," e  :  "+e.toString());
+                        mView.setHeaderError(e);
+                    }
+
+                    @Override
+                    public void onNext(BaseReturn<SetupBean> setupBeanBaseReturn) {
+                        if(setupBeanBaseReturn.isSuccess()){
+                            SetupBean bean = setupBeanBaseReturn.getData();
+                        } else {
+                            mView.setHeaderFail(setupBeanBaseReturn.getMessage());
+                        }
+                    }
+                });
     }
 
 

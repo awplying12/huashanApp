@@ -22,6 +22,7 @@ import com.example.utils.custom.VerticalViewPager.VerticalViewPager;
 import com.example.utils.utils.StringUtil;
 import com.gelitenight.waveview.library.WaveHelper;
 import com.gelitenight.waveview.library.WaveView;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityInvestmentDetailsBinding;
 import com.karazam.huashanapp.manage.details.model.databinding.InvestmentdetailsEntity;
@@ -72,7 +73,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
     private SwipeRefreshLayout swp_rl;
 
-    private String borrowingId;
+
 
     @Override
     public void setContentLayout() {
@@ -86,7 +87,6 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     @Override
     public void dealLogicBeforeInitView() {
 
-
         H = BaseActivity.ScreeH;
         sh = (int) (H*0.9);
         eh = (int) (H*0.8);
@@ -95,7 +95,9 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
         mMinHeaderTranslation = -((int) (BaseActivity.ScreeH*0.1));
 //        mMinHeaderTranslation = ((int) (BaseActivity.ScreeH*0.1)+ getActionBarHeight());
 
-        borrowingId = getIntent().getStringExtra("borrowingId");
+        mModel.borrowingId = getIntent().getStringExtra("borrowingId");
+
+        HuaShanApplication.project = RxProperty.create();
     }
 
 
@@ -120,7 +122,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
             setLayout();
             setVerticalViewPager();
 
-        mModel.getManagedetailsData(borrowingId);
+        mModel.getManagedetailsData(mModel.borrowingId);
     }
 
     /**
@@ -132,12 +134,11 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     private void setVerticalViewPager() {
 
 
-
         ArrayList<Fragment> list = new ArrayList<>();
 
         list.add(fragment1);
 
-        fragment2.setBorrowingId(borrowingId);
+        fragment2.setBorrowingId(mModel.borrowingId);
         list.add(fragment2);
 
         PagerFragmentAdapter adapter = new PagerFragmentAdapter(getSupportFragmentManager(),list);
@@ -150,10 +151,10 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      * 设置界面
      */
 
-    public RxProperty<ManagedetailsBean> project = RxProperty.create();
+
     private void setLayout() {
 
-        RxView.findById(this,R.id.content_pl).bind(project, new Rx.Action<View, ManagedetailsBean>() {
+        RxView.findById(this,R.id.content_pl).bind(HuaShanApplication.project, new Rx.Action<View, ManagedetailsBean>() {
             @Override
             public void call(View target, ManagedetailsBean managedetailsBean) {
                 Project project = managedetailsBean.getProject();
@@ -187,7 +188,8 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      */
     @Override
     public void getManagedetailsDataSuccess(ManagedetailsBean data) {
-        project.set(data);
+
+        HuaShanApplication.project.set(data);
     }
 
     /**
@@ -196,7 +198,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      */
     @Override
     public void getManagedetailsDataFaile(String e) {
-
+        showToast(e);
     }
 
     /**
@@ -205,7 +207,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      */
     @Override
     public void getManagedetailsDataError(Throwable e) {
-
+        showToast("网络故障！");
     }
 
 

@@ -10,4 +10,11 @@ public interface PurchaseView extends BaseView{
     void showPasswordView();
 
     void addSMSView();
+
+
+    void purchaseSuccess(String detailsId);
+
+    void purchaseFail(String s);
+
+    void purchaseError(Throwable e);
 }

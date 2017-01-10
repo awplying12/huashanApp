@@ -19,11 +19,18 @@ import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityPurchaseBinding;
+import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
+import com.karazam.huashanapp.main.Bean.MyInformation.MyInformationBean;
 import com.karazam.huashanapp.main.Method;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
-import com.karazam.huashanapp.manage.main.model.databinding.Project;
+import com.karazam.huashanapp.main.retorfitMain.DigestUtils;
+import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
+
+import com.karazam.huashanapp.manage.details.model.databinding.Project;
+import com.karazam.huashanapp.manage.purchase.model.databinding.PurchasBean;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModel;
@@ -33,10 +40,14 @@ import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.Data;
+import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
 
 /**
  * Created by Administrator on 2016/11/15.
@@ -48,10 +59,11 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     private PurchaseEntity entity = new PurchaseEntity();
     private PurchaseViewModel mModel;
 
-    private EditText ed_amountofmoney;
+
     private TextView bt_purchase;
     private TextView tv_prompt;
     private CheckBox cb_agreement;
+    private TextView can_purchase;
 
     private PercentRelativeLayout purchase_pl;
 
@@ -63,6 +75,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     private View smsView;
 
     private PromptDialog dialog;
+    private PromptDialog dialogFail;
 
     @Override
     public void setContentLayout() {
@@ -75,23 +88,27 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
 
     @Override
     public void dealLogicBeforeInitView() {
-        project= new Project();
-        project.setTitle("产融贷CR216001-30");
-        project.setInterestRate("0.086");
-        project.setPeriod("6");
-        praject.set(project);
+
+        mModel.borrowingId = getIntent().getStringExtra("borrowingId");
+
+        PurchasBean purchasBean = new PurchasBean();
+        purchasBean.setPaymentMethod("BALANCE_PAY");
+        purchasBean.setAssets(HuaShanApplication.myAssetsBean);
+        purchasBeanRx.set(purchasBean);
     }
 
     @Override
     public void initView() {
-        ed_amountofmoney = (EditText) getView(R.id.ed_amountofmoney);
+        mModel.ed_amountofmoney = (EditText) getView(R.id.ed_amountofmoney);
         bt_purchase = (TextView) getView(R.id.bt_purchase);
         tv_prompt = (TextView) getView(R.id.tv_prompt);
         cb_agreement = (CheckBox) getView(R.id.cb_agreement);
         passwordView = (PasswordView) getView(R.id.pwd_view);
         purchase_pl = (PercentRelativeLayout) getView(R.id.purchase_pl);
+        can_purchase = (TextView) getView(R.id.can_purchase);
         sms = new SMSauthenticationView(this);
         dialog = new PromptDialog(this);
+        dialogFail = new PromptDialog(this);
 
 
     }
@@ -103,61 +120,98 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         setPasswordView();
         setSMSView();
         setDialog();
+        setDialogFail();
     }
 
     /**
      * 设置界面
      */
-    private RxProperty<Project> praject = RxProperty.create();
+
+    public static RxProperty<PurchasBean> purchasBeanRx = RxProperty.create();
     private void setLayout() {
-        RxView.findById(this,R.id.content_pl).bind(praject, new Rx.Action<View, Project>() {
+
+        RxView.findById(this,R.id.content_pl).bind(HuaShanApplication.project, new Rx.Action<View, ManagedetailsBean>() {
             @Override
-            public void call(View target, Project project) {
+            public void call(View target, ManagedetailsBean managedetailsBean) {
                 TextView det_name = (TextView) target.findViewById(R.id.det_name);
                 TextView det_content = (TextView) target.findViewById(R.id.det_content);
 
+                project = managedetailsBean.getProject();
+
                 det_name.setText(StringUtil.interrupt(project.getTitle(),0,"未知"));
 
-                String interestRate = (Integer.parseInt(StringUtil.interrupt(project.getInterestRate(),0,"0"))*100)+"";
+//                String interestRate = (Integer.parseInt(StringUtil.interrupt(project.getInterestRate(),0,"0"))*100)+"";
+                String interestRate = StringUtil.reservedDecimal(StringUtil.interrupt(project.getInterestRate(),0,"0"),2);
                 String period = StringUtil.interrupt(project.getPeriod(),0,"未知");
-                String periodUnit = project.getPeriodUnit().equals("天")? project.getPeriodUnit():"个月";
+                String periodUnit = project.getPeriodUnitDes().equals("天")? project.getPeriodUnitDes():"个月";
                 det_content.setText("年化收益率"+interestRate+"%"+"       |       "+"投资期限"+period+periodUnit);
+
+                String purchase = StringUtil.reservedDecimal(StringUtil.interrupt(project.getResidualAmount(),0,"0"),2);
+                can_purchase.setText("剩余可购金额"+purchase+"元");
 
             }
         });
 
-//        RxView.findById(this,R.id.pay_pl).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-//            @Override
-//            public void call(View target, UserInformation userInformation) {
-//
-//
-//                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
-//                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
-//                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
-//
-////                String paymentmod = StringUtil.interrupt(HuaShanApplication.paymentmod,0,"");
-//
-//                String paymentmod = StringUtil.interrupt(userInformation.getPaymentmod(),0,"");
-//
-//                if(paymentmod.equals("bankCard")){
-//                    pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zgyh_icon));
-//
-//                    String bankCard = StringUtil.interrupt(userInformation.getBankCard(),0,"未知");
-//                    pay_method.setText(bankCard);
-//
-//                    String cardInformation = StringUtil.interrupt(userInformation.getCardInformation(),0,"未知");
-//                    pay_content.setText(cardInformation);
-//
-//                }else {
-//                    pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zhye_icon));
-//
-//                    pay_method.setText("账户余额");
-//
-//                    String userbalance = StringUtil.interrupt(userInformation.getUserbalance(),0,"0.00");
-//                    pay_content.setText("可用余额 "+userbalance);
-//                }
-//            }
-//        });
+
+
+        RxView.findById(this,R.id.pay_pl).bind(purchasBeanRx, new Rx.Action<View, PurchasBean>() {
+            @Override
+            public void call(View target, PurchasBean purchasBean) {
+
+
+
+                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
+                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
+                final ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
+
+                mModel.mode = purchasBean.getPaymentMethod();
+
+                mModel.cardBean = purchasBean.getBean();
+                if( mModel.mode.equals("QUICK_PAY")){
+
+
+
+                    String url = purchasBean.getBean().getBankLogo();
+                    RxImageLoader.getLoaderObservable(pay_img,url).subscribe(new Subscriber<Data>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            pay_img.setImageDrawable(getResources().getDrawable(R.drawable.bankdef_logo));
+                        }
+
+                        @Override
+                        public void onNext(Data data) {
+                            if(data.bitmap == null){
+                                pay_img.setImageDrawable(getResources().getDrawable(R.drawable.bankdef_logo));
+                            }
+                        }
+                    });
+
+                    String bankName = StringUtil.interrupt(purchasBean.getBean().getBankName(),6,"");
+                    String cardNo = StringUtil.interrupt(purchasBean.getBean().getCardNo(),0,"");
+                    if(!cardNo.equals("")){
+                        cardNo = "(尾号"+cardNo.substring(8,12)+")";
+                    }
+                    pay_method.setText(bankName+cardNo);
+
+                    String cardInformation = StringUtil.interrupt(purchasBean.getBean().getQuickPayMemo(),0,"未知");
+                    pay_content.setText(cardInformation);
+
+                }else if(mModel.mode.equals("BALANCE_PAY")){
+                    pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zhye_icon));
+
+                    pay_method.setText("账户余额");
+
+                    String userbalance = StringUtil.interrupt(purchasBean.getAssets().getAvailable(),0,"0.00");
+                    pay_content.setText("可用余额 "+userbalance);
+                }
+            }
+        });
+
 
     }
 
@@ -169,7 +223,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     private boolean agreementOK = false;
     private void checkContent(){
 
-        RxTextView.textChangeEvents(ed_amountofmoney)
+        RxTextView.textChangeEvents(mModel.ed_amountofmoney)
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<TextViewTextChangeEvent>() {
@@ -204,6 +258,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
                         isClickable();
                     }
                 });
+
     }
 
     /**
@@ -227,9 +282,12 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         passwordView.setOnPasswordViewListener(new PasswordView.OnPasswordViewListener() {
             @Override
             public void inputFinish() {
-                showToast(passwordView.getStrPassword());
+//                showToast(passwordView.getStrPassword());
                 passwordView.out();
-                dialog.show();
+                showProgressDialog();
+                String payPassword = DigestUtils.encrypt(passwordView.getStrPassword());
+                mModel.onPurchase(payPassword,"");
+//                dialog.show();
 
             }
 
@@ -253,7 +311,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         if(passwordView == null){
             return;
         }
-        String money = ed_amountofmoney.getText().toString();
+        String money = mModel.ed_amountofmoney.getText().toString();
             passwordView.setMoney("投资金额:"+money);
             passwordView.show();
 
@@ -265,19 +323,23 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
      * 设置短息认证控件
      */
     private void setSMSView(){
+
+
 //        smsView = sms.getView();
         sms.setView(HuaShanApplication.account,"",purchase_pl, new SMSauthenticationView.OnAuthenticationListener() {
 
             @Override
             public void onLeft(View view) {
-                showToast("onleft");
+//                showToast("onleft");
                 sms.dismiss();
             }
 
             @Override
             public void onRight(View view) {
-                showToast("onRight");
-                sms.verification();
+//                showToast("onRight");
+//                sms.verification();
+                mModel.onPurchase("",sms.getCode());
+
             }
             @Override
             public void onHelp(View view) {
@@ -286,7 +348,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
 
             @Override
             public void onResend(View view) {
-
+                mModel.sendSMS();
             }
 
             @Override
@@ -305,13 +367,44 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
      */
     @Override
     public void addSMSView(){
-        String money = ed_amountofmoney.getText().toString();
+        String money = mModel.ed_amountofmoney.getText().toString();
         sms.setText1("支付"+money+"元");
         sms.setText2("请输入手机尾号5618接受的验证码");
         sms.show();
 
 
 //        imm.showSoftInput(ed_amountofmoney,InputMethodManager.SHOW_FORCED);
+    }
+
+    /**
+     * 投资成功
+     * @param detailsId
+     */
+    @Override
+    public void purchaseSuccess(String detailsId) {
+        dialog.show();
+        dissmissProgressDialog();
+    }
+
+    /**
+     * 投资失败
+     * @param s
+     */
+    @Override
+    public void purchaseFail(String s) {
+        dialogFail.show();
+        dissmissProgressDialog();
+    }
+
+    /**
+     * 投资错误
+     * @param e
+     */
+    @Override
+    public void purchaseError(Throwable e) {
+//        dialogFail.show();
+        showToast("网络故障！");
+        dissmissProgressDialog();
     }
 
     /**
@@ -323,15 +416,39 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         dialog.setClick("查看详情","继续购买", new PromptDialog.OnDialogListener() {
             @Override
             public void onleft(View view) {
-                showToast("查看详情");
+//                showToast("查看详情");
                 toOtherActivity(PurchaseActivity.this, InvestmentActivity.class);
             }
 
             @Override
             public void onRight(View view) {
-                showToast("继续购买");
+//                showToast("继续购买");
                 dialog.dismiss();
-                ed_amountofmoney.setText("");
+                mModel.ed_amountofmoney.setText("");
+            }
+        });
+    }
+
+    /**
+     * 投资后的提示Dialog
+     */
+    public void setDialogFail(){
+        dialogFail.setPrompt("","购买失败！");
+        dialogFail.setMod(PromptDialog.MOD2);
+        dialogFail.setClick("退出","继续购买", new PromptDialog.OnDialogListener() {
+            @Override
+            public void onleft(View view) {
+//                showToast("查看详情");
+//                toOtherActivity(PurchaseActivity.this, InvestmentActivity.class);
+                dialogFail.dismiss();
+                finish();
+            }
+
+            @Override
+            public void onRight(View view) {
+//                showToast("继续购买");
+                dialogFail.dismiss();
+                mModel.ed_amountofmoney.setText("");
             }
         });
     }

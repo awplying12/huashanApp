@@ -60,6 +60,9 @@ public class BaseFragment extends Fragment implements BaseView {
 
     @Override
     public void showToast(String msg) {
-        Toast.makeText(this.getActivity().getBaseContext(), msg, Toast.LENGTH_SHORT).show();
+        if(this.getActivity() == null){
+            return;
+        }
+        Toast.makeText(this.getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 }

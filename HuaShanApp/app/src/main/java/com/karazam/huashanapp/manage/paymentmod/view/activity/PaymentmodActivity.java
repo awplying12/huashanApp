@@ -1,6 +1,8 @@
 package com.karazam.huashanapp.manage.paymentmod.view.activity;
 
 import android.databinding.DataBindingUtil;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,13 +14,19 @@ import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityPaymentmodBinding;
+import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.manage.paymentmod.model.databinding.PaymentmodEntity;
 import com.karazam.huashanapp.manage.paymentmod.view.PaymentmodView;
+import com.karazam.huashanapp.manage.paymentmod.view.view.PaymentAdapter;
 import com.karazam.huashanapp.manage.paymentmod.viewmodel.PaymentmodViewModel;
 import com.karazam.huashanapp.manage.paymentmod.viewmodel.PaymentmodViewModelImpl;
+import com.karazam.huashanapp.manage.purchase.model.databinding.PurchasBean;
+import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2016/11/16.
@@ -30,10 +38,7 @@ public class PaymentmodActivity extends BaseActivity implements PaymentmodView{
     private PaymentmodViewModel mModel;
     private PaymentmodEntity entity = new PaymentmodEntity();
 
-    private LinearLayout content_ll;
-
-    private View view1;
-    private View view2;
+    private RecyclerView payment_rl;
 
     @Override
     public void setContentLayout() {
@@ -51,95 +56,73 @@ public class PaymentmodActivity extends BaseActivity implements PaymentmodView{
 
     @Override
     public void initView() {
-        content_ll = (LinearLayout) getView(R.id.content_ll);
+        payment_rl = (RecyclerView) getView(R.id.payment_rl);
+        LinearLayoutManager lm = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        payment_rl.setLayoutManager(lm);
+
+
     }
 
     @Override
     public void dealLogicAfterInitView() {
-        setPaymentmodView1();
-        setPaymentmodView2();
-
-        content_ll.addView(view1);
-        content_ll.addView(view2);
-    }
-
-
-    /**
-     * 设置付款方式VIEW1
-     */
-    private void setPaymentmodView1() {
-
-        view1 = LayoutInflater.from(this).inflate(R.layout.view_paymentmod_item,null);
-//        RxView.of(view1).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-//            @Override
-//            public void call(View target, UserInformation userInformation) {
-//                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
-//                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
-//                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
-//
-//                pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zhye_icon));
-//                pay_method.setText("账户余额");
-//
-//                String userbalance = StringUtil.interrupt(userInformation.getUserbalance(),0,"0.00");
-//                pay_content.setText("可用余额 "+userbalance);
-//
-//            }
-//        });
-
-        TextView bt_recharge = (TextView) view1.findViewById(R.id.bt_recharge);
-        bt_recharge.setVisibility(View.VISIBLE);
-
-        bt_recharge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showToast("充值");
-            }
-        });
-
-        view1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choicePaymentmod("");
-                PaymentmodActivity.this.finish();
-            }
-        });
+        setRecyclerView();
     }
 
     /**
-     * 设置付款方式VIEW2
+     * 设置付款方式
      */
-    private void setPaymentmodView2() {
+    private PaymentAdapter adapter;
+    private void setRecyclerView() {
 
-        view2 = LayoutInflater.from(this).inflate(R.layout.view_paymentmod_item,null);
-//        RxView.of(view2).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
-//            @Override
-//            public void call(View target, UserInformation userInformation) {
-//                TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
-//                TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
-//                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
-//
-//                pay_img.setImageDrawable(getResources().getDrawable(R.drawable.zgyh_icon));
-//
-//                String bankCard = StringUtil.interrupt(userInformation.getBankCard(),0,"未知");
-//                pay_method.setText(bankCard);
-//
-//                String cardInformation = StringUtil.interrupt(userInformation.getCardInformation(),0,"未知");
-//                pay_content.setText(cardInformation);
-//            }
-//        });
+        adapter = new PaymentAdapter(this,new ArrayList<CardBean>());
+        payment_rl.setAdapter(adapter);
 
-        view2.setOnClickListener(new View.OnClickListener() {
+        adapter.setmOnItemClickListener(new PaymentAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                choicePaymentmod("bankCard");
-                PaymentmodActivity.this.finish();
+            public void isHeaderView(View view) {
+//                showToast("账户余额");
+                PurchasBean purchasBean = new PurchasBean();
+                purchasBean.setPaymentMethod("BALANCE_PAY");
+                purchasBean.setAssets(HuaShanApplication.myAssetsBean);
+                PurchaseActivity.purchasBeanRx.set(purchasBean);
+                finish();
+
+            }
+
+            @Override
+            public void onItem(View view, int position) {
+//                showToast("银行卡");
+
+                CardBean cardbean = adapter.getList().get(position);
+
+                PurchasBean purchasBean = new PurchasBean();
+                purchasBean.setPaymentMethod("QUICK_PAY");
+                purchasBean.setBean(cardbean);
+                PurchaseActivity.purchasBeanRx.set(purchasBean);
+                finish();
+            }
+
+            @Override
+            public void onItemLong(View view, int position) {
+
+            }
+
+            @Override
+            public void onBottomView(View view) {
+
+            }
+        });
+
+        RxView.of(payment_rl).bind(HuaShanApplication.quickCardsRX, new Rx.Action<RecyclerView, ArrayList<CardBean>>() {
+            @Override
+            public void call(RecyclerView target, ArrayList<CardBean> cardBeen) {
+
+                adapter.setList(cardBeen);
+                adapter.notifyDataSetChanged();
+
             }
         });
     }
 
-    private void choicePaymentmod(String mod){
-//        HuaShanApplication.userInformation.setPaymentmod(mod);
-//        HuaShanApplication.userInformationR.set(HuaShanApplication.userInformation);
-    }
 
 }

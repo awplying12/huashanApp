@@ -22,6 +22,7 @@ import com.example.utils.Adapter.PagerFragmentAdapter;
 import com.example.utils.base.BaseFragment;
 import com.example.utils.custom.RefreshRecyclerView;
 import com.example.utils.utils.StringUtil;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentDetails2Binding;
 import com.karazam.huashanapp.main.Bean.HotProjects;
@@ -228,7 +229,7 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
 //            }
 //        });
 
-        RxView.of(view1).bind(activity.project, new Rx.Action<View, ManagedetailsBean>() {
+        RxView.of(view1).bind(HuaShanApplication.project, new Rx.Action<View, ManagedetailsBean>() {
             @Override
             public void call(View target, ManagedetailsBean managedetailsBean) {
 
@@ -371,6 +372,7 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
             case 1:
                 imgId1 = R.drawable.l;
                 imgId2 = R.drawable.o;
+                imgId3 = R.drawable.l;
                 break;
             default:
                 imgId1 = R.drawable.oo;

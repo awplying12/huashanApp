@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.manage.details.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -94,7 +95,10 @@ public class InvestmentdetailsViewModelImpl extends InvestmentdetailsViewModel {
 
             return;
         }
-        mView.toOtherActivity(activity, PurchaseActivity.class);
+//        mView.toOtherActivity(activity, PurchaseActivity.class);
+        Intent intent = new Intent(activity, PurchaseActivity.class);
+        intent.putExtra("borrowingId",borrowingId);
+        activity.startActivity(intent);
     }
 
 

@@ -98,7 +98,7 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
             public void call(View target, CardBean cardBean) {
                 mModel.card = cardBean;
 
-                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
+                final ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
                 TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
                 TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
 
@@ -111,12 +111,14 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        pay_img.setImageDrawable(getResources().getDrawable(R.drawable.bankdef_logo));
                     }
 
                     @Override
                     public void onNext(Data data) {
-
+                        if(data.bitmap == null){
+                            pay_img.setImageDrawable(getResources().getDrawable(R.drawable.bankdef_logo));
+                        }
                     }
                 });
 

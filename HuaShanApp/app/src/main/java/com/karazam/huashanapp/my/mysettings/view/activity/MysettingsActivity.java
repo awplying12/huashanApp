@@ -185,6 +185,9 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
         picturedialog.show();
     }
 
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
@@ -229,7 +232,8 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
 
             bitmapBase = BitmapUtil.comp(photo);
 
-            Log.i("bitmapBase",bitmapBase);
+//            Log.i("bitmapBase",bitmapBase);
+            mModel.setHeader(bitmapBase);
         }
     }
 
@@ -250,5 +254,31 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
         intent.putExtra("outputY", 80);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, StringUtil.RESULT_REQUEST_CODE);
+    }
+
+    /**
+     * 修改头像成功
+     */
+    @Override
+    public void setHeaderSuccess() {
+
+    }
+
+    /**
+     * 修改头像失败
+     * @param s
+     */
+    @Override
+    public void setHeaderFail(String s) {
+        showToast(s);
+    }
+
+    /**
+     * 修改头像错误
+     * @param e
+     */
+    @Override
+    public void setHeaderError(Throwable e) {
+        showToast("网络故障！");
     }
 }

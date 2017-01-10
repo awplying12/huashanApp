@@ -22,6 +22,7 @@ import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
 import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecords;
 import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecordsItem;
 
+import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -61,7 +62,7 @@ public class HuaShanApplication extends Application {
 
 //    public static UserInformation userInformation;
 
-    public static String paymentMethod = "";
+    public static String paymentMethod = "QUICK_PAY";
 
     public static boolean certificationStatus = true;
 
@@ -82,6 +83,9 @@ public class HuaShanApplication extends Application {
 
     public static ArrayList<BaseActivity> securitysPayment = new ArrayList<>();
     public static ArrayList<BaseActivity> securitysGesture = new ArrayList<>();
+
+    //投资详情对象
+    public static RxProperty<ManagedetailsBean> project = RxProperty.create();
 
     public static FinancialProject project1;
     public static FinancialProject project2;
@@ -111,7 +115,7 @@ public class HuaShanApplication extends Application {
         refresh_token = sharedPreferences.getString("refresh_token", "");
         client_id = sharedPreferences.getString("client_id", "");
 
-        paymentMethod = sharedPreferences.getString("paymentMethod", "");
+        paymentMethod = sharedPreferences.getString("paymentMethod", "QUICK_PAY");
 
         loginStatus = sharedPreferences.getInt("loginStatus",-1);
 

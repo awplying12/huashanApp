@@ -9,4 +9,10 @@ import com.example.utils.base.BaseView;
 public interface MysettingsView extends BaseView {
 
     void addPicturedialog();
+
+    void setHeaderSuccess();
+
+    void setHeaderFail(String s);
+
+    void setHeaderError(Throwable e);
 }

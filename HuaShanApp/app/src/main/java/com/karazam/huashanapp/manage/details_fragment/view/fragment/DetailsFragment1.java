@@ -14,6 +14,7 @@ import com.example.utils.base.BaseFragment;
 import com.example.utils.utils.StringUtil;
 import com.gelitenight.waveview.library.WaveHelper;
 import com.gelitenight.waveview.library.WaveView;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentDetails1Binding;
 import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
@@ -98,7 +99,7 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
 //                mWaveHelper.setPercent(0.3f);
 //            }
 //        });
-        RxView.findById(getActivity(), R.id.content_pl).bind(activity.project, new Rx.Action<View, ManagedetailsBean>() {
+        RxView.findById(getActivity(), R.id.content_pl).bind(HuaShanApplication.project, new Rx.Action<View, ManagedetailsBean>() {
             @Override
             public void call(View target, ManagedetailsBean managedetailsBean) {
 
@@ -127,7 +128,7 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
                 if(residualAmount.equals("0")){
                     return;
                 }
-                float Percent = Float.parseFloat(residualAmount)/Float.parseFloat(amount);
+                float Percent = (Float.parseFloat(amount)-Float.parseFloat(residualAmount))/Float.parseFloat(amount);
                 mWaveHelper.setPercent(Percent);
 
                 String repaymentMethodDes = project.getRepaymentMethodDes();
