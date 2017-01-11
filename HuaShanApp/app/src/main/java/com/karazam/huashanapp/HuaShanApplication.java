@@ -55,12 +55,10 @@ public class HuaShanApplication extends Application {
     public static int loginStatus;
     public static RxProperty<Integer> loginStatusRx = RxProperty.create();
 
-
     public static String imei;
     public static String mtype;
     public static String VERSION;
 
-//    public static UserInformation userInformation;
 
     public static String paymentMethod = "QUICK_PAY";
 
@@ -68,7 +66,6 @@ public class HuaShanApplication extends Application {
 
     public static RxProperty<Time> day = RxProperty.create();
 
-//    public static RxProperty<UserInformation> userInformationR = RxProperty.create();
 
     //个人信息
     public static MyInformationBean myInformation = new MyInformationBean();
@@ -86,6 +83,7 @@ public class HuaShanApplication extends Application {
 
     //投资详情对象
     public static RxProperty<ManagedetailsBean> project = RxProperty.create();
+    public static RxProperty<String> refreshManage = RxProperty.create();
 
     public static FinancialProject project1;
     public static FinancialProject project2;
@@ -141,21 +139,6 @@ public class HuaShanApplication extends Application {
         time.setToNow();
 
         day.set(time);
-
-//        userInformation = new UserInformation();
-//        userInformation.setBankCard("中国银行(尾号7634)");
-//        userInformation.setCardInformation("单笔限额5万,单日限额50万");
-//        userInformation.setUserbalance("6214.47");
-//        userInformation.setPaymentmod("");
-//        userInformation.setHeaderImg("http://tx.haiqq.com/uploads/allimg/150325/12215B540-0.jpg");
-//        userInformation.setUserName("王蕙");
-//        userInformation.setNickname("chayewala");
-//        userInformation.setStatus(certificationStatus);
-//        userInformation.setPhonenum("130*****017");
-////        paymentmod = userInformation.getPaymentmod();
-//        userInformationR.set(userInformation);
-
-
 
         project1= new FinancialProject();
         ArrayList<FinancialInformation> informations1 = new ArrayList<>();
@@ -250,7 +233,6 @@ public class HuaShanApplication extends Application {
      */
     public static void setMyAssets(MyAssetsBean bean){
         HuaShanApplication.myAssetsBean = bean;
-
         HuaShanApplication.myAssetsBeanRX.set(HuaShanApplication.myAssetsBean);
     }
 

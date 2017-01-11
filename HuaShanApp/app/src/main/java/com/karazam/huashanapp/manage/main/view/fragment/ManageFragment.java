@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.utils.base.BaseFragment;
 import com.example.utils.custom.RefreshRecyclerView;
 import com.example.utils.custom.WrapContentLinearLayoutManager;
 
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentManageBinding;
 import com.karazam.huashanapp.main.Bean.HotProjects;
@@ -26,6 +28,8 @@ import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
 import com.karazam.huashanapp.main.adapter.TitleBarAdapter;
 import com.karazam.huashanapp.manage.main.viewmodel.ManageViewModel;
 import com.karazam.huashanapp.manage.main.viewmodel.ManageViewModelImpl;
+import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
 
@@ -70,9 +74,13 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         setRefreshRecyclerView();
 
 
-        Refresh();
+        initRefresh();
+
+
         return view;
     }
+
+
 
     /**
      * 初始化View
@@ -148,6 +156,21 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 
     }
 
+    private void initRefresh() {
+        Refresh();
+        RxView.of(content_rl).bind(HuaShanApplication.refreshManage, new Rx.Action<RefreshRecyclerView, String>() {
+            @Override
+            public void call(RefreshRecyclerView target, String s) {
+
+                if(s.equals("Refresh")||s.equals("getManage")){
+                    Refresh();
+                }
+
+            }
+        });
+
+    }
+
 
     /**
      *  SwipeRefreshLayout配合RecyclerView
@@ -173,7 +196,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 //        list.add(new HotProjects());
 //        list.add(new HotProjects());
 
-        adapter = new ContentAdapter(getContext(),list);
+        adapter = new ContentAdapter(getContext(),list,getActivity());
         content_rl.setAdapter(adapter);
 
 //        adapter.setmOnItemClickListener(new BidingAdapter.onItemClickListener() {
@@ -183,13 +206,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 //            }
 //        });
 
-        content_rl.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
-            @Override
-            public void onRefreshUp() {
-//                showToast("onRefresh up");
-                addData();
-            }
-        });
+
 
     }
 
@@ -212,6 +229,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
      * 添加数据
      */
     private void addData(){
+
         if(page >mModel.allpage){
             showToast("到最后一页了！");
             return;
@@ -288,4 +306,17 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        content_rl.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
+            @Override
+            public void onRefreshUp() {
+//                showToast("onRefresh up");
+                Log.i("page","page : "+ page +" allpage : "+mModel.allpage);
+                addData();
+            }
+        });
+    }
 }

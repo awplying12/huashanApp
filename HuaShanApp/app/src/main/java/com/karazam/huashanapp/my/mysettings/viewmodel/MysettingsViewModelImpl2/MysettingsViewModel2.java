@@ -17,4 +17,6 @@ public abstract class MysettingsViewModel2 extends BaseViewModel{
     public abstract void cleanContent(View view);
 
     public abstract void saveData(View view);
+
+    public abstract void setUpName(String nickName);
 }

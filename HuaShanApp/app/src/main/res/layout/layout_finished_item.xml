@@ -17,15 +17,6 @@
         android:background="#fff"
         >
 
-        <TextView
-            android:id="@+id/name"
-            app:layout_widthPercent="50%"
-            android:layout_height="wrap_content"
-            app:layout_marginLeftPercent="5%"
-            android:layout_gravity="center_vertical"
-            android:text="CR216001-31补充流动资金"
-            android:textSize="13dp"/>
-
         <ImageView
             app:layout_widthPercent="4%"
             android:layout_height="wrap_content"
@@ -33,7 +24,7 @@
             android:src="@drawable/sum_icon"/>
 
         <TextView
-            android:id="@+id/sum"
+            android:id="@+id/amount"
             app:layout_widthPercent="25%"
             android:layout_height="wrap_content"
             app:layout_marginLeftPercent="64%"
@@ -50,6 +41,15 @@
             android:layout_gravity="center_vertical|right"
             app:layout_marginRightPercent="5%"
             android:src="@drawable/btn_open_img"/>
+
+        <TextView
+            android:id="@+id/name"
+            app:layout_widthPercent="50%"
+            android:layout_height="wrap_content"
+            app:layout_marginLeftPercent="5%"
+            android:layout_gravity="center_vertical"
+            android:text="CR216001-31补充流动资金"
+            android:textSize="13dp"/>
     </android.support.percent.PercentFrameLayout>
 
     <android.support.percent.PercentFrameLayout
@@ -164,6 +164,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/interest_rate"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="13%"
                 app:layout_marginLeftPercent="31%"
@@ -174,6 +175,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/repayment_method"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="13%"
                 app:layout_marginLeftPercent="31%"
@@ -184,6 +186,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/finish_time"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="13%"
                 app:layout_marginLeftPercent="31%"
@@ -194,6 +197,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/paid_capitali"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="13%"
                 app:layout_marginLeftPercent="31%"

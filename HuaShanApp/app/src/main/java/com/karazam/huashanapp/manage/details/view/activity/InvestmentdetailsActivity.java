@@ -119,11 +119,15 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     @Override
     public void dealLogicAfterInitView() {
 //            setWaveView();
+
             setLayout();
             setVerticalViewPager();
 
-        mModel.getManagedetailsData(mModel.borrowingId);
+            initData();
+
     }
+
+
 
     /**
      * 设置详情的ViewPager
@@ -168,6 +172,26 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
                 String publishDate = project.getPublishDate();
                 release_time.setText("发布日期："+StringUtil.interrupt(publishDate,0,""));
+            }
+        });
+
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+
+        mModel.getManagedetailsData(mModel.borrowingId);
+
+        RxView.of(new View(this)).bind(HuaShanApplication.refreshManage, new Rx.Action<View, String>() {
+            @Override
+            public void call(View target, String s) {
+
+                if(s.equals("Refresh")||s.equals("getManagedetails")){
+                    mModel.getManagedetailsData(mModel.borrowingId);
+                }
+
             }
         });
 
@@ -231,6 +255,12 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
         }
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
 
     @Override
     protected void onPause() {

@@ -79,6 +79,7 @@
 
             <!--第1部分-->
             <android.support.percent.PercentFrameLayout
+                android:id="@+id/pf_path_1"
                 android:layout_width="match_parent"
                 app:layout_heightPercent="22%"
                 android:background="#66b3ff">
@@ -153,7 +154,7 @@
                 </android.support.percent.PercentFrameLayout>
 
 
-                <android.support.v7.widget.RecyclerView
+                <com.example.utils.custom.RefreshRecyclerView
                     android:id="@+id/content_rl"
                     android:layout_width="match_parent"
                     app:layout_heightPercent="89%"
@@ -161,7 +162,7 @@
                     android:overScrollMode="never"
                     >
 
-                </android.support.v7.widget.RecyclerView>
+                </com.example.utils.custom.RefreshRecyclerView>
 
             </android.support.percent.PercentFrameLayout>
 

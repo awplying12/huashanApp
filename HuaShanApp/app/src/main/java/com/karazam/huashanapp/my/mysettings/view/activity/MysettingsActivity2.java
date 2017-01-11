@@ -92,4 +92,26 @@ public class MysettingsActivity2 extends BaseActivity implements MysettingsView2
     }
 
 
+    /**
+     * 设置昵称成功
+     */
+    @Override
+    public void setUpNameSuccess() {
+
+    }
+
+    /**
+     * 设置昵称失败
+     */
+    @Override
+    public void setUpNameFail(String s) {
+        showToast(s);
+    }
+    /**
+     * 设置昵称错误
+     */
+    @Override
+    public void setUpNameError(Throwable e) {
+        showToast("网络故障！");
+    }
 }

@@ -12,5 +12,12 @@ public abstract class MyfinanceViewModel extends BaseViewModel{
 
     public boolean isEmpty = true;
 
+    public static int allpage = 1;
+    public String mProgress = "investing";    //investing("投资中")
+                                                // repaying("还款中")
+                                                //completed("已完成")
+
     public abstract void Finanec(View view);
+
+    public abstract void getMyfinanceData(String progress,int currentPage);
 }

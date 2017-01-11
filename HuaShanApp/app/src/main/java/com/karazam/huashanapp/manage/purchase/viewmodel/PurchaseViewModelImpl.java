@@ -144,7 +144,12 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
                     @Override
                     public void onNext(BaseReturn<PurchaseRetureBean> purchaseRetureBeanBaseReturn) {
                         if (purchaseRetureBeanBaseReturn.isSuccess()){
-                            mView.purchaseSuccess("");
+
+                            PurchaseRetureBean bean = purchaseRetureBeanBaseReturn.getData();
+                            Log.i("Assets",bean.getAssets().toString());
+                            HuaShanApplication.setMyAssets(bean.getAssets());
+
+                            mView.purchaseSuccess(bean.getOrderNo());
                         }else {
                             mView.purchaseFail(purchaseRetureBeanBaseReturn.getMessage());
                         }

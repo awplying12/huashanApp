@@ -215,30 +215,30 @@ public class MytransferActivity extends BaseActivity implements MytransferView {
     private HoldingAdapter holdingAdapter;
     private void setTransferContent(FinancialProject project) {
 
-        holdingAdapter = new HoldingAdapter(MytransferActivity.this,project.getInformations(),content_rl);
-        content_rl.setAdapter(holdingAdapter);
-
-        holdingAdapter.setmOnItemClickListener(new HoldingAdapter.OnItemClickListener() {
-
-            @Override
-            public void onCheck(int position) {
-                showToast("查看  "+position);
-            }
-
-            @Override
-            public void onDownload(int position) {
-                showToast("下载  "+position);
-            }
-
-            @Override
-            public void onTransfer(int position) {
-                showToast("转让  "+position);
-                mPosition = position;
-                assignmentView.setFinancialInformation(holdingAdapter.getList().get(position));
-                assignmentView.show();
-            }
-
-        });
+//        holdingAdapter = new HoldingAdapter(MytransferActivity.this,project.getInformations(),content_rl);
+//        content_rl.setAdapter(holdingAdapter);
+//
+//        holdingAdapter.setmOnItemClickListener(new HoldingAdapter.OnItemClickListener() {
+//
+//            @Override
+//            public void onCheck(int position) {
+//                showToast("查看  "+position);
+//            }
+//
+//            @Override
+//            public void onDownload(int position) {
+//                showToast("下载  "+position);
+//            }
+//
+//            @Override
+//            public void onTransfer(int position) {
+//                showToast("转让  "+position);
+//                mPosition = position;
+//                assignmentView.setFinancialInformation(holdingAdapter.getList().get(position));
+//                assignmentView.show();
+//            }
+//
+//        });
     }
 
     /**

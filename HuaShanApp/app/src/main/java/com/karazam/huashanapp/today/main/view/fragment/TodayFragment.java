@@ -453,7 +453,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 //        list.add(new HotProjects());
 //        list.add(new HotProjects());
 
-        adapter = new ContentAdapter(getContext(),list);
+        adapter = new ContentAdapter(getContext(),list,getActivity());
 
         selected_rl.setAdapter(adapter);
 

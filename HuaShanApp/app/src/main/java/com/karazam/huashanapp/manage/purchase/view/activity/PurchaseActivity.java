@@ -338,7 +338,9 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             public void onRight(View view) {
 //                showToast("onRight");
 //                sms.verification();
+                showProgressDialog();
                 mModel.onPurchase("",sms.getCode());
+                sms.dismiss();
 
             }
             @Override
@@ -384,6 +386,16 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     public void purchaseSuccess(String detailsId) {
         dialog.show();
         dissmissProgressDialog();
+        HuaShanApplication.refreshManage.set("Refresh");
+
+        if(mModel.mode.equals("BALANCE_PAY")){
+
+            PurchasBean purchasBean = new PurchasBean();
+            purchasBean.setPaymentMethod("BALANCE_PAY");
+            purchasBean.setAssets(HuaShanApplication.myAssetsBean);
+            purchasBeanRx.set(purchasBean);
+        }
+
     }
 
     /**

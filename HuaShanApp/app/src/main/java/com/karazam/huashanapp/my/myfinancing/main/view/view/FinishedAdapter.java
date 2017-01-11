@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
+import com.karazam.huashanapp.my.myfinancing.main.model.databinding.CompletedBean;
 
 import java.util.ArrayList;
 
@@ -23,14 +25,14 @@ import java.util.ArrayList;
 public class FinishedAdapter extends RecyclerView.Adapter<FinishedAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<FinancialInformation> list = new ArrayList<>();
+    private ArrayList<CompletedBean> list = new ArrayList<>();
 
     private RecyclerView rl;
 
     private FrameLayout fl;
     private ImageView open;
 
-    public FinishedAdapter(Context context, ArrayList<FinancialInformation> list, RecyclerView rl) {
+    public FinishedAdapter(Context context, ArrayList<CompletedBean> list, RecyclerView rl) {
         this.context = context;
         this.list = list;
         this.rl = rl;
@@ -46,6 +48,9 @@ public class FinishedAdapter extends RecyclerView.Adapter<FinishedAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+
+
+        setItem(holder,position);
 
         if(holder.fl1 != null){
             holder.fl1.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +78,41 @@ public class FinishedAdapter extends RecyclerView.Adapter<FinishedAdapter.ViewHo
 
     }
 
+    /**
+     * 设置Item
+     * @param holder
+     * @param position
+     */
+    private void setItem(ViewHolder holder, int position) {
+
+        CompletedBean bean = list.get(position);
+
+        String name = StringUtil.interrupt(bean.getTitle(),20,"未知");
+        holder.name.setText(name);
+
+        String amount = StringUtil.reservedDecimal(StringUtil.interrupt(bean.getAmount(),0,"0"),2);
+        holder.amount.setText(StringUtil.interrupt(amount,12,"0.00"));
+
+        String time = StringUtil.interrupt(bean.getBuyTime(),16,"未知");
+        holder.time.setText(time);
+
+        String term = StringUtil.interrupt(bean.getPeriod(),0,"未知");
+        holder.term.setText(term);
+
+        String interest_rate = StringUtil.interrupt(bean.getInterestRate(),0,"0.0%");
+        holder.interest_rate.setText(interest_rate);
+
+        String repayment_method = StringUtil.interrupt(bean.getRepaymentMethod(),18,"未知");
+        holder.repayment_method.setText(repayment_method);
+
+        String finish_time = StringUtil.interrupt(bean.getFinishTime(),0,"未知");
+        holder.finish_time.setText(finish_time);
+
+        String paid_capitali = StringUtil.reservedDecimal(StringUtil.interrupt(bean.getPaidCapitaliInterest(),0,"0"),2);
+        holder.paid_capitali.setText("￥ "+paid_capitali);
+
+    }
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -88,6 +128,16 @@ public class FinishedAdapter extends RecyclerView.Adapter<FinishedAdapter.ViewHo
         private TextView download_btn;
 //        private TextView transfer_btn;
 
+
+        private TextView name;
+        private TextView amount;
+        private TextView time;
+        private TextView term;
+        private TextView interest_rate;
+        private TextView repayment_method;
+        private TextView finish_time;
+        private TextView paid_capitali;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -100,6 +150,17 @@ public class FinishedAdapter extends RecyclerView.Adapter<FinishedAdapter.ViewHo
             download_btn.setOnClickListener(this);
 //            transfer_btn = (TextView) itemView.findViewById(R.id.transfer_btn);
 //            transfer_btn.setOnClickListener(this);
+
+            name = (TextView) itemView.findViewById(R.id.name);
+            amount = (TextView) itemView.findViewById(R.id.amount);
+            time = (TextView) itemView.findViewById(R.id.time);
+            term = (TextView) itemView.findViewById(R.id.term);
+            interest_rate = (TextView) itemView.findViewById(R.id.interest_rate);
+            repayment_method = (TextView) itemView.findViewById(R.id.repayment_method);
+            finish_time = (TextView) itemView.findViewById(R.id.finish_time);
+            paid_capitali = (TextView) itemView.findViewById(R.id.paid_capitali);
+
+
         }
 
         @Override

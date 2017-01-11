@@ -110,6 +110,9 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
                     public void onNext(BaseReturn<SetupBean> setupBeanBaseReturn) {
                         if(setupBeanBaseReturn.isSuccess()){
                             SetupBean bean = setupBeanBaseReturn.getData();
+                            HuaShanApplication.myInformation.setBaseInfo(bean.getBaseInfo());
+                            HuaShanApplication.baseInfoBeanRX.set(bean.getBaseInfo());
+                            mView.setHeaderSuccess();
                         } else {
                             mView.setHeaderFail(setupBeanBaseReturn.getMessage());
                         }

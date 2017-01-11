@@ -33,7 +33,7 @@
             android:src="@drawable/sum_icon"/>
 
         <TextView
-            android:id="@+id/sum"
+            android:id="@+id/amount"
             app:layout_widthPercent="25%"
             android:layout_height="wrap_content"
             app:layout_marginLeftPercent="64%"
@@ -172,6 +172,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/interest_rate"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="8%"
                 app:layout_marginLeftPercent="31%"
@@ -182,6 +183,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/repayment_method"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="8%"
                 app:layout_marginLeftPercent="31%"
@@ -192,6 +194,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/due_time"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="8%"
                 app:layout_marginLeftPercent="31%"
@@ -202,6 +205,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/unpaid_amount"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="8%"
                 app:layout_marginLeftPercent="31%"
@@ -212,6 +216,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/paid_amount"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="8%"
                 app:layout_marginLeftPercent="31%"
@@ -264,6 +269,7 @@
                 android:background="@drawable/btn_bg_img_0894ec_5dp"
                 android:text="可转让"
                 android:textColor="#fff"
+                android:visibility="gone"
                 />
 
         </android.support.percent.PercentFrameLayout>

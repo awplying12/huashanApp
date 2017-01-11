@@ -250,8 +250,8 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 80);
-        intent.putExtra("outputY", 80);
+        intent.putExtra("outputX", 200);
+        intent.putExtra("outputY", 200);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, StringUtil.RESULT_REQUEST_CODE);
     }
@@ -261,7 +261,7 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
      */
     @Override
     public void setHeaderSuccess() {
-
+        picturedialog.dismiss();
     }
 
     /**
@@ -270,6 +270,7 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
      */
     @Override
     public void setHeaderFail(String s) {
+        picturedialog.dismiss();
         showToast(s);
     }
 
@@ -279,6 +280,7 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
      */
     @Override
     public void setHeaderError(Throwable e) {
+        picturedialog.dismiss();
         showToast("网络故障！");
     }
 }

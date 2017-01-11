@@ -8,8 +8,17 @@ import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
 
 public class RechargeBean {
 
+    private String orderNo;
     private String capitalId;
     private MyAssetsBean assets;
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
 
     public String getCapitalId() {
         return capitalId;
@@ -29,8 +38,9 @@ public class RechargeBean {
 
     @Override
     public String toString() {
-        return "WithdrawalsBean{" +
-                "capitalId='" + capitalId + '\'' +
+        return "RechargeBean{" +
+                "orderNo='" + orderNo + '\'' +
+                ", capitalId='" + capitalId + '\'' +
                 ", assets=" + assets +
                 '}';
     }

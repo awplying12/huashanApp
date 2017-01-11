@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
+import com.karazam.huashanapp.my.myfinancing.main.model.databinding.RepayingBean;
 
 import java.util.ArrayList;
 
@@ -22,14 +24,14 @@ import java.util.ArrayList;
 public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<FinancialInformation> list = new ArrayList<>();
+    private ArrayList<RepayingBean> list = new ArrayList<>();
 
     private RecyclerView rl;
 
     private FrameLayout fl;
     private ImageView open;
 
-    public HoldingAdapter(Context context, ArrayList<FinancialInformation> list, RecyclerView rl) {
+    public HoldingAdapter(Context context, ArrayList<RepayingBean> list, RecyclerView rl) {
         this.context = context;
         this.list = list;
         this.rl = rl;
@@ -47,13 +49,15 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
 
-        if(list.get(position).isState()){
-            holder.transfer_btn.setText("可转让");
-            holder.transfer_btn.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
-        }else {
-            holder.transfer_btn.setText("撤销转让");
-            holder.transfer_btn.setBackgroundResource(R.drawable.btn_bg_img_ff5722_5dp);
-        }
+        setItem(holder,position);
+
+//        if(list.get(position).isState()){
+//            holder.transfer_btn.setText("可转让");
+//            holder.transfer_btn.setBackgroundResource(R.drawable.btn_bg_img_0894ec_5dp);
+//        }else {
+//            holder.transfer_btn.setText("撤销转让");
+//            holder.transfer_btn.setBackgroundResource(R.drawable.btn_bg_img_ff5722_5dp);
+//        }
 
 
 
@@ -83,6 +87,45 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
 
     }
 
+    /**
+     * 设置Item
+     * @param holder
+     * @param position
+     */
+    private void setItem(ViewHolder holder, int position) {
+
+        RepayingBean bean = list.get(position);
+
+        String name = StringUtil.interrupt(bean.getTitle(),20,"未知");
+        holder.name.setText(name);
+
+        String amount = StringUtil.reservedDecimal(StringUtil.interrupt(bean.getAmount(),0,"0"),2);
+        holder.amount.setText(StringUtil.interrupt(amount,12,"0.00"));
+
+        String time = StringUtil.interrupt(bean.getBuyTime(),16,"未知");
+        holder.time.setText(time);
+
+        String term = StringUtil.interrupt(bean.getPeriod(),0,"未知");
+        holder.term.setText(term);
+
+        String interest_rate = StringUtil.interrupt(bean.getInterestRate(),0,"0.0%");
+        holder.interest_rate.setText(interest_rate);
+
+        String repayment_method = StringUtil.interrupt(bean.getRepaymentMethod(),18,"未知");
+        holder.repayment_method.setText(repayment_method);
+
+        String dueTime = StringUtil.interrupt(bean.getDueTime(),0,"未知");
+        holder.due_time.setText(dueTime);
+
+        String unpaidAmount = StringUtil.reservedDecimal(StringUtil.interrupt(bean.getUnpaidAmount(),0,"0"),2);
+        holder.unpaid_amount.setText(unpaidAmount);
+
+        String paidAmount = StringUtil.reservedDecimal(StringUtil.interrupt(bean.getPaidAmount(),0,"0"),2);
+        holder.paid_amount.setText(paidAmount);
+
+    }
+
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -98,6 +141,18 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
         private TextView download_btn;
         private TextView transfer_btn;
 
+
+        private TextView name;
+        private TextView amount;
+        private TextView time;
+        private TextView term;
+        private TextView interest_rate;
+        private TextView repayment_method;
+        private TextView due_time;
+        private TextView unpaid_amount;
+        private TextView paid_amount;
+
+
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -110,6 +165,18 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
             download_btn.setOnClickListener(this);
             transfer_btn = (TextView) itemView.findViewById(R.id.transfer_btn);
             transfer_btn.setOnClickListener(this);
+
+            name = (TextView) itemView.findViewById(R.id.name);
+            amount = (TextView) itemView.findViewById(R.id.amount);
+            time = (TextView) itemView.findViewById(R.id.time);
+            term = (TextView) itemView.findViewById(R.id.term);
+            interest_rate = (TextView) itemView.findViewById(R.id.interest_rate);
+            repayment_method = (TextView) itemView.findViewById(R.id.repayment_method);
+            due_time = (TextView) itemView.findViewById(R.id.due_time);
+            unpaid_amount = (TextView) itemView.findViewById(R.id.unpaid_amount);
+            paid_amount = (TextView) itemView.findViewById(R.id.paid_amount);
+
+
         }
 
         @Override
@@ -133,11 +200,11 @@ public class HoldingAdapter extends RecyclerView.Adapter<HoldingAdapter.ViewHold
         }
     }
 
-    public ArrayList<FinancialInformation> getList() {
+    public ArrayList<RepayingBean> getList() {
         return list;
     }
 
-    public void setList(ArrayList<FinancialInformation> list) {
+    public void setList(ArrayList<RepayingBean> list) {
         this.list = list;
     }
 

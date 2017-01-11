@@ -8,4 +8,10 @@ import com.example.utils.base.BaseView;
 
 public interface MysettingsView2 extends BaseView{
 
+    void setUpNameSuccess();
+
+    void setUpNameFail(String s);
+
+    void setUpNameError(Throwable e);
+
 }

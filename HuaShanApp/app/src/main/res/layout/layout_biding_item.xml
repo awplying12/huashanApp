@@ -33,7 +33,7 @@
             android:src="@drawable/sum_icon"/>
 
         <TextView
-            android:id="@+id/sum"
+            android:id="@+id/amount"
             app:layout_widthPercent="25%"
             android:layout_height="wrap_content"
             app:layout_marginLeftPercent="64%"
@@ -141,6 +141,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/interest_rate"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="18%"
                 app:layout_marginLeftPercent="31%"
@@ -151,6 +152,7 @@
                 android:textColor="@color/Myfinance_content_text_color_2"/>
 
             <TextView
+                android:id="@+id/repayment_method"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="18%"
                 app:layout_marginLeftPercent="31%"
@@ -167,6 +169,7 @@
                 app:layout_marginTopPercent="77%">
 
                 <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                    android:id="@+id/rp_progress"
                     app:layout_widthPercent="55%"
                     app:layout_heightPercent="20%"
                     android:layout_gravity="center_vertical"
@@ -178,6 +181,7 @@
                     app:rcRadius="0dp"/>
 
                 <TextView
+                    android:id="@+id/progress"
                     app:layout_widthPercent="25%"
                     app:layout_heightPercent="100%"
                     app:layout_marginLeftPercent="60%"

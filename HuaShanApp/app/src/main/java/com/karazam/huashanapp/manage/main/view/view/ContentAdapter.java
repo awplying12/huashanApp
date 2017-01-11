@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.manage.main.view.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
@@ -34,11 +36,13 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     private ArrayList<HotProjects> mData = new ArrayList<>();
     private final LayoutInflater mLayoutInflater;
     private Context mContext;
+    private Activity activity;
 
 
-    public ContentAdapter(Context context, ArrayList<HotProjects> data) {
+    public ContentAdapter(Context context, ArrayList<HotProjects> data,Activity activity) {
         this.mContext = context;
         this.mData = data;
+        this.activity = activity;
         this.mLayoutInflater = LayoutInflater.from(mContext);
     }
 
@@ -71,9 +75,9 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                     mContext.startActivity(intent);
                 }else {
                     Intent intent = new Intent(mContext, LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                    mContext.startActivity(intent);
+                    activity. startActivityForResult(intent,10);
                 }
 
 
