@@ -143,6 +143,10 @@ public class PromptDialog extends Dialog {
     /**
      * 设置界面数据
      */
+    public void setPrompt(String prompt3) {
+        this.text3Str = prompt3;
+    }
+
     public void setPrompt(String prompt1,String prompt2) {
         this.text1Str = prompt1;
         this.text2Str = prompt2;

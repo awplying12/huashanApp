@@ -7,4 +7,8 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class TransactionViewModel extends BaseViewModel {
+
+    public static int allpage = 1;
+
+    public abstract void getTransaction(int page);
 }

@@ -12,5 +12,9 @@ public abstract class MyReturnViewModel extends BaseViewModel {
 
     public boolean isEmpty = true;
 
+    public static int allpage = 1;
+
     public abstract void Finanec(View view);
+
+    public abstract void getMyReturnData(int page);
 }

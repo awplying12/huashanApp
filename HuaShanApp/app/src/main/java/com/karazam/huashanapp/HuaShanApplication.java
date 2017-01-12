@@ -19,10 +19,11 @@ import com.karazam.huashanapp.main.Bean.MyInformation.MyInformationBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
 import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
 import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
-import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecords;
-import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecordsItem;
+
 
 import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
+import com.karazam.huashanapp.my.myreturn.main.model.databinding.ReturnRecords;
+import com.karazam.huashanapp.my.myreturn.main.model.databinding.ReturnRecordsItem;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
@@ -194,9 +195,9 @@ public class HuaShanApplication extends Application {
         item3.add(new ReturnRecordsItem());
 
 
-        returnRecordses.add(new ReturnRecords(item1));
-        returnRecordses.add(new ReturnRecords(item2));
-        returnRecordses.add(new ReturnRecords(item3));
+//        returnRecordses.add(new ReturnRecords(item1));
+//        returnRecordses.add(new ReturnRecords(item2));
+//        returnRecordses.add(new ReturnRecords(item3));
 
 
     }

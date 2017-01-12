@@ -77,23 +77,30 @@
 
             >
 
-
-            <com.example.stickylistview_library.ExpandableStickyListHeadersListView
-                android:id="@+id/transaction_lv"
+            <com.example.stickylistview_library.RefreshLayout
+                android:id="@+id/swl_pl"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:drawSelectorOnTop="true"
-                android:overScrollMode="never"
-                android:divider="#00000000"
-                android:scrollbars="none"
-                >
-
-            </com.example.stickylistview_library.ExpandableStickyListHeadersListView>
+                android:layout_height="match_parent">
 
 
 
 
+                <com.example.stickylistview_library.ExpandableStickyListHeadersListView
+                    android:id="@+id/transaction_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:drawSelectorOnTop="true"
+                    android:overScrollMode="never"
+                    android:divider="#00000000"
+                    android:scrollbars="none"
+                    >
+
+                </com.example.stickylistview_library.ExpandableStickyListHeadersListView>
+
+
+
+            </com.example.stickylistview_library.RefreshLayout>
 
         </android.support.percent.PercentFrameLayout>
     </android.support.percent.PercentRelativeLayout>

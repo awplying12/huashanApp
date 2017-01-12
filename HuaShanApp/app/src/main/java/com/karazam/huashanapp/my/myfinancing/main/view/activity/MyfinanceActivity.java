@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.my.myfinancing.main.view.activity;
 
 import android.databinding.DataBindingUtil;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -41,7 +42,7 @@ import java.util.ArrayList;
  * Created by Administrator on 2016/12/5.
  */
 
-public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
+public class MyfinanceActivity extends BaseActivity implements MyfinanceView,SwipeRefreshLayout.OnRefreshListener {
 
     private ActivityMyfinanceBinding binding;
     private MyfinanceViewModel mModel;
@@ -59,6 +60,7 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
     private AssignmentView assignmentView;
 
 //    private PasswordView pwd_view;
+    private SwipeRefreshLayout swl_pl;
 
     private static int page = 1;
 
@@ -97,6 +99,11 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
         assignmentView = new AssignmentView(this);
 
 //        pwd_view = (PasswordView) getView(R.id.pwd_view);
+
+        swl_pl = (SwipeRefreshLayout) getView(R.id.swl_pl);
+        swl_pl.setOnRefreshListener(this);
+        swl_pl.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
     }
 
     @Override
@@ -402,11 +409,19 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
         });
     }
 
+    @Override
+    public void onRefresh() { //下拉刷新
+
+        Refresh();
+    }
+
     /**
      * 获取我的理财数据成功
      */
     @Override
     public void myfinanceSuccess(MyfinanceBean bean) {
+
+        swl_pl.setRefreshing(false);
 
         if(content_rl.getVisibility() != View.VISIBLE){
             content_rl.setVisibility(View.VISIBLE);
@@ -429,6 +444,9 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
      */
     @Override
     public void myfinanceFail(String s) {
+
+        swl_pl.setRefreshing(false);
+
         showToast(s);
 
         if(content_rl.getVisibility() == View.VISIBLE){
@@ -441,10 +459,15 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView {
      */
     @Override
     public void myfinanceeError(Throwable e) {
+
+        swl_pl.setRefreshing(false);
+
         showToast("网络故障！");
 
         if(content_rl.getVisibility() == View.VISIBLE){
             content_rl.setVisibility(View.GONE);
         }
     }
+
+
 }

@@ -3,6 +3,7 @@ package com.example.stickylistview_library;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AbsListView;
 
 import java.util.List;
 
@@ -17,6 +18,9 @@ public class ExpandableStickyListHeadersListView extends StickyListHeadersListVi
 
     public final static int ANIMATION_COLLAPSE = 1;
     public final static int ANIMATION_EXPAND = 0;
+
+
+
 
     ExpandableStickyListHeadersAdapter mExpandableStickyListHeadersAdapter;
 
@@ -123,4 +127,23 @@ public class ExpandableStickyListHeadersListView extends StickyListHeadersListVi
 
     }
 
+
+
+//    private AbsListView.OnScrollListener onScrollListener          = null;
+//    private PageEnableListener pageEnableListener      = null;
+//    ExpandableStickyListHeadersListView ExpandableStickyListHeadersListView                          = null;
+//    private boolean isLoading;
+//    private boolean hasMoreItem;
+//    private int lastVisibleItem;                                //最后一个可见的项
+//    private int totalItemCount;                                 //总的项数
+//
+//
+//         @Override
+//         public void setOnScrollListener(AbsListView.OnScrollListener onScrollListener) {
+//                 this.onScrollListener = onScrollListener;
+//         }
+//
+//    public interface PageEnableListener{
+//                 public void onLoadMoreItems();
+//    }
 }

@@ -29,6 +29,7 @@
 
 
         <TextView
+            android:id="@+id/amount"
             app:layout_widthPercent="50%"
             app:layout_heightPercent="50%"
             app:layout_marginLeftPercent="35%"
@@ -38,7 +39,8 @@
             android:textSize="18dp"/>
 
         <TextView
-            app:layout_widthPercent="50%"
+            android:id="@+id/momo"
+            app:layout_widthPercent="60%"
             app:layout_heightPercent="50%"
             app:layout_marginLeftPercent="35%"
             android:layout_gravity="bottom"
@@ -52,6 +54,14 @@
             android:layout_gravity="center_horizontal|bottom"
 
             android:background="@color/line_color"/>
+
+        <ImageView
+            android:id="@+id/goto_icon"
+            app:layout_widthPercent="4%"
+            app:layout_heightPercent="50%"
+            android:layout_gravity="center_vertical|right"
+            app:layout_marginRightPercent="5%"
+            android:src="@drawable/goto2_icon"/>
 
 
     </android.support.percent.PercentFrameLayout>

@@ -68,116 +68,124 @@
             </android.support.percent.PercentRelativeLayout>
         </LinearLayout>
 
-        <android.support.percent.PercentFrameLayout
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swl_pl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/title_ll"
-            app:layout_heightPercent="100%"
-            android:background="@color/all_activity_background"
-
-            >
-
-            <!--第1部分-->
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                app:layout_heightPercent="22%"
-                android:background="#66b3ff">
-
-
-                <TextView
-                    android:id="@+id/text_11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    app:layout_marginTopPercent="30%"
-                    android:text="当前理财金额（元）"
-                    android:textColor="@color/Investmentdetails_part1_text_size"
-                    android:textSize="12dp"/>
-
-                <TextView
-                    android:id="@+id/det_income"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:layout_marginTopPercent="45%"
-                    android:text="0.00"
-                    android:textColor="@color/Investmentdetails_part1_text_size"
-                    android:textSize="35dp"
-                    />
-
-
-
-
-            </android.support.percent.PercentFrameLayout>
-
+            android:layout_below="@+id/title_ll">
 
             <android.support.percent.PercentFrameLayout
-                android:id="@+id/label_pl"
                 android:layout_width="match_parent"
-                app:layout_heightPercent="68%"
-                app:layout_marginTopPercent="22%"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/title_ll"
+                app:layout_heightPercent="100%"
                 android:background="@color/all_activity_background"
+
                 >
 
+                <!--第1部分-->
                 <android.support.percent.PercentFrameLayout
-
+                    android:id="@+id/pf_path_1"
                     android:layout_width="match_parent"
-                    app:layout_heightPercent="10%"
-                    app:layout_marginTopPercent="0.5%"
-                    android:background="#fff">
+                    app:layout_heightPercent="22%"
+                    android:background="#66b3ff">
+
 
                     <TextView
-                        app:layout_widthPercent="50%"
-                        android:layout_height="match_parent"
+                        android:id="@+id/text_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:gravity="center"
-                        android:text="标的名称"/>
+                        app:layout_marginTopPercent="30%"
+                        android:text="当前理财金额（元）"
+                        android:textColor="@color/Investmentdetails_part1_text_size"
+                        android:textSize="12dp"/>
 
                     <TextView
-                        app:layout_widthPercent="50%"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="right"
+                        android:id="@+id/det_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="购买金额"/>
+                        app:layout_marginTopPercent="45%"
+                        android:text="0.00"
+                        android:textColor="@color/Investmentdetails_part1_text_size"
+                        android:textSize="35dp"
+                        />
+
+
+
 
                 </android.support.percent.PercentFrameLayout>
 
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/content_rl"
+                <android.support.percent.PercentFrameLayout
+                    android:id="@+id/label_pl"
                     android:layout_width="match_parent"
-                    app:layout_heightPercent="89%"
-                    app:layout_marginTopPercent="11%"
-                    android:overScrollMode="never"
+                    app:layout_heightPercent="68%"
+                    app:layout_marginTopPercent="22%"
+                    android:background="@color/all_activity_background"
                     >
 
-                </android.support.v7.widget.RecyclerView>
+                    <android.support.percent.PercentFrameLayout
+
+                        android:layout_width="match_parent"
+                        app:layout_heightPercent="10%"
+                        app:layout_marginTopPercent="0.5%"
+                        android:background="#fff">
+
+                        <TextView
+                            app:layout_widthPercent="50%"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="标的名称"/>
+
+                        <TextView
+                            app:layout_widthPercent="50%"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:gravity="center"
+                            android:text="购买金额"/>
+
+                    </android.support.percent.PercentFrameLayout>
+
+
+                    <com.example.utils.custom.RefreshRecyclerView
+                        android:id="@+id/content_rl"
+                        android:layout_width="match_parent"
+                        app:layout_heightPercent="89%"
+                        app:layout_marginTopPercent="11%"
+                        android:overScrollMode="never"
+                        >
+
+                    </com.example.utils.custom.RefreshRecyclerView>
+
+                </android.support.percent.PercentFrameLayout>
+
+                <!--第4部分-->
+                <android.support.percent.PercentFrameLayout
+                    android:layout_width="match_parent"
+                    app:layout_heightPercent="10%"
+                    android:layout_gravity="bottom"
+                    android:background="#fff"
+                    android:onClick="@{handler.Finanec}"
+                    >
+                    <TextView
+                        android:id="@+id/btn_finance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="立即购买"
+                        android:textSize="20dp"
+                        android:textColor="#46a3ff"/>
+
+                </android.support.percent.PercentFrameLayout>
+
 
             </android.support.percent.PercentFrameLayout>
 
-            <!--第4部分-->
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                app:layout_heightPercent="10%"
-                android:layout_gravity="bottom"
-                android:background="#fff"
-                android:onClick="@{handler.Finanec}"
-                >
-                <TextView
-                    android:id="@+id/btn_finance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="立即购买"
-                    android:textSize="20dp"
-                    android:textColor="#46a3ff"/>
 
-            </android.support.percent.PercentFrameLayout>
-
-
-
-
-        </android.support.percent.PercentFrameLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <com.example.paymentpassword.PasswordView
             android:id="@+id/pwd_view"

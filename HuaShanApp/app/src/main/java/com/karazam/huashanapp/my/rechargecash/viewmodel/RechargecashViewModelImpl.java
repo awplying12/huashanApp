@@ -1,10 +1,13 @@
 package com.karazam.huashanapp.my.rechargecash.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.my.bankcard.bindcard.view.activity.BindcardActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
 import com.karazam.huashanapp.my.recharge.main.view.activity.RechargeActivity;
 import com.karazam.huashanapp.my.rechargecash.model.databinding.RechargecashEntity;
@@ -26,11 +29,19 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
 
     private PromptDialog certificationDialog;;
 
+    private PromptDialog rechargeDialog;
+
+    private int flag = -1;
+//    private
+
     public RechargecashViewModelImpl(RechargecashView mView, RechargecashEntity mEntity, Context context, RechargecashActivity activity) {
         this.mView = mView;
         this.mEntity = mEntity;
         this.context = context;
         this.activity = activity;
+
+        setCertificationDialog();
+        setRechargeDialog();
     }
 
     @Override
@@ -45,7 +56,8 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
      */
     @Override
     public void Withdrawals(View view) {
-        setCertificationDialog();
+        flag = 2;
+
         if(!HuaShanApplication.certificationStatus){
 
             if(certificationDialog != null){
@@ -53,6 +65,12 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
                 certificationDialog.show();
             }
 
+            return;
+        }
+
+        if(HuaShanApplication.myInformation.getWithdrawCardl() == null || TextUtils.isEmpty(HuaShanApplication.myInformation.getWithdrawCardl().getBankCardId())){
+            rechargeDialog.setPrompt("您还没有绑定提现卡，是否要前往绑定");
+            rechargeDialog.show();
             return;
         }
         mView.toOtherActivity(activity, WithdrawalsActivity.class);
@@ -64,7 +82,7 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
      */
     @Override
     public void Recharge(View view) {
-        setCertificationDialog();
+        flag = 1;
         if(!HuaShanApplication.certificationStatus){
 
             if(certificationDialog != null){
@@ -74,6 +92,13 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
 
             return;
         }
+
+        if(HuaShanApplication.myInformation.getQuickCards() == null || HuaShanApplication.myInformation.getQuickCards().size() == 0){
+            rechargeDialog.setPrompt("您还没有绑定快捷卡，是否要前往绑定");
+            rechargeDialog.show();
+            return;
+        }
+
         mView.toOtherActivity(activity, RechargeActivity.class);
     }
 
@@ -109,6 +134,33 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
             }
         });
 
+    }
+
+    private void setRechargeDialog(){
+        rechargeDialog = new PromptDialog(activity);
+        rechargeDialog.setMod(PromptDialog.MOD2);
+
+        rechargeDialog.setClick("否", "是", new PromptDialog.OnDialogListener() {
+            @Override
+            public void onleft(View view) {
+                if(rechargeDialog != null){
+                    rechargeDialog.dismiss();
+                }
+
+            }
+
+            @Override
+            public void onRight(View view) {
+
+                Intent intent = new Intent(activity, BindcardActivity.class);
+                intent.putExtra("flag",flag);
+                activity.startActivity(intent);
+
+                if(rechargeDialog != null){
+                    rechargeDialog.dismiss();
+                }
+            }
+        });
     }
 
 

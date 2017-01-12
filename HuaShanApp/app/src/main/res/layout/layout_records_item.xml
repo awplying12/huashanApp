@@ -33,7 +33,7 @@
             android:src="@drawable/sum_icon"/>
 
         <TextView
-            android:id="@+id/sum"
+            android:id="@+id/amount"
             app:layout_widthPercent="25%"
             android:layout_height="wrap_content"
             app:layout_marginLeftPercent="64%"

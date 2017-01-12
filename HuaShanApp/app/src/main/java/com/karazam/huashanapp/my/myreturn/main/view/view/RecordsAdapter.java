@@ -9,11 +9,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.utils.custom.FullyLinearLayoutManager;
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
-import com.karazam.huashanapp.main.Bean.financialproject.ReturnRecords;
+import com.karazam.huashanapp.my.myreturn.main.model.databinding.ReturnRecords;
+
 
 import java.util.ArrayList;
 
@@ -49,10 +52,9 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.ViewHold
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
+        setItem(holder,position);
 
 
-        RecordsItemAdapter itemAdapter = new RecordsItemAdapter(list.get(position).getReturnRecordsItems(),context);
-        holder.records_rl.setAdapter(itemAdapter);
 
         if(holder.fl1 != null){
             holder.fl1.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +82,26 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.ViewHold
 
     }
 
+    /**
+     * 设置Item
+     * @param holder
+     * @param position
+     */
+    private void setItem(ViewHolder holder, int position) {
+
+        ReturnRecords bean = list.get(position);
+
+        String name = StringUtil.interrupt(bean.getTitle(),20,"未知");
+        holder.name.setText(name);
+
+        String amount = StringUtil.reservedDecimal(StringUtil.interrupt(bean.getAmount(),0,"0"),2);
+        holder.amount.setText(StringUtil.interrupt(amount,12,"0.00"));
+
+
+        RecordsItemAdapter itemAdapter = new RecordsItemAdapter(list.get(position).getRpList(),context);
+        holder.records_rl.setAdapter(itemAdapter);
+    }
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -92,12 +114,19 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.ViewHold
         private ImageView open;
         private RecyclerView records_rl;
 
+
+        private TextView name;
+        private TextView amount;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
             fl1 = (FrameLayout) itemView.findViewById(R.id.fl_1);
             fl2 = (FrameLayout) itemView.findViewById(R.id.fl_2);
             open = (ImageView) itemView.findViewById(R.id.open);
+
+            name = (TextView) itemView.findViewById(R.id.name);
+            amount = (TextView) itemView.findViewById(R.id.amount);
 
             records_rl = (RecyclerView) itemView.findViewById(R.id.records_rl);
             FullyLinearLayoutManager lm = new FullyLinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
