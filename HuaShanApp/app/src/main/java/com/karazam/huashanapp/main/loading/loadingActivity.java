@@ -95,7 +95,7 @@ public class loadingActivity extends BaseActivity {
             Intent intent = new Intent(this, GestureVerifyActivity.class);
             intent.putExtra(GestureUtil.Password,HuaShanApplication.getGesturePassword());
             intent.putExtra(GestureUtil.PhoneNum,HuaShanApplication.account);
-            intent.putExtra(GestureUtil.HeaderImg,HuaShanApplication.myInformation.getBaseInfo().getAvatar());
+            intent.putExtra(GestureUtil.HeaderImg,HuaShanApplication.header);
             startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
         }else {
 //            Intent intent = new Intent(this, GestureEditActivity.class);

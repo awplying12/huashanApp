@@ -69,7 +69,7 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
 
     @Override
     public void onPurchase(View view) {
-        mView.showToast("购买");
+
 //        RxView.of(new View(context)).bind(HuaShanApplication.userInformationR, new Rx.Action<View, UserInformation>() {
 //            @Override
 //            public void call(View target, UserInformation userInformation) {

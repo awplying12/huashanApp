@@ -14,5 +14,5 @@ import rx.Observable;
 
 public interface TransactiondetailsApi {
     @GET("/uc/payment_order/detail")
-    Observable<BaseReturn<TransactiondetailsBean>> getTransactiondetails(@Query("orderId") String orderNo,@Query("type") String type, @Header("sid") String token, @Header("X-Requested-With") String ID);
+    Observable<BaseReturn<TransactiondetailsBean>> getTransactiondetails(@Query("orderNo") String orderNo,@Query("type") String type, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

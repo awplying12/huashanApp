@@ -20,6 +20,7 @@ import com.karazam.huashanapp.my.transactiondetails.main.view.activity.view.Tran
 import com.karazam.huashanapp.my.transactiondetails.main.view.activity.view.TransactionItem;
 import com.karazam.huashanapp.my.transactiondetails.main.viewmodel.TransactionViewModel;
 import com.karazam.huashanapp.my.transactiondetails.main.viewmodel.TransactionViewModelImpl;
+import com.karazam.huashanapp.my.transactiondetails.myreturn.view.activity.MyreturndetailsActivity;
 import com.karazam.huashanapp.my.transactiondetails.recharge.view.activity.RechargedetailsActivity;
 import com.karazam.huashanapp.my.transactiondetails.withdrawals.view.activity.WithdrawalsdetailsActivity;
 import com.ogaclejapan.rx.binding.Rx;
@@ -145,16 +146,17 @@ public class TransactionActivity extends BaseActivity implements TransactionView
                 TransactionItem item = adapter.getList().get(i);
 
                 String orderId = item.getOrderId();
+                String orderNo = item.getOrderNo();
                 String type = item.getType();
 
                 if (type.equals("investment")){ //投资
-                    gotoTransactiondetails(orderId,type, InvestmentActivity.class);
+                    gotoTransactiondetails(orderNo,orderId,type, InvestmentActivity.class);
                 } else if(type.equals("withdrawal")){ //提现
-                    gotoTransactiondetails(orderId,type, WithdrawalsdetailsActivity.class);
+                    gotoTransactiondetails(orderNo,orderId,type, WithdrawalsdetailsActivity.class);
                 } else if(type.equals("recharge")){ //充值
-                    gotoTransactiondetails(orderId,type, RechargedetailsActivity.class);
+                    gotoTransactiondetails(orderNo,orderId,type, RechargedetailsActivity.class);
                 } else if(type.equals("repayment")){ //回款
-
+                    gotoTransactiondetails(orderNo,orderId,type,MyreturndetailsActivity.class);
                 } else {
 
                 }
@@ -164,9 +166,10 @@ public class TransactionActivity extends BaseActivity implements TransactionView
 
     }
 
-    private void gotoTransactiondetails(String orderId,String type,Class<?> cls){
+    private void gotoTransactiondetails(String orderNo,String orderId,String type,Class<?> cls){
         Intent intent = new Intent(this,cls);
         intent.putExtra("orderId",orderId);
+        intent.putExtra("orderNo",orderNo);
         intent.putExtra("type",type);
         startActivity(intent);
     }

@@ -509,7 +509,7 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
      */
     @Override
     public void getResultSuccess(BindcardBean bean) {
-
+        Log.i("BindcardActivity","200");
         switch (mModel.flag){
             case 1:
                 ArrayList<CardBean> cardBeens = bean.getQuickCards();
@@ -519,6 +519,7 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
 
                 break;
             case 2:
+                Log.i("BindcardActivity","33");
                CardBean cardBeen = bean.getWithdrawCard();
                 HuaShanApplication.myInformation.setWithdrawCardl(cardBeen);
                 HuaShanApplication.withdrawCarRx.set(cardBeen);

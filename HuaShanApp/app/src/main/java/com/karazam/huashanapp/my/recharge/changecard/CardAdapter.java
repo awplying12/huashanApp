@@ -42,7 +42,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
         String url = list.get(position).getBankLogo();
         RxImageLoader.getLoaderObservable(holder.pay_img,url).subscribe(new Subscriber<Data>() {
@@ -53,12 +53,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
 
             @Override
             public void onError(Throwable e) {
-
+                holder.pay_img.setImageDrawable(context.getResources().getDrawable(R.drawable.bankdef_logo));
             }
 
             @Override
             public void onNext(Data data) {
-
+                if(data.bitmap == null){
+                    holder.pay_img.setImageDrawable(context.getResources().getDrawable(R.drawable.bankdef_logo));
+                }
             }
         });
 

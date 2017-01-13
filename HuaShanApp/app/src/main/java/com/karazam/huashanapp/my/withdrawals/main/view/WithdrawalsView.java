@@ -8,7 +8,7 @@ import com.example.utils.base.BaseView;
 
 public interface WithdrawalsView extends BaseView{
 
-    void withdrawalsSuccess(String detailsId);
+    void withdrawalsSuccess(String OrderNo);
 
     void withdrawalsFail(String s);
 

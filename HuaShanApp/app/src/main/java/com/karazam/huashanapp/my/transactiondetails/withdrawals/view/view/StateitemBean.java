@@ -5,35 +5,40 @@ package com.karazam.huashanapp.my.transactiondetails.withdrawals.view.view;
  */
 
 public class StateitemBean {
-    private String state;
-    private String time;
+    private String status;
+    private Long date;
+    private boolean pass;
 
-    public StateitemBean(String state, String time) {
-        this.state = state;
-        this.time = time;
+    public String getStatus() {
+        return status;
     }
 
-    public String getState() {
-        return state;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public Long getDate() {
+        return date;
     }
 
-    public String getTime() {
-        return time;
+    public void setDate(Long date) {
+        this.date = date;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public boolean isPass() {
+        return pass;
+    }
+
+    public void setPass(boolean pass) {
+        this.pass = pass;
     }
 
     @Override
     public String toString() {
         return "StateitemBean{" +
-                "state='" + state + '\'' +
-                ", time='" + time + '\'' +
+                "status='" + status + '\'' +
+                ", date='" + date + '\'' +
+                ", pass=" + pass +
                 '}';
     }
 }

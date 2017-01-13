@@ -124,7 +124,7 @@ public class RechargeViewModelImpl extends RechargeViewModel {
                     public void onNext(BaseReturn<RechargeBean> rechargeBeanBaseReturn) {
                         if(rechargeBeanBaseReturn.isSuccess()){
                             RechargeBean bean = rechargeBeanBaseReturn.getData();
-                            mView.rechargeSuccess(bean.getCapitalId());
+                            mView.rechargeSuccess(bean.getOrderNo());
 
                             HuaShanApplication.setMyAssets(bean.getAssets());
                         }else {

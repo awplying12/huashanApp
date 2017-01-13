@@ -81,6 +81,8 @@ public class WithdrawalsViewModelImpl extends WithdrawalsViewModel {
 
             balanceinformationView.show();
         }else {
+            String money = ed_moneny.getText().toString();
+            pwd_view.setMoney("投资金额:"+money);
             pwd_view.show();
         }
 
@@ -101,6 +103,8 @@ public class WithdrawalsViewModelImpl extends WithdrawalsViewModel {
     @Override
     public void toWithdrawals() {
 
+        activity.showProgressDialog();
+
         String mon = ed_moneny.getText().toString();
         String bankCard = StringUtil.interrupt(card.getBankCardId(),0,"");
         String payPassword = DigestUtils.encrypt(pwd_view.getStrPassword());
@@ -116,20 +120,22 @@ public class WithdrawalsViewModelImpl extends WithdrawalsViewModel {
                 .subscribe(new Subscriber<BaseReturn<WithdrawalsBean>>() {
                     @Override
                     public void onCompleted() {
-
+                        activity.dissmissProgressDialog();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.i("toWithdrawals","  e  :  "+e.toString());
                         mView.withdrawalsError(e);
+                        activity.dissmissProgressDialog();
                     }
 
                     @Override
                     public void onNext(BaseReturn<WithdrawalsBean> withdrawalsBeanBaseReturn) {
                         if(withdrawalsBeanBaseReturn.isSuccess()){
                             WithdrawalsBean bean = withdrawalsBeanBaseReturn.getData();
-                            mView.withdrawalsSuccess(bean.getCapitalId());
+
+                            mView.withdrawalsSuccess(bean.getOrderNo());
 
                             HuaShanApplication.setMyAssets(bean.getAssets());
                         }else {
@@ -137,27 +143,7 @@ public class WithdrawalsViewModelImpl extends WithdrawalsViewModel {
                         }
                     }
                 });
-//                .subscribe(new Subscriber<BaseReturn>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        Log.i("toWithdrawals","  e  :  "+e.toString());
-//                        mView.withdrawalsError(e);
-//                    }
-//
-//                    @Override
-//                    public void onNext(BaseReturn baseReturn) {
-//                        if(baseReturn.isSuccess()){
-//                            mView.withdrawalsSuccess("");
-//                        }else {
-//                            mView.withdrawalsFail(baseReturn.getMessage());
-//                        }
-//                    }
-//                });
+
     }
 
     /**

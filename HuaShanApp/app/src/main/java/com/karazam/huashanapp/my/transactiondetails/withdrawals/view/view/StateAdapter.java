@@ -11,10 +11,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.utils.utils.DataUtil;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2016/12/1.
@@ -44,20 +47,39 @@ public class StateAdapter extends RecyclerView.Adapter<StateAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        String state = StringUtil.interrupt(list.get(position).getState(),0,"未知");
+        String state = StringUtil.interrupt(list.get(position).getStatus(),0,"未知");
 
 
-        String time = StringUtil.interrupt(list.get(position).getTime(),0,"");
-        holder.time.setText(time);
-
-        if(time.equals("")){
-            holder.part1.setSelected(false);
-            holder.part2.setVisibility(View.GONE);
-            holder.state.setText(Html.fromHtml("<font color='#adadad'>"+state+"</font>"));
+//        String time = StringUtil.interrupt(list.get(position).getDate(),0,"");
+        Long data = list.get(position).getDate();
+        if(data == null || data == 0){
+            holder.time.setText("");
         }else {
+            String time = DataUtil.getDate(new Date(data),"MM-dd HH:mm");
+            holder.time.setText(StringUtil.interrupt(time,0,"未知"));
+        }
+
+
+
+//        if(time.equals("")){
+//            holder.part1.setSelected(false);
+//            holder.part2.setVisibility(View.GONE);
+//            holder.state.setText(Html.fromHtml("<font color='#adadad'>"+state+"</font>"));
+//        }else {
+//            holder.part1.setSelected(true);
+//            holder.part2.setVisibility(View.VISIBLE);
+//            holder.state.setText(state);
+//        }
+
+
+        if(list.get(position).isPass()){
             holder.part1.setSelected(true);
             holder.part2.setVisibility(View.VISIBLE);
             holder.state.setText(state);
+        } else {
+            holder.part1.setSelected(false);
+            holder.part2.setVisibility(View.GONE);
+            holder.state.setText(Html.fromHtml("<font color='#adadad'>"+state+"</font>"));
         }
 
         if(position == list.size()-1){

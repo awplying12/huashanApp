@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.my.recharge.main.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.text.Html;
 import android.text.TextUtils;
@@ -50,6 +51,7 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
     private TextView hint_tv;
 
     private PromptDialog dialog;
+    private PromptDialog dialogFail;
 
     public static RxProperty<CardBean> cardBeanRx;
 
@@ -78,11 +80,16 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
         next_step = (TextView) getView(R.id.next_step);
 
         dialog = new PromptDialog(this);
+        dialogFail = new PromptDialog(this);
+
     }
 
     @Override
     public void dealLogicAfterInitView() {
         checkContent();
+
+        setDialog();
+        setDialogFail();
         
     }
 
@@ -177,12 +184,17 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
     /**
      * 充值成功
      */
+    private String OrderNo = "-1";
     @Override
-    public void rechargeSuccess(String detailsId) {
-        setDialog("购买成功！",
-                Html.fromHtml("<font color='#00ff00'>查看详情").toString(),
-                Html.fromHtml("<font color='#ff0000'>继续充值").toString());
+    public void rechargeSuccess(String orderNo) {
+//        setDialog("购买成功！",
+//                Html.fromHtml("<font color='#00ff00'>查看详情").toString(),
+//                Html.fromHtml("<font color='#ff0000'>继续充值").toString());
+//        dialog.show();
+        OrderNo = orderNo;
         dialog.show();
+
+
     }
 
     /**
@@ -190,36 +202,80 @@ public class RechargeActivity extends BaseActivity implements RechargeView {
      */
     @Override
     public void rechargeFail(String s) {
-        setDialog("购买失败！",
-                Html.fromHtml("<font color='#00ff00'>查看详情").toString(),
-                Html.fromHtml("<font color='#ff0000'>重新充值").toString());
-        dialog.show();
+//        setDialog("购买失败！",
+//                Html.fromHtml("<font color='#00ff00'>查看详情").toString(),
+//                Html.fromHtml("<font color='#ff0000'>重新充值").toString());
+//        dialog.show();
+
+        setDialogFail();
+        dialogFail.setPrompt("充值失败！",s);
+        dialogFail.show();
     }
 
     @Override
     public void rechargeeError(Throwable e) {
-        showToast("网络故障！");
+//        showToast("网络故障！");
+
+        setDialogFail();
+        dialogFail.setPrompt("充值失败！","网络故障！");
+        dialogFail.show();
     }
 
     /**
-     * 投资后的提示Dialog
+     * 充值后的提示Dialog
      */
-    public void setDialog(String str1,String str2,String str3){
-        dialog.setPrompt("",str1);
+    public void setDialog(){
+        dialog.setPrompt("","充值成功！");
         dialog.setMod(PromptDialog.MOD2);
-        dialog.setClick(str2,str3, new PromptDialog.OnDialogListener() {
+        dialog.setClick("查看详情","继续充值", new PromptDialog.OnDialogListener() {
             @Override
             public void onleft(View view) {
-                toOtherActivity(RechargeActivity.this, RechargedetailsActivity.class);
+//                showToast("查看详情");
+                gotoTransactiondetails(OrderNo,"-1","recharge",RechargedetailsActivity.class);
+
+//                toOtherActivity(PurchaseActivity.this, InvestmentActivity.class);
             }
 
             @Override
             public void onRight(View view) {
-                showToast("继续购买");
+//                showToast("继续购买");
                 dialog.dismiss();
                 mModel.ed_money.setText("");
             }
         });
     }
+
+    /**
+     * 提现后的提示Dialog
+     */
+    public void setDialogFail(){
+
+        dialogFail.setMod(PromptDialog.MOD1);
+        dialogFail.setClick("退出","继续充值", new PromptDialog.OnDialogListener() {
+            @Override
+            public void onleft(View view) {
+//                showToast("查看详情");
+//                toOtherActivity(PurchaseActivity.this, InvestmentActivity.class);
+                dialogFail.dismiss();
+                finish();
+            }
+
+            @Override
+            public void onRight(View view) {
+//                showToast("继续购买");
+                dialogFail.dismiss();
+                mModel.ed_money.setText("");
+            }
+        });
+    }
+
+    private void gotoTransactiondetails(String orderNo,String orderId,String type,Class<?> cls){
+        Intent intent = new Intent(this,cls);
+        intent.putExtra("orderId",orderId);
+        intent.putExtra("orderNo",orderNo);
+        intent.putExtra("type",type);
+        startActivity(intent);
+    }
+
 
 }

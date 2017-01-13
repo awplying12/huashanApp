@@ -1,6 +1,8 @@
 package com.karazam.huashanapp.my.withdrawals.main.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.BitmapFactory;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.karazam.huashanapp.databinding.ActivityWithdrawalsBinding;
 import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
 import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
+import com.karazam.huashanapp.main.dialog.PromptDialog;
 import com.karazam.huashanapp.my.transactiondetails.withdrawals.view.activity.WithdrawalsdetailsActivity;
 import com.karazam.huashanapp.my.withdrawals.main.model.databinding.WithdrawalsEntity;
 import com.karazam.huashanapp.my.withdrawals.main.view.WithdrawalsView;
@@ -49,6 +52,9 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
     private TextView avail_moneny;
     private TextView btn_withdrawals;
 
+    private PromptDialog dialog;
+    private PromptDialog dialogFail;
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_withdrawals);
@@ -70,13 +76,17 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
         avail_moneny = (TextView) getView(R.id.avail_moneny);
         btn_withdrawals = (TextView) getView(R.id.btn_withdrawals);
 
+        dialog = new PromptDialog(this);
+        dialogFail = new PromptDialog(this);
+
     }
 
     @Override
     public void dealLogicAfterInitView() {
         setLayout();
         setPasswordView();
-
+        setDialog();
+        setDialogFail();
     }
 
     /**
@@ -103,7 +113,7 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
             public void call(View target, CardBean cardBean) {
                 mModel.card = cardBean;
 
-                ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
+                final ImageView pay_img = (ImageView) target.findViewById(R.id.pay_img);
                 TextView pay_method = (TextView) target.findViewById(R.id.pay_method);
                 TextView pay_content = (TextView) target.findViewById(R.id.pay_content);
 
@@ -116,12 +126,14 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
 
                     @Override
                     public void onError(Throwable e) {
-
+                        pay_img.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bankdef_logo));
                     }
 
                     @Override
                     public void onNext(Data data) {
-
+                        if(data.bitmap == null){
+                            pay_img.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bankdef_logo));
+                        }
                     }
                 });
 
@@ -216,12 +228,71 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
     }
 
     /**
+     * 提现后的提示Dialog
+     */
+    public void setDialog(){
+        dialog.setPrompt("","提现成功！");
+        dialog.setMod(PromptDialog.MOD2);
+        dialog.setClick("查看详情","继续提现", new PromptDialog.OnDialogListener() {
+            @Override
+            public void onleft(View view) {
+//                showToast("查看详情");
+                gotoTransactiondetails(OrderNo,"-1","withdrawal",WithdrawalsdetailsActivity.class);
+
+//                toOtherActivity(PurchaseActivity.this, InvestmentActivity.class);
+            }
+
+            @Override
+            public void onRight(View view) {
+//                showToast("继续购买");
+                dialog.dismiss();
+                mModel.ed_moneny.setText("");
+            }
+        });
+    }
+
+    /**
+     * 提现后的提示Dialog
+     */
+    public void setDialogFail(){
+
+        dialogFail.setMod(PromptDialog.MOD1);
+        dialogFail.setClick("退出","继续提现", new PromptDialog.OnDialogListener() {
+            @Override
+            public void onleft(View view) {
+//                showToast("查看详情");
+//                toOtherActivity(PurchaseActivity.this, InvestmentActivity.class);
+                dialogFail.dismiss();
+                finish();
+            }
+
+            @Override
+            public void onRight(View view) {
+//                showToast("继续购买");
+                dialogFail.dismiss();
+                mModel.ed_moneny.setText("");
+            }
+        });
+    }
+
+    private void gotoTransactiondetails(String orderNo,String orderId,String type,Class<?> cls){
+        Intent intent = new Intent(this,cls);
+        intent.putExtra("orderId",orderId);
+        intent.putExtra("orderNo",orderNo);
+        intent.putExtra("type",type);
+        startActivity(intent);
+    }
+
+    /**
      * 提现成功
      * @param detailsId
      */
+    private String OrderNo = "-1";
     @Override
-    public void withdrawalsSuccess(String detailsId) {
-        showToast("ok");
+    public void withdrawalsSuccess(String orderNo) {
+//        showToast("ok");
+        OrderNo = orderNo;
+        dialog.show();
     }
 
     /**
@@ -230,7 +301,10 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
      */
     @Override
     public void withdrawalsFail(String s) {
-        showToast(s);
+//        showToast(s);
+        setDialogFail();
+        dialogFail.setPrompt("提现失败！",s);
+        dialogFail.show();
     }
 
     /**
@@ -239,6 +313,9 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
      */
     @Override
     public void withdrawalsError(Throwable e) {
-        showToast("网络故障!");
+//        showToast("网络故障!");
+        setDialogFail();
+        dialogFail.setPrompt("提现失败！","网络故障!");
+        dialogFail.show();
     }
 }

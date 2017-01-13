@@ -13,12 +13,14 @@ public class TransactionItem {
     // "orderId":1,
     // "amount":100000.00,
     // "type":"BALANCE",
+    //  orderNo =  111201701121821493540524604551
     // "createDate":1483961853000,
     //  memo=充值-用户[51]-方式[快捷支付]-充值
 
     private long createDate;
     private String weekDay,
                 orderId,
+                orderNo,
                 amount,
                 type,memo;
 
@@ -47,6 +49,14 @@ public class TransactionItem {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     public String getType() {
@@ -92,6 +102,7 @@ public class TransactionItem {
                 "createDate=" + createDate +
                 ", weekDay='" + weekDay + '\'' +
                 ", orderId='" + orderId + '\'' +
+                ", orderNo='" + orderNo + '\'' +
                 ", amount='" + amount + '\'' +
                 ", type='" + type + '\'' +
                 ", memo='" + memo + '\'' +

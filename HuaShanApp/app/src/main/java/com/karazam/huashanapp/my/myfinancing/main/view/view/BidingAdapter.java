@@ -106,7 +106,9 @@ public class BidingAdapter extends RecyclerView.Adapter<BidingAdapter.ViewHolder
         holder.repayment_method.setText(repayment_method);
 
         String progress = StringUtil.interrupt(bean.getProgress(),0,"0");
-        float pro = Float.parseFloat(progress)*100;
+
+//        float pro = Float.parseFloat(progress)*100;
+        float pro = Float.parseFloat(progress);
 
         holder.progress.setText(StringUtil.reservedDecimal(pro+"",0)+"%");
 

@@ -88,6 +88,7 @@
 
 
                 <android.support.percent.PercentFrameLayout
+                    android:id="@+id/content_pl"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -127,32 +128,33 @@
                         </android.support.percent.PercentRelativeLayout>
 
                         <TextView
+                            android:id="@+id/tv_title"
                             android:layout_width="wrap_content"
                             app:layout_heightPercent="10%"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
                             app:layout_marginTopPercent="18%"
-                            android:text="产融贷CR216001-41"/>
+                            android:text="标名称"/>
 
                         <TextView
-                            android:id="@+id/withdrawals_money"
+                            android:id="@+id/tv_amount"
                             android:layout_width="wrap_content"
                             app:layout_heightPercent="10%"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
                             app:layout_marginTopPercent="30%"
-                            android:text="-3,000.00"
+                            android:text="0.00"
                             android:textColor="#0b0"
                             android:textSize="@dimen/transactiondetails_content_text_size"/>
 
                         <TextView
-                            android:id="@+id/withdrawals_state"
+                            android:id="@+id/tv_status"
                             android:layout_width="wrap_content"
                             app:layout_heightPercent="10%"
                             android:layout_gravity="center_horizontal"
                             app:layout_marginTopPercent="45%"
                             android:gravity="center"
-                            android:text="交易完成"
+                            android:text="状态"
                             android:textSize="@dimen/transactiondetails_statet_text_size"/>
 
                         <TextView
@@ -182,17 +184,19 @@
                             android:textSize="@dimen/transactiondetails_text_size"/>
 
                         <TextView
+                            android:id="@+id/tv_memo"
                             android:layout_width="wrap_content"
                             app:layout_heightPercent="8%"
                             app:layout_marginTopPercent="72%"
                             app:layout_marginRightPercent="5%"
                             android:layout_gravity="right"
                             android:gravity="center"
-                            android:text="满标计息"
+                            android:text=""
                             android:textSize="@dimen/transactiondetails_text_size"/>
 
 
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_marginLeftPercent="5%"
@@ -203,6 +207,7 @@
                             android:text="创建时间"/>
 
                         <TextView
+                            android:id="@+id/tv_createDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_marginRightPercent="5%"
@@ -210,18 +215,19 @@
                             android:gravity="center"
                             android:layout_gravity="right"
                             android:textSize="@dimen/transactiondetails_text_size"
-                            android:text="2016-11-13 14:13"/>
+                            android:text=""/>
 
                         <TextView
+                            android:id="@+id/tv_buyMethod"
                             android:layout_width="wrap_content"
                             app:layout_heightPercent="8%"
                             app:layout_marginTopPercent="60%"
                             android:layout_gravity="right"
                             app:layout_marginRightPercent="5%"
                             android:gravity="center"
-                            android:text="账户余额-移动端"
+                            android:text=""
                             android:textSize="@dimen/transactiondetails_service_text_size"
-                            android:id="@+id/textView5" />
+                            />
 
                     </android.support.percent.PercentFrameLayout>
 

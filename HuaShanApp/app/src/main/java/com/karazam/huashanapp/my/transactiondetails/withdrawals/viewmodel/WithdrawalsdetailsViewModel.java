@@ -7,4 +7,9 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class WithdrawalsdetailsViewModel extends BaseViewModel{
+
+    public String orderNo,orderId,type;
+
+    public abstract void getWithdrawalsdetails();
+
 }

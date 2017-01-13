@@ -75,6 +75,8 @@ public class HuaShanApplication extends Application {
     public static RxProperty<CardBean> withdrawCarRx = RxProperty.create();
     public static RxProperty<ArrayList<CardBean>> quickCardsRX = RxProperty.create();
 
+    public static String header = "";
+
     //个人资产
     public static MyAssetsBean myAssetsBean = new MyAssetsBean();
     public static RxProperty<MyAssetsBean> myAssetsBeanRX = RxProperty.create();
@@ -108,6 +110,7 @@ public class HuaShanApplication extends Application {
         editor = sharedPreferences.edit();
 
         account = sharedPreferences.getString("account", "");
+        header = sharedPreferences.getString("header","");
         uuid = sharedPreferences.getString("uuid", "-1");
         userKey = sharedPreferences.getString("userKey", "-1");
         token = sharedPreferences.getString("token", "");
@@ -223,6 +226,8 @@ public class HuaShanApplication extends Application {
         HuaShanApplication.myInformation = bean;
 
         certificationStatus = bean.getBaseInfo().isAuthentication();
+        HuaShanApplication.header = bean.getBaseInfo().getAvatar();
+        HuaShanApplication.editor.putString("header",bean.getBaseInfo().getAvatar()).commit();
         HuaShanApplication.myInformationRX.set(HuaShanApplication.myInformation);
         HuaShanApplication.baseInfoBeanRX.set(HuaShanApplication.myInformation.getBaseInfo());
         HuaShanApplication.withdrawCarRx.set(HuaShanApplication.myInformation.getWithdrawCardl());

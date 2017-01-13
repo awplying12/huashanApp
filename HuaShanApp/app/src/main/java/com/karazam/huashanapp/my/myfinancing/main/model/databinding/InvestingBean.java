@@ -28,6 +28,8 @@ public class InvestingBean {
             dueTime,
             unpaidAmount;
 
+//    private float progress;
+
     public String getPeriod() {
         return period;
     }

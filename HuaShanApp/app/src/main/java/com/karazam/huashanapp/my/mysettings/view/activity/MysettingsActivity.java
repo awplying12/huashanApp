@@ -134,6 +134,7 @@ public class MysettingsActivity extends BaseActivity implements MysettingsView {
                     @Override
                     public void onError(Throwable e) {
                         Log.i("e",e.toString());
+                        header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     }
 
                     @Override

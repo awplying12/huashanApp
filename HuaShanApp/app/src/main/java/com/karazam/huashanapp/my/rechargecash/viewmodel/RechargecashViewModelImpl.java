@@ -40,8 +40,8 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
         this.context = context;
         this.activity = activity;
 
-        setCertificationDialog();
-        setRechargeDialog();
+
+
     }
 
     @Override
@@ -59,7 +59,7 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
         flag = 2;
 
         if(!HuaShanApplication.certificationStatus){
-
+            setCertificationDialog();
             if(certificationDialog != null){
                 certificationDialog.setPrompt("提现需要实名认证","您要前往实名认证吗？");
                 certificationDialog.show();
@@ -69,8 +69,11 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
         }
 
         if(HuaShanApplication.myInformation.getWithdrawCardl() == null || TextUtils.isEmpty(HuaShanApplication.myInformation.getWithdrawCardl().getBankCardId())){
-            rechargeDialog.setPrompt("您还没有绑定提现卡，是否要前往绑定");
-            rechargeDialog.show();
+            setRechargeDialog();
+            if(rechargeDialog != null){
+                rechargeDialog.setPrompt("您还没有绑定提现卡","是否要前往绑定");
+                rechargeDialog.show();
+            }
             return;
         }
         mView.toOtherActivity(activity, WithdrawalsActivity.class);
@@ -84,7 +87,7 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
     public void Recharge(View view) {
         flag = 1;
         if(!HuaShanApplication.certificationStatus){
-
+            setCertificationDialog();
             if(certificationDialog != null){
                 certificationDialog.setPrompt("充值需要实名认证","您要前往实名认证吗？");
                 certificationDialog.show();
@@ -94,8 +97,11 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
         }
 
         if(HuaShanApplication.myInformation.getQuickCards() == null || HuaShanApplication.myInformation.getQuickCards().size() == 0){
-            rechargeDialog.setPrompt("您还没有绑定快捷卡，是否要前往绑定");
-            rechargeDialog.show();
+            setRechargeDialog();
+            if(rechargeDialog != null){
+                rechargeDialog.setPrompt("您还没有绑定快捷卡","是否要前往绑定");
+                rechargeDialog.show();
+            }
             return;
         }
 
@@ -138,11 +144,12 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
 
     private void setRechargeDialog(){
         rechargeDialog = new PromptDialog(activity);
-        rechargeDialog.setMod(PromptDialog.MOD2);
+        rechargeDialog.setMod(PromptDialog.MOD1);
 
         rechargeDialog.setClick("否", "是", new PromptDialog.OnDialogListener() {
             @Override
             public void onleft(View view) {
+
                 if(rechargeDialog != null){
                     rechargeDialog.dismiss();
                 }

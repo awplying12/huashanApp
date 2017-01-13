@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.manage.purchase.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.percent.PercentRelativeLayout;
 import android.text.Html;
@@ -382,8 +383,12 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
      * 投资成功
      * @param detailsId
      */
+    private String OrderNo = "-1";
     @Override
     public void purchaseSuccess(String detailsId) {
+
+        OrderNo = detailsId;
+
         dialog.show();
         dissmissProgressDialog();
         HuaShanApplication.refreshManage.set("Refresh");
@@ -404,6 +409,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
      */
     @Override
     public void purchaseFail(String s) {
+        setDialogFail();
+        dialogFail.setPrompt("购买失败！",s);
         dialogFail.show();
         dissmissProgressDialog();
     }
@@ -415,7 +422,10 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     @Override
     public void purchaseError(Throwable e) {
 //        dialogFail.show();
-        showToast("网络故障！");
+        setDialogFail();
+        dialogFail.setPrompt("购买失败！","网络故障！");
+        dialogFail.show();
+
         dissmissProgressDialog();
     }
 
@@ -428,13 +438,13 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
         dialog.setClick("查看详情","继续购买", new PromptDialog.OnDialogListener() {
             @Override
             public void onleft(View view) {
-//                showToast("查看详情");
-                toOtherActivity(PurchaseActivity.this, InvestmentActivity.class);
+                gotoTransactiondetails(OrderNo,"-1","investment",InvestmentActivity.class);
+
             }
 
             @Override
             public void onRight(View view) {
-//                showToast("继续购买");
+
                 dialog.dismiss();
                 mModel.ed_amountofmoney.setText("");
             }
@@ -445,8 +455,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
      * 投资后的提示Dialog
      */
     public void setDialogFail(){
-        dialogFail.setPrompt("","购买失败！");
-        dialogFail.setMod(PromptDialog.MOD2);
+//        dialogFail.setPrompt("","购买失败！");
+        dialogFail.setMod(PromptDialog.MOD1);
         dialogFail.setClick("退出","继续购买", new PromptDialog.OnDialogListener() {
             @Override
             public void onleft(View view) {
@@ -463,5 +473,13 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
                 mModel.ed_amountofmoney.setText("");
             }
         });
+    }
+
+    private void gotoTransactiondetails(String orderNo,String orderId,String type,Class<?> cls){
+        Intent intent = new Intent(this,cls);
+        intent.putExtra("orderId",orderId);
+        intent.putExtra("orderNo",orderNo);
+        intent.putExtra("type",type);
+        startActivity(intent);
     }
 }

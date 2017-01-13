@@ -105,6 +105,7 @@ public class MyFragment extends BaseFragment implements MyView {
             public void call(View target, BaseInfoBean baseInfoBean) {
                 final ImageView header = (ImageView) target;
 
+//                Log.i("logo",baseInfoBean.getAvatar());
                 if(TextUtils.isEmpty(baseInfoBean.getAvatar())){
                     header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     return;
@@ -119,6 +120,7 @@ public class MyFragment extends BaseFragment implements MyView {
                     @Override
                     public void onError(Throwable e) {
                         Log.i("e",e.toString());
+                        header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     }
 
                     @Override

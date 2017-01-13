@@ -7,4 +7,8 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class RechargedetailsViewModel extends BaseViewModel{
+
+    public String orderNo,orderId,type;
+
+    public abstract void getRechargedetails();
 }
