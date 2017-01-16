@@ -96,8 +96,9 @@ public class RechargedetailsActivity extends BaseActivity implements Rechargedet
                 String memo = rechargedetalisBean.getMemo();
                 tv_memo.setText(StringUtil.interrupt(memo,20,"未知"));
 
-                Long createDate = rechargedetalisBean.getCreateDate();
-                if(createDate == null || createDate == 0){
+                String createDate = rechargedetalisBean.getCreateDate();
+                Long date = Long.parseLong(StringUtil.interrupt(createDate,0,"0"));
+                if(date == null || date == 0){
                     tv_createDate.setText("");
                 } else {
                     String time = DataUtil.getDate(new Date(createDate),"yyyy-MM-dd HH:mm");

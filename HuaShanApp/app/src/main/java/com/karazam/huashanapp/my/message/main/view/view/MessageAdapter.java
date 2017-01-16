@@ -10,11 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
+import com.example.utils.utils.DataUtil;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.Bean.MessageBean;
+import com.karazam.huashanapp.my.message.main.model.databinding.MessagelistItem;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2016/12/20.
@@ -46,6 +49,23 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         String title = list.get(position).getTitle();
         holder.title.setText(StringUtil.interrupt(title,0,"未知"));
+
+        MessagelistItem item = list.get(position).getItem();
+        if(item == null){
+            return;
+        }
+        String content = item.getContent();
+        holder.content.setText(StringUtil.interrupt(content,20,"无"));
+
+        String createDate = item.getNoticeTime();
+        Long date = Long.parseLong(StringUtil.interrupt(createDate,0,"0"));
+        if(date == null || date == 0){
+            holder.time.setText("");
+        } else {
+            String time = DataUtil.getDate(new Date(date),"yyyy-MM-dd HH:mm");
+            holder.time.setText(StringUtil.interrupt(time,0,""));
+        }
+
     }
 
     private void setItem(ViewHolder holder, int position) {

@@ -28,4 +28,6 @@ public abstract class HomeViewModel extends BaseViewModel{
 
     public abstract void getMyAssets();
 
+    public abstract void setRegistrationId();
+
 }

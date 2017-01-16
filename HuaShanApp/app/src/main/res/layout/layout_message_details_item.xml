@@ -37,17 +37,31 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-            
-            <TextView
-                android:id="@+id/content_tv"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="18dp"
-                android:paddingBottom="18dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                android:text="text" />
+                <TextView
+                    android:id="@+id/title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:gravity="center_vertical"
+                    android:text="title"/>
+
+                <TextView
+                    android:id="@+id/content_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:paddingBottom="18dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="text" />
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 

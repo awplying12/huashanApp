@@ -12,12 +12,16 @@ import com.example.utils.custom.WrapContentLinearLayoutManager;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityMessagedetailsBinding;
+import com.karazam.huashanapp.my.message.messagedetails.model.databinding.MessagedetailsBean;
 import com.karazam.huashanapp.my.message.messagedetails.model.databinding.MessagedetailsEntity;
 import com.karazam.huashanapp.my.message.messagedetails.view.MessagedetailsView;
 import com.karazam.huashanapp.my.message.messagedetails.view.view.DetailsBean;
 import com.karazam.huashanapp.my.message.messagedetails.view.view.MessagedetailsAdapter;
 import com.karazam.huashanapp.my.message.messagedetails.viewmodel.MessagedetailsViewModel;
 import com.karazam.huashanapp.my.message.messagedetails.viewmodel.MessagedetailsViewModelImpl;
+import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxProperty;
+import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
 
@@ -40,6 +44,8 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
     private String title;
     private int position;
 
+    private static int page = 1;
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_messagedetails);
@@ -53,6 +59,7 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
     public void dealLogicBeforeInitView() {
         title = getIntent().getStringExtra("title");
         position = getIntent().getIntExtra("position",-1);
+        mModel.type = getIntent().getStringExtra("type");
     }
 
     @Override
@@ -77,6 +84,8 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
         setLayout();
 
         setMessageRecyclerView();
+
+        Refresh();
     }
 
     /**
@@ -103,6 +112,9 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
     /**
      * 设置MessageRecyclerView
      */
+    private MessagedetailsAdapter adapter;
+    private RxProperty<MessagedetailsBean> messagedetailsRx = RxProperty.create();
+    private ArrayList<DetailsBean> list = new ArrayList<>();
     private void setMessageRecyclerView() {
 
         WrapContentLinearLayoutManager layoutManager = new WrapContentLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false){
@@ -114,25 +126,94 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
         rl_messagedetails.setLayoutManager(layoutManager);
 
 
-        ArrayList<DetailsBean> list = new ArrayList<>();
-        list.add(new DetailsBean());
-        list.add(new DetailsBean());
-        list.add(new DetailsBean());
+//        ArrayList<DetailsBean> list = new ArrayList<>();
+//        list.add(new DetailsBean());
+//        list.add(new DetailsBean());
+//        list.add(new DetailsBean());
 
-        rl_messagedetails.setAdapter(new MessagedetailsAdapter(MessagedetailsActivity.this,list));
+        adapter = new MessagedetailsAdapter(MessagedetailsActivity.this,list);
+        rl_messagedetails.setAdapter(adapter);
 
+        RxView.of(rl_messagedetails).bind(messagedetailsRx, new Rx.Action<RefreshRecyclerView, MessagedetailsBean>() {
+            @Override
+            public void call(RefreshRecyclerView target, MessagedetailsBean messagedetailsBean) {
+
+
+                if(page == 1){
+                    list = messagedetailsBean.getRows();
+                } else {
+                    list.addAll(messagedetailsBean.getRows());
+                }
+
+                adapter.setList(list);
+                adapter.notifyDataSetChanged();
+
+                page++;
+
+            }
+        });
 
         rl_messagedetails.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
             @Override
             public void onRefreshUp() {
-                showToast("onRefresh up");
+//                showToast("onRefresh up");
+                addData();
             }
         });
     }
 
     @Override
     public void onRefresh() {
-        showToast("onRefresh Down");
+//        showToast("onRefresh Down");
+        Refresh();
+    }
+
+    /**
+     * 刷新
+     */
+    private void Refresh() {
+        page = 1;
+        mModel.getMessagedetails(page);
+    }
+
+    /**
+     * 添加数据
+     */
+    private void addData(){
+
+        if(page >mModel.allpage){
+            showToast("到最后一页了！");
+            return;
+        }
+
+        mModel.getMessagedetails(page);
+    }
+
+    /**
+     * 获取消息详情成功
+     * @param bean
+     */
+    @Override
+    public void getMessagedetailsSuccess(MessagedetailsBean bean) {
+        swipe_rf.setRefreshing(false);
+        messagedetailsRx.set(bean);
+    }
+
+    /**
+     * 获取消息详情失败
+     * @param s
+     */
+    @Override
+    public void getMessagedetailsFail(String s) {
+        swipe_rf.setRefreshing(false);
+    }
+
+    /**
+     * 获取消息详情错误
+     * @param e
+     */
+    @Override
+    public void getMessagedetailsError(Throwable e) {
         swipe_rf.setRefreshing(false);
     }
 }

@@ -13,9 +13,9 @@ public class InvestmentBean {
 //            "status":"WAITING_PAY"
 //             statusDes=待支付
 
-    private String amount,memo,buyMethod,title,status,statusDes;
+    private String amount,memo,createDate,buyMethod,title,status,statusDes;
 
-    private long createDate;
+
 
     public String getAmount() {
         return amount;
@@ -49,11 +49,11 @@ public class InvestmentBean {
         this.title = title;
     }
 
-    public long getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(long createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

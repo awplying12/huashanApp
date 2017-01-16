@@ -13,6 +13,7 @@ import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
 import com.karazam.huashanapp.main.Bean.MyInformation.MyInformationBean;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.main.retrofit.registrationId.RegistrationIdDataSource;
 import com.karazam.huashanapp.main.retrofit.user.MyAssetsDataSource;
 import com.karazam.huashanapp.main.retrofit.user.MyInformationDataSource;
 import com.karazam.huashanapp.user.login.model.databinding.TokenData;
@@ -36,6 +37,8 @@ public class HomeViewModelImpl extends HomeViewModel {
     private CheckloginDataSource dataSource;
     private MyInformationDataSource informationDataSource;
     private MyAssetsDataSource assetsDataSource;
+    private RegistrationIdDataSource registrationIdDataSource;
+
 
     public HomeViewModelImpl(HomeView mView, HomeEntity mEntity, HomeActivity activity, Context context) {
         this.mView = mView;
@@ -46,6 +49,7 @@ public class HomeViewModelImpl extends HomeViewModel {
         dataSource = new CheckloginDataSource();
         informationDataSource = new MyInformationDataSource();
         assetsDataSource = new MyAssetsDataSource();
+        registrationIdDataSource = new RegistrationIdDataSource();
     }
 
     @Override
@@ -177,12 +181,13 @@ public class HomeViewModelImpl extends HomeViewModel {
         informationDataSource.getMyInformation().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<MyInformationBean>>() {
             @Override
             public void onCompleted() {
-
+                mView.getBaseDataFinish();
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.i("getMyInformation","e : "+e.toString());
+                mView.getBaseDataFinish();
             }
 
             @Override
@@ -229,5 +234,35 @@ public class HomeViewModelImpl extends HomeViewModel {
                 }
             }
         });
+    }
+
+    /**
+     * 上传RegistrationId
+     */
+    @Override
+    public void setRegistrationId() {
+
+        registrationIdDataSource.setRegistrationId().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("setRegistrationId","e : "+e.toString());
+            }
+
+            @Override
+            public void onNext(BaseReturn baseReturn) {
+                if(baseReturn.isSuccess()){
+                    Log.i("getMyAssets",baseReturn.getData().toString());
+
+                }else {
+                    mView.showToast(baseReturn.getMessage());
+                }
+            }
+        });
+
     }
 }

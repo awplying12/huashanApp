@@ -7,4 +7,6 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class MessageViewModel extends BaseViewModel {
+
+    public abstract void getMessagelist();
 }

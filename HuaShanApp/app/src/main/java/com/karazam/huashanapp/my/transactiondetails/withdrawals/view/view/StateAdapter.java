@@ -51,11 +51,12 @@ public class StateAdapter extends RecyclerView.Adapter<StateAdapter.ViewHolder> 
 
 
 //        String time = StringUtil.interrupt(list.get(position).getDate(),0,"");
-        Long data = list.get(position).getDate();
-        if(data == null || data == 0){
+        String data = list.get(position).getDate();
+        Long dataNum = Long.parseLong(StringUtil.interrupt(data,0,"0"));
+        if(dataNum == null || dataNum == 0){
             holder.time.setText("");
         }else {
-            String time = DataUtil.getDate(new Date(data),"MM-dd HH:mm");
+            String time = DataUtil.getDate(new Date(dataNum),"MM-dd HH:mm");
             holder.time.setText(StringUtil.interrupt(time,0,"未知"));
         }
 

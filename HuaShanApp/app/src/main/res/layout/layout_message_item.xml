@@ -26,7 +26,7 @@
             app:layout_marginLeftPercent="20%"
             android:gravity="bottom"
             style="@style/Base.TextAppearance.AppCompat.Body2"
-            android:text="新标通知"
+            android:text="通知类型"
             android:textSize="16dp"/>
 
         <TextView
@@ -35,7 +35,7 @@
             app:layout_heightPercent="50%"
             android:layout_gravity="bottom"
             app:layout_marginLeftPercent="20%"
-            android:text="12月16日17:00新标上线"/>
+            android:text="无"/>
 
         <TextView
             android:id="@+id/time_tv"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             app:layout_marginRightPercent="5%"
             android:layout_gravity="center_vertical|right"
-            android:text="12:08"
+            android:text=""
             android:textSize="10dp"/>
 
         <ImageView

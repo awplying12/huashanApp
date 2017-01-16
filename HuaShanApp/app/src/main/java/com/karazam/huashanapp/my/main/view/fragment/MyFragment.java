@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,11 +19,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseFragment;
+import com.example.utils.custom.VpSwipeRefreshLayout;
 import com.example.utils.utils.BitmapUtil;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.FragmentMyBinding;
+import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
 import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
@@ -50,7 +53,7 @@ import util.changhongit.com.cacheutils.Cache_RxBitmap.RxImageLoader;
  * Created by Administrator on 2016/10/12.
  */
 
-public class MyFragment extends BaseFragment implements MyView {
+public class MyFragment extends BaseFragment implements MyView,SwipeRefreshLayout.OnRefreshListener{
 
     private View view;
 
@@ -59,8 +62,10 @@ public class MyFragment extends BaseFragment implements MyView {
     private MyViewModel mModel;
 
     private CirclePageIndicator indicator;
+    private VpSwipeRefreshLayout swl_pl;
 
     private ViewPager vp_asset;
+    private HomeActivity activity;
 
 
     @Nullable
@@ -81,6 +86,7 @@ public class MyFragment extends BaseFragment implements MyView {
         setAsset();
         setAssetClick();
         setLayout();
+
         return view;
     }
 
@@ -93,6 +99,24 @@ public class MyFragment extends BaseFragment implements MyView {
     private void initView() {
         vp_asset = (ViewPager) getView(R.id.vp_asset,view);
         indicator = (CirclePageIndicator) getView(R.id.indicator,view);
+
+        swl_pl = (VpSwipeRefreshLayout) getView(R.id.swl_pl,view);
+        swl_pl.setOnRefreshListener(this);
+        swl_pl.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
+
+        activity = (HomeActivity) getActivity();
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+        activity.getBaseData();
+    }
+
+    public void finishRefresh(){
+        swl_pl.setRefreshing(false);
     }
 
    /**
@@ -250,6 +274,7 @@ public class MyFragment extends BaseFragment implements MyView {
                     }
                 });
     }
+
 
 
 }

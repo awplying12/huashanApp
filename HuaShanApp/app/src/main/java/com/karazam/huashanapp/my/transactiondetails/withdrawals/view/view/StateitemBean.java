@@ -6,7 +6,7 @@ package com.karazam.huashanapp.my.transactiondetails.withdrawals.view.view;
 
 public class StateitemBean {
     private String status;
-    private Long date;
+    private String date;
     private boolean pass;
 
     public String getStatus() {
@@ -17,11 +17,11 @@ public class StateitemBean {
         this.status = status;
     }
 
-    public Long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

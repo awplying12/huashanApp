@@ -147,6 +147,14 @@ public class HomeActivity extends BaseActivity implements HomeView {
         showToast("网络故障！");
     }
 
+    /**
+     * 获取基本数据完成
+     */
+    @Override
+    public void getBaseDataFinish() {
+        myFragment.finishRefresh();
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -276,8 +284,10 @@ public class HomeActivity extends BaseActivity implements HomeView {
     /**
      * 获取基本数据
      */
-    private void getBaseData(){
+    public void getBaseData(){
         mModel.getMyInformation();
         mModel.getMyAssets();
+        mModel.setRegistrationId();
     }
+
 }

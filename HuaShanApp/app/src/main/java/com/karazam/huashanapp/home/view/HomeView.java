@@ -18,4 +18,6 @@ public interface HomeView extends BaseView{
     void CheckloginFaile(String s);
 
     void CheckloginError(Throwable e);
+
+    void getBaseDataFinish();
 }

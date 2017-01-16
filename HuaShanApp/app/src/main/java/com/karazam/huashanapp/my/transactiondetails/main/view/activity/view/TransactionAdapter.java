@@ -46,7 +46,8 @@ public class TransactionAdapter extends BaseBaseAdapter<TransactionItem> impleme
             headerViewHolder = (HeaderViewHolder) convertView.getTag();
         }
 
-        String month = DataUtil.getDate(new Date(getList().get(position).getCreateDate()),"yyyy年M月");
+        Long date = Long.parseLong(StringUtil.interrupt(getList().get(position).getCreateDate(),0,"0"));
+        String month = DataUtil.getDate(new Date(date),"yyyy年M月");
         headerViewHolder.month.setText(StringUtil.interrupt(month,0,""));
         return convertView;
     }
@@ -55,7 +56,8 @@ public class TransactionAdapter extends BaseBaseAdapter<TransactionItem> impleme
     public long getHeaderId(int position) {
 
         Time time = new Time("GMT+8");
-        time.set(getList().get(position).getCreateDate());
+        Long date = Long.parseLong(StringUtil.interrupt(getList().get(position).getCreateDate(),0,"0"));
+        time.set(date);
 
         return time.month;
     }
@@ -76,7 +78,8 @@ public class TransactionAdapter extends BaseBaseAdapter<TransactionItem> impleme
             holder.data1.setText(StringUtil.interrupt(week,0,"未知"));
 
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
-            Date date = new Date(getList().get(position).getCreateDate());
+            Long dateNum = Long.parseLong(StringUtil.interrupt(getList().get(position).getCreateDate(),0,"0"));
+            Date date = new Date(dateNum);
             String data2 = StringUtil.interrupt(sdf.format(date),0,"未知");
             holder.data2.setText(data2);
 

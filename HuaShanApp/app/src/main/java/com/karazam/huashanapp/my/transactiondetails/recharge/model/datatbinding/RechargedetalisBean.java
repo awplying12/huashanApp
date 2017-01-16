@@ -13,12 +13,12 @@ public class RechargedetalisBean {
 //    statusDes=已成功
 
     private String amount,
+            createDate,
             memo,
             payMethod,
             status,
             statusDes;
 
-    private long createDate;
 
     public String getAmount() {
         return amount;
@@ -28,11 +28,11 @@ public class RechargedetalisBean {
         this.amount = amount;
     }
 
-    public long getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(long createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

@@ -108,11 +108,12 @@ public class InvestmentActivity extends BaseActivity implements InvestmentView,S
 //                String createDate = investmentBean.getCreateDate();
 //                tv_createDate.setText(StringUtil.interrupt(createDate,0,"未知"));
 
-                Long createDate = investmentBean.getCreateDate();
-                if(createDate == null || createDate == 0){
+                String createDate = investmentBean.getCreateDate();
+                Long date = Long.parseLong(StringUtil.interrupt(createDate,0,"0"));
+                if(date == null || date == 0){
                     tv_createDate.setText("");
                 } else {
-                    String time = DataUtil.getDate(new Date(createDate),"yyyy-MM-dd HH:mm");
+                    String time = DataUtil.getDate(new Date(date),"yyyy-MM-dd HH:mm");
                     tv_createDate.setText(StringUtil.interrupt(time,0,""));
                 }
             }

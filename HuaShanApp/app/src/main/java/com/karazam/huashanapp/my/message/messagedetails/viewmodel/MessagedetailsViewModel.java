@@ -7,4 +7,10 @@ import com.example.utils.base.BaseViewModel;
  */
 
 public abstract class MessagedetailsViewModel extends BaseViewModel {
+
+    public String type;
+
+    public static int allpage = 1;
+
+    public abstract void getMessagedetails(int page);
 }

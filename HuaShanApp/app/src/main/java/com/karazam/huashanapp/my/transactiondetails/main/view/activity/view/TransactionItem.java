@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.my.transactiondetails.main.view.activity.view;
 
 import com.example.utils.utils.DataUtil;
+import com.example.utils.utils.StringUtil;
 
 import java.text.ParseException;
 
@@ -17,8 +18,9 @@ public class TransactionItem {
     // "createDate":1483961853000,
     //  memo=充值-用户[51]-方式[快捷支付]-充值
 
-    private long createDate;
+//    private long createDate;
     private String weekDay,
+                createDate,
                 orderId,
                 orderNo,
                 amount,
@@ -27,11 +29,11 @@ public class TransactionItem {
     public TransactionItem() {
     }
 
-    public long getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(long createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
@@ -77,13 +79,15 @@ public class TransactionItem {
 
     public String getWeekDay() {
 
+        Long date = Long.parseLong(StringUtil.interrupt(createDate,0,"0"));
+
         try {
-            if(DataUtil.IsToday(createDate)){
+            if(DataUtil.IsToday(date)){
                 weekDay = "今天";
-            }else if(DataUtil.IsYesterday(createDate)){
+            }else if(DataUtil.IsYesterday(date)){
                 weekDay = "昨天";
             }else {
-                weekDay = DataUtil.getWeekDay(createDate);
+                weekDay = DataUtil.getWeekDay(date);
             }
         } catch (ParseException e) {
             e.printStackTrace();
