@@ -114,7 +114,7 @@
                     app:layout_heightPercent="45%"
                     app:layout_marginLeftPercent="30%"
                     android:gravity="bottom"
-                    android:text="王蕙"
+                    android:text=""
                     android:textSize="@dimen/setup_header_text_size"/>
 
                 <TextView
@@ -123,7 +123,7 @@
                     app:layout_heightPercent="45%"
                     app:layout_marginLeftPercent="30%"
                     android:layout_gravity="bottom"
-                    android:text="chayewala"
+                    android:text=""
                     android:textSize="@dimen/setup_header_text_size"/>
 
                 <ImageView
@@ -161,7 +161,7 @@
                     android:textColor="@color/setup_text_color_1"
                     android:textSize="@dimen/setup_pa1_text_size"
                     app:layout_marginRightPercent="10%"
-                    android:text="已认证"/>
+                    android:text=""/>
 
                 <ImageView
                     app:layout_widthPercent="4%"
@@ -196,7 +196,7 @@
                     android:textColor="@color/setup_text_color_1"
                     android:textSize="@dimen/setup_pa1_text_size"
                     app:layout_marginRightPercent="10%"
-                    android:text="131*****017"/>
+                    android:text=""/>
 
                 <ImageView
                     app:layout_widthPercent="4%"
@@ -389,7 +389,8 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="10%"
                 android:layout_gravity="bottom"
-                android:background="#fff">
+                android:background="#fff"
+                android:onClick="@{handler.safeExit}">
 
                 <TextView
                     android:layout_width="wrap_content"

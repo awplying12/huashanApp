@@ -130,7 +130,8 @@ public class MyFragment extends BaseFragment implements MyView,SwipeRefreshLayou
                 final ImageView header = (ImageView) target;
 
 //                Log.i("logo",baseInfoBean.getAvatar());
-                if(TextUtils.isEmpty(baseInfoBean.getAvatar())){
+
+                if(baseInfoBean == null||TextUtils.isEmpty(baseInfoBean.getAvatar())){
                     header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     return;
                 }

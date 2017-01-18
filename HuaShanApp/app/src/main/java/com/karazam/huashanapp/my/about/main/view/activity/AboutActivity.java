@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.utils.base.BaseActivity;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityAboutBinding;
+import com.karazam.huashanapp.main.update.Updata;
 import com.karazam.huashanapp.my.about.main.model.databinding.AboutEntity;
 import com.karazam.huashanapp.my.about.main.view.AboutView;
 import com.karazam.huashanapp.my.about.main.viewmodel.AboutViewModel.AboutViewModel;
@@ -32,6 +33,7 @@ public class AboutActivity extends BaseActivity implements AboutView {
     private TextView hint_text;
 
 
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_about);
@@ -43,7 +45,7 @@ public class AboutActivity extends BaseActivity implements AboutView {
 
     @Override
     public void dealLogicBeforeInitView() {
-
+        mModel.updata = new Updata(this,this);
     }
 
     @Override

@@ -104,7 +104,8 @@ public class MysettingsViewModelImpl2 extends MysettingsViewModel2 {
 
                             SetupBean bean = setupBeanBaseReturn.getData();
                             HuaShanApplication.myInformation.setBaseInfo(bean.getBaseInfo());
-                            HuaShanApplication.baseInfoBeanRX.set(bean.getBaseInfo());
+//                            HuaShanApplication.baseInfoBeanRX.set(bean.getBaseInfo());
+                            HuaShanApplication.setMyInformation(HuaShanApplication.myInformation);
                             mView.setUpNameSuccess();
                         }else {
                             mView.setUpNameFail(setupBeanBaseReturn.getMessage());

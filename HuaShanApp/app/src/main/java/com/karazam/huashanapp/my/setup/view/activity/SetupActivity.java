@@ -76,7 +76,7 @@ public class SetupActivity extends BaseActivity implements SetupView {
             public void call(View target, BaseInfoBean baseInfoBean) {
                 final ImageView header = (ImageView) target;
 
-                if(TextUtils.isEmpty(baseInfoBean.getAvatar())){
+                if(baseInfoBean == null || TextUtils.isEmpty(baseInfoBean.getAvatar())){
                     header.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
                     return;
                 }

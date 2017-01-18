@@ -11,12 +11,16 @@ public class BaseInfoBean {
 //            "avatar":null,
 //            "name":"15228998683",
 //            "authentication":true
+//             isSetGesPassword=True
+//              gesPassword=cc70e9369e9f87a660812e08d76a828e
     private String mobile;
     private String realname;
     private String idno;
     private String name;
     private String avatar;
+    private String gesPassword;
     private boolean authentication;
+    private boolean isSetGesPassword;
 
     public String getMobile() {
         return mobile;
@@ -66,6 +70,22 @@ public class BaseInfoBean {
         this.avatar = avatar;
     }
 
+    public String getGesPassword() {
+        return gesPassword;
+    }
+
+    public void setGesPassword(String gesPassword) {
+        this.gesPassword = gesPassword;
+    }
+
+    public boolean isSetGesPassword() {
+        return isSetGesPassword;
+    }
+
+    public void setSetGesPassword(boolean setGesPassword) {
+        isSetGesPassword = setGesPassword;
+    }
+
     @Override
     public String toString() {
         return "BaseInfoBean{" +
@@ -74,7 +94,9 @@ public class BaseInfoBean {
                 ", idno='" + idno + '\'' +
                 ", name='" + name + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", gesPassword='" + gesPassword + '\'' +
                 ", authentication=" + authentication +
+                ", isSetGesPassword=" + isSetGesPassword +
                 '}';
     }
 }

@@ -99,11 +99,17 @@ public class GesturepwViewModelImpl extends GesturepwViewModel{
 
             @Override
             public void onNext(BaseReturn<GespwReturn> gespwReturnBaseReturn) {
-                GespwReturn gespwReturn = gespwReturnBaseReturn.getData();
-                Log.i("GespwReturn",gespwReturn.toString());
-                mView.setGesPasswordSuccess(gespwReturn);
+
+                if(gespwReturnBaseReturn.isSuccess()){
+                    GespwReturn gespwReturn = gespwReturnBaseReturn.getData();
+                    Log.i("GespwReturn",gespwReturn.toString());
+                    mView.setGesPasswordSuccess(gespwReturn);
+                }else {
+                    mView.showToast(gespwReturnBaseReturn.getMessage());
+                }
             }
         });
+
     }
 
     /**

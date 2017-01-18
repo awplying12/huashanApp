@@ -50,32 +50,33 @@
             app:layout_marginTopPercent="65%"
             android:layout_gravity="center_horizontal"
             android:background="@color/line_color"/>
-        <ImageView
-            android:layout_width="0.5dp"
-            app:layout_heightPercent="30%"
-            android:layout_gravity="bottom|center_horizontal"
-            app:layout_marginBottomPercent="2.5%"
-            android:background="@color/line_color"/>
+        <!--<ImageView-->
+            <!--android:layout_width="0.5dp"-->
+            <!--app:layout_heightPercent="30%"-->
+            <!--android:layout_gravity="bottom|center_horizontal"-->
+            <!--app:layout_marginBottomPercent="2.5%"-->
+            <!--android:background="@color/line_color"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/bt_pro_l"-->
+            <!--app:layout_widthPercent = "50%"-->
+            <!--app:layout_heightPercent="35%"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:gravity="center"-->
+            <!--android:text="取消"-->
+            <!--android:textSize="@dimen/promptdialog_text_size_3"-->
+            <!--android:textColor="@color/promptdialog_text_color_3"/>-->
 
         <TextView
-            android:id="@+id/bt_pro_l"
-            app:layout_widthPercent = "50%"
-            app:layout_heightPercent="35%"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="取消"
-            android:textSize="@dimen/promptdialog_text_size_3"
-            android:textColor="@color/promptdialog_text_color_3"/>
-
-        <TextView
-            android:id="@+id/bt_pro_r"
-            app:layout_widthPercent = "50%"
+            android:id="@+id/bt_pro_btn"
+            app:layout_widthPercent = "100%"
             app:layout_heightPercent="35%"
             android:layout_gravity="bottom|right"
             android:gravity="center"
             android:text="确定"
             android:textSize="@dimen/promptdialog_text_size_3"
             android:textColor="@color/promptdialog_text_color_3"/>
+
 
 
     </android.support.percent.PercentFrameLayout>

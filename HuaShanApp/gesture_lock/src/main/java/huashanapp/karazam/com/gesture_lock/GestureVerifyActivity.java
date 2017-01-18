@@ -141,6 +141,7 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 
 					@Override
 					public void checkedFail() {
+
 						mGestureContentView.clearDrawlineState(1300L);
 						mTextTip.setVisibility(View.VISIBLE);
 						mTextTip.setText(Html

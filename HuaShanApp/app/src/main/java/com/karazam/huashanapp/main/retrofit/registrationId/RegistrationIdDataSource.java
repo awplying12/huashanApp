@@ -14,9 +14,9 @@ public class RegistrationIdDataSource extends BaseDataSource{
 
     RegistrationIdApi service = retrofit1.create(RegistrationIdApi.class);
 
-    public Observable<BaseReturn> setRegistrationId(){
+    public Observable<BaseReturn> setRegistrationId(String registrationId){
         RegistrationIdPost post = new RegistrationIdPost();
-        post.setRegistrationId(HuaShanApplication.RegistrationID);
+        post.setRegistrationId(registrationId);
         post.setUserId(HuaShanApplication.uuid);
         post.setOsType("android");
         return service.setRegistrationId(post,HuaShanApplication.token,"XMLHttpRequest");

@@ -23,10 +23,18 @@ public class AboutViewModelImpl extends AboutViewModel {
         this.mEntity = mEntity;
         this.context = context;
         this.activity = activity;
+
+
     }
 
     @Override
     public void onBack(View view) {
         mView.FinishActivity(activity);
+    }
+
+    @Override
+    public void updata(View view) {
+
+        updata.checkNewestVersion();
     }
 }

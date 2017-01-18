@@ -104,10 +104,10 @@ public class MytransferActivity extends BaseActivity implements MytransferView {
             public void onItemClick(View view, int position) {
                 switch (position){
                     case 0:     //转让中
-                        transferMode.set(HuaShanApplication.project2);
+//                        transferMode.set(HuaShanApplication.project2);
                         break;
                     case 1:     //已完成
-                        finishedMode.set(HuaShanApplication.project4);
+//                        finishedMode.set(HuaShanApplication.project4);
                         break;
                     default:
                         break;
@@ -115,7 +115,7 @@ public class MytransferActivity extends BaseActivity implements MytransferView {
             }
         });
 
-        transferMode.set(HuaShanApplication.project2);
+//        transferMode.set(HuaShanApplication.project2);
     }
 
     /**
@@ -170,15 +170,15 @@ public class MytransferActivity extends BaseActivity implements MytransferView {
             @Override
             public void inputFinish() {
                 showToast(pwd_view.getStrPassword());
-                if(HuaShanApplication.project2.getInformations().get(mPosition).isState()){
-                    HuaShanApplication.project2.getInformations().get(mPosition).setState(false);
-                    transferMode.set(HuaShanApplication.project2);
-                }else {
-                    HuaShanApplication.project2.getInformations().get(mPosition).setState(true);
-                    transferMode.set(HuaShanApplication.project2);
-                }
-
-                pwd_view.out();
+//                if(HuaShanApplication.project2.getInformations().get(mPosition).isState()){
+//                    HuaShanApplication.project2.getInformations().get(mPosition).setState(false);
+//                    transferMode.set(HuaShanApplication.project2);
+//                }else {
+//                    HuaShanApplication.project2.getInformations().get(mPosition).setState(true);
+//                    transferMode.set(HuaShanApplication.project2);
+//                }
+//
+//                pwd_view.out();
             }
 
             @Override

@@ -10,6 +10,8 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.MainActivity;
 import com.karazam.huashanapp.main.registerMain.registerActivity;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.my.security.gesturepassword.model.databinding.GespwReturn;
+import com.karazam.huashanapp.my.security.gesturepassword.model.retrofit.GespasswordDataSource;
 import com.karazam.huashanapp.user.login.model.databinding.TokenData;
 import com.karazam.huashanapp.user.register.model.databinbing.Register3Entity;
 import com.karazam.huashanapp.user.register.model.retrofit.RegisterDataSource;
@@ -41,6 +43,8 @@ public class Register3ViewModelImpl extends Register3ViewModel {
 
     private RegisterDataSource dataSource;
 
+    private GespasswordDataSource gespasswordDataSource;
+
     public Register3ViewModelImpl(Register3View mView, Register3Entity mEntity, Context context, Register3Activity activity) {
         this.mView = mView;
         this.mEntity = mEntity;
@@ -48,6 +52,8 @@ public class Register3ViewModelImpl extends Register3ViewModel {
         this.activity = activity;
 
         dataSource = new RegisterDataSource();
+        gespasswordDataSource = new GespasswordDataSource();
+
     }
 
     @Override
@@ -78,7 +84,7 @@ public class Register3ViewModelImpl extends Register3ViewModel {
     @Override
     public void userAgreement(View view) {
 
-        mView.showUserAgreement();
+//        mView.showUserAgreement();
     }
 
     /**
@@ -136,11 +142,46 @@ public class Register3ViewModelImpl extends Register3ViewModel {
                     mView.registerSuccess(data);
 
                 }else {
+                    mView.showToast(tokenDataBaseReturn.getMessage());
                     mView.registerFaile(new Throwable("Faile"));
                 }
             }
         });
 
+    }
+
+    /**
+     * 设置手势密码
+     * @param gesPassword
+     */
+    @Override
+    public void setGesPassword(String gesPassword) {
+        gespasswordDataSource.setGesPassword(gesPassword).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<GespwReturn>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+                mView.setGesPasswordError(e);
+                Log.i("GespwReturn","e  :  "+e.toString());
+            }
+
+            @Override
+            public void onNext(BaseReturn<GespwReturn> gespwReturnBaseReturn) {
+
+                if(gespwReturnBaseReturn.isSuccess()){
+                    GespwReturn gespwReturn = gespwReturnBaseReturn.getData();
+                    Log.i("GespwReturn",gespwReturn.toString());
+                    mView.setGesPasswordSuccess(gespwReturn);
+                } else {
+                    mView.setGesPasswordFaile(gespwReturnBaseReturn.getMessage());
+                }
+
+            }
+        });
     }
 
 

@@ -56,7 +56,7 @@ public class LoginViewModelImpl extends LoginViewModel {
      */
     @Override
     public void toFindpassword(View view) {
-        mView.showToast("toFindpassword");
+//        mView.showToast("toFindpassword");
         activity.toOtherActivity(activity, FindpasswordActivity.class);
     }
 
@@ -66,7 +66,7 @@ public class LoginViewModelImpl extends LoginViewModel {
      */
     @Override
     public void toRegister(View view) {
-        mView.showToast("toRegister");
+//        mView.showToast("toRegister");
         activity.toOtherActivity(activity, Register1Activity.class);
 //        activity.finish();
     }
@@ -98,7 +98,7 @@ public class LoginViewModelImpl extends LoginViewModel {
 
             @Override
             public void onNext(BaseReturn<TokenData> s) {
-                Log.i("login",s.toString());
+//                Log.i("login",s.toString());
 
                 String status = s.getStatus();
                 if(status.equals("success")){

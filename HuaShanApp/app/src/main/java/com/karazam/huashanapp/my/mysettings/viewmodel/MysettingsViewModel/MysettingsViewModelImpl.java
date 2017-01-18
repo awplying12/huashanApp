@@ -111,7 +111,8 @@ public class MysettingsViewModelImpl extends MysettingsViewModel {
                         if(setupBeanBaseReturn.isSuccess()){
                             SetupBean bean = setupBeanBaseReturn.getData();
                             HuaShanApplication.myInformation.setBaseInfo(bean.getBaseInfo());
-                            HuaShanApplication.baseInfoBeanRX.set(bean.getBaseInfo());
+//                            HuaShanApplication.baseInfoBeanRX.set(bean.getBaseInfo());
+                            HuaShanApplication.setMyInformation(HuaShanApplication.myInformation);
                             mView.setHeaderSuccess();
                         } else {
                             mView.setHeaderFail(setupBeanBaseReturn.getMessage());

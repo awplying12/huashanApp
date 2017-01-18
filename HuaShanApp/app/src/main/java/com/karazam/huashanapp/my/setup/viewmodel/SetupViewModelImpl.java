@@ -107,4 +107,14 @@ public class SetupViewModelImpl extends SetupViewModel {
     public void toHelp(View view) {
         mView.toOtherActivity(activity, HelpActivity.class);
     }
+
+    /**
+     * 安全退出
+     * @param view
+     */
+    @Override
+    public void safeExit(View view) {
+        HuaShanApplication.safeExit();
+        mView.FinishActivity(activity);
+    }
 }

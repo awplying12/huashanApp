@@ -203,9 +203,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
         content_pl.startAnimation(shakeAnimation);
 
-        HuaShanApplication.editor.putInt("loginStatus",2).commit();
-        HuaShanApplication.loginStatus = 2;
-        HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
+//        HuaShanApplication.editor.putInt("loginStatus",2).commit();
+//        HuaShanApplication.loginStatus = 2;
+//        HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
 //        setResult(102);
 //        finish();
     }

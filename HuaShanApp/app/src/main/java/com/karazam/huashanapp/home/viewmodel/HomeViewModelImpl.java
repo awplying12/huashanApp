@@ -1,6 +1,7 @@
 package com.karazam.huashanapp.home.viewmodel;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
@@ -242,7 +243,13 @@ public class HomeViewModelImpl extends HomeViewModel {
     @Override
     public void setRegistrationId() {
 
-        registrationIdDataSource.setRegistrationId().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn>() {
+        String registrationId = HuaShanApplication.getRegistrationID();
+        if(TextUtils.isEmpty(registrationId)){
+            setRegistrationId();
+            return;
+        }
+
+        registrationIdDataSource.setRegistrationId(registrationId).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn>() {
             @Override
             public void onCompleted() {
 

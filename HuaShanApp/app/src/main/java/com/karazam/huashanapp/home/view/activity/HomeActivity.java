@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,10 +25,14 @@ import com.karazam.huashanapp.manage.main.view.fragment.ManageFragment;
 import com.karazam.huashanapp.my.main.view.fragment.MyFragment;
 import com.karazam.huashanapp.today.main.view.fragment.TodayFragment;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
+import com.ogaclejapan.rx.binding.Rx;
+import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.ArrayList;
 
 import cn.jpush.android.api.JPushInterface;
+
+import static com.karazam.huashanapp.HuaShanApplication.loginStatus;
 
 /**
  * Created by Administrator on 2016/10/11.
@@ -80,8 +85,10 @@ public class HomeActivity extends BaseActivity implements HomeView {
         isSelected = getResources().getColor(R.color.homeactivity_textcolor_selected);
         isDefault = getResources().getColor(R.color.homeactivity_textcolor_default);
 
-        mModel.onChecklogin();
 
+        if(loginStatus == 1){
+            mModel.onChecklogin();
+        }
 
     }
 
@@ -107,6 +114,26 @@ public class HomeActivity extends BaseActivity implements HomeView {
     @Override
     public void dealLogicAfterInitView() {
         setViewPager();
+        setLogin();
+
+    }
+
+    /**
+     * 登录状态
+     */
+    private void setLogin() {
+        RxView.of(viewPager).bind(HuaShanApplication.loginStatusRx, new Rx.Action<View, Integer>() {
+            @Override
+            public void call(View target, Integer integer) {
+
+                if(integer == 1){
+                    getBaseData();
+                    setViewPagerCurrentItem(2,"我的");
+                }else {
+                    setViewPagerCurrentItem(0,"今日");
+                }
+            }
+        });
     }
 
     /**
@@ -134,7 +161,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
      */
     @Override
     public void CheckloginFaile(String s) {
-        showToast(s);
+        showToast("同步失败 ："+s);
+        HuaShanApplication.safeExit();
     }
 
     /**
@@ -145,6 +173,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
     public void CheckloginError(Throwable e) {
 
         showToast("网络故障！");
+        HuaShanApplication.safeExit();
     }
 
     /**
@@ -162,8 +191,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
             case 10: //homeActivity
                 if(resultCode == 101){  //登录
 //                    showToast("登录 ： "+ HuaShanApplication.loginStatus);
-                    getBaseData();
-                    setViewPagerCurrentItem(3,"我的");
+//                    getBaseData();
+//                    setViewPagerCurrentItem(3,"我的");
                 }
 //                else if(resultCode == 102){
 //                    showToast("登录 ： "+ HuaShanApplication.loginStatus);

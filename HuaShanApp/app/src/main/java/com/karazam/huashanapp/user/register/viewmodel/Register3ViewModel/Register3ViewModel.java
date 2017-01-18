@@ -25,4 +25,6 @@ public abstract class Register3ViewModel extends BaseViewModel{
     public abstract void stopUserAgreement(View view);
 
     public abstract void onRegister();
+
+    public abstract void setGesPassword(String gesPassword);
 }

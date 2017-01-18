@@ -12,6 +12,7 @@ import android.support.percent.PercentFrameLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -326,9 +327,16 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         RxView.of(head_img).bind(HuaShanApplication.baseInfoBeanRX, new Rx.Action<ImageView, BaseInfoBean>() {
             @Override
             public void call(final ImageView target, BaseInfoBean baseInfoBean) {
-                String url = baseInfoBean.getAvatar();
 
-                RxImageLoader.getLoaderObservable(target,url).subscribe(new Subscriber<Data>() {
+
+                if(baseInfoBean == null||TextUtils.isEmpty(baseInfoBean.getAvatar())){
+                    target.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.user_logo));
+                    return;
+                }
+
+
+//                Log.i("header"," url : "+url.toString());
+                RxImageLoader.getLoaderObservable(target,baseInfoBean.getAvatar()).subscribe(new Subscriber<Data>() {
                     @Override
                     public void onCompleted() {
 
@@ -336,6 +344,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("eee"," e"+e.toString());
                         target.setImageBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.userhead_icon));
                     }
 

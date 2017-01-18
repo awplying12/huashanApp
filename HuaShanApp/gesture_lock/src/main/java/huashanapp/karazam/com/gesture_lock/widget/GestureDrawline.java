@@ -21,6 +21,7 @@ import java.util.Map;
 
 import huashanapp.karazam.com.gesture_lock.common.AppUtil;
 import huashanapp.karazam.com.gesture_lock.common.Constants;
+import huashanapp.karazam.com.gesture_lock.digest.DigestUtils;
 import huashanapp.karazam.com.gesture_lock.entity.GesturePoint;
 
 /**
@@ -199,7 +200,10 @@ public class GestureDrawline extends View {
 			if (isVerify) {
 				// ��������У��
 				// �����Ļ�����е��ߣ�ֻ���ϼ������汣�����
-				if (passWord.equals(passWordSb.toString())) {
+//				passWord = DigestUtils.md5(passWord);
+				String passWords = DigestUtils.md5(passWordSb.toString());
+
+				if (passWord.equals(passWords)) {
 					// �����û����Ƶ����������봫���������ͬ
 					callBack.checkedSuccess();
 				} else {

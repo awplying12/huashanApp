@@ -14,12 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
+import com.example.utils.utils.StringUtil;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityRegister3Binding;
 import com.karazam.huashanapp.main.registerMain.registerActivity;
+import com.karazam.huashanapp.my.security.gesturepassword.model.databinding.GespwReturn;
 import com.karazam.huashanapp.user.login.model.databinding.TokenData;
 import com.karazam.huashanapp.user.register.model.databinbing.Register3Entity;
 import com.karazam.huashanapp.user.register.view.Register3View;
@@ -90,10 +92,17 @@ public class Register3Activity extends BaseActivity implements Register3View {
         if(requestCode == GestureUtil.GESTURELOCK_REQUESTCODE){
             switch (resultCode){
                 case GestureUtil.GESTURELOCK_EDIT_RESULTCODE:
-                    String key = data.getStringExtra(GestureUtil.Password);
-                    showToast(key);
-                    HuaShanApplication.editor.putString("gesture_lock",key).commit();
-                    registerActivity.finishAll();
+//                    String key = data.getStringExtra(GestureUtil.Password);
+////                    showToast(key);
+////                    HuaShanApplication.editor.putString("gesture_lock",key).commit();
+////                    registerActivity.finishAll();
+
+
+                    String str = data.getStringExtra(GestureUtil.Password);
+
+                    mModel.setGesPassword(StringUtil.interrupt(str,0,"-1"));
+//                    registerActivity.finishAll();
+
                     break;
                 default:
                     break;
@@ -143,6 +152,7 @@ public class Register3Activity extends BaseActivity implements Register3View {
 
                     }
                 });
+
     }
 
 
@@ -227,6 +237,38 @@ public class Register3Activity extends BaseActivity implements Register3View {
     @Override
     public void registerFaile(Throwable e) {
 
+    }
+
+    /**
+     * 设置手势密码成功
+     * @param gespwReturn
+     */
+    @Override
+    public void setGesPasswordSuccess(GespwReturn gespwReturn) {
+
+        String str = gespwReturn.getGesPassword();
+//        HuaShanApplication.editor.putString("gesture_lock", StringUtil.interrupt(str,0,"-1")).commit();
+//        HuaShanApplication.editor.putBoolean("isGesture_lock",true).commit();
+        registerActivity.finishAll();
+
+    }
+
+    /**
+     * 设置手势密码失败
+     * @param s
+     */
+    @Override
+    public void setGesPasswordFaile(String s) {
+        showToast(s);
+    }
+
+    /**
+     * 设置手势密码错误
+     * @param e
+     */
+    @Override
+    public void setGesPasswordError(Throwable e) {
+        showToast("网络故障！");
     }
 
 }

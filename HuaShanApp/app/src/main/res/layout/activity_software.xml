@@ -70,61 +70,61 @@
 
             >
 
-            <!--音效开启-->
+            <!--&lt;!&ndash;音效开启&ndash;&gt;-->
+            <!--<android.support.percent.PercentFrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--app:layout_heightPercent="10%"-->
+                <!--app:layout_marginTopPercent="2%"-->
+                <!--android:background="#fff">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--app:layout_marginLeftPercent="5%"-->
+                    <!--style="@style/Base.TextAppearance.AppCompat.Body1"-->
+                    <!--android:text="音效开启"/>-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/set_sound"-->
+                    <!--app:layout_widthPercent="15%"-->
+                    <!--app:layout_heightPercent="100%"-->
+                    <!--android:layout_gravity="center_vertical|right"-->
+                    <!--app:layout_marginRightPercent="5%"-->
+                    <!--android:src="@drawable/bg_slide_switch"/>-->
+
+            <!--</android.support.percent.PercentFrameLayout>-->
+
+            <!--&lt;!&ndash;准许读取短息&ndash;&gt;-->
+            <!--<android.support.percent.PercentFrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--app:layout_heightPercent="10%"-->
+                <!--app:layout_marginTopPercent="12.1%"-->
+                <!--android:background="#fff">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--app:layout_marginLeftPercent="5%"-->
+                    <!--style="@style/Base.TextAppearance.AppCompat.Body1"-->
+                    <!--android:text="准许读取短息"/>-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/set_readsms"-->
+                    <!--app:layout_widthPercent="15%"-->
+                    <!--app:layout_heightPercent="100%"-->
+                    <!--android:layout_gravity="center_vertical|right"-->
+                    <!--app:layout_marginRightPercent="5%"-->
+                    <!--android:src="@drawable/bg_slide_switch"/>-->
+
+            <!--</android.support.percent.PercentFrameLayout>-->
+
+            <!--接收推送消息--> //app:layout_marginTopPercent="24%"
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
                 app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="2%"
-                android:background="#fff">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    app:layout_marginLeftPercent="5%"
-                    style="@style/Base.TextAppearance.AppCompat.Body1"
-                    android:text="音效开启"/>
-
-                <ImageView
-                    android:id="@+id/set_sound"
-                    app:layout_widthPercent="15%"
-                    app:layout_heightPercent="100%"
-                    android:layout_gravity="center_vertical|right"
-                    app:layout_marginRightPercent="5%"
-                    android:src="@drawable/bg_slide_switch"/>
-
-            </android.support.percent.PercentFrameLayout>
-
-            <!--准许读取短息-->
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="12.1%"
-                android:background="#fff">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    app:layout_marginLeftPercent="5%"
-                    style="@style/Base.TextAppearance.AppCompat.Body1"
-                    android:text="准许读取短息"/>
-
-                <ImageView
-                    android:id="@+id/set_readsms"
-                    app:layout_widthPercent="15%"
-                    app:layout_heightPercent="100%"
-                    android:layout_gravity="center_vertical|right"
-                    app:layout_marginRightPercent="5%"
-                    android:src="@drawable/bg_slide_switch"/>
-
-            </android.support.percent.PercentFrameLayout>
-
-            <!--接收推送消息-->
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="24%"
+                app:layout_marginTopPercent="3%"
                 android:background="#fff">
 
                 <TextView
@@ -145,56 +145,83 @@
 
             </android.support.percent.PercentFrameLayout>
 
-            <!--最近活动-->
+            <!--&lt;!&ndash;最近活动&ndash;&gt;-->
+            <!--<android.support.percent.PercentFrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--app:layout_heightPercent="10%"-->
+                <!--app:layout_marginTopPercent="34.1%"-->
+                <!--android:background="#fff">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--app:layout_marginLeftPercent="5%"-->
+                    <!--style="@style/Base.TextAppearance.AppCompat.Body1"-->
+                    <!--android:text="最近活动"/>-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/set_event"-->
+                    <!--app:layout_widthPercent="15%"-->
+                    <!--app:layout_heightPercent="100%"-->
+                    <!--android:layout_gravity="center_vertical|right"-->
+                    <!--app:layout_marginRightPercent="5%"-->
+                    <!--android:src="@drawable/bg_slide_switch"/>-->
+
+            <!--</android.support.percent.PercentFrameLayout>-->
+
+            <!--&lt;!&ndash;理财提醒&ndash;&gt;-->
+            <!--<android.support.percent.PercentFrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--app:layout_heightPercent="10%"-->
+                <!--app:layout_marginTopPercent="44.2%"-->
+                <!--android:background="#fff">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--app:layout_marginLeftPercent="5%"-->
+                    <!--style="@style/Base.TextAppearance.AppCompat.Body1"-->
+                    <!--android:text="理财提醒"/>-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/set_remind"-->
+                    <!--app:layout_widthPercent="15%"-->
+                    <!--app:layout_heightPercent="100%"-->
+                    <!--android:layout_gravity="center_vertical|right"-->
+                    <!--app:layout_marginRightPercent="5%"-->
+                    <!--android:src="@drawable/bg_slide_switch"/>-->
+
+            <!--</android.support.percent.PercentFrameLayout>-->
+
             <android.support.percent.PercentFrameLayout
+                android:id="@+id/pl_updata"
                 android:layout_width="match_parent"
                 app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="34.1%"
-                android:background="#fff">
+                app:layout_marginTopPercent="13.2%"
+                android:background="#fff"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     app:layout_marginLeftPercent="5%"
-                    style="@style/Base.TextAppearance.AppCompat.Body1"
-                    android:text="最近活动"/>
-
-                <ImageView
-                    android:id="@+id/set_event"
-                    app:layout_widthPercent="15%"
-                    app:layout_heightPercent="100%"
-                    android:layout_gravity="center_vertical|right"
-                    app:layout_marginRightPercent="5%"
-                    android:src="@drawable/bg_slide_switch"/>
-
-            </android.support.percent.PercentFrameLayout>
-
-            <!--理财提醒-->
-            <android.support.percent.PercentFrameLayout
-                android:layout_width="match_parent"
-                app:layout_heightPercent="10%"
-                app:layout_marginTopPercent="44.2%"
-                android:background="#fff">
+                    android:text="版本更新"
+                    android:textColor="#fa000000"/>
 
                 <TextView
+                    android:id="@+id/tv_updata"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    app:layout_marginLeftPercent="5%"
-                    style="@style/Base.TextAppearance.AppCompat.Body1"
-                    android:text="理财提醒"/>
-
-                <ImageView
-                    android:id="@+id/set_remind"
-                    app:layout_widthPercent="15%"
-                    app:layout_heightPercent="100%"
                     android:layout_gravity="center_vertical|right"
                     app:layout_marginRightPercent="5%"
-                    android:src="@drawable/bg_slide_switch"/>
+                    android:text="当前版本：1.0"
+                    android:textSize="12dp"
+                    android:textColor="#fa000000"/>
 
             </android.support.percent.PercentFrameLayout>
-
 
         </android.support.percent.PercentFrameLayout>
 </android.support.percent.PercentRelativeLayout>

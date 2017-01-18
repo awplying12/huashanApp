@@ -88,12 +88,6 @@ public class HuaShanApplication extends Application {
     public static RxProperty<ManagedetailsBean> project = RxProperty.create();
     public static RxProperty<String> refreshManage = RxProperty.create();
 
-    public static FinancialProject project1;
-    public static FinancialProject project2;
-    public static FinancialProject project3;
-    public static FinancialProject project4;
-
-    public static ArrayList<ReturnRecords> returnRecordses;
 
     public static String RegistrationID;
 
@@ -104,7 +98,8 @@ public class HuaShanApplication extends Application {
 
         JPushInterface.setDebugMode(true); // 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);  //推送初始化
-        RegistrationID =JPushInterface.getRegistrationID(this);
+//        RegistrationID =JPushInterface.getRegistrationID(this);
+        getRegistrationID();
 
         sharedPreferences = getinstance().getSharedPreferences("huashan", 0);
         editor = sharedPreferences.edit();
@@ -123,7 +118,7 @@ public class HuaShanApplication extends Application {
 
 //        loginStatus = -1;
 
-        loginStatusRx.set(loginStatus);
+//        loginStatusRx.set(loginStatus);
 
 //        paymentmod = sharedPreferences.getString("paymentmod","");
 
@@ -144,64 +139,6 @@ public class HuaShanApplication extends Application {
 
         day.set(time);
 
-        project1= new FinancialProject();
-        ArrayList<FinancialInformation> informations1 = new ArrayList<>();
-        informations1.add(new FinancialInformation());
-        informations1.add(new FinancialInformation());
-        informations1.add(new FinancialInformation());
-        project1.setInformations(informations1);
-
-        project2= new FinancialProject();
-        ArrayList<FinancialInformation> informations2 = new ArrayList<>();
-        informations2.add(new FinancialInformation());
-        informations2.add(new FinancialInformation());
-        informations2.add(new FinancialInformation());
-        informations2.add(new FinancialInformation());
-        project2.setInformations(informations2);
-
-        project3= new FinancialProject();
-        ArrayList<FinancialInformation> informations3 = new ArrayList<>();
-        informations3.add(new FinancialInformation());
-        informations3.add(new FinancialInformation());
-        project3.setInformations(informations3);
-
-        project4= new FinancialProject();
-        ArrayList<FinancialInformation> informations4 = new ArrayList<>();
-        informations4.add(new FinancialInformation());
-        informations4.add(new FinancialInformation());
-        informations4.add(new FinancialInformation());
-        informations4.add(new FinancialInformation());
-        project4.setInformations(informations4);
-
-        returnRecordses = new ArrayList<>();
-        ArrayList<ReturnRecordsItem> item1 = new ArrayList<>();
-        item1.add(new ReturnRecordsItem());
-        item1.add(new ReturnRecordsItem());
-        item1.add(new ReturnRecordsItem());
-        item1.add(new ReturnRecordsItem());
-        item1.add(new ReturnRecordsItem());
-
-        ArrayList<ReturnRecordsItem> item2 = new ArrayList<>();
-        item2.add(new ReturnRecordsItem());
-        item2.add(new ReturnRecordsItem());
-        item2.add(new ReturnRecordsItem());
-        item2.add(new ReturnRecordsItem());
-
-        ArrayList<ReturnRecordsItem> item3 = new ArrayList<>();
-        item3.add(new ReturnRecordsItem());
-        item3.add(new ReturnRecordsItem());
-        item3.add(new ReturnRecordsItem());
-        item3.add(new ReturnRecordsItem());
-        item3.add(new ReturnRecordsItem());
-        item3.add(new ReturnRecordsItem());
-        item3.add(new ReturnRecordsItem());
-        item3.add(new ReturnRecordsItem());
-
-
-//        returnRecordses.add(new ReturnRecords(item1));
-//        returnRecordses.add(new ReturnRecords(item2));
-//        returnRecordses.add(new ReturnRecords(item3));
-
 
     }
 
@@ -212,7 +149,7 @@ public class HuaShanApplication extends Application {
 
     public static boolean checkSecurityInformation(Context context){
 
-        return !sharedPreferences.getString("gesture_lock", "-1") .equals("-1") ;
+        return sharedPreferences.getBoolean("isGesture_lock", false);
     }
 
     public static String getGesturePassword(){
@@ -225,13 +162,30 @@ public class HuaShanApplication extends Application {
     public static void setMyInformation(MyInformationBean bean){
         HuaShanApplication.myInformation = bean;
 
-        certificationStatus = bean.getBaseInfo().isAuthentication();
-        HuaShanApplication.header = bean.getBaseInfo().getAvatar();
-        HuaShanApplication.editor.putString("header",bean.getBaseInfo().getAvatar()).commit();
+
+//        certificationStatus = bean.getBaseInfo().isAuthentication();
+//        HuaShanApplication.header = bean.getBaseInfo().getAvatar();
+//        HuaShanApplication.editor.putString("header",bean.getBaseInfo().getAvatar()).commit();
         HuaShanApplication.myInformationRX.set(HuaShanApplication.myInformation);
         HuaShanApplication.baseInfoBeanRX.set(HuaShanApplication.myInformation.getBaseInfo());
         HuaShanApplication.withdrawCarRx.set(HuaShanApplication.myInformation.getWithdrawCardl());
         HuaShanApplication.quickCardsRX.set((HuaShanApplication.myInformation.getQuickCards()));
+
+
+        if(bean.getBaseInfo() == null){
+            certificationStatus = false;
+            HuaShanApplication.header = "";
+            HuaShanApplication.editor.putString("header",HuaShanApplication.header).commit();
+            HuaShanApplication.editor.putBoolean("isGesture_lock",false).commit();
+            HuaShanApplication.editor.putString("gesture_lock","-1").commit();
+        }else {
+            certificationStatus = bean.getBaseInfo().isAuthentication();
+            HuaShanApplication.header = bean.getBaseInfo().getAvatar();
+            HuaShanApplication.editor.putString("header",bean.getBaseInfo().getAvatar()).commit();
+            HuaShanApplication.editor.putBoolean("isGesture_lock",bean.getBaseInfo().isSetGesPassword()).commit();
+            HuaShanApplication.editor.putString("gesture_lock",bean.getBaseInfo().getGesPassword()).commit();
+        }
+
     }
 
     /**
@@ -240,6 +194,30 @@ public class HuaShanApplication extends Application {
     public static void setMyAssets(MyAssetsBean bean){
         HuaShanApplication.myAssetsBean = bean;
         HuaShanApplication.myAssetsBeanRX.set(HuaShanApplication.myAssetsBean);
+    }
+
+    public static void safeExit(){
+        HuaShanApplication.loginStatus = -1;
+        HuaShanApplication.editor.putInt("loginStatus",HuaShanApplication.loginStatus).commit();
+        loginStatusRx.set(HuaShanApplication.loginStatus);
+
+        HuaShanApplication.editor.putString("account","").commit();
+//        HuaShanApplication.editor.putString("header","").commit();
+        HuaShanApplication.editor.putString("uuid","-1").commit();
+        HuaShanApplication.editor.putString("userKey","-1").commit();
+        HuaShanApplication.editor.putString("token","").commit();
+        HuaShanApplication.editor.putString("refresh_token","").commit();
+        HuaShanApplication.editor.putString("client_id","").commit();
+
+        HuaShanApplication.editor.putString("gesture_lock","-1").commit();
+
+        setMyInformation(new MyInformationBean());
+        setMyAssets(new MyAssetsBean());
+    }
+
+    public static String getRegistrationID(){
+        RegistrationID =JPushInterface.getRegistrationID(getinstance());
+        return RegistrationID;
     }
 
 }

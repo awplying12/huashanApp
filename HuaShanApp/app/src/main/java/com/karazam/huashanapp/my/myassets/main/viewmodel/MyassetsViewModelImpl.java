@@ -49,18 +49,20 @@ public class MyassetsViewModelImpl extends MyassetsViewModel {
     @Override
     public void getMyAssets(){
 
-
+//        activity.showProgressDialog();
 
         assetsDataSource.getMyAssets().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<MyAssetsBean>>() {
             @Override
             public void onCompleted() {
                 mView.getMyAssetsFinish();
+//                activity.dissmissProgressDialog();
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.i("getMyAssets","e : "+e.toString());
                 mView.getMyAssetsFinish();
+//                activity.dissmissProgressDialog();
             }
 
             @Override

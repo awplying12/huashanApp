@@ -67,7 +67,11 @@ public class GesturepwActivity extends BaseActivity implements GesturepwView{
      */
     @Override
     public void setGesPasswordSuccess(GespwReturn gespwReturn) {
-        showToast("同步成功");
+//        showToast("同步成功");
+        String str = gespwReturn.getGesPassword();
+        HuaShanApplication.editor.putString("gesture_lock", StringUtil.interrupt(str,0,"-1")).commit();
+        HuaShanApplication.editor.putBoolean("isGesture_lock",true).commit();
+        finish();
     }
 
     /**
@@ -75,7 +79,7 @@ public class GesturepwActivity extends BaseActivity implements GesturepwView{
      */
     @Override
     public void setGesPasswordFaile(Throwable e) {
-
+        showToast("网络故障！");
     }
 
     @Override
@@ -86,13 +90,13 @@ public class GesturepwActivity extends BaseActivity implements GesturepwView{
 
                     String str = data.getStringExtra(GestureUtil.Password);
 
-                    HuaShanApplication.editor.putString("gesture_lock", StringUtil.interrupt(str,0,"-1")).commit();
+//                    HuaShanApplication.editor.putString("gesture_lock", StringUtil.interrupt(str,0,"-1")).commit();
                     mModel.setGesPassword(StringUtil.interrupt(str,0,"-1"));
-                    finish();
+
                     break;
                 case GestureUtil.GESTURELOCK_VERIFY_RESULTCODE: //校检手势密码返回值
 
-                    Toast.makeText(GesturepwActivity.this,"qweer",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(GesturepwActivity.this,"qweer",Toast.LENGTH_SHORT).show();
 
                     break;
                 default:

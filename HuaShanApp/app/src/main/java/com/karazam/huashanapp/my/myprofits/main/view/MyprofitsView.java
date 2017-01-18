@@ -7,4 +7,6 @@ import com.example.utils.base.BaseView;
  */
 
 public interface MyprofitsView extends BaseView{
+
+    void getMyAssetsFinish();
 }
