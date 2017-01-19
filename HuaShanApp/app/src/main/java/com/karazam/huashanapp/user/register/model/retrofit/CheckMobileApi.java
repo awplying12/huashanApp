@@ -14,6 +14,6 @@ import rx.Observable;
  */
 
 public interface CheckMobileApi {
-    @POST("/regist/checkMobile")
+    @POST("/mobile/regist/checkMobile")
     Observable<BaseReturn> checkMobile(@Body CheckMobileBean bean,@Header("X-Requested-With") String ID);
 }

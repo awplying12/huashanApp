@@ -1,10 +1,7 @@
 package com.karazam.huashanapp.main.update;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -15,8 +12,8 @@ import android.widget.Toast;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
-import com.karazam.huashanapp.main.dialog.PromptDialog;
-import com.karazam.huashanapp.main.dialog.PromptDialog2;
+import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
+import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog2;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.main.update.AppInfo.AppInfoBean;
 import com.karazam.huashanapp.main.update.AppInfo.AppInfoDataSource;

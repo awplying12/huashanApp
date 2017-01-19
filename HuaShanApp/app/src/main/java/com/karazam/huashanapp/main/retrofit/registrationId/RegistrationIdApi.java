@@ -12,6 +12,6 @@ import rx.Observable;
  */
 
 public interface RegistrationIdApi {
-    @POST("/uc/registration")
+    @POST("/mobile/uc/registration")
     Observable<BaseReturn> setRegistrationId(@Body RegistrationIdPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

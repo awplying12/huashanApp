@@ -12,7 +12,7 @@ import rx.Observable;
  */
 
 public interface TodayApi {
-    @GET("/index")
+    @GET("/mobile/index")
     Observable<BaseReturn<TodayBean>> getTodayData(@Header("X-Requested-With") String ID);
 
 }

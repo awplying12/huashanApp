@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface VerifyidentityApi {
-    @POST("/uc/userVerify")
+    @POST("/mobile/uc/userVerify")
     Observable<BaseReturn> Verifyidentity(@Body VerifyidentityPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

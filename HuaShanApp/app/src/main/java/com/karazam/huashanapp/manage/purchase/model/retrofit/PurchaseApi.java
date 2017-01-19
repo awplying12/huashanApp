@@ -14,6 +14,6 @@ import rx.Observable;
  */
 
 public interface PurchaseApi {
-    @POST("/investment/invest")
+    @POST("/mobile/investment/invest")
     Observable<BaseReturn<PurchaseRetureBean>> Purchase(@Body PurchasePost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

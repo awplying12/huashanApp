@@ -5,23 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.karazam.huashanapp.HuaShanApplication;
-import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.my.bankcard.main.view.activity.BankcardActivity;
 import com.karazam.huashanapp.my.main.model.databinding.MyEntity;
 import com.karazam.huashanapp.my.main.view.MyView;
 import com.karazam.huashanapp.my.message.main.view.activity.MessageActivity;
-import com.karazam.huashanapp.my.myfinancing.main.model.databinding.MyfinanceEntity;
 import com.karazam.huashanapp.my.myfinancing.main.view.activity.MyfinanceActivity;
 import com.karazam.huashanapp.my.myreturn.main.view.activity.MyReturnActivity;
 import com.karazam.huashanapp.my.mytransfer.main.view.activity.MytransferActivity;
-import com.karazam.huashanapp.my.realname.view.activity.AuthenticatedActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
-import com.karazam.huashanapp.my.recharge.main.view.activity.RechargeActivity;
 import com.karazam.huashanapp.my.rechargecash.view.activity.RechargecashActivity;
 import com.karazam.huashanapp.my.setup.view.activity.SetupActivity;
 import com.karazam.huashanapp.my.transactiondetails.main.view.activity.TransactionActivity;
-import com.karazam.huashanapp.my.withdrawals.main.view.activity.WithdrawalsActivity;
 
 /**
  * Created by Administrator on 2016/10/12.

@@ -222,7 +222,7 @@
                                 android:layout_gravity="bottom|center_horizontal"
                                 android:gravity="center"
                                 app:layout_marginBottomPercent="10%"
-                                android:text="产融货"
+                                android:text="产融贷"
                                 android:textSize="@dimen/todayfragment_part3_text_size"
                                 android:textColor="@color/todayfragment_part3_text_color"
                                 />

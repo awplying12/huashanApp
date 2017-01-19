@@ -16,6 +16,6 @@ import rx.Observable;
  */
 
 public interface GetBankApi {
-    @GET("/uc/bank_card/banks")
+    @GET("/mobile/uc/bank_card/banks")
     Observable<BaseReturn<BankPost>> getBankData(@Query("currentPage") String currentPage,@Header("sid") String token, @Header("X-Requested-With") String ID);
 }

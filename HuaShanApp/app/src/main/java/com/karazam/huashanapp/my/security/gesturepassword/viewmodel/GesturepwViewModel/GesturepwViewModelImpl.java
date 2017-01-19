@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.main.dialog.InputContentView;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
@@ -46,6 +47,8 @@ public class GesturepwViewModelImpl extends GesturepwViewModel{
 
     private void setInputContentView() {
         inputContentView = new InputContentView(context);
+
+
         inputContentView.setView((ViewGroup) mView.getView(R.id.content_pl), new InputContentView.OnInputContentListener() {
             @Override
             public void onLeft(View view) {
@@ -64,6 +67,8 @@ public class GesturepwViewModelImpl extends GesturepwViewModel{
 
             }
         });
+
+        inputContentView.setText1("华善账户："+ HuaShanApplication.account);
     }
 
 

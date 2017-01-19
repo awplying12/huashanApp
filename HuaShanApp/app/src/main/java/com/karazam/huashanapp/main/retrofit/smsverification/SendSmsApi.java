@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface SendSmsApi {
-    @POST("/sms/sendSms")
+    @POST("/mobile/sms/sendSms")
     Observable<BaseReturn> sendSms(@Body SendSmsBean bean,@Header("X-Requested-With") String ID);
 }

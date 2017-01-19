@@ -116,7 +116,8 @@ public class HuaShanApplication extends Application {
 
         loginStatus = sharedPreferences.getInt("loginStatus",-1);
 
-//        loginStatus = -1;
+//        loginStatus = 1;
+//        loginStatusRx.set(loginStatus);
 
 //        loginStatusRx.set(loginStatus);
 

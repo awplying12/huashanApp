@@ -15,6 +15,6 @@ import rx.Observable;
  */
 
 public interface RealnameApi {
-    @POST("/uc/general_cert")
+    @POST("/mobile/uc/general_cert")
     Observable<BaseReturn<RealnameBean>> onRealname(@Body RealnamePost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

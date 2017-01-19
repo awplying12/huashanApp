@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface MessagelistApi {
-    @GET("/uc/message/list")
+    @GET("/mobile/uc/message/list")
     Observable<BaseReturn<MessagelistBean>> getMessagelist(@Query("userId") String userId, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

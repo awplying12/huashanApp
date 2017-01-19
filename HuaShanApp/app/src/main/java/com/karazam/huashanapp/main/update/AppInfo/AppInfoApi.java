@@ -11,6 +11,6 @@ import rx.Observable;
  */
 
 public interface AppInfoApi {
-    @GET("/others/appInfo/json")
+    @GET("/mobile/others/appInfo/json")
     Observable<BaseReturn<AppInfoBean>> getAppInfo(@Header("sid") String token, @Header("X-Requested-With") String ID);
 }

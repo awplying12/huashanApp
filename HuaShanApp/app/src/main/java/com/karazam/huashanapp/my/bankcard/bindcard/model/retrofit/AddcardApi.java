@@ -15,13 +15,13 @@ import rx.Observable;
  */
 
 public interface AddcardApi {
-    @POST("/uc/bank_card/create")
+    @POST("/mobile/uc/bank_card/create")
     Observable<BaseReturn<BindcardBean>> getAddcard(@Body BindcardPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 
-    @POST("/uc/bank_card/update")
+    @POST("/mobile/uc/bank_card/update")
     Observable<BaseReturn<BindcardBean>> upDatecard(@Body UpDatecardPost post,@Header("sid") String token, @Header("X-Requested-With") String ID);
 
-    @POST("/uc/bank_card/send_texting")
+    @POST("/mobile/uc/bank_card/send_texting")
     Observable<BaseReturn> sendSMS(@Body BindcardPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 
 }

@@ -17,7 +17,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityRechargeBinding;
 import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
-import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.my.recharge.main.model.databinding.RechargeEntity;
 import com.karazam.huashanapp.my.recharge.main.view.RechargeView;
 import com.karazam.huashanapp.my.recharge.main.viewmodel.RechargeViewModel;

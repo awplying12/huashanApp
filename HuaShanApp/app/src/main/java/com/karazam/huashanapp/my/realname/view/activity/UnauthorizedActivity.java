@@ -35,6 +35,8 @@ import java.util.concurrent.TimeUnit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
+import static com.karazam.huashanapp.HuaShanApplication.securitysPayment;
+
 /**
  * Created by Administrator on 2016/11/24.
  */
@@ -78,6 +80,8 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
 
     @Override
     public void dealLogicBeforeInitView() {
+        securitysPayment.add(this);
+
         phoneUtil = new CheckPhoneNumberUtil();
 
     }
@@ -388,6 +392,8 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
         intent.putExtra("isRealName","realName");
         intent.putExtra("type","create");
         startActivity(intent);
+
+
     }
 
     /**

@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface MyInformationApi {
-    @GET("/uc/info")
+    @GET("/mobile/uc/info")
     Observable<BaseReturn<MyInformationBean>> getMyInformation(@Query("userId") String userId,@Header("sid") String token,@Header("X-Requested-With") String ID);
 }

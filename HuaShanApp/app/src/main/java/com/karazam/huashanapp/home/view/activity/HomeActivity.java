@@ -2,8 +2,10 @@ package com.karazam.huashanapp.home.view.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import com.karazam.huashanapp.home.viewmodel.HomeViewModel;
 import com.karazam.huashanapp.home.viewmodel.HomeViewModelImpl;
 import com.karazam.huashanapp.manage.main.view.fragment.ManageFragment;
 import com.karazam.huashanapp.my.main.view.fragment.MyFragment;
+import com.karazam.huashanapp.my.message.main.view.activity.MessageActivity;
 import com.karazam.huashanapp.today.main.view.fragment.TodayFragment;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 import com.ogaclejapan.rx.binding.Rx;
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 
 import cn.jpush.android.api.JPushInterface;
 
+import static android.R.id.message;
 import static com.karazam.huashanapp.HuaShanApplication.loginStatus;
 
 /**
@@ -90,6 +94,15 @@ public class HomeActivity extends BaseActivity implements HomeView {
             mModel.onChecklogin();
         }
 
+        Bundle bundle = getIntent().getBundleExtra("HomeActivity");
+        if(bundle != null ){
+                        //打开自定义的Activity
+            Intent i = new Intent(this, MessageActivity.class);
+            i.putExtras(bundle);
+            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            startActivity(i);
+        }
     }
 
     @Override
@@ -317,6 +330,13 @@ public class HomeActivity extends BaseActivity implements HomeView {
         mModel.getMyInformation();
         mModel.getMyAssets();
         mModel.setRegistrationId();
+    }
+
+    /**
+     * 今日fragment的头像使用toMy的逻辑
+     */
+    public void toMyToday(){
+        mModel.toMy(null);
     }
 
 }

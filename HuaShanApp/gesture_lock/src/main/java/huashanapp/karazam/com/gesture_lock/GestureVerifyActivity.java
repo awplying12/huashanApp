@@ -101,8 +101,6 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 		setText();
 		setheader();
 
-
-
 		String password = TextUtils.isEmpty(mPassword)|| mPassword == null ? "1235789" : mPassword;
 
 		mGestureContentView = new GestureContentView(this, true, password,
@@ -276,7 +274,7 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 			}
 			mOnGestureVerifyClickListener.onForgetGesture();
 		}else if(i == R.id.text_other_account){
-
+				finish();
 			if(mOnGestureVerifyClickListener == null){
 				return;
 			}

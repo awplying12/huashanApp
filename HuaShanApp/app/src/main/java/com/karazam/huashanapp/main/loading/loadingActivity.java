@@ -67,7 +67,9 @@ public class loadingActivity extends BaseActivity {
             @Override
             public void onOtherAccount() {
 //                showToast("onOtherAccount");
-                toOtherActivity(loadingActivity.this,LoginActivity.class);
+//                toOtherActivity(loadingActivity.this,LoginActivity.class);
+                Intent intent =new Intent(loadingActivity.this,LoginActivity.class);
+                startActivityForResult(intent,100);
             }
         });
     }
@@ -111,9 +113,11 @@ public class loadingActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Intent intent = new Intent(loadingActivity.this, HomeActivity.class);
+
         if(requestCode == GestureUtil.GESTURELOCK_REQUESTCODE){
 
-            Intent intent = new Intent(loadingActivity.this, HomeActivity.class);
+
 
             switch (resultCode){
                 case GestureUtil.GESTURELOCK_EDIT_RESULTCODE:
@@ -134,6 +138,18 @@ public class loadingActivity extends BaseActivity {
                     break;
             }
 
+
+        } else if(requestCode == 100){
+            switch (resultCode){
+                case 101:
+
+                    startActivity(intent);
+                    finish();
+                    break;
+                default:
+                    finish();
+                    break;
+            }
 
         }
 

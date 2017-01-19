@@ -27,6 +27,8 @@ public abstract class PurchaseViewModel extends BaseViewModel {
 
     public abstract void onAgreement(View view);
 
+    public abstract void Recharge(View view);
+
     public abstract void onPurchase(String payPassword,String captcha);
 
     public abstract void sendSMS();

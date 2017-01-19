@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface VerifySmsApi {
-    @POST("/sms/verify")
+    @POST("/mobile/sms/verify")
     Observable<BaseReturn> verifySms(@Body VerifySmsBean bean,@Header("X-Requested-With") String ID);
 }

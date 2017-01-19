@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface PurchasSMSApi {
-    @POST("/investment/shortcut_msg")
+    @POST("/mobile/investment/shortcut_msg")
     Observable<BaseReturn> sendSMS(@Body PurchasSMSPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

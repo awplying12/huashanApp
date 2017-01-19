@@ -13,7 +13,7 @@ import rx.Observable;
  */
 
 public interface ManagedetailsApi {
-    @GET("/investment/details")
+    @GET("/mobile/investment/details")
     Observable<BaseReturn<ManagedetailsBean>> getDetails(@Query("projectId") String projectId,@Header("X-Requested-With") String ID);
 
 }

@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface PaymentApi {
-    @POST("/uc/update_pay_password")
+    @POST("/mobile/uc/update_pay_password")
     Observable<BaseReturn> onPayment(@Body PaymentPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

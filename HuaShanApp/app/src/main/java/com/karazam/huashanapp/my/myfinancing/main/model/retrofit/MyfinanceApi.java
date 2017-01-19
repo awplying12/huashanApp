@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface MyfinanceApi {
-    @GET("/uc/investment/records")
+    @GET("/mobile/uc/investment/records")
     Observable<BaseReturn<MyfinanceBean>> getMyfinance(@Query("progress") String progress, @Query("currentPage") String currentPage, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

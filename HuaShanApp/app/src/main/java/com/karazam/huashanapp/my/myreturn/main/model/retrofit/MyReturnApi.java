@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface MyReturnApi {
-    @GET("/uc/investment/recoverys")
+    @GET("/mobile/uc/investment/recoverys")
     Observable<BaseReturn<MyReturnBean>> getMyReturnData(@Query("currentPage") String currentPage, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

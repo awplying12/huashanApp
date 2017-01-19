@@ -15,7 +15,7 @@ import rx.Observable;
 
 public interface MessagedetailsApi {
 
-    @GET("/uc/message/detail")
+    @GET("/mobile/uc/message/detail")
     Observable<BaseReturn<MessagedetailsBean>> getMessagedetails(@Query("userId") String userId, @Query("type") String type, @Query("currentPage") String currentPage, @Header("sid") String token, @Header("X-Requested-With") String ID);
 
 }

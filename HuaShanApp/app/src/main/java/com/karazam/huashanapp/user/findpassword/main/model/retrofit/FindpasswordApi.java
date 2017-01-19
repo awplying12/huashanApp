@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface FindpasswordApi {
-    @POST("/password/findByMobile")
+    @POST("/mobile/password/findByMobile")
     Observable<BaseReturn> findPassword(@Body FindpasswordBean bean,@Header("X-Requested-With") String ID);
 }

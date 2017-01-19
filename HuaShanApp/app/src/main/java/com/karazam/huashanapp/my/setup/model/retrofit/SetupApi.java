@@ -14,6 +14,6 @@ import rx.Observable;
  */
 
 public interface SetupApi {
-    @POST("/uc/setAvatarAndNickName")
+    @POST("/mobile/uc/setAvatarAndNickName")
     Observable<BaseReturn<SetupBean>> setup(@Body SetupPost post,@Header("sid") String token, @Header("X-Requested-With") String ID);
 }

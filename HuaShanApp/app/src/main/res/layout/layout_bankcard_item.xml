@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <!--银行卡-->
+    <!--银行卡-->  //        app:cardBackgroundColor="#a0930000"
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/bankcard"
@@ -15,8 +15,8 @@
         app:cardElevation="0px"
         app:cardMaxElevation="2px"
         app:cardUseCompatPadding="false"
-        app:cardBackgroundColor="#a0930000"
-        android:background="#a0930000">
+        app:cardBackgroundColor="#00e3e3"
+        android:background="#00000000">
 
         <android.support.percent.PercentFrameLayout
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                     android:id="@+id/img_logo"
                     app:layout_widthPercent="75%"
                     app:layout_heightPercent="75%"
-                    android:src="@drawable/zgyh_icon"
+                    android:src="@drawable/bankdef_logo"
                     android:layout_gravity="center"
                     />
 
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 app:layout_heightPercent="24%"
                 android:gravity="center"
-                android:text="中国银行储蓄卡"
+                android:text="银行卡"
                 android:textSize="16dp"
                 android:textColor="#fff"
                 app:layout_marginTopPercent="15%"
@@ -64,7 +64,7 @@
                 app:layout_heightPercent="24%"
                 android:layout_gravity="right"
                 android:gravity="center"
-                android:text="7634"
+                android:text="0000"
                 android:textSize="18dp"
                 android:textColor="#fff"
                 app:layout_marginTopPercent="54%"
@@ -76,7 +76,7 @@
                 app:layout_heightPercent="20%"
                 android:layout_gravity="right"
                 android:gravity="center"
-                android:text="手机尾号5616"
+                android:text="手机尾号"
                 android:textSize="12dp"
                 android:textColor="#fff"
                 app:layout_marginTopPercent="15%"

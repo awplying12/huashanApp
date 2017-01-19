@@ -14,6 +14,6 @@ import rx.Observable;
  */
 
 public interface RechargeApi {
-    @POST("/uc/recharge/quickpay")
+    @POST("/mobile/uc/recharge/quickpay")
     Observable<BaseReturn<RechargeBean>> Recharge(@Body RechangPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

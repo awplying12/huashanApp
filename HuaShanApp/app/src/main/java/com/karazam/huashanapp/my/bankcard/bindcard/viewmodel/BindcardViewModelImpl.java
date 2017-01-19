@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.utils.utils.StringUtil;
-import com.karazam.huashanapp.main.dialog.PromptDialog;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.main.retorfitMain.DigestUtils;
 import com.karazam.huashanapp.my.bankcard.bindcard.model.databinding.BindcardBean;
@@ -16,7 +15,6 @@ import com.karazam.huashanapp.my.bankcard.bindcard.model.retrofit.AddcardDataSou
 import com.karazam.huashanapp.my.bankcard.bindcard.view.BindcardView;
 import com.karazam.huashanapp.my.bankcard.bindcard.view.activity.BankActivity;
 import com.karazam.huashanapp.my.bankcard.bindcard.view.activity.BindcardActivity;
-import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -58,7 +56,7 @@ public class BindcardViewModelImpl extends BindcardViewModel {
      */
     @Override
     public void onNextstep(View view) {
-        mView.showToast("onNextstep");
+//        mView.showToast("onNextstep");
 
         switch (flag){
             case 1:

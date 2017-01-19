@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface MyAssetsApi {
-    @GET("/uc/assets")
+    @GET("/mobile/uc/assets")
     Observable<BaseReturn<MyAssetsBean>> getMyAssets(@Query("userId") String userId, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

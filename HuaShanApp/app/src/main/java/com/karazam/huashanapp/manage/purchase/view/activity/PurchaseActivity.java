@@ -20,12 +20,8 @@ import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityPurchaseBinding;
-import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
-import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
-import com.karazam.huashanapp.main.Bean.MyInformation.MyInformationBean;
 import com.karazam.huashanapp.main.Method;
-import com.karazam.huashanapp.main.Bean.UserInformation;
-import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
 import com.karazam.huashanapp.main.retorfitMain.DigestUtils;
 import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
@@ -41,7 +37,6 @@ import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import rx.Subscriber;

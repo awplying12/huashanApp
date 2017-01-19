@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
-import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.manage.details.model.databinding.InvestmentdetailsEntity;
 

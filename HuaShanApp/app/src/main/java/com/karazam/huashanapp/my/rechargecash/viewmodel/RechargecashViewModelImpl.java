@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
-import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.my.bankcard.bindcard.view.activity.BindcardActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
 import com.karazam.huashanapp.my.recharge.main.view.activity.RechargeActivity;
@@ -40,8 +40,8 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
         this.context = context;
         this.activity = activity;
 
-
-
+        setCertificationDialog();
+        setRechargeDialog();
     }
 
     @Override

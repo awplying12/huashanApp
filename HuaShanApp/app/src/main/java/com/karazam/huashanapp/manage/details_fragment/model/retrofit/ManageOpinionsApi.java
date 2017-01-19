@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface ManageOpinionsApi {
-    @GET("/investment/opinions")
+    @GET("/mobile/investment/opinions")
     Observable<BaseReturn<ManageOpinionsbean>> getManageOpinions(@Query("projectId") String projectId,@Header("X-Requested-With") String ID);
 }

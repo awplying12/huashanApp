@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.today.calendar.view.activity.CalendarActivity;
@@ -51,8 +52,16 @@ public class TodayViewModelImpl extends TodayViewModel {
      */
     @Override
     public void onHead(View view) {
+
+//        if(HuaShanApplication.loginStatus == 1){
+//            return;
+//        }
+//        HomeActivity act = (HomeActivity) activity;
+//        act.toLoginActivity();
+
         HomeActivity act = (HomeActivity) activity;
-        act.toLoginActivity();
+        act.toMyToday();
+
     }
 
     /**
@@ -126,8 +135,6 @@ public class TodayViewModelImpl extends TodayViewModel {
         mView.showToast("每日精选立即购买");
     }
 
-
-
     /**
      * 积分商城更多
      * @param view
@@ -136,7 +143,6 @@ public class TodayViewModelImpl extends TodayViewModel {
     public void onIntegralMore(View view) {
         mView.showToast("onIntegralMore");
     }
-
 
     /**
      * 获取数据

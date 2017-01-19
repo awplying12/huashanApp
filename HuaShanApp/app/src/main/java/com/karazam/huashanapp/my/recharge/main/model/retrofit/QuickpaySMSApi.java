@@ -14,6 +14,6 @@ import rx.Observable;
  */
 
 public interface QuickpaySMSApi {
-    @POST("/uc/recharge/quickpay/sms")
+    @POST("/mobile/uc/recharge/quickpay/sms")
     Observable<BaseReturn<OrderBean>> sendQuickSMS(@Body QuickpaySMSPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

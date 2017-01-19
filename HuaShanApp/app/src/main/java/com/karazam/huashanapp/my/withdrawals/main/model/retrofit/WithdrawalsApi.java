@@ -14,7 +14,7 @@ import rx.Observable;
  */
 
 public interface WithdrawalsApi {
-    @POST("/uc/withdraw")
+    @POST("/mobile/uc/withdraw")
     Observable<BaseReturn<WithdrawalsBean>> Withdrawals(@Body WithdrawalsPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 
 }

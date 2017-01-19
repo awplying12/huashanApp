@@ -13,7 +13,7 @@ import rx.Observable;
  */
 
 public interface TransactionApi {
-    @GET("/uc/payment_order/records")
+    @GET("/mobile/uc/payment_order/records")
     Observable<BaseReturn<TransactionBean>> getTransactionData(@Query("currentPage") String currentPage, @Header("sid") String token, @Header("X-Requested-With") String ID);
 
 }

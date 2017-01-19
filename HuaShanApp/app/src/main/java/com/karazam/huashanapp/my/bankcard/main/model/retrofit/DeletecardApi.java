@@ -14,6 +14,6 @@ import rx.Observable;
  */
 
 public interface DeletecardApi {
-    @POST("/uc/bank_card/delete")
+    @POST("/mobile/uc/bank_card/delete")
     Observable<BaseReturn<BindcardBean>> deletacard(@Body DeletecardPost post, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }

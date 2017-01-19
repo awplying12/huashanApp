@@ -15,7 +15,7 @@ import rx.Observable;
  */
 
 public interface RegisterApi {
-    @POST("/regist")
+    @POST("/mobile/regist")
     Observable<BaseReturn<TokenData>> onRegister(@Body RegisterBean bean, @Header("X-Requested-With") String ID);
 
 //    Observable<BaseReturn<TokenData>> onRegister(@Body RegisterBean bean, @Header("X-Requested-With") String ID);

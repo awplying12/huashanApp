@@ -13,6 +13,6 @@ import rx.Observable;
  */
 
 public interface ManagedataApi {
-    @GET("/investment/list")
+    @GET("/mobile/investment/list")
     Observable<BaseReturn<ManagedataBean>> getManagedata(@Query("borrowingType") String borrowingType, @Query("currentPage") String currentPage, @Header("X-Requested-With") String ID);
 }

@@ -108,7 +108,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
      */
     private void setTitlebBar() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("产融货");
+        list.add("产融贷");
         list.add("优企宝");
         list.add("保理贷");
 //        list.add("债权转让");

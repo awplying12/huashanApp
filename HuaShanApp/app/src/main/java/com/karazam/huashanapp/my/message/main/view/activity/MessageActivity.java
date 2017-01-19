@@ -2,6 +2,7 @@ package com.karazam.huashanapp.my.message.main.view.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,6 +41,8 @@ public class MessageActivity extends BaseActivity implements MessageView,SwipeRe
 
     private RefreshRecyclerView rl_message;
 
+    private Bundle bundle;;
+
 
     @Override
     public void setContentLayout() {
@@ -52,7 +55,7 @@ public class MessageActivity extends BaseActivity implements MessageView,SwipeRe
 
     @Override
     public void dealLogicBeforeInitView() {
-
+        bundle = getIntent().getExtras();
     }
 
     @Override

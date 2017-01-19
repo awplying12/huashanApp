@@ -4,7 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.provider.Settings;
 import android.util.Log;
+
+import com.example.utils.base.SystemUtils;
+import com.karazam.huashanapp.home.view.activity.HomeActivity;
+import com.karazam.huashanapp.my.message.main.view.activity.MessageActivity;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -27,6 +33,42 @@ public class PushReceiver extends BroadcastReceiver {
 
         Log.i("msg","EXTRA_ALERT    :     "+bundle.getString(JPushInterface.EXTRA_ALERT));
         Log.i("msg","EXTRA_NOTIFICATION_TITLE    :     "+bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE));
+
+
+        if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
+
+
+//            //打开自定义的Activity
+//            Intent i = new Intent(context, MessageActivity.class);
+//            i.putExtras(bundle);
+//            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+//            context.startActivity(i);
+
+            if(SystemUtils.isAppAlive(context,"com.karazam.huashanapp")){
+
+                Intent mainIntent = new Intent(context, HomeActivity.class);
+                mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                //打开自定义的Activity
+                Intent i = new Intent(context, MessageActivity.class);
+                i.putExtras(bundle);
+
+                Intent[] intents = {mainIntent, i};
+                context.startActivities(intents);
+
+            } else {
+                Intent launchIntent = context.getPackageManager().
+                        getLaunchIntentForPackage("com.karazam.huashanapp");
+                launchIntent.setFlags(
+                        Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+                launchIntent.putExtra("HomeActivity", bundle);
+
+                context.startActivity(launchIntent);
+            }
+
+        }
     }
 
 }

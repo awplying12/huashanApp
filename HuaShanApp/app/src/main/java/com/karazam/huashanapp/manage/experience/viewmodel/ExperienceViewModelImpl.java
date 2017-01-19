@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
-import com.karazam.huashanapp.main.dialog.PromptDialog;
+import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.manage.experience.model.databinding.ExperienceEntity;
 import com.karazam.huashanapp.manage.experience.view.ExperienceView;
 import com.karazam.huashanapp.manage.experience.view.activity.ExperienceActivity;

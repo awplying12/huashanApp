@@ -15,6 +15,6 @@ import rx.Observable;
 
 public interface GespasswordAPI {
 
-    @POST("/uc/setGesPassword")
+    @POST("/mobile/uc/setGesPassword")
     Observable<BaseReturn<GespwReturn>> setGespassword(@Body GespwBean bean, @Header("sid") String token, @Header("X-Requested-With") String ID);
 }
