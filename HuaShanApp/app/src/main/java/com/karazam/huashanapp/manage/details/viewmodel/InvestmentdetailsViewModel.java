@@ -11,6 +11,7 @@ import com.example.utils.base.BaseViewModel;
 public abstract class InvestmentdetailsViewModel extends BaseViewModel {
 
     public String borrowingId;
+    public String progress;
 
     public abstract void onInformation(View view);
 

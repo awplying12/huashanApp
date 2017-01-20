@@ -14,6 +14,9 @@ public class Method {
 
     public static String calculateIncome(int money, Project project){
         double result = 0;
+        if(project == null){
+            return "";
+        }
         double interestRate = Double.parseDouble(StringUtil.interrupt(project.getInterestRate(),0,"0"))/100;
         double period = Double.parseDouble(StringUtil.interrupt(project.getPeriod(),0,"0"));
         if(StringUtil.interrupt(project.getPeriodUnitDes(),0,"").equals("天")){

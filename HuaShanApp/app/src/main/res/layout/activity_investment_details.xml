@@ -15,11 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+        //android:background="@drawable/fw"
+
         <LinearLayout
             android:id="@+id/title_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fw"
+            android:background="#3BAAFE"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_heightPercent="8%"
@@ -88,7 +91,7 @@
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
                 app:layout_heightPercent="26%"
-                android:background="#66b3ff">
+                android:background="#3BAAFE">
 
                 <TextView
                     android:id="@+id/text_11"
@@ -117,7 +120,7 @@
                     android:layout_width="match_parent"
                     app:layout_heightPercent="20%"
                     android:layout_gravity="bottom"
-                    android:background="#66b3ff"
+                    android:background="#3BAAFE"
                     android:clickable="true">
 
                     <ImageView
@@ -145,7 +148,7 @@
                     android:layout_height="wrap_content"
                     app:layout_marginTopPercent="7%"
                     app:layout_marginLeftPercent="7%"
-                    android:background="#66b3ff"
+
                     android:text="产品名称"
                     android:textColor="@color/Investmentdetails_part1_text_size"
                     android:textSize="18dp"/>
@@ -172,15 +175,19 @@
 
             </android.support.percent.PercentFrameLayout>
 
-            <!--第4部分-->
+            <!--第4部分-->  //android:background="#3BAAFE"
             <android.support.percent.PercentFrameLayout
+                android:id="@+id/purchase_pl"
                 android:layout_width="match_parent"
                 app:layout_heightPercent="10%"
                 android:layout_gravity="bottom"
-                android:background="#46a3ff"
+                android:background="#adadad"
+
                 android:onClick="@{handler.toPurchase}"
+                android:visibility="visible"
                 >
                 <TextView
+                    android:id="@+id/purchase_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

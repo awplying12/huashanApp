@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.paymentpassword.PasswordView;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.custom.RefreshRecyclerView;
+import com.example.utils.custom.VpSwipeRefreshLayout;
 import com.example.utils.custom.WrapContentLinearLayoutManager;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
@@ -60,7 +61,7 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
     private AssignmentView assignmentView;
 
 //    private PasswordView pwd_view;
-    private SwipeRefreshLayout swl_pl;
+    private VpSwipeRefreshLayout swl_pl;
 
     private static int page = 1;
 
@@ -100,10 +101,13 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
 
 //        pwd_view = (PasswordView) getView(R.id.pwd_view);
 
-        swl_pl = (SwipeRefreshLayout) getView(R.id.swl_pl);
+        swl_pl = (VpSwipeRefreshLayout) getView(R.id.swl_pl);
         swl_pl.setOnRefreshListener(this);
         swl_pl.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        content_rl.setSwl_pl(swl_pl);
+
+
     }
 
     @Override
@@ -186,6 +190,8 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
     private void setLayout() {
         NofinanceView nofinanceView = new NofinanceView(MyfinanceActivity.this);
         view = nofinanceView.setView();
+
+
 
         RxView.findById(this,R.id.pf_path_1).bind(HuaShanApplication.myAssetsBeanRX, new Rx.Action<View, MyAssetsBean>() {  //当前理财金额
             @Override
@@ -293,6 +299,9 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
 //                assignmentView.dismiss();
 //            }
 //        });
+
+
+
 
     }
 

@@ -20,4 +20,6 @@ public class Constants {
 //    public static final String PORT1 = "8086";
     public static String URL1 = BASEURL + ":"+ PORT1;
 
+    public static String PATH = "DASD";
+
 }

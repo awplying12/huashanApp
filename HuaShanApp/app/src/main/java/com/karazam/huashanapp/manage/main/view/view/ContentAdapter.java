@@ -52,6 +52,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     public ContentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.layout_project_content_item, parent, false);
         ViewHolder holder = new ViewHolder(view,mOnItemClickListener);
+        holder.setIsRecyclable(false);
         return holder;
     }
 
@@ -71,6 +72,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                 if(HuaShanApplication.loginStatus == 1){
                     Intent intent = new Intent(mContext, InvestmentdetailsActivity.class);
                     intent.putExtra("borrowingId",StringUtil.interrupt(mData.get(position).getBorrowingId(),0,"-1"));
+                    intent.putExtra("progress",StringUtil.interrupt(mData.get(position).getProgress(),0,"-1"));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 }else {
@@ -99,7 +101,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                     }else {
                         target.setText(StringUtil.interrupt(tx,0,""));
                         target.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
-                        target.setClickable(false);
+                        target.setClickable(true);
                     }
                 }
             });

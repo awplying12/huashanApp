@@ -135,7 +135,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center"
                                 app:layout_marginTopPercent="30%"
-                                android:text="+0.40"
+                                android:text="0.00"
                                 android:textColor="#f00"
                                 android:textSize="@dimen/transactiondetails_content_text_size"/>
 
@@ -146,7 +146,7 @@
                                 android:layout_gravity="center_horizontal"
                                 app:layout_marginTopPercent="45%"
                                 android:gravity="center"
-                                android:text="交易完成"
+                                android:text="状态"
                                 android:textSize="@dimen/transactiondetails_statet_text_size"/>
 
                             <TextView
@@ -183,7 +183,7 @@
                                 app:layout_marginRightPercent="5%"
                                 android:layout_gravity="right"
                                 android:gravity="center"
-                                android:text="快捷支付-移动端"
+                                android:text=""
                                 android:textSize="@dimen/transactiondetails_text_size"/>
 
 
@@ -206,7 +206,7 @@
                                 android:gravity="center"
                                 android:layout_gravity="bottom|right"
                                 android:textSize="@dimen/transactiondetails_text_size"
-                                android:text="2016-11-13 14:13"/>
+                                android:text=""/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -215,7 +215,7 @@
                                 android:layout_gravity="right"
                                 app:layout_marginRightPercent="5%"
                                 android:gravity="center"
-                                android:text="中国银行(7634)"
+                                android:text=""
                                 android:textSize="@dimen/transactiondetails_service_text_size"
                                 android:id="@+id/textView5" />
 

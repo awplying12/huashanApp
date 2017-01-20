@@ -118,7 +118,7 @@
                                 android:layout_height="match_parent"
                                 app:layout_marginLeftPercent="2%"
                                 android:gravity="center"
-                                android:text="中国银行"
+                                android:text="银行"
                                 android:layout_alignParentTop="true"
                                 android:layout_toRightOf="@+id/bank_logo"
                                 android:layout_toEndOf="@+id/bank_logo" />
@@ -132,7 +132,7 @@
                             android:layout_gravity="center_horizontal"
                             android:gravity="center"
                             app:layout_marginTopPercent="15%"
-                            android:text="-0.40"
+                            android:text="0.00"
                             android:textSize="@dimen/transactiondetails_content_text_size"/>
 
                         <TextView
@@ -142,7 +142,7 @@
                             android:layout_gravity="center_horizontal"
                             app:layout_marginTopPercent="25%"
                             android:gravity="center"
-                            android:text="交易完成"
+                            android:text="状态"
                             android:textSize="@dimen/transactiondetails_statet_text_size"/>
 
                         <TextView
@@ -162,7 +162,7 @@
                             android:layout_gravity="right"
                             app:layout_marginRightPercent="5%"
                             android:gravity="center"
-                            android:text="0.10"
+                            android:text="0.00"
                             android:textSize="@dimen/transactiondetails_service_text_size"/>
 
                         <!--分割线-->
@@ -190,7 +190,7 @@
                             app:layout_marginRightPercent="5%"
                             android:layout_gravity="right"
                             android:gravity="center"
-                            android:text="审核成功，次日到账"
+                            android:text=""
                             android:textSize="@dimen/transactiondetails_text_size"/>
 
                         <TextView
@@ -240,7 +240,7 @@
                             app:layout_marginBottomPercent="2%"
                             android:layout_gravity="bottom|right"
                             android:textSize="@dimen/transactiondetails_text_size"
-                            android:text="中国银行（7634）王蕙"/>
+                            android:text=""/>
 
                     </android.support.percent.PercentFrameLayout>
 

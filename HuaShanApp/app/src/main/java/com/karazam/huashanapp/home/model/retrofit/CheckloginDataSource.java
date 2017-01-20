@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.home.model.retrofit;
 
+
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.home.model.databinding.CheckloginBean;
 import com.karazam.huashanapp.home.model.databinding.CheckloginReturn;

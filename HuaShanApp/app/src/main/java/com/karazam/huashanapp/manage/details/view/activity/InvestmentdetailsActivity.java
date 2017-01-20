@@ -73,6 +73,8 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
     private SwipeRefreshLayout swp_rl;
 
+    private PercentFrameLayout purchase_pl;
+    private TextView purchase_tv;
 
 
     @Override
@@ -96,7 +98,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 //        mMinHeaderTranslation = ((int) (BaseActivity.ScreeH*0.1)+ getActionBarHeight());
 
         mModel.borrowingId = getIntent().getStringExtra("borrowingId");
-
+        mModel.progress = getIntent().getStringExtra("progress");
         HuaShanApplication.project = RxProperty.create();
     }
 
@@ -113,7 +115,8 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
         tab_det = (PercentFrameLayout) getView(R.id.tab_det);
 
-
+        purchase_pl = (PercentFrameLayout) getView(R.id.purchase_pl);
+        purchase_tv = (TextView) getView(R.id.purchase_tv);
     }
 
     @Override
@@ -155,7 +158,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      * 设置界面
      */
 
-
+    private RxProperty<String> purchaseRx = RxProperty.create();
     private void setLayout() {
 
         RxView.findById(this,R.id.content_pl).bind(HuaShanApplication.project, new Rx.Action<View, ManagedetailsBean>() {
@@ -172,6 +175,23 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
                 String publishDate = project.getPublishDate();
                 release_time.setText("发布日期："+StringUtil.interrupt(publishDate,0,""));
+
+                mModel.progress = StringUtil.interrupt(project.getProgress(),0,"-1");
+                purchaseRx.set(mModel.progress);
+            }
+        });
+
+        RxView.of(purchase_pl).bind(purchaseRx, new Rx.Action<PercentFrameLayout, String>() {
+            @Override
+            public void call(PercentFrameLayout target, String s) {
+                showToast(s);
+                if(s.equals("investing")) {
+                    target.setBackgroundColor(Color.parseColor("#3BAAFE"));
+                    target.setClickable(true);
+                } else {
+                    target.setBackgroundColor(Color.parseColor("#ADADAD"));
+                    target.setClickable(false);
+                }
             }
         });
 

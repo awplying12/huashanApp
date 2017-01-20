@@ -96,6 +96,11 @@ public class InvestmentdetailsViewModelImpl extends InvestmentdetailsViewModel {
             return;
         }
 //        mView.toOtherActivity(activity, PurchaseActivity.class);
+
+        if(!progress.equals("investing")){
+            return;
+        }
+
         Intent intent = new Intent(activity, PurchaseActivity.class);
         intent.putExtra("borrowingId",borrowingId);
         activity.startActivity(intent);

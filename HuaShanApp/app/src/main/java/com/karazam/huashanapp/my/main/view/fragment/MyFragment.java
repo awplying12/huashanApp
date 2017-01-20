@@ -116,6 +116,9 @@ public class MyFragment extends BaseFragment implements MyView,SwipeRefreshLayou
     }
 
     public void finishRefresh(){
+        if(swl_pl == null){
+            return;
+        }
         swl_pl.setRefreshing(false);
     }
 

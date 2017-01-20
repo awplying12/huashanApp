@@ -19,6 +19,7 @@ import java.util.ArrayList;
 //        investmentMinimum	起投金额
 //        residualAmount	剩余可投金额
 //        materials	项目材料
+//        progress = investing
 
 
 public class Project {
@@ -34,6 +35,7 @@ public class Project {
     private String periodUnitDes;
     private String investmentMinimum;
     private String residualAmount;
+    private String progress;
     private ArrayList<String> materials;
 
     public String getPeriod() {
@@ -140,6 +142,14 @@ public class Project {
         this.materials = materials;
     }
 
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -155,6 +165,7 @@ public class Project {
                 ", periodUnitDes='" + periodUnitDes + '\'' +
                 ", investmentMinimum='" + investmentMinimum + '\'' +
                 ", residualAmount='" + residualAmount + '\'' +
+                ", progress='" + progress + '\'' +
                 ", materials=" + materials +
                 '}';
     }

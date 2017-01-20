@@ -2,6 +2,7 @@ package com.example.utils.custom;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -16,6 +17,7 @@ public class RefreshRecyclerView extends RecyclerView {
     public RefreshRecyclerView(Context context) {
         super(context);
     }
+    public SwipeRefreshLayout swl_pl;
 
     public RefreshRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -31,7 +33,16 @@ public class RefreshRecyclerView extends RecyclerView {
         super.setAdapter(adapter);
     }
 
+    public SwipeRefreshLayout getSwl_pl() {
+        return swl_pl;
+    }
+
+    public void setSwl_pl(SwipeRefreshLayout swl_pl) {
+        this.swl_pl = swl_pl;
+    }
+
     private int lastVisibleItem;
+
     private void Refresh(final Adapter adapter){
         if(this.getLayoutManager() instanceof LinearLayoutManager) {
             final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) this.getLayoutManager();
@@ -61,6 +72,13 @@ public class RefreshRecyclerView extends RecyclerView {
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
                     lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+
+                    if(swl_pl == null){
+                        return;
+                    }
+                    //解决swiperefreshlayout 和 RecyclerView 的滑动冲突
+                    int topRowVerticalPosition = (recyclerView == null || recyclerView.getChildCount() == 0) ? 0 : recyclerView.getChildAt(0).getTop();
+                    swl_pl.setEnabled(topRowVerticalPosition >= 0);
                 }
             });
 

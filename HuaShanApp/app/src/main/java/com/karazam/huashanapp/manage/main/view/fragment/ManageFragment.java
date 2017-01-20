@@ -99,6 +99,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
         content_rl = (RefreshRecyclerView) getView(R.id.content_rl,view);
+        content_rl.setSwl_pl(mSwipeLayout);
 
 
     }
@@ -189,7 +190,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 
 
         ArrayList<HotProjects> list = new ArrayList<>();
-//
+
 //        list.add(new HotProjects());
 //        list.add(new HotProjects());
 //        list.add(new HotProjects());
@@ -271,6 +272,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
 //        if(page >= mModel.allpage){
 //            return;
 //        }
+
         page ++;
 
     }
@@ -313,8 +315,7 @@ public class ManageFragment extends BaseFragment implements ManageView,SwipeRefr
         content_rl.setOnRefreshListener(new RefreshRecyclerView.OnRefreshListener() {
             @Override
             public void onRefreshUp() {
-//                showToast("onRefresh up");
-                Log.i("page","page : "+ page +" allpage : "+mModel.allpage);
+
                 addData();
             }
         });

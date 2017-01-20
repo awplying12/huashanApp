@@ -84,6 +84,7 @@ public class MyReturnActivity extends BaseActivity implements MyReturnView,Swipe
         swl_pl.setOnRefreshListener(this);
         swl_pl.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        content_rl.setSwl_pl(swl_pl);
 
     }
 
@@ -137,22 +138,7 @@ public class MyReturnActivity extends BaseActivity implements MyReturnView,Swipe
             }
         });
 
-//        RxView.findById(this,R.id.label_pl).bind(RecordsMode, new Rx.Action<View, ArrayList<ReturnRecords>>() {
-//            @Override
-//            public void call(View target, ArrayList<ReturnRecords> returnRecordses) {
-//                ViewGroup g = (ViewGroup) target;
-//                if(returnRecordses.size() == 0){ // 没有标
-//                    g.addView(view);
-//                    btn_finance.setText("立即前往购买");
-//                    mModel.isEmpty = true;
-//                }else {
-//                    g.removeView(view);
-//                    setRecordsContent(returnRecordses);
-//                    btn_finance.setText("买入");
-//                    mModel.isEmpty = false;
-//                }
-//            }
-//        });
+
 
         RxView.findById(this,R.id.label_pl).bind(RecordsMode, new Rx.Action<View, MyReturnBean>() {
             @Override
@@ -170,6 +156,23 @@ public class MyReturnActivity extends BaseActivity implements MyReturnView,Swipe
                 }
             }
         });
+
+
+        content_rl.setOnScrollListener(new RecyclerView.OnScrollListener(){ //解决swiperefreshlayout 和 RecyclerView 的滑动冲突
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                int topRowVerticalPosition = (recyclerView == null || recyclerView.getChildCount() == 0) ? 0 : recyclerView.getChildAt(0).getTop();
+                swl_pl.setEnabled(topRowVerticalPosition >= 0);
+//                content_rl.setEnabled();
+
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
     }
 
     /**

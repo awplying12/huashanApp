@@ -47,6 +47,7 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
     public ExperienceAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.layout_experience_content_item, parent, false);
         ViewHolder holder = new ExperienceAdapter.ViewHolder(view,mOnItemClickListener);
+        holder.setIsRecyclable(false);
         return holder;
     }
 
