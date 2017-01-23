@@ -1,14 +1,17 @@
 package com.karazam.huashanapp.home.view.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.utils.Adapter.PagerFragmentAdapter;
 import com.example.utils.base.BaseActivity;
@@ -103,6 +106,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(i);
         }
+
     }
 
     @Override
@@ -145,6 +149,7 @@ public class HomeActivity extends BaseActivity implements HomeView {
                 }else {
                     setViewPagerCurrentItem(0,"今日");
                 }
+
             }
         });
     }
@@ -234,8 +239,9 @@ public class HomeActivity extends BaseActivity implements HomeView {
 //        list.add(applyFragment);
         list.add(myFragment);
 
-        viewPager.setScrollAble(true);
+        viewPager.setScrollAble(false);
         viewPager.setOffscreenPageLimit(limit); //设置viewpager缓存一侧Fragment的数量
+//        viewPager.setPage
         viewPager.setAdapter(new PagerFragmentAdapter(getSupportFragmentManager(), list));
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -337,6 +343,34 @@ public class HomeActivity extends BaseActivity implements HomeView {
      */
     public void toMyToday(){
         mModel.toMy(null);
+    }
+
+    /**
+     * 再按一次退出程序
+     */
+    private long firstTime = 0;
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                long secondTime = System.currentTimeMillis();
+                if (secondTime - firstTime > 2000) { // 如果两次按键时间间隔大于2秒，则不退出
+                    Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    firstTime = secondTime;// 更新firstTime
+                    return true;
+                } else { // 两次按键小于2秒时，退出应用
+                    // Intent home = new Intent(Intent.ACTION_MAIN);
+                    // home.addCategory(Intent.CATEGORY_HOME);
+                    // startActivity(home);
+                    SharedPreferences sp = getSharedPreferences("imei", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.clear();
+                    editor.commit();
+                }
+                break;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 
 }

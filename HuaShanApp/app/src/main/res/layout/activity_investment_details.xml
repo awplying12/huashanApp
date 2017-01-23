@@ -67,6 +67,7 @@
             app:layout_widthPercent="7%"
             android:layout_height="match_parent"
             android:src="@drawable/share_icon"
+            android:visibility="gone"
         />
         </android.support.percent.PercentRelativeLayout>
         </LinearLayout>

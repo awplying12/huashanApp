@@ -29,6 +29,8 @@ public class RechargecashActivity extends BaseActivity implements RechargecashVi
     private RechargecashEntity entity = new RechargecashEntity();
     private RechargecashViewModel mModel;
 
+    private TextView tv_recharge;
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_rechargecash);
@@ -45,7 +47,7 @@ public class RechargecashActivity extends BaseActivity implements RechargecashVi
 
     @Override
     public void initView() {
-
+        tv_recharge = (TextView) getView(R.id.tv_recharge);
     }
 
     @Override
@@ -68,6 +70,12 @@ public class RechargecashActivity extends BaseActivity implements RechargecashVi
                 tv.setText(Html.fromHtml(available));
             }
         });
+
+        if(HuaShanApplication.corp){
+            tv_recharge.setVisibility(View.GONE);
+        } else {
+            tv_recharge.setVisibility(View.VISIBLE);
+        }
 
     }
 }

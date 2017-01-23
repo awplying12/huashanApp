@@ -10,6 +10,9 @@ import com.example.utils.base.BaseViewModel;
 
 public abstract class LoginViewModel extends BaseViewModel{
 
+
+//    public String corp = "0"; //默认为个人账户
+
     public abstract void toFindpassword(View view);
 
     public abstract void toRegister(View view);

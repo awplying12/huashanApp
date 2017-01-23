@@ -9,6 +9,7 @@ import com.karazam.huashanapp.HuaShanApplication;
 
 import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
+import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
 import com.karazam.huashanapp.manage.paymentmod.view.activity.PaymentmodActivity;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchasSMSPost;
 import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
@@ -166,6 +167,7 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
         post.setAmount(mon);
         post.setPayPassword(payPassword);
         post.setCaptcha(captcha);
+
         purchaseDataSource.Purchase(post)
                 .throttleFirst(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
@@ -188,7 +190,9 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
                             PurchaseRetureBean bean = purchaseRetureBeanBaseReturn.getData();
                             Log.i("Assets",bean.getAssets().toString());
                             HuaShanApplication.setMyAssets(bean.getAssets());
-
+                            ManagedetailsBean managedetailsBean = new ManagedetailsBean();
+                            managedetailsBean.setProject(bean.getProject());
+                            HuaShanApplication.project.set(managedetailsBean);
                             mView.purchaseSuccess(bean.getOrderNo());
                         }else {
                             mView.purchaseFail(purchaseRetureBeanBaseReturn.getMessage());

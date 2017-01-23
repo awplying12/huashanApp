@@ -88,6 +88,9 @@ public abstract class BaseActivity extends FragmentActivity implements BaseView{
     }
 
     public void showToast(String msg) {
+        if (this == null){
+            return;
+        }
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
@@ -98,21 +101,33 @@ public abstract class BaseActivity extends FragmentActivity implements BaseView{
     }
 
     public void showProgressDialog() {
+        if(this == null || progressDialog == null){
+            return;
+        }
         progressDialog.setMessage("加载中...");
         progressDialog.show();
     }
 
     public void showProgressDialog(String str) {
+        if(this == null || progressDialog == null){
+            return;
+        }
         progressDialog.setMessage(str);
         progressDialog.show();
     }
 
     public void showProgressDialog(int resId) {
+        if(this == null || progressDialog == null){
+            return;
+        }
         progressDialog.setMessage(getString(resId));
         progressDialog.show();
     }
 
     public void dissmissProgressDialog() {
+        if(this == null || progressDialog == null){
+            return;
+        }
         progressDialog.dismiss();
     }
 

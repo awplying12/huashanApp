@@ -92,7 +92,7 @@ public class VerifyActivity2 extends BaseActivity implements VerifyView2 {
     @Override
     public void dealLogicAfterInitView() {
 
-        if(HuaShanApplication.myInformation.getQuickCards().size() == 0 && HuaShanApplication.myInformation.getWithdrawCardl().getBankCardId() == null){
+        if(HuaShanApplication.myInformation.getQuickCards().size() == 0 && HuaShanApplication.myInformation.getWithdrawCard().getBankCardId() == null){
             pf_bankcard.setVisibility(View.GONE);
             pf_cardnum.setVisibility(View.GONE);
             mModel.hasCard = false;

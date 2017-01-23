@@ -17,12 +17,12 @@ public class LoginDataSource extends BaseDataSource {
 
     LoginApi service = retrofit.create(LoginApi.class);
 
-    public Observable<BaseReturn<TokenData>> getToken( String loginName,String password){
+    public Observable<BaseReturn<TokenData>> getToken( String loginName,String password,boolean corp){
         password = DigestUtils.encrypt(password);
         LoginBean bean = new LoginBean();
         bean.setUsername(loginName);
         bean.setPassword(password);
-
+        bean.setCorp(corp);
         return service.getToken(bean,"android","XMLHttpRequest");
 
     }

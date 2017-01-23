@@ -343,7 +343,6 @@ public class UnauthorizedActivity extends BaseActivity implements UnauthorizedVi
 
             @Override
             public void onResend(View view) {
-
             }
 
             @Override

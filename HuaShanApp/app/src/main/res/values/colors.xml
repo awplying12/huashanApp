@@ -28,7 +28,7 @@
     <color name="login_hint_text_color">#d0d0d0</color>
     <color name="login_content_line_color">#8e8e8e</color>
 
-    <color name="login_btn_text_color">#0894EC</color>
+    <color name="login_btn_text_color">#20000000</color>
 
     <!--register-->
     <color name="register_content_line_color">#adadad</color>

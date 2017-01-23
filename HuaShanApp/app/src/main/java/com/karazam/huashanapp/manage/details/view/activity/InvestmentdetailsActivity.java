@@ -158,7 +158,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      * 设置界面
      */
 
-    private RxProperty<String> purchaseRx = RxProperty.create();
+    private RxProperty<ManagedetailsBean> purchaseRx = RxProperty.create();
     private void setLayout() {
 
         RxView.findById(this,R.id.content_pl).bind(HuaShanApplication.project, new Rx.Action<View, ManagedetailsBean>() {
@@ -176,19 +176,24 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
                 String publishDate = project.getPublishDate();
                 release_time.setText("发布日期："+StringUtil.interrupt(publishDate,0,""));
 
-                mModel.progress = StringUtil.interrupt(project.getProgress(),0,"-1");
-                purchaseRx.set(mModel.progress);
+
+
             }
         });
 
-        RxView.of(purchase_pl).bind(purchaseRx, new Rx.Action<PercentFrameLayout, String>() {
+        RxView.of(purchase_pl).bind(purchaseRx, new Rx.Action<PercentFrameLayout, ManagedetailsBean>() {
             @Override
-            public void call(PercentFrameLayout target, String s) {
-                showToast(s);
-                if(s.equals("investing")) {
+            public void call(PercentFrameLayout target, ManagedetailsBean bean) {
+//                showToast(s);
+                Project project = bean.getProject();
+                mModel.progress = StringUtil.interrupt(project.getProgress(),0,"-1");
+
+                if(mModel.progress.equals("investing")) {
+                    purchase_tv.setText("立即购买");
                     target.setBackgroundColor(Color.parseColor("#3BAAFE"));
                     target.setClickable(true);
                 } else {
+                    purchase_tv.setText(StringUtil.interrupt(project.getProgressDes(),0,"未知"));
                     target.setBackgroundColor(Color.parseColor("#ADADAD"));
                     target.setClickable(false);
                 }
@@ -202,18 +207,18 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
      */
     private void initData() {
 
-        mModel.getManagedetailsData(mModel.borrowingId);
+//        mModel.getManagedetailsData(mModel.borrowingId);
 
-        RxView.of(new View(this)).bind(HuaShanApplication.refreshManage, new Rx.Action<View, String>() {
-            @Override
-            public void call(View target, String s) {
-
-                if(s.equals("Refresh")||s.equals("getManagedetails")){
-                    mModel.getManagedetailsData(mModel.borrowingId);
-                }
-
-            }
-        });
+//        RxView.of(new View(this)).bind(HuaShanApplication.refreshManage, new Rx.Action<View, String>() {
+//            @Override
+//            public void call(View target, String s) {
+//
+//                if(s.equals("Refresh")||s.equals("getManagedetails")){
+//                    mModel.getManagedetailsData(mModel.borrowingId);
+//                }
+//
+//            }
+//        });
 
     }
 
@@ -234,6 +239,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     public void getManagedetailsDataSuccess(ManagedetailsBean data) {
 
         HuaShanApplication.project.set(data);
+        purchaseRx.set(data);
     }
 
     /**
@@ -278,6 +284,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
 
     @Override
     protected void onStart() {
+        mModel.getManagedetailsData(mModel.borrowingId);
         super.onStart();
 
     }
@@ -285,17 +292,19 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
     @Override
     protected void onPause() {
         super.onPause();
+//        if(mWaveHelper == null){
+//            return;
+//        }
 //        mWaveHelper.cancel();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+//        if(mWaveHelper == null){
+//            return;
+//        }
 //        mWaveHelper.start();
     }
-
-
-
-
 
 }

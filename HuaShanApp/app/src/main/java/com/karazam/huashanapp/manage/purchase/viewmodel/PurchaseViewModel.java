@@ -18,6 +18,9 @@ public abstract class PurchaseViewModel extends BaseViewModel {
     public EditText ed_amountofmoney;
     public String borrowingId;
     public String mode;
+
+    public String type;
+
     public CardBean cardBean = new CardBean();
 
 

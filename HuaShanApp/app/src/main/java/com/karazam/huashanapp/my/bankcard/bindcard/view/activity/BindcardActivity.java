@@ -521,14 +521,14 @@ public class BindcardActivity extends BaseActivity implements BindcardView{
             case 2:
 //                Log.i("BindcardActivity","33");
                CardBean cardBeen = bean.getWithdrawCard();
-                HuaShanApplication.myInformation.setWithdrawCardl(cardBeen);
+                HuaShanApplication.myInformation.setWithdrawCard(cardBeen);
                 HuaShanApplication.withdrawCarRx.set(cardBeen);
 
                 break;
             case 3:
 
                 CardBean cardBeen1 = bean.getWithdrawCard();
-                HuaShanApplication.myInformation.setWithdrawCardl(cardBeen1);
+                HuaShanApplication.myInformation.setWithdrawCard(cardBeen1);
                 HuaShanApplication.withdrawCarRx.set(cardBeen1);
                 break;
             default:

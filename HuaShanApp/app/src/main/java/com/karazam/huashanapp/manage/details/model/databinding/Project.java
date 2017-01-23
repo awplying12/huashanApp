@@ -36,6 +36,7 @@ public class Project {
     private String investmentMinimum;
     private String residualAmount;
     private String progress;
+    private String progressDes;
     private ArrayList<String> materials;
 
     public String getPeriod() {
@@ -150,6 +151,14 @@ public class Project {
         this.progress = progress;
     }
 
+    public String getProgressDes() {
+        return progressDes;
+    }
+
+    public void setProgressDes(String progressDes) {
+        this.progressDes = progressDes;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
@@ -166,6 +175,7 @@ public class Project {
                 ", investmentMinimum='" + investmentMinimum + '\'' +
                 ", residualAmount='" + residualAmount + '\'' +
                 ", progress='" + progress + '\'' +
+                ", progressDes='" + progressDes + '\'' +
                 ", materials=" + materials +
                 '}';
     }

@@ -20,6 +20,7 @@ import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityPurchaseBinding;
+import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
 import com.karazam.huashanapp.main.Method;
 import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.main.dialog.SMSauthenticationView;
@@ -73,6 +74,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     private PromptDialog dialog;
     private PromptDialog dialogFail;
 
+
+
     @Override
     public void setContentLayout() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_purchase);
@@ -86,6 +89,8 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
     public void dealLogicBeforeInitView() {
 
         mModel.borrowingId = getIntent().getStringExtra("borrowingId");
+        mModel.type = getIntent().getStringExtra("type");
+
 
         PurchasBean purchasBean = new PurchasBean();
         purchasBean.setPaymentMethod("BALANCE_PAY");
@@ -202,8 +207,14 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
 
                     pay_method.setText("账户余额");
 
-                    String userbalance = StringUtil.interrupt(purchasBean.getAssets().getAvailable(),0,"0.00");
-                    pay_content.setText("可用余额 "+userbalance);
+                    RxView.of(pay_content).bind(HuaShanApplication.myAssetsBeanRX, new Rx.Action<TextView, MyAssetsBean>() {
+                        @Override
+                        public void call(TextView target, MyAssetsBean myAssetsBean) {
+                            String userbalance = StringUtil.interrupt(myAssetsBean.getAvailable(),0,"0.00");
+                            target.setText("可用余额 "+userbalance);
+                        }
+                    });
+
                 }
             }
         });
@@ -394,6 +405,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
             purchasBean.setPaymentMethod("BALANCE_PAY");
             purchasBean.setAssets(HuaShanApplication.myAssetsBean);
             purchasBeanRx.set(purchasBean);
+
         }
 
     }

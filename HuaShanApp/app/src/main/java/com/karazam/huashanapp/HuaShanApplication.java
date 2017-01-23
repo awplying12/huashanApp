@@ -12,6 +12,7 @@ import com.example.utils.ACacheBase.ACache;
 import com.example.utils.base.BaseActivity;
 import com.example.utils.utils.PathUtil;
 
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
 import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
 import com.karazam.huashanapp.main.Bean.MyInformation.CardBean;
@@ -52,6 +53,9 @@ public class HuaShanApplication extends Application {
     public static String token;
     public static String refresh_token;
     public static String client_id;
+
+    public static Boolean corp;
+
 
     public static int loginStatus;
     public static RxProperty<Integer> loginStatusRx = RxProperty.create();
@@ -112,6 +116,8 @@ public class HuaShanApplication extends Application {
         refresh_token = sharedPreferences.getString("refresh_token", "");
         client_id = sharedPreferences.getString("client_id", "");
 
+        corp = sharedPreferences.getBoolean("corp",false);
+
         paymentMethod = sharedPreferences.getString("paymentMethod", "QUICK_PAY");
 
         loginStatus = sharedPreferences.getInt("loginStatus",-1);
@@ -169,9 +175,16 @@ public class HuaShanApplication extends Application {
 //        HuaShanApplication.editor.putString("header",bean.getBaseInfo().getAvatar()).commit();
         HuaShanApplication.myInformationRX.set(HuaShanApplication.myInformation);
         HuaShanApplication.baseInfoBeanRX.set(HuaShanApplication.myInformation.getBaseInfo());
-        HuaShanApplication.withdrawCarRx.set(HuaShanApplication.myInformation.getWithdrawCardl());
+        HuaShanApplication.withdrawCarRx.set(HuaShanApplication.myInformation.getWithdrawCard());
         HuaShanApplication.quickCardsRX.set((HuaShanApplication.myInformation.getQuickCards()));
 
+//        if(bean == null){
+//            corp = "0";
+//            HuaShanApplication.editor.putString("corp","0").commit();
+//        } else {
+//            corp = StringUtil.interrupt(bean.getCorp(),0,"0");
+//            HuaShanApplication.editor.putString(corp,"0").commit();
+//        }
 
         if(bean.getBaseInfo() == null){
             certificationStatus = false;
@@ -212,6 +225,7 @@ public class HuaShanApplication extends Application {
 
         HuaShanApplication.editor.putString("gesture_lock","-1").commit();
 
+        HuaShanApplication.editor.putString("corp","0").commit();
         setMyInformation(new MyInformationBean());
         setMyAssets(new MyAssetsBean());
     }

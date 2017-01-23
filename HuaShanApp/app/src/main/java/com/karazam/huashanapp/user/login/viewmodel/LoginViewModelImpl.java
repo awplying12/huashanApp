@@ -81,7 +81,7 @@ public class LoginViewModelImpl extends LoginViewModel {
     public void login(final String account, String password) {
 
 
-        dataSource.getToken(account,password)
+        dataSource.getToken(account,password,HuaShanApplication.corp)
                 .throttleFirst(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
                 .subscribe(new Subscriber<BaseReturn<TokenData>>() {
@@ -102,7 +102,7 @@ public class LoginViewModelImpl extends LoginViewModel {
 
                 String status = s.getStatus();
                 if(status.equals("success")){
-                    mView.loginSuccess();
+
                     TokenData data = s.getData();
 
                     HuaShanApplication.editor.putString("token",data.getSid()).commit();
@@ -117,6 +117,8 @@ public class LoginViewModelImpl extends LoginViewModel {
                     HuaShanApplication.editor.putString("account",account).commit();
                     HuaShanApplication.account = account;
 
+
+                    mView.loginSuccess();
                     Log.i("TokenData",data.toString());
                 }else {
 

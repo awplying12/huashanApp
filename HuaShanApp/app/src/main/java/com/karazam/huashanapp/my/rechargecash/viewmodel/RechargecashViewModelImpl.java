@@ -68,7 +68,7 @@ public class RechargecashViewModelImpl extends RechargecashViewModel {
             return;
         }
 
-        if(HuaShanApplication.myInformation.getWithdrawCardl() == null || TextUtils.isEmpty(HuaShanApplication.myInformation.getWithdrawCardl().getBankCardId())){
+        if(HuaShanApplication.myInformation.getWithdrawCard() == null || TextUtils.isEmpty(HuaShanApplication.myInformation.getWithdrawCard().getBankCardId())){
             setRechargeDialog();
             if(rechargeDialog != null){
                 rechargeDialog.setPrompt("您还没有绑定提现卡","是否要前往绑定");

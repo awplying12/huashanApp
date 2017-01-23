@@ -5,6 +5,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Vibrator;
 import android.support.percent.PercentFrameLayout;
 import android.text.TextUtils;
+
+
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
@@ -57,6 +59,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     private EditText ed_password;
 
     private TextView btn_login;
+    private TextView sel_usertype;
 
     private String account;
     private String password;
@@ -100,6 +103,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         btn_login = (TextView) getView(R.id.btn_login);
 
         content_pl = (PercentFrameLayout) getView(R.id.content_pl);
+
+        sel_usertype = (TextView) getView(R.id.sel_usertype);
     }
 
     @Override
@@ -108,9 +113,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
         checkText();
         login();
         setAutoComplete();
+        selectUsertype();
 
 
     }
+
+
 
     /**
      * 登录
@@ -183,10 +191,13 @@ public class LoginActivity extends BaseActivity implements LoginView {
         showToast("登录成功");
         loginText.set(false);
 
+
+
         addAccount();
 
         HuaShanApplication.editor.putInt("loginStatus",1).commit();
         HuaShanApplication.editor.putString("account",account).commit();
+        HuaShanApplication.editor.putBoolean("corp",HuaShanApplication.corp).commit();
         HuaShanApplication.account = account;
         HuaShanApplication.loginStatus = 1;
         HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
@@ -201,6 +212,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         showToast("登录失败");
         loginText.set(false);
 
+//        HuaShanApplication.editor.putString("corp","0").commit();
         content_pl.startAnimation(shakeAnimation);
 
 //        HuaShanApplication.editor.putInt("loginStatus",2).commit();
@@ -281,6 +293,31 @@ public class LoginActivity extends BaseActivity implements LoginView {
             btn_login.setClickable(false);
             btn_login.setBackgroundResource(R.drawable.bg_fillet_adadad_5dp);
         }
+    }
+
+    /**
+     * 选择用户类型
+     */
+    private void selectUsertype() {
+
+        RxView.clicks(sel_usertype)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+
+                            String str = sel_usertype.getText().toString();
+                        if (str.equals("切换到企业用户登陆")){ //切换到企业用户登陆
+                            HuaShanApplication.corp = true;
+                            sel_usertype.setText("切换到个人用户登陆");
+                        } else if (str.equals("切换到个人用户登陆")){ //切换到个人用户登陆
+                            HuaShanApplication.corp = false;
+                            sel_usertype.setText("切换到企业用户登陆");
+                        }
+
+                    }
+                });
+
+
     }
 
 

@@ -7,10 +7,18 @@ import java.util.ArrayList;
  */
 
 public class MyInformationBean {
-
+        private String corp;
         private BaseInfoBean baseInfo;
         private CardBean withdrawCard = new CardBean();
         private ArrayList<CardBean> quickCards = new ArrayList<>();
+
+    public String getCorp() {
+        return corp;
+    }
+
+    public void setCorp(String corp) {
+        this.corp = corp;
+    }
 
     public BaseInfoBean getBaseInfo() {
         return baseInfo;
@@ -20,20 +28,20 @@ public class MyInformationBean {
         this.baseInfo = baseInfo;
     }
 
-    public CardBean getWithdrawCardl() {
-        return withdrawCard;
-    }
-
-    public void setWithdrawCardl(CardBean withdrawCardl) {
-        this.withdrawCard = withdrawCardl;
-    }
-
     public ArrayList<CardBean> getQuickCards() {
         return quickCards;
     }
 
     public void setQuickCards(ArrayList<CardBean> quickCards) {
         this.quickCards = quickCards;
+    }
+
+    public CardBean getWithdrawCard() {
+        return withdrawCard;
+    }
+
+    public void setWithdrawCard(CardBean withdrawCard) {
+        this.withdrawCard = withdrawCard;
     }
 
     @Override

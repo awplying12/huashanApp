@@ -44,8 +44,9 @@ public class PushReceiver extends BroadcastReceiver {
 //            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
 //            context.startActivity(i);
-
-            if(SystemUtils.isAppAlive(context,"com.karazam.huashanapp")){
+           boolean flag = SystemUtils.isAppAlive(context,"com.karazam.huashanapp");
+            Log.i("flag",flag+"");
+            if(flag){
 
                 Intent mainIntent = new Intent(context, HomeActivity.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

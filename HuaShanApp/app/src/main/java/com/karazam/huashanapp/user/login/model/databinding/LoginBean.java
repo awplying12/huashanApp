@@ -7,6 +7,7 @@ package com.karazam.huashanapp.user.login.model.databinding;
 public class LoginBean {
     private String username;
     private String password;
+    private Boolean corp;
 
     public String getUsername() {
         return username;
@@ -24,11 +25,20 @@ public class LoginBean {
         this.password = password;
     }
 
+    public Boolean getCorp() {
+        return corp;
+    }
+
+    public void setCorp(Boolean corp) {
+        this.corp = corp;
+    }
+
     @Override
     public String toString() {
         return "LoginBean{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", corp='" + corp + '\'' +
                 '}';
     }
 }
