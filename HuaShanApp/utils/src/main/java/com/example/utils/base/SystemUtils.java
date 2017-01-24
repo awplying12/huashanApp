@@ -14,35 +14,35 @@ public class SystemUtils {
     /**
      * 判断应用是否已经启动
      * @param context 一个context
-     * @param packageName 要判断应用的包名
+//     * @param packageName 要判断应用的包名
      * @return boolean
      */
-    public static boolean isAppAlive(Context context, String packageName){
+    public static boolean isAppAlive(Context context){
         ActivityManager activityManager =
                 (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> processInfos
                 = activityManager.getRunningAppProcesses();
         for(int i = 0; i < processInfos.size(); i++){
-            if(processInfos.get(i).processName.equals(packageName)){
+            if(processInfos.get(i).processName.equals(context.getPackageName())){
                 Log.i("NotificationLaunch",
-                        String.format("the %s is running, isAppAlive return true", packageName));
+                        String.format("the %s is running, isAppAlive return true", context.getPackageName()));
                 return true;
             }
         }
         Log.i("NotificationLaunch",
-                String.format("the %s is not running, isAppAlive return false", packageName));
+                String.format("the %s is not running, isAppAlive return false", context.getPackageName()));
         return false;
     }
 
 
 
-    public static boolean isBackground(Context context,String packageName) {
+    public static boolean isBackground(Context context) {
         ActivityManager activityManager = (ActivityManager) context
                 .getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
                 .getRunningAppProcesses();
         for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
-            if (appProcess.processName.equals(packageName)) {
+            if (appProcess.processName.equals(context.getPackageName())) {
                     /*
                     BACKGROUND=400 EMPTY=500 FOREGROUND=100
                     GONE=1000 PERCEPTIBLE=130 SERVICE=300 ISIBLE=200

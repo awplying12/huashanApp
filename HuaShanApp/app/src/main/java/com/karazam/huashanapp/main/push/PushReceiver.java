@@ -3,12 +3,15 @@ package com.karazam.huashanapp.main.push;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.example.utils.base.SimpleActivityLifecycle;
 import com.example.utils.base.SystemUtils;
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.my.message.main.view.activity.MessageActivity;
 
@@ -44,9 +47,24 @@ public class PushReceiver extends BroadcastReceiver {
 //            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
 //            context.startActivity(i);
-           boolean flag = SystemUtils.isAppAlive(context,"com.karazam.huashanapp");
-            Log.i("flag",flag+"");
+
+
+           boolean flag = HuaShanApplication.lifecycle.isForeground();
+//            Log.i("flag",flag+"");
             if(flag){
+
+                 //打开自定义的Activity
+                Intent i = new Intent(context, MessageActivity.class);
+                i.putExtras(bundle);
+                //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                context.startActivity(i);
+
+
+
+
+            } else {
+
 
                 Intent mainIntent = new Intent(context, HomeActivity.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -58,16 +76,10 @@ public class PushReceiver extends BroadcastReceiver {
                 Intent[] intents = {mainIntent, i};
                 context.startActivities(intents);
 
-            } else {
-                Intent launchIntent = context.getPackageManager().
-                        getLaunchIntentForPackage("com.karazam.huashanapp");
-                launchIntent.setFlags(
-                        Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-                launchIntent.putExtra("HomeActivity", bundle);
-
-                context.startActivity(launchIntent);
             }
+
+
+
 
         }
     }

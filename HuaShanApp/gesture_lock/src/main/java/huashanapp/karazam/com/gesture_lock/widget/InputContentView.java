@@ -1,6 +1,7 @@
 package huashanapp.karazam.com.gesture_lock.widget;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,14 @@ import android.widget.TextView;
 
 import com.example.utils.utils.StringUtil;
 
+import java.util.concurrent.TimeUnit;
+
 import huashanapp.karazam.com.gesture_lock.R;
+import huashanapp.karazam.com.gesture_lock.retrofit.retorfitMain.BaseReturn;
+import huashanapp.karazam.com.gesture_lock.retrofit.verifypassword.VerifyPasswordDataSource;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -25,8 +33,11 @@ public class InputContentView implements View.OnClickListener{
     private TextView input_tv_1;
     private EditText input_ed;
 
+    private VerifyPasswordDataSource verifyPasswordDataSource;
+
     public InputContentView(Context context) {
         this.context = context;
+        verifyPasswordDataSource = new VerifyPasswordDataSource();
     }
 
     private OnInputContentListener mOnInputContentListener;
@@ -37,6 +48,10 @@ public class InputContentView implements View.OnClickListener{
         void onLeft(View view);
 
         void onRight(View view);
+
+        void onResult(boolean result,String msg);
+
+        void onError(Throwable e);
 
     }
     public View setView(ViewGroup layout,OnInputContentListener onAuthenticationListener){
@@ -106,4 +121,41 @@ public class InputContentView implements View.OnClickListener{
 
         }
     }
+
+        public void verifyPassword(String uuid,String token){
+
+            String password = getContent();
+
+            verifyPasswordDataSource.verifyPassword(password,uuid,token)
+                    .throttleFirst(2000, TimeUnit.MILLISECONDS)
+                    .observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread())
+                    .subscribe(new Subscriber<BaseReturn>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.i("verifyPassword"," e   :  "+e.toString());
+                            if(mOnInputContentListener == null){
+                                return;
+                            }
+                            mOnInputContentListener.onError(e);
+                        }
+
+                        @Override
+                        public void onNext(BaseReturn baseReturn) {
+
+
+
+                            if(mOnInputContentListener == null){
+                                return;
+                            }
+                            mOnInputContentListener.onResult(baseReturn.isSuccess(),baseReturn.getMessage());
+
+                        }
+                    });
+
+        }
 }

@@ -1,12 +1,17 @@
 package com.karazam.huashanapp.main.loading;
 
 import android.content.Intent;
+import android.util.Log;
 
 import com.example.utils.base.BaseActivity;
+import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
+import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.my.security.findgesturepassword.view.activity.FindgesturepasswordActivity;
+import com.karazam.huashanapp.my.security.gesturepassword.model.databinding.GespwReturn;
+import com.karazam.huashanapp.my.security.gesturepassword.model.retrofit.GespasswordDataSource;
 import com.karazam.huashanapp.user.findpassword.main.view.activity.FindpasswordActivity;
 import com.karazam.huashanapp.user.login.view.activity.LoginActivity;
 
@@ -16,12 +21,17 @@ import java.util.TimerTask;
 import huashanapp.karazam.com.gesture_lock.GestureEditActivity;
 import huashanapp.karazam.com.gesture_lock.GestureUtil;
 import huashanapp.karazam.com.gesture_lock.GestureVerifyActivity;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/10/12.
  */
 
 public class loadingActivity extends BaseActivity {
+
+    private GespasswordDataSource dataSource;
 
     @Override
     public void setContentLayout() {
@@ -122,7 +132,8 @@ public class loadingActivity extends BaseActivity {
             switch (resultCode){
                 case GestureUtil.GESTURELOCK_EDIT_RESULTCODE:
                     String key = data.getStringExtra(GestureUtil.Password);
-                    HuaShanApplication.editor.putString("gesture_lock",key).commit();
+
+                    setGesPassword(key);
 
                     startActivity(intent);
                     finish();
@@ -152,6 +163,46 @@ public class loadingActivity extends BaseActivity {
             }
 
         }
+
+    }
+
+    /**
+     * 同步手势密码
+     */
+
+    public void setGesPassword(String gesPassword) {
+
+        dataSource.setGesPassword(gesPassword).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<GespwReturn>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+
+                Log.i("GespwReturn","e  :  "+e.toString());
+                showToast("网络故障！");
+            }
+
+            @Override
+            public void onNext(BaseReturn<GespwReturn> gespwReturnBaseReturn) {
+
+                if(gespwReturnBaseReturn.isSuccess()){
+                    GespwReturn gespwReturn = gespwReturnBaseReturn.getData();
+                    Log.i("GespwReturn",gespwReturn.toString());
+
+                    String str = gespwReturn.getGesPassword();
+                    HuaShanApplication.editor.putString("gesture_lock", StringUtil.interrupt(str,0,"-1")).commit();
+                    HuaShanApplication.editor.putBoolean("isGesture_lock",true).commit();
+
+
+                }else {
+                    showToast(gespwReturnBaseReturn.getMessage());
+                }
+            }
+        });
 
     }
 }

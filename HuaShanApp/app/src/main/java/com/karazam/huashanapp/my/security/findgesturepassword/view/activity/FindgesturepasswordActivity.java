@@ -55,6 +55,9 @@ public class FindgesturepasswordActivity extends BaseActivity implements Findges
     public void dealLogicAfterInitView() {
         Intent intent = new Intent(this, GestureEditActivity.class);
         intent.putExtra("verification","verification");
+        intent.putExtra("uuid",HuaShanApplication.uuid);
+        intent.putExtra("account",HuaShanApplication.account);
+        intent.putExtra("token",HuaShanApplication.token);
         startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
     }
 

@@ -3,6 +3,7 @@ package com.karazam.huashanapp;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.format.Time;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View;
 
 import com.example.utils.ACacheBase.ACache;
 import com.example.utils.base.BaseActivity;
+import com.example.utils.base.SimpleActivityLifecycle;
 import com.example.utils.utils.PathUtil;
 
 import com.example.utils.utils.StringUtil;
@@ -22,6 +24,7 @@ import com.karazam.huashanapp.main.Bean.financialproject.FinancialInformation;
 import com.karazam.huashanapp.main.Bean.financialproject.FinancialProject;
 
 
+import com.karazam.huashanapp.main.retrofit.user.LogoutDataSource;
 import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
 import com.karazam.huashanapp.my.myreturn.main.model.databinding.ReturnRecords;
 import com.karazam.huashanapp.my.myreturn.main.model.databinding.ReturnRecordsItem;
@@ -95,6 +98,9 @@ public class HuaShanApplication extends Application {
 
     public static String RegistrationID;
 
+    public static SimpleActivityLifecycle lifecycle;
+    public static LogoutDataSource logoutDataSource;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -146,6 +152,19 @@ public class HuaShanApplication extends Application {
 
         day.set(time);
 
+        logoutDataSource = new LogoutDataSource();
+
+        ActivityLifecycle();
+    }
+
+    /**
+     * 监听Application 生命周期
+     */
+    private void ActivityLifecycle() {
+        if (Build.VERSION.SDK_INT >= 14) {
+            lifecycle = new SimpleActivityLifecycle();
+            registerActivityLifecycleCallbacks(lifecycle);
+        }
 
     }
 
@@ -228,6 +247,11 @@ public class HuaShanApplication extends Application {
         HuaShanApplication.editor.putString("corp","0").commit();
         setMyInformation(new MyInformationBean());
         setMyAssets(new MyAssetsBean());
+
+        if(logoutDataSource == null){
+            return;
+        }
+        logoutDataSource.Logout();
     }
 
     public static String getRegistrationID(){

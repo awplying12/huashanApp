@@ -71,6 +71,9 @@ public class Register3ViewModelImpl extends Register3ViewModel {
         mView.showToast("complete");
 
         Intent intent = new Intent(activity, GestureEditActivity.class);
+        intent.putExtra("uuid",HuaShanApplication.uuid);
+        intent.putExtra("account",HuaShanApplication.account);
+        intent.putExtra("token",HuaShanApplication.token);
         activity.startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
 
         onRegister();

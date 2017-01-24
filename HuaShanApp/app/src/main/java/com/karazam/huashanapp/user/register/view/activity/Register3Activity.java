@@ -100,7 +100,7 @@ public class Register3Activity extends BaseActivity implements Register3View {
 
                     String str = data.getStringExtra(GestureUtil.Password);
 
-                    mModel.setGesPassword(StringUtil.interrupt(str,0,"-1"));
+//                    mModel.setGesPassword(StringUtil.interrupt(str,0,"-1"));
 //                    registerActivity.finishAll();
 
                     break;

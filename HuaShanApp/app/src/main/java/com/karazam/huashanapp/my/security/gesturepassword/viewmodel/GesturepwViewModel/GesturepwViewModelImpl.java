@@ -62,9 +62,24 @@ public class GesturepwViewModelImpl extends GesturepwViewModel{
                     mView.showToast("请输入密码");
                     return;
                 }else {
-                    nextStep();
+//                    nextStep();
+                    inputContentView.verifyPassword();
                 }
 
+            }
+
+            @Override
+            public void onResult(boolean result, String msg) {
+                if(result){
+                    nextStep();
+                } else {
+                    mView.showToast(msg);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                mView.showToast("网络故障！");
             }
         });
 

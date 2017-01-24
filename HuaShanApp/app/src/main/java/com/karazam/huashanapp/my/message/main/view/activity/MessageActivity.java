@@ -95,10 +95,10 @@ public class MessageActivity extends BaseActivity implements MessageView,SwipeRe
 
 
         ArrayList<MessageBean> list = new ArrayList<>();
-//        list.add(new MessageBean(R.drawable.msg_newpro,"新标通知","new_project"));
-//        list.add(new MessageBean(R.drawable.msg_repay,"还款通知","repayment"));
-//        list.add(new MessageBean(R.drawable.msg_system,"系统通知","system"));
-//        list.add(new MessageBean(R.drawable.msg_my,"我的消息","userown"));
+        list.add(new MessageBean(R.drawable.msg_newpro,"新标通知","new_project"));
+        list.add(new MessageBean(R.drawable.msg_repay,"还款通知","repayment"));
+        list.add(new MessageBean(R.drawable.msg_system,"系统通知","system"));
+        list.add(new MessageBean(R.drawable.msg_my,"我的消息","userown"));
 
 
         adapter = new MessageAdapter(this,list);

@@ -59,6 +59,9 @@ public class GesturepwActivity extends BaseActivity implements GesturepwView{
     @Override
     public void toGestureEdit() {
         Intent intent = new Intent(GesturepwActivity.this, GestureEditActivity.class);
+        intent.putExtra("uuid",HuaShanApplication.uuid);
+        intent.putExtra("account",HuaShanApplication.account);
+        intent.putExtra("token",HuaShanApplication.token);
         startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
     }
 
@@ -91,7 +94,7 @@ public class GesturepwActivity extends BaseActivity implements GesturepwView{
                     String str = data.getStringExtra(GestureUtil.Password);
 
 //                    HuaShanApplication.editor.putString("gesture_lock", StringUtil.interrupt(str,0,"-1")).commit();
-                    mModel.setGesPassword(StringUtil.interrupt(str,0,"-1"));
+//                    mModel.setGesPassword(StringUtil.interrupt(str,0,"-1"));
 
                     break;
                 case GestureUtil.GESTURELOCK_VERIFY_RESULTCODE: //校检手势密码返回值

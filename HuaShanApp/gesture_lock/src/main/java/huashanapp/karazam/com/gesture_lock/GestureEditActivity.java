@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.gesture.Gesture;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,14 +24,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.utils.utils.StringUtil;
+
+import huashanapp.karazam.com.gesture_lock.retrofit.retorfitMain.BaseReturn;
+import huashanapp.karazam.com.gesture_lock.retrofit.retorfitMain.GespwReturn;
+import huashanapp.karazam.com.gesture_lock.retrofit.verifypassword.GespasswordDataSource;
 import huashanapp.karazam.com.gesture_lock.widget.BackView;
 import huashanapp.karazam.com.gesture_lock.widget.GestureContentView;
 import huashanapp.karazam.com.gesture_lock.widget.GestureDrawline;
 import huashanapp.karazam.com.gesture_lock.widget.InputContentView;
 import huashanapp.karazam.com.gesture_lock.widget.LockIndicator;
 import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -60,6 +70,15 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 
 	private BackView backView;
 
+	private String uuid;
+	private String account;
+	private String token;
+
+	private GespasswordDataSource gespasswordDataSource;
+
+	private SharedPreferences sharedPreferences;
+	private SharedPreferences.Editor editor;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -72,6 +91,15 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 
 		String str = getIntent().getStringExtra("verification");
 
+		uuid = getIntent().getStringExtra("uuid");
+		account = getIntent().getStringExtra("account");
+		token = getIntent().getStringExtra("token");
+
+		gespasswordDataSource = new GespasswordDataSource();
+
+
+		sharedPreferences = this.getSharedPreferences("huashan", 0);
+		editor = sharedPreferences.edit();
 
 		if(str != null && str.equals("verification")){
 			setView();
@@ -109,8 +137,11 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 					mTextReset.setText(getString(R.string.reset_gesture_code));
 				} else {
 					if (inputCode.equals(mFirstPassword)) {
-							Toast.makeText(GestureEditActivity.this, "密码设置成功!", Toast.LENGTH_SHORT).show();
+//							Toast.makeText(GestureEditActivity.this, "密码设置成功!", Toast.LENGTH_SHORT).show();
 						mGestureContentView.clearDrawlineState(0L);
+
+							setGesPassword(mFirstPassword);
+
 						Intent intent = new Intent();
 						intent.putExtra(GestureUtil.Password,mFirstPassword);
 						GestureEditActivity.this.setResult(GestureUtil.GESTURELOCK_EDIT_RESULTCODE,intent);
@@ -229,16 +260,101 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 				finish();
 			}
 
+//			@Override
+//			public void onRight(View view) {
+//				inputView.dismiss();
+//
+//				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        			imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+//			}
+
 			@Override
 			public void onRight(View view) {
-				inputView.dismiss();
+				String str = inputView.getContent();
+				if(TextUtils.isEmpty(str)){
+//					mView.showToast("请输入密码");
+					if(this == null){
+						return;
+					}
+					Toast.makeText(GestureEditActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
+					return;
+				}else {
+//                    nextStep();
+					if(TextUtils.isEmpty(uuid) || TextUtils.isEmpty(token)){
+						Toast.makeText(GestureEditActivity.this,"数据有误！",Toast.LENGTH_SHORT).show();
+						return;
+					}
+					inputView.verifyPassword(uuid,token);
+				}
 
-				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			}
+
+			@Override
+			public void onResult(boolean result, String msg) {
+				if(result){
+
+					inputView.dismiss();
+
+					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         			imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+
+				} else {
+					if(this == null){
+						return;
+					}
+					Toast.makeText(GestureEditActivity.this,msg,Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+
+			@Override
+			public void onError(Throwable e) {
+
 			}
 		});
 
+		inputView.setText1("华善账户："+ account);
 		inputView.show();
+	}
+
+	/**
+	 * 同步手势密码
+	 */
+	public void setGesPassword(String gesPassword) {
+
+		gespasswordDataSource.setGesPassword(gesPassword,uuid,token).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<GespwReturn>>() {
+			@Override
+			public void onCompleted() {
+
+			}
+
+			@Override
+			public void onError(Throwable e) {
+
+//				mView.setGesPasswordFaile(e);
+				Log.i("GespwReturn","e  :  "+e.toString());
+			}
+
+			@Override
+			public void onNext(BaseReturn<GespwReturn> gespwReturnBaseReturn) {
+
+				if(gespwReturnBaseReturn.isSuccess()){
+					GespwReturn gespwReturn = gespwReturnBaseReturn.getData();
+					Log.i("GespwReturn",gespwReturn.toString());
+//					mView.setGesPasswordSuccess(gespwReturn);
+
+					String str = gespwReturn.getGesPassword();
+					editor.putString("gesture_lock", StringUtil.interrupt(str,0,"-1")).commit();
+					editor.putBoolean("isGesture_lock",true).commit();
+
+
+				}else {
+//					mView.showToast(gespwReturnBaseReturn.getMessage());
+					Toast.makeText(GestureEditActivity.this,gespwReturnBaseReturn.getMessage(),Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+
 	}
 	
 	private boolean isInputPassValidate(String inputPassword) {
@@ -247,6 +363,8 @@ public class GestureEditActivity extends Activity implements OnClickListener {
 		}
 		return true;
 	}
+
+
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
