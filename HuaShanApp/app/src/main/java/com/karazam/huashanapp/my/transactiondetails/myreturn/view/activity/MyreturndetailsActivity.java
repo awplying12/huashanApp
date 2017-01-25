@@ -89,7 +89,7 @@ public class MyreturndetailsActivity extends BaseActivity implements Myreturndet
                 tv_title.setText(StringUtil.interrupt(title,24,"未知"));
 
                 String amount = repaymentdetalisBean.getAmount();
-                tv_amount.setText("+"+StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2));
+                tv_amount.setText("+"+StringUtil.getMoneyType(StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2),false));
 
                 String stateDes = repaymentdetalisBean.getStatusDes();
                 tv_state.setText(StringUtil.interrupt(stateDes,0,"未知"));

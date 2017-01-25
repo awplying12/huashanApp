@@ -13,17 +13,25 @@
             android:layout_height="50dp">
 
             <TextView
-                app:layout_widthPercent="50%"
+                app:layout_widthPercent="20%"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="购买人/购买时间"/>
+                android:text="购买人"/>
 
             <TextView
-                app:layout_widthPercent="50%"
+                app:layout_widthPercent="40%"
+                android:layout_height="match_parent"
+                app:layout_marginLeftPercent="22%"
+                android:gravity="center_vertical"
+                android:text="购买金额"/>
+
+            <TextView
+                app:layout_widthPercent="35%"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:gravity="center_vertical|right"
-                android:text="购买金额/购买方式"/>
+                android:gravity="center"
+                android:text="购买时间"
+                android:id="@+id/textView2" />
         </android.support.percent.PercentFrameLayout>
     </FrameLayout>
 

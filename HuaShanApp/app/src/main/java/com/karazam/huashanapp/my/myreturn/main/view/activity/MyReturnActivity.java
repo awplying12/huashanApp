@@ -131,7 +131,7 @@ public class MyReturnActivity extends BaseActivity implements MyReturnView,Swipe
                 TextView det_income = (TextView) target.findViewById(R.id.det_income);
 
                 String financingMon = myAssetsBean.getWatingCapital();
-                financingMon = StringUtil.reservedDecimal(StringUtil.interrupt(financingMon,0,"0"),2);
+                financingMon = StringUtil.getMoneyType(StringUtil.interrupt(financingMon,0,"0"),false);
 
                 det_income.setText(financingMon);
 

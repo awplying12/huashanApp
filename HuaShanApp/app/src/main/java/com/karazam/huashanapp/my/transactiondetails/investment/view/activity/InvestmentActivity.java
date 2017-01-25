@@ -94,7 +94,7 @@ public class InvestmentActivity extends BaseActivity implements InvestmentView,S
                 tv_title.setText(StringUtil.interrupt(title,0,"未知"));
 
                 String amount = investmentBean.getAmount();
-                tv_amount.setText("-"+StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2));
+                tv_amount.setText("-"+StringUtil.getMoneyType(StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2),false));
 
                 String statusDes = investmentBean.getStatusDes();
                 tv_status.setText(StringUtil.interrupt(statusDes,0,"未知"));

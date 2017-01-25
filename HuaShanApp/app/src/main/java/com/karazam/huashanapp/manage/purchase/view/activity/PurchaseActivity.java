@@ -139,7 +139,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
 
                 project = managedetailsBean.getProject();
 
-                det_name.setText(StringUtil.interrupt(project.getTitle(),0,"未知"));
+                det_name.setText(StringUtil.interrupt(project.getTitle(),15,"未知"));
 
 //                String interestRate = (Integer.parseInt(StringUtil.interrupt(project.getInterestRate(),0,"0"))*100)+"";
                 String interestRate = StringUtil.reservedDecimal(StringUtil.interrupt(project.getInterestRate(),0,"0"),2);
@@ -147,7 +147,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
                 String periodUnit = project.getPeriodUnitDes().equals("天")? project.getPeriodUnitDes():"个月";
                 det_content.setText("年化收益率"+interestRate+"%"+"       |       "+"投资期限"+period+periodUnit);
 
-                String purchase = StringUtil.reservedDecimal(StringUtil.interrupt(project.getResidualAmount(),0,"0"),2);
+                String purchase = StringUtil.getMoneyType(StringUtil.interrupt(project.getResidualAmount(),0,"0"),false);
                 can_purchase.setText("剩余可购金额"+purchase+"元");
 
             }
@@ -211,7 +211,7 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
                         @Override
                         public void call(TextView target, MyAssetsBean myAssetsBean) {
                             String userbalance = StringUtil.interrupt(myAssetsBean.getAvailable(),0,"0.00");
-                            target.setText("可用余额 "+userbalance);
+                            target.setText("可用余额 "+StringUtil.getMoneyType(userbalance,false));
                         }
                     });
 

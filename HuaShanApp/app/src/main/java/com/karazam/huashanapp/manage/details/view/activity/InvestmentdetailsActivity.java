@@ -167,7 +167,7 @@ public class InvestmentdetailsActivity extends BaseActivity implements Investmen
                 Project project = managedetailsBean.getProject();
 
                 String title = project.getTitle();
-                det_name.setText(StringUtil.interrupt(title,0,""));
+                det_name.setText(StringUtil.interrupt(title,17,""));
 
                 String interestRate = project.getInterestRate();
                 interestRate = StringUtil.reservedDecimal(StringUtil.interrupt(interestRate,0,"0"),2);

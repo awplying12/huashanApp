@@ -18,6 +18,7 @@ import com.karazam.huashanapp.my.message.main.model.databinding.MessageEntity;
 import com.karazam.huashanapp.my.message.main.model.databinding.MessagelistBean;
 import com.karazam.huashanapp.my.message.main.view.MessageView;
 import com.karazam.huashanapp.my.message.main.view.view.MessageAdapter;
+import com.karazam.huashanapp.my.message.main.view.view.NoMessageView;
 import com.karazam.huashanapp.my.message.main.viewmodel.MessageViewModel;
 import com.karazam.huashanapp.my.message.main.viewmodel.MessageViewModelImpl;
 import com.karazam.huashanapp.my.message.messagedetails.view.activity.MessagedetailsActivity;
@@ -41,7 +42,8 @@ public class MessageActivity extends BaseActivity implements MessageView,SwipeRe
 
     private RefreshRecyclerView rl_message;
 
-    private Bundle bundle;;
+    private Bundle bundle;
+
 
 
     @Override
@@ -74,6 +76,8 @@ public class MessageActivity extends BaseActivity implements MessageView,SwipeRe
             }
         };
         rl_message.setLayoutManager(layoutManager);
+
+
 
     }
 

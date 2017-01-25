@@ -225,7 +225,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
                 String todayProfits = todayBean.getTodayProfits();
                 todayProfits = StringUtil.reservedDecimal(StringUtil.interrupt(todayProfits,0,"0"),2);
-                target.setText(todayProfits);
+                target.setText(StringUtil.getMoneyType(todayProfits,false));
 
 
 //                adapter.addItem(todayBean.getHotProjects());

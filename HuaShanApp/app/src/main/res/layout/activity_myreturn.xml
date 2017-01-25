@@ -20,7 +20,7 @@
             android:id="@+id/title_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fw"
+            android:background="#3BAAFE"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_heightPercent="8%"
@@ -88,7 +88,7 @@
                     android:id="@+id/pf_path_1"
                     android:layout_width="match_parent"
                     app:layout_heightPercent="22%"
-                    android:background="#66b3ff">
+                    android:background="#3BAAFE">
 
 
                     <TextView
@@ -127,34 +127,33 @@
                     android:background="@color/all_activity_background"
                     >
 
-                    <android.support.percent.PercentFrameLayout
+                    <!--<android.support.percent.PercentFrameLayout-->
 
-                        android:layout_width="match_parent"
-                        app:layout_heightPercent="10%"
-                        app:layout_marginTopPercent="0.5%"
-                        android:background="#fff">
+                        <!--android:layout_width="match_parent"-->
+                        <!--app:layout_heightPercent="10%"-->
+                        <!--app:layout_marginTopPercent="0.5%"-->
+                        <!--android:background="#fff">-->
 
-                        <TextView
-                            app:layout_widthPercent="50%"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="标的名称"/>
+                        <!--<TextView-->
+                            <!--app:layout_widthPercent="50%"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="标的名称"/>-->
 
-                        <TextView
-                            app:layout_widthPercent="50%"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="right"
-                            android:gravity="center"
-                            android:text="购买金额"/>
+                        <!--<TextView-->
+                            <!--app:layout_widthPercent="50%"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="right"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="购买金额"/>-->
 
-                    </android.support.percent.PercentFrameLayout>
+                    <!--</android.support.percent.PercentFrameLayout>-->
 
-
+                    //app:layout_heightPercent="89%"  app:layout_marginTopPercent="11%"
                     <com.example.utils.custom.RefreshRecyclerView
                         android:id="@+id/content_rl"
                         android:layout_width="match_parent"
-                        app:layout_heightPercent="89%"
-                        app:layout_marginTopPercent="11%"
+                        app:layout_heightPercent="100%"
                         android:overScrollMode="never"
                         >
 
@@ -177,7 +176,7 @@
                         android:layout_gravity="center"
                         android:text="立即购买"
                         android:textSize="20dp"
-                        android:textColor="#46a3ff"/>
+                        android:textColor="#3BAAFE"/>
 
                 </android.support.percent.PercentFrameLayout>
 

@@ -84,9 +84,9 @@ public class TransactionAdapter extends BaseBaseAdapter<TransactionItem> impleme
             holder.data2.setText(data2);
 
             String amount = StringUtil.reservedDecimal(StringUtil.interrupt(getList().get(position).getAmount(),0,"0"),2);
-            holder.amount.setText(amount);
+            holder.amount.setText(StringUtil.getMoneyType(amount,false));
 
-            String momo = StringUtil.interrupt(getList().get(position).getMemo(),0,"未知");
+            String momo = StringUtil.interrupt(getList().get(position).getMemo(),14,"未知");
             holder.momo.setText(momo);
 
             TransactionItem item = getList().get(position);

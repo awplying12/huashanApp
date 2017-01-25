@@ -73,13 +73,13 @@ public class MyprofitsActivity extends BaseActivity implements MyprofitsView,Swi
 
 
                 String alreadyProfitsSum = StringUtil.interrupt(myAssetsBean.getAlreadyProfitsSum(),0,"0");
-                det_income.setText(StringUtil.reservedDecimal(alreadyProfitsSum,2));
+                det_income.setText(StringUtil.getMoneyType(alreadyProfitsSum,false));
 
                 String alreadyProfits = StringUtil.interrupt(myAssetsBean.getAlreadyProfits(),0,"0");
-                tv_alreadyProfits.setText(StringUtil.reservedDecimal(alreadyProfits,2));
+                tv_alreadyProfits.setText(StringUtil.getMoneyType(alreadyProfits,false));
 
                 String alreadyReferralFees = StringUtil.interrupt(myAssetsBean.getAlreadyReferralFees(),0,"0");
-                tv_alreadyReferralFees.setText(StringUtil.reservedDecimal(alreadyReferralFees,2));
+                tv_alreadyReferralFees.setText(StringUtil.getMoneyType(alreadyReferralFees,false));
             }
         });
     }

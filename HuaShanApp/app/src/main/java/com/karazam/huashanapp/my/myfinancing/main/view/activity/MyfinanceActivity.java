@@ -200,7 +200,7 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
                 TextView det_income = (TextView) target.findViewById(R.id.det_income);
 
                 String financingMon = myAssetsBean.getWatingCapital();
-                financingMon = StringUtil.reservedDecimal(StringUtil.interrupt(financingMon,0,"0"),2);
+                financingMon = StringUtil.getMoneyType(StringUtil.interrupt(financingMon,0,"0"),false);
 
                 det_income.setText(financingMon);
 

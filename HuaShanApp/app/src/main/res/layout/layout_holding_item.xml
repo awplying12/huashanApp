@@ -21,35 +21,40 @@
             android:id="@+id/name"
             app:layout_widthPercent="50%"
             android:layout_height="wrap_content"
-            app:layout_marginLeftPercent="5%"
+
             android:layout_gravity="center_vertical"
-            android:text="CR216001-31补充流动资金"
+            android:gravity="center"
+            android:text="标的名称"
             android:textSize="13dp"/>
 
         <ImageView
             app:layout_widthPercent="4%"
             android:layout_height="wrap_content"
             app:layout_marginLeftPercent="59%"
+            android:visibility="gone"
             android:src="@drawable/sum_icon"/>
 
         <TextView
             android:id="@+id/amount"
-            app:layout_widthPercent="25%"
+            app:layout_widthPercent="30%"
             android:layout_height="wrap_content"
-            app:layout_marginLeftPercent="64%"
-            android:layout_gravity="center_vertical"
-            android:text="1,000,000.00"
+            app:layout_marginRightPercent="11%"
+            android:layout_gravity="center_vertical|right"
+            android:gravity="right"
+            style="output"
+            android:text="0.00"
             android:textColor="#f67804"
             android:textSize="15dp"
             />
 
         <ImageView
             android:id="@+id/open"
-            app:layout_widthPercent="5%"
+            app:layout_widthPercent="4%"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|right"
             app:layout_marginRightPercent="5%"
             android:src="@drawable/btn_open_img"/>
+
     </android.support.percent.PercentFrameLayout>
 
     <android.support.percent.PercentFrameLayout

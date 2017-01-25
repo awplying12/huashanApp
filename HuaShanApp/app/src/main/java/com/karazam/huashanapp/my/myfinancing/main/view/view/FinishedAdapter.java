@@ -87,11 +87,11 @@ public class FinishedAdapter extends RecyclerView.Adapter<FinishedAdapter.ViewHo
 
         CompletedBean bean = list.get(position);
 
-        String name = StringUtil.interrupt(bean.getTitle(),20,"未知");
+        String name = StringUtil.interrupt(bean.getTitle(),12,"未知");
         holder.name.setText(name);
 
         String amount = StringUtil.reservedDecimal(StringUtil.interrupt(bean.getAmount(),0,"0"),2);
-        holder.amount.setText(StringUtil.interrupt(amount,12,"0.00"));
+        holder.amount.setText(StringUtil.getMoneyType(StringUtil.interrupt(amount,12,"0.00"),false));
 
         String time = StringUtil.interrupt(bean.getBuyTime(),16,"未知");
         holder.time.setText(time);

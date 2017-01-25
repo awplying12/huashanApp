@@ -1,9 +1,11 @@
 package com.karazam.huashanapp.my.message.messagedetails.view.activity;
 
 import android.databinding.DataBindingUtil;
+import android.support.percent.PercentFrameLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.utils.base.BaseActivity;
@@ -12,6 +14,8 @@ import com.example.utils.custom.WrapContentLinearLayoutManager;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.R;
 import com.karazam.huashanapp.databinding.ActivityMessagedetailsBinding;
+import com.karazam.huashanapp.my.message.main.view.activity.MessageActivity;
+import com.karazam.huashanapp.my.message.main.view.view.NoMessageView;
 import com.karazam.huashanapp.my.message.messagedetails.model.databinding.MessagedetailsBean;
 import com.karazam.huashanapp.my.message.messagedetails.model.databinding.MessagedetailsEntity;
 import com.karazam.huashanapp.my.message.messagedetails.view.MessagedetailsView;
@@ -44,6 +48,9 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
     private String title;
     private int position;
 
+    private View view;
+    private PercentFrameLayout content_pl;
+
     private static int page = 1;
 
     @Override
@@ -74,7 +81,10 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
 
         rl_messagedetails = (RefreshRecyclerView) getView(R.id.rl_messagedetails);
 
+        content_pl = (PercentFrameLayout) getView(R.id.content_pl);
 
+        NoMessageView noMessageView = new NoMessageView(MessagedetailsActivity.this);
+        view = noMessageView.setView();
     }
 
     @Override
@@ -138,9 +148,15 @@ public class MessagedetailsActivity extends BaseActivity implements Messagedetai
             @Override
             public void call(RefreshRecyclerView target, MessagedetailsBean messagedetailsBean) {
 
-
+                content_pl.removeView(view);
                 if(page == 1){
                     list = messagedetailsBean.getRows();
+                    if(list == null || list.size() == 0){
+
+                        content_pl.addView(view);
+                    }
+
+
                 } else {
                     list.addAll(messagedetailsBean.getRows());
                 }

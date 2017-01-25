@@ -100,7 +100,7 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
 
                 String availStr = StringUtil.interrupt(myAssetsBean.getAvailable(),0,"0");
                 mModel.avail = Double.parseDouble(availStr);
-                target.setText("可用余额"+availStr+"元");
+                target.setText("可用余额"+StringUtil.getMoneyType(availStr,false)+"元");
 
 
                 checkContent(mModel.avail);

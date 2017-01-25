@@ -115,7 +115,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     private void setTextView(ContentAdapter.ViewHolder holder, final int position) {
 
         String title = mData.get(position).getTitle();
-        holder.tv_title.setText(StringUtil.interrupt(title,0,""));
+        holder.tv_title.setText(StringUtil.interrupt(title,15,""));
 
 //        String annualIncome = "8.60";
         String annualIncome = mData.get(position).getInterestRate();

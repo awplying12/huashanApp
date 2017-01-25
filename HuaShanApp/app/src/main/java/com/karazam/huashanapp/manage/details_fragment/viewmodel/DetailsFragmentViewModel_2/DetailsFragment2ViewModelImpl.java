@@ -59,7 +59,7 @@ public class DetailsFragment2ViewModelImpl extends DetailsFragment2ViewModel {
      */
     @Override
     public void onInformation(View view) {
-        mView.showToast("项目信息");
+//        mView.showToast("项目信息");
         mView.setCurrentItem(0);
     }
 
@@ -69,7 +69,7 @@ public class DetailsFragment2ViewModelImpl extends DetailsFragment2ViewModel {
      */
     @Override
     public void onRecord(View view) {
-        mView.showToast("购买记录");
+//        mView.showToast("购买记录");
         mView.setCurrentItem(1);
     }
 
@@ -79,7 +79,7 @@ public class DetailsFragment2ViewModelImpl extends DetailsFragment2ViewModel {
      */
     @Override
     public void onSpeed(View view) {
-        mView.showToast("项目进度");
+//        mView.showToast("项目进度");
         mView.setCurrentItem(2);
     }
 

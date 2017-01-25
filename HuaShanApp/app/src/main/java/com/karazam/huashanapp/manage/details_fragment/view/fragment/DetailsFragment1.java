@@ -108,7 +108,7 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
                 TextView tv_playenough = (TextView) target.findViewById(R.id.det_playenough);
                 String investmentMinimum = project.getInvestmentMinimum();      //起始金额
                 investmentMinimum = StringUtil.reservedDecimal(StringUtil.interrupt(investmentMinimum,0,"0"),2);
-                tv_playenough.setText(investmentMinimum);
+                tv_playenough.setText(StringUtil.getMoneyType(investmentMinimum,false));
 
 
                 TextView tv_time = (TextView) target.findViewById(R.id.det_time);
@@ -118,10 +118,10 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
 
                 TextView tv_money = (TextView) target.findViewById(R.id.det_money);
                 String amount = project.getAmount();    //总金额
-                amount = StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2);
+                amount = StringUtil.getMoneyType(StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2),false);
 
                 String residualAmount = project.getResidualAmount();  //剩余可投金额
-                residualAmount = StringUtil.reservedDecimal(StringUtil.interrupt(residualAmount,0,"0"),2);
+                residualAmount = StringUtil.getMoneyType(StringUtil.reservedDecimal(StringUtil.interrupt(residualAmount,0,"0"),2),false);
 
                 tv_money.setText(Html.fromHtml(residualAmount + "<font color='#7b7b7b'>/"+amount+"</font>"));
 

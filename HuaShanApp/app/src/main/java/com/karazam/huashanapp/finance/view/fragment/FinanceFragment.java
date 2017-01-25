@@ -89,11 +89,11 @@ public class FinanceFragment extends BaseFragment implements FinanceView,SwipeRe
     private void AutoScrollViewPager(){
 
         ids = new ArrayList<>();
-        ids.add(R.drawable.image1);
-        ids.add(R.drawable.image2);
-        ids.add(R.drawable.image3);
-        ids.add(R.drawable.image4);
-        ids.add(R.drawable.image5);
+//        ids.add(R.drawable.image1);
+//        ids.add(R.drawable.image2);
+//        ids.add(R.drawable.image3);
+//        ids.add(R.drawable.image4);
+//        ids.add(R.drawable.image5);
 
         autoScrollAdapter = new AutoScrollAdapter(ids,getContext(),pager);
         pager.setAdapter(autoScrollAdapter);

@@ -66,7 +66,7 @@ public class RechargecashActivity extends BaseActivity implements RechargecashVi
             public void call(View target, MyAssetsBean myAssetsBean) {
                 TextView tv = (TextView) target;    //available
                 String available = StringUtil.interrupt(myAssetsBean.getAvailable(),0,"0");
-                available = StringUtil.reservedDecimal(available,2);
+                available = StringUtil.getMoneyType(available,false);
                 tv.setText(Html.fromHtml(available));
             }
         });

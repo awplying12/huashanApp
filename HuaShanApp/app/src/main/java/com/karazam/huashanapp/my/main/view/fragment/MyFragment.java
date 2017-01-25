@@ -180,7 +180,7 @@ public class MyFragment extends BaseFragment implements MyView,SwipeRefreshLayou
             public void call(View target, MyAssetsBean myAssetsBean) {
                 TextView tv = (TextView) target;    //available
                 String available =StringUtil.interrupt(myAssetsBean.getAvailable(),0,"0");
-                available = StringUtil.reservedDecimal(available,2);
+                available = StringUtil.getMoneyType(available,false);
                 tv.setText(Html.fromHtml("可用余额<font color='#ffffff'> "+available+" </font>元"));
             }
         });
@@ -216,7 +216,7 @@ public class MyFragment extends BaseFragment implements MyView,SwipeRefreshLayou
                 text_p1.setText("总资产(元)");
 
                 String allCapitalSum =  StringUtil.interrupt(myAssetsBean.getAllCapitalSum(),0,"0");
-                income.setText(StringUtil.reservedDecimal(allCapitalSum,2));
+                income.setText(StringUtil.getMoneyType(allCapitalSum,false));
             }
         });
 
@@ -229,7 +229,7 @@ public class MyFragment extends BaseFragment implements MyView,SwipeRefreshLayou
                 text_p1.setText("累计收益(元)");
 
                 String alreadyProfitsSum = StringUtil.interrupt(myAssetsBean.getAlreadyProfitsSum(),0,"0");
-                income.setText(StringUtil.reservedDecimal(alreadyProfitsSum,2));
+                income.setText(StringUtil.getMoneyType(alreadyProfitsSum,false));
             }
         });
 

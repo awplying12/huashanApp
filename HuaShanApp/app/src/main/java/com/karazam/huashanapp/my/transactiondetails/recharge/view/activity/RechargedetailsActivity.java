@@ -84,7 +84,7 @@ public class RechargedetailsActivity extends BaseActivity implements Rechargedet
                 TextView tv_createDate = (TextView) target.findViewById(R.id.tv_data);
 
                 String amount = rechargedetalisBean.getAmount();
-                tv_amount.setText("+"+StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2));
+                tv_amount.setText("+"+StringUtil.getMoneyType(StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2),false));
 
                 String statusDes = rechargedetalisBean.getStatusDes();
                 tv_statusDes.setText(StringUtil.interrupt(statusDes,0,"未知"));

@@ -10,7 +10,7 @@
     <ImageView
         app:layout_widthPercent="20%"
         app:layout_heightPercent="20%"
-        android:src="@drawable/nofinance_img"
+        android:src="@drawable/nomessage_img"
         android:layout_gravity="center_horizontal"/>
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         app:layout_marginTopPercent="22%"
         android:layout_gravity="center_horizontal"
-        android:text="你不理财，才不理你"
+        android:text="暂无消息"
         android:textColor="#adadad"
         android:textSize="15dp"/>
 

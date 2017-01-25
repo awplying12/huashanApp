@@ -55,7 +55,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             return;
         }
         String content = item.getContent();
-        holder.content.setText(StringUtil.interrupt(content,20,"无"));
+        holder.content.setText(StringUtil.interrupt(content,14,"无"));
 
         String createDate = item.getNoticeTime();
         Long date = Long.parseLong(StringUtil.interrupt(createDate,0,"0"));

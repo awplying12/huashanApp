@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     app:layout_marginTopPercent="18%"
                     app:layout_marginLeftPercent="7%"
-                    android:text="产融贷CR216001-30"
+                    android:text="标的名称"
                     android:textColor="@color/Investmentdetails_part1_text_size"
                     android:textSize="20dp"/>
 
@@ -107,7 +107,7 @@
                     app:layout_marginBottomPercent="15%"
                     app:layout_marginLeftPercent="7%"
                     android:layout_gravity="bottom"
-                    android:text="年化收益率8.6     |     投资期限6个月"
+                    android:text="年化收益率     |     投资期限"
                     android:textColor="@color/Investmentdetails_part1_text_size"
                     android:textSize="15dp"/>
 
@@ -135,7 +135,7 @@
                     app:layout_widthPercent="78%"
                     app:layout_heightPercent="40%"
                     android:layout_gravity="right|bottom"
-                    android:text="可用余额 3,214.47"
+                    android:text="可用余额 0.00"
                     android:textSize="13dp"
                     android:textColor="#7b7b7b"/>
 
@@ -199,7 +199,7 @@
                 app:layout_marginTopPercent="35%"
                 app:layout_marginLeftPercent="8%"
                 android:gravity="center_vertical"
-                android:text="剩余可购金额114500.00元"/>
+                android:text="剩余可购金额0.00元"/>
 
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
@@ -224,6 +224,7 @@
                     app:layout_marginLeftPercent="20%"
                     android:inputType="number"
                     android:background="#fff"
+                    android:maxLength="9"
                     android:hint="100元起购"
                     android:textSize="15dp"/>
 

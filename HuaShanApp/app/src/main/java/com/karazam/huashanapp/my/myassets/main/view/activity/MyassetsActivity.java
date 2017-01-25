@@ -84,22 +84,22 @@ public class MyassetsActivity extends BaseActivity implements MyassetsView,Swipe
                 TextView tv_watingProfits = (TextView) target.findViewById(R.id.tv_watingProfits);
 
                 String allCapitalSum = myAssetsBean.getAllCapitalSum();
-                det_income.setText(StringUtil.reservedDecimal(StringUtil.interrupt(allCapitalSum,0,"0"),2));
+                det_income.setText(StringUtil.getMoneyType(StringUtil.interrupt(allCapitalSum,0,"0"),false));
 
                 String available = myAssetsBean.getAvailable();
-                tv_available.setText(StringUtil.reservedDecimal(StringUtil.interrupt(available,0,"0"),2));
+                tv_available.setText(StringUtil.getMoneyType(StringUtil.interrupt(available,0,"0"),false));
 
                 String withdrawing = myAssetsBean.getWithdrawing();
-                tv_withdrawing.setText(StringUtil.reservedDecimal(StringUtil.interrupt(withdrawing,0,"0"),2));
+                tv_withdrawing.setText(StringUtil.getMoneyType(StringUtil.interrupt(withdrawing,0,"0"),false));
 
                 String investFrozen = myAssetsBean.getInvestFrozen();
-                tv_investFrozen.setText(StringUtil.reservedDecimal(StringUtil.interrupt(investFrozen,0,"0"),2));
+                tv_investFrozen.setText(StringUtil.getMoneyType(StringUtil.interrupt(investFrozen,0,"0"),false));
 
                 String watingCapital = myAssetsBean.getWatingCapital();
-                tv_watingCapital.setText(StringUtil.reservedDecimal(StringUtil.interrupt(watingCapital,0,"0"),2));
+                tv_watingCapital.setText(StringUtil.getMoneyType(StringUtil.interrupt(watingCapital,0,"0"),false));
 
                 String watingProfits = myAssetsBean.getWatingProfits();
-                tv_watingProfits.setText(StringUtil.reservedDecimal(StringUtil.interrupt(watingProfits,0,"0"),2));
+                tv_watingProfits.setText(StringUtil.getMoneyType(StringUtil.interrupt(watingProfits,0,"0"),false));
 
             }
         });

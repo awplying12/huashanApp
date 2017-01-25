@@ -72,7 +72,7 @@ public class ConAdapter extends RecyclerView.Adapter<ConAdapter.ViewHolder> {
 
         String mon = list.get(pos).getAmount();
         Log.i("mon",mon);
-        holder.mon.setText(StringUtil.interrupt(mon,0,""));
+        holder.mon.setText(StringUtil.getMoneyType(StringUtil.interrupt(mon,0,"0"),false));
 
         String model = list.get(pos).getOperationMethodStr();
         holder.model.setText(StringUtil.interrupt(model,0,"")+"购买");

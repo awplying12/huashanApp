@@ -127,7 +127,7 @@ public class WithdrawalsdetailsActivity extends BaseActivity implements Withdraw
                 bank_name.setText(StringUtil.interrupt(bank,0,"未知"));
 
                 String amount = withdrawaldetailsBean.getAmount();
-                tv_amount.setText("-"+StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2));
+                tv_amount.setText("-"+StringUtil.getMoneyType(StringUtil.reservedDecimal(StringUtil.interrupt(amount,0,"0"),2),false));
 
                 String statusDes = withdrawaldetailsBean.getStatusDes();
                 tv_statusDes.setText(StringUtil.interrupt(statusDes,0,"未知"));

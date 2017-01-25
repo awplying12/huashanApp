@@ -3,6 +3,8 @@ package com.example.utils.utils;
 import android.text.TextUtils;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Created by Administrator on 2016/4/27.
@@ -94,6 +96,36 @@ public class StringUtil {
         BigDecimal bd = new BigDecimal(String.valueOf(data));
         bd = bd.setScale(num,BigDecimal.ROUND_HALF_UP);
         return String.valueOf(bd);
+    }
+
+    /**
+     * 货币转换
+     * @param string
+     * @return
+     */
+    public static String getMoneyType(String string,boolean flag) {
+        // 把string类型的货币转换为double类型。
+        Double numDouble = Double.parseDouble(string);
+        // 想要转换成指定国家的货币格式
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        // 把转换后的货币String类型返回
+        String numString = format.format(numDouble);
+
+        if(!flag){
+            String[] s = numString.split("￥");
+            return s[1];
+        }
+        return numString;
+    }
+
+    public static String getMoneyType(Double string,boolean flag) {
+//        // 把string类型的货币转换为double类型。
+//        Double numDouble = Double.parseDouble(string);
+        // 想要转换成指定国家的货币格式
+        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        // 把转换后的货币String类型返回
+        String numString = format.format(string);
+        return numString;
     }
 
 }
