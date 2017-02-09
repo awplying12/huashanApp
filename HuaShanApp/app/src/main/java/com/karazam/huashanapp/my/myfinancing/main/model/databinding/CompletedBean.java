@@ -15,8 +15,10 @@ public class CompletedBean {
 //     "title":"测试1",
 //      "repaymentMethod":"按月还款、等额本息",
 //      "progress":0.0001
+//      investmentId 投资ID
 
     private String period,
+            investmentId,
             finishTime,
             paidCapitaliInterest,
             buyTime,
@@ -32,6 +34,14 @@ public class CompletedBean {
 
     public void setFinishTime(String finishTime) {
         this.finishTime = finishTime;
+    }
+
+    public String getInvestmentId() {
+        return investmentId;
+    }
+
+    public void setInvestmentId(String investmentId) {
+        this.investmentId = investmentId;
     }
 
     public String getPaidCapitaliInterest() {
@@ -102,6 +112,7 @@ public class CompletedBean {
     public String toString() {
         return "CompletedBean{" +
                 "period='" + period + '\'' +
+                ", investmentId='" + investmentId + '\'' +
                 ", finishTime='" + finishTime + '\'' +
                 ", paidCapitaliInterest='" + paidCapitaliInterest + '\'' +
                 ", buyTime='" + buyTime + '\'' +

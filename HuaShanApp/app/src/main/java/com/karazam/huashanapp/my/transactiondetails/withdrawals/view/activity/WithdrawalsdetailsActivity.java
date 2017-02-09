@@ -82,7 +82,7 @@ public class WithdrawalsdetailsActivity extends BaseActivity implements Withdraw
 
 
 
-        mModel.getWithdrawalsdetails();
+        mModel.getWithdrawalsdetails(true);
     }
 
 
@@ -170,7 +170,7 @@ public class WithdrawalsdetailsActivity extends BaseActivity implements Withdraw
 
     @Override
     public void onRefresh() {
-        mModel.getWithdrawalsdetails();
+        mModel.getWithdrawalsdetails(true);
     }
 
     /**

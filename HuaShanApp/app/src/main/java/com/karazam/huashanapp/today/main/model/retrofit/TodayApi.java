@@ -13,6 +13,6 @@ import rx.Observable;
 
 public interface TodayApi {
     @GET("/mobile/index")
-    Observable<BaseReturn<TodayBean>> getTodayData(@Header("X-Requested-With") String ID);
+    Observable<BaseReturn<TodayBean>> getTodayData(@Header("X-Requested-With") String ID,@Header("sid") String token);
 
 }

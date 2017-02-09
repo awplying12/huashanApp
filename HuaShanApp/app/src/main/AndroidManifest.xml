@@ -450,6 +450,12 @@
             android:name=".my.transactiondetails.myreturn.view.activity.MyreturndetailsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity> InvestmentagreementActivity
+
+        <activity
+            android:name=".agreement.investmentagreement.InvestmentagreementActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
     </application>

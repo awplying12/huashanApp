@@ -17,8 +17,10 @@ public class RepayingBean {
 //      "repaymentMethod":"按月还款、等额本息",
 //      "finishTime":"2016-12-28",
 //      "paidCapitaliInterest":0,
+//      "investmentId" 投资ID
 
     private String period,
+            investmentId,
             amount,
             dueTime,
             unpaidAmount,
@@ -36,6 +38,14 @@ public class RepayingBean {
 
     public void setPeriod(String period) {
         this.period = period;
+    }
+
+    public String getInvestmentId() {
+        return investmentId;
+    }
+
+    public void setInvestmentId(String investmentId) {
+        this.investmentId = investmentId;
     }
 
     public String getBuyTime() {
@@ -122,6 +132,7 @@ public class RepayingBean {
     public String toString() {
         return "RepayingBean{" +
                 "period='" + period + '\'' +
+                ", investmentId='" + investmentId + '\'' +
                 ", amount='" + amount + '\'' +
                 ", dueTime='" + dueTime + '\'' +
                 ", unpaidAmount='" + unpaidAmount + '\'' +

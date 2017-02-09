@@ -12,4 +12,6 @@ public interface TodayView extends BaseView {
     void getTodayDataSuccess(TodayBean bean);
 
     void getTodayDataFaile(String msg);
+
+    void getTodayDataError(Throwable e);
 }

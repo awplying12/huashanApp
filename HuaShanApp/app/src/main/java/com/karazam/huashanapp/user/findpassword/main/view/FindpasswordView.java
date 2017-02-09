@@ -11,4 +11,6 @@ public interface FindpasswordView extends BaseView{
     void FindpasswordSuccess(String msg);
 
     void FindpasswordFaile(String msg);
+
+    void FindpasswordError(Throwable e);
 }

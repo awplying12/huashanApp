@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.my.myfinancing.main.view.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.example.utils.custom.WrapContentLinearLayoutManager;
 import com.example.utils.utils.StringUtil;
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.R;
+import com.karazam.huashanapp.agreement.investmentagreement.InvestmentagreementActivity;
 import com.karazam.huashanapp.databinding.ActivityMyfinanceBinding;
 import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
 import com.karazam.huashanapp.main.adapter.TitleBarAdapter;
@@ -108,6 +110,10 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
         content_rl.setSwl_pl(swl_pl);
 
 
+        bidingAdapter = new BidingAdapter(this,new ArrayList<InvestingBean>(),content_rl);
+        holdingAdapter = new HoldingAdapter(this,new ArrayList<RepayingBean>(),content_rl);
+        finishedAdapter = new FinishedAdapter(this,new ArrayList<CompletedBean>(),content_rl);
+
     }
 
     @Override
@@ -158,14 +164,18 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
                 switch (position){
                     case 0:     //投标中
 //                        BidindMode.set(HuaShanApplication.project1);
+                        content_rl.setAdapter(bidingAdapter);
                         mModel.mProgress = "investing";
+
                         break;
                     case 1:     //已持有
 //                        holdingMode.set(HuaShanApplication.project2);
+                        content_rl.setAdapter(holdingAdapter);
                         mModel.mProgress = "repaying";
                         break;
                     case 2:     //已完成
 //                        finishedMode.set(HuaShanApplication.project3);
+                        content_rl.setAdapter(finishedAdapter);
                         mModel.mProgress = "completed";
                         break;
                     default:
@@ -348,7 +358,13 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
 
             @Override
             public void onCheck(int position) {
-                showToast("查看  "+position);
+//                showToast("查看  "+position);
+                String investmentId = holdingAdapter.getList().get(position).getInvestmentId();
+
+                Intent intent = new Intent(MyfinanceActivity.this, InvestmentagreementActivity.class);
+                intent.putExtra("type","investmentId");
+                intent.putExtra("investmentId",investmentId);
+                startActivity(intent);
             }
 
             @Override
@@ -391,7 +407,14 @@ public class MyfinanceActivity extends BaseActivity implements MyfinanceView,Swi
 
             @Override
             public void onCheck(int position) {
-                showToast("查看  "+position);
+//                showToast("查看  "+position);
+
+                String investmentId = finishedAdapter.getList().get(position).getInvestmentId();
+
+                Intent intent = new Intent(MyfinanceActivity.this, InvestmentagreementActivity.class);
+                intent.putExtra("type","investmentId");
+                intent.putExtra("investmentId",investmentId);
+                startActivity(intent);
             }
 
             @Override

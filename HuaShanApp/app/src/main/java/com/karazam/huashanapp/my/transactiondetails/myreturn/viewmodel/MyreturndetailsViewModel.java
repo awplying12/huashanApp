@@ -10,5 +10,5 @@ public abstract class MyreturndetailsViewModel extends BaseViewModel {
 
     public String orderNo,orderId,type;
 
-    public abstract void getMyreturndetails();
+    public abstract void getMyreturndetails(boolean isfirst);
 }

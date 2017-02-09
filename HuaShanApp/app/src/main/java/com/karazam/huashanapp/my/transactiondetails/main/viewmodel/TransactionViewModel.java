@@ -10,5 +10,5 @@ public abstract class TransactionViewModel extends BaseViewModel {
 
     public static int allpage = 1;
 
-    public abstract void getTransaction(int page);
+    public abstract void getTransaction(final int page,final boolean isfirst);
 }

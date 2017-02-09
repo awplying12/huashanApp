@@ -548,12 +548,14 @@
 
             >
 
+            //日历
             <android.support.percent.PercentFrameLayout
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/calendar_icon"
                 android:layout_gravity="center_vertical|right"
                 app:layout_marginRightPercent="5%"
+                android:visibility="gone"
                 android:descendantFocusability="beforeDescendants"
                 android:onClick="@{handler.toCalendar}">
 

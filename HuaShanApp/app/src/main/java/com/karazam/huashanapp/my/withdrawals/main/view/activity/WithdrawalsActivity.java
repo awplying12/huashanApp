@@ -210,7 +210,7 @@ public class WithdrawalsActivity extends BaseActivity implements WithdrawalsView
             public void inputFinish() {
 //                showToast(mModel.pwd_view.getStrPassword());
                 mModel.pwd_view.out();
-                mModel.toWithdrawals();
+                mModel.toWithdrawals(true);
 //                toOtherActivity(WithdrawalsActivity.this, WithdrawalsdetailsActivity.class);
             }
 

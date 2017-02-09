@@ -125,15 +125,15 @@ public class DetailsFragment1 extends BaseFragment implements DetailsFragment1Vi
 
                 tv_money.setText(Html.fromHtml(residualAmount + "<font color='#7b7b7b'>/"+amount+"</font>"));
 
+                String repaymentMethodDes = project.getRepaymentMethodDes();
+                TextView re_model = (TextView) target.findViewById(R.id.re_model);
+                re_model.setText(StringUtil.interrupt(repaymentMethodDes,10,"未知"));
+
                 if(residualAmount.equals("0")){
                     return;
                 }
                 float Percent = (Float.parseFloat(amount)-Float.parseFloat(residualAmount))/Float.parseFloat(amount);
                 mWaveHelper.setPercent(Percent);
-
-                String repaymentMethodDes = project.getRepaymentMethodDes();
-                TextView re_model = (TextView) target.findViewById(R.id.re_model);
-                re_model.setText(StringUtil.interrupt(repaymentMethodDes,10,"未知"));
 
 
             }

@@ -16,7 +16,9 @@ public interface Register3View extends BaseView{
 
     void registerSuccess(TokenData data);
 
-    void registerFaile(Throwable e);
+    void registerFaile(String s);
+
+    void registerError(Throwable e);
 
 
     void setGesPasswordSuccess(GespwReturn gespwReturn);

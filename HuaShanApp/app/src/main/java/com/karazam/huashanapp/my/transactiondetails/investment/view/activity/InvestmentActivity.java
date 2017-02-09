@@ -64,13 +64,13 @@ public class InvestmentActivity extends BaseActivity implements InvestmentView,S
     @Override
     public void dealLogicAfterInitView() {
         setLayout();
-        mModel.getInvestmentdetails();
+        mModel.getInvestmentdetails(true);
     }
 
     @Override
     public void onRefresh() {
 
-        mModel.getInvestmentdetails();
+        mModel.getInvestmentdetails(true);
 
     }
 

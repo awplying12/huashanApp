@@ -10,6 +10,6 @@ public abstract class WithdrawalsdetailsViewModel extends BaseViewModel{
 
     public String orderNo,orderId,type;
 
-    public abstract void getWithdrawalsdetails();
+    public abstract void getWithdrawalsdetails(boolean isfirst);
 
 }

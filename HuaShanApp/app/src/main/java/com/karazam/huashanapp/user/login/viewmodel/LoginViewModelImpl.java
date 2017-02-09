@@ -93,7 +93,7 @@ public class LoginViewModelImpl extends LoginViewModel {
             @Override
             public void onError(Throwable e) {
                 Log.i("login","e : "+e.toString());
-                mView.loginFaile();
+                mView.loginError(e);
             }
 
             @Override
@@ -122,7 +122,7 @@ public class LoginViewModelImpl extends LoginViewModel {
                     Log.i("TokenData",data.toString());
                 }else {
 
-                    mView.loginFaile();
+                    mView.loginFaile(s.getMessage());
                 }
 
             }

@@ -9,8 +9,10 @@ public class ReturnRecordsItem {
 //      "period":"1/3",
 //      "buyTime":"2016-12-07",
 //      "state":"还款中"
+//      flag=repaid
 
     private String amount,
+                flag,
                 period,
                 buyTime,
                 state;
@@ -21,6 +23,14 @@ public class ReturnRecordsItem {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 
     public String getPeriod() {
@@ -51,6 +61,7 @@ public class ReturnRecordsItem {
     public String toString() {
         return "ReturnRecordsItem{" +
                 "amount='" + amount + '\'' +
+                ", flag='" + flag + '\'' +
                 ", period='" + period + '\'' +
                 ", buyTime='" + buyTime + '\'' +
                 ", state='" + state + '\'' +

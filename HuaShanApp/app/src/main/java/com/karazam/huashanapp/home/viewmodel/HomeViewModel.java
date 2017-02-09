@@ -24,9 +24,9 @@ public abstract class HomeViewModel extends BaseViewModel{
 
     public abstract void onChecklogin();
 
-    public abstract void getMyInformation();
+    public abstract void getMyInformation(final boolean isfirst);
 
-    public abstract void getMyAssets();
+    public abstract void getMyAssets(final boolean isfirst);
 
     public abstract void setRegistrationId();
 

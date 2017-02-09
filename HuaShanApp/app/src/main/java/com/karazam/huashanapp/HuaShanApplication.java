@@ -229,6 +229,9 @@ public class HuaShanApplication extends Application {
         HuaShanApplication.myAssetsBeanRX.set(HuaShanApplication.myAssetsBean);
     }
 
+    /**
+     * 安全退出
+     */
     public static void safeExit(){
         HuaShanApplication.loginStatus = -1;
         HuaShanApplication.editor.putInt("loginStatus",HuaShanApplication.loginStatus).commit();
@@ -244,7 +247,7 @@ public class HuaShanApplication extends Application {
 
         HuaShanApplication.editor.putString("gesture_lock","-1").commit();
 
-        HuaShanApplication.editor.putString("corp","0").commit();
+//        HuaShanApplication.editor.putString("corp","0").commit();
         setMyInformation(new MyInformationBean());
         setMyAssets(new MyAssetsBean());
 

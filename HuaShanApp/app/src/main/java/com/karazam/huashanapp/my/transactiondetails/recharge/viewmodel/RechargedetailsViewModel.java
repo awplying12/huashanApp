@@ -10,5 +10,5 @@ public abstract class RechargedetailsViewModel extends BaseViewModel{
 
     public String orderNo,orderId,type;
 
-    public abstract void getRechargedetails();
+    public abstract void getRechargedetails(boolean isfirst);
 }

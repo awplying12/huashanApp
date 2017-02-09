@@ -185,7 +185,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
         }
     }
 
-
+    /**
+     * 登录成功
+     */
     @Override
     public void loginSuccess() {    //登录成功
         showToast("登录成功");
@@ -205,11 +207,13 @@ public class LoginActivity extends BaseActivity implements LoginView {
         finish();
     }
 
-
-
+    /**
+     * 登录失败
+     * @param s
+     */
     @Override
-    public void loginFaile() {      //登录失败
-        showToast("登录失败");
+    public void loginFaile(String s) {      //登录失败
+        showToast(s);
         loginText.set(false);
 
 //        HuaShanApplication.editor.putString("corp","0").commit();
@@ -220,6 +224,20 @@ public class LoginActivity extends BaseActivity implements LoginView {
 //        HuaShanApplication.loginStatusRx.set(HuaShanApplication.loginStatus);
 //        setResult(102);
 //        finish();
+    }
+
+    /**
+     * 登录错误
+     * @param e
+     */
+    @Override
+    public void loginError(Throwable e) {
+        showToast("登录失败，网络故障！");
+
+        loginText.set(false);
+
+        content_pl.startAnimation(shakeAnimation);
+
     }
 
     /**

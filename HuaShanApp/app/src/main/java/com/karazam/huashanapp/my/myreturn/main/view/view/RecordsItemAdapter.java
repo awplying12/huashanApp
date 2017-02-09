@@ -44,12 +44,12 @@ public class RecordsItemAdapter extends RecyclerView.Adapter<RecordsItemAdapter.
 
         setItem(holder,position);
 
-        if(position == (list.size()-1)){
-            holder.periods.setTextColor(Color.parseColor("#ffffff"));
-            holder.amount.setTextColor(Color.parseColor("#ffffff"));
-            holder.date.setTextColor(Color.parseColor("#ffffff"));
-            holder.state.setTextColor(Color.parseColor("#ffffff"));
-        }
+//        if(position == (list.size()-1)){
+//            holder.periods.setTextColor(Color.parseColor("#ffffff"));
+//            holder.amount.setTextColor(Color.parseColor("#ffffff"));
+//            holder.date.setTextColor(Color.parseColor("#ffffff"));
+//            holder.state.setTextColor(Color.parseColor("#ffffff"));
+//        }
 
     }
 
@@ -73,6 +73,14 @@ public class RecordsItemAdapter extends RecyclerView.Adapter<RecordsItemAdapter.
 
         String state = StringUtil.interrupt(item.getState(),4,"未知");
         holder.state.setText(state);
+
+
+        if(!item.getFlag().equals("repaid")){
+            holder.periods.setTextColor(Color.parseColor("#ffffff"));
+            holder.amount.setTextColor(Color.parseColor("#ffffff"));
+            holder.date.setTextColor(Color.parseColor("#ffffff"));
+            holder.state.setTextColor(Color.parseColor("#ffffff"));
+        }
     }
 
     @Override

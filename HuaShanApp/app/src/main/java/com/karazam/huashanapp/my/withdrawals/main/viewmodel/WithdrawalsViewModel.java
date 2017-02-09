@@ -26,5 +26,5 @@ public abstract class WithdrawalsViewModel extends BaseViewModel{
 
     public abstract void explain(View view);
 
-    public abstract void toWithdrawals();
+    public abstract void toWithdrawals(boolean isfirst);
 }

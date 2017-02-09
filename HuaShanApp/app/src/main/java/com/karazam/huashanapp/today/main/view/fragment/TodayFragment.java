@@ -39,6 +39,7 @@ import com.karazam.huashanapp.databinding.FragmentTodayBinding;
 import com.karazam.huashanapp.main.Bean.HotProjects;
 import com.karazam.huashanapp.main.Bean.MyInformation.BaseInfoBean;
 import com.karazam.huashanapp.main.Bean.UserInformation;
+import com.karazam.huashanapp.main.refreshToken.RefreshToken;
 import com.karazam.huashanapp.manage.main.model.databinding.Project;
 import com.karazam.huashanapp.manage.main.view.view.ContentAdapter;
 import com.karazam.huashanapp.today.main.model.databinding.TodayBean;
@@ -56,6 +57,7 @@ import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,7 +130,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
         setSelected();
 
 
-        mModel.getData();
+        mModel.getData(true);
 
 //        setCommodity();
 //        setNew();
@@ -244,7 +246,7 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
 
     @Override
     public void onRefresh() {
-        mModel.getData();
+        mModel.getData(true);
     }
 
     /**
@@ -485,6 +487,16 @@ public class TodayFragment extends BaseFragment implements TodayView,SwipeRefres
     public void getTodayDataFaile(String msg) {
 
         swl.setRefreshing(false);
+
+    }
+
+    /**
+     * 获取数据错误
+     * @param e
+     */
+    @Override
+    public void getTodayDataError(Throwable e) {
+
     }
 
     @Override

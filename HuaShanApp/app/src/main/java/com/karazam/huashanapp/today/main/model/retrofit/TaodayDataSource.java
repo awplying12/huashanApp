@@ -1,5 +1,6 @@
 package com.karazam.huashanapp.today.main.model.retrofit;
 
+import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.main.retorfitMain.BaseDataSource;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.today.main.model.databinding.TodayBean;
@@ -15,7 +16,7 @@ public class TaodayDataSource extends BaseDataSource {
     TodayApi service = retrofit1.create(TodayApi.class);
 
     public Observable<BaseReturn<TodayBean>> getTodayData(){
-        return service.getTodayData("XMLHttpRequest");
+        return service.getTodayData("XMLHttpRequest", HuaShanApplication.token);
     }
 
 }

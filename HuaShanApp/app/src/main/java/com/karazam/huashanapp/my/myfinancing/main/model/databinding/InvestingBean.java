@@ -16,8 +16,10 @@ public class InvestingBean {
 //     "amount":"89000.00",
 //     "dueTime":"2017-01-06",
 //     "unpaidAmount":"13200.00"
+//      investmentId 投资ID
 
     private String period,
+            investmentId,
             buyTime,
             paidAmount,
             interestRate,
@@ -36,6 +38,14 @@ public class InvestingBean {
 
     public void setPeriod(String period) {
         this.period = period;
+    }
+
+    public String getInvestmentId() {
+        return investmentId;
+    }
+
+    public void setInvestmentId(String investmentId) {
+        this.investmentId = investmentId;
     }
 
     public String getBuyTime() {
@@ -114,6 +124,7 @@ public class InvestingBean {
     public String toString() {
         return "InvestingBean{" +
                 "period='" + period + '\'' +
+                ", investmentId='" + investmentId + '\'' +
                 ", buyTime='" + buyTime + '\'' +
                 ", paidAmount='" + paidAmount + '\'' +
                 ", interestRate='" + interestRate + '\'' +

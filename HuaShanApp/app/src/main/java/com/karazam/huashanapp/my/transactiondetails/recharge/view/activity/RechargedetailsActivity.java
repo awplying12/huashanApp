@@ -64,7 +64,7 @@ public class RechargedetailsActivity extends BaseActivity implements Rechargedet
     public void dealLogicAfterInitView() {
         setLayout();
 
-        mModel.getRechargedetails();
+        mModel.getRechargedetails(true);
     }
 
     /**
@@ -101,7 +101,7 @@ public class RechargedetailsActivity extends BaseActivity implements Rechargedet
                 if(date == null || date == 0){
                     tv_createDate.setText("");
                 } else {
-                    String time = DataUtil.getDate(new Date(createDate),"yyyy-MM-dd HH:mm");
+                    String time = DataUtil.getDate(new Date(date),"yyyy-MM-dd HH:mm");
                     tv_createDate.setText(StringUtil.interrupt(time,0,""));
                 }
             }
@@ -111,7 +111,7 @@ public class RechargedetailsActivity extends BaseActivity implements Rechargedet
 
     @Override
     public void onRefresh() {
-        mModel.getRechargedetails();
+        mModel.getRechargedetails(true);
     }
 
     /**

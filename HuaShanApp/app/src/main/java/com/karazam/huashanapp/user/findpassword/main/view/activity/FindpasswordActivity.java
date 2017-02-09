@@ -34,8 +34,6 @@ public class FindpasswordActivity extends BaseActivity implements FindpasswordVi
     private FindpasswordEntity entity = new FindpasswordEntity();
     private FindpasswordViewModel mModel;
 
-
-
 //    private EditText ed_verify_code;
     private TextView btn_next_step_2;
 
@@ -154,6 +152,7 @@ public class FindpasswordActivity extends BaseActivity implements FindpasswordVi
                     public void call(TextViewTextChangeEvent textViewTextChangeEvent) {
                         String key = textViewTextChangeEvent.text().toString().trim();
 
+
                         if(TextUtils.isEmpty(key)){
                             password_twob = false;
                         }else {
@@ -183,7 +182,8 @@ public class FindpasswordActivity extends BaseActivity implements FindpasswordVi
      */
     @Override
     public void FindpasswordSuccess(String msg) {
-
+        showToast(msg);
+        finish();
     }
 
     /**
@@ -193,5 +193,14 @@ public class FindpasswordActivity extends BaseActivity implements FindpasswordVi
     @Override
     public void FindpasswordFaile(String msg) {
         showToast(msg);
+    }
+
+    /**
+     * 修改密码错误
+     * @param e
+     */
+    @Override
+    public void FindpasswordError(Throwable e) {
+        showToast("网络故障！");
     }
 }

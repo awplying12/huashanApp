@@ -10,7 +10,9 @@ public interface LoginView extends BaseView{
 
     void loginSuccess();
 
-    void loginFaile();
+    void loginFaile(String s);
+
+    void loginError(Throwable e);
 
 //    void loginFaile();
 }

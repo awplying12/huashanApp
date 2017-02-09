@@ -49,6 +49,11 @@ public class PushReceiver extends BroadcastReceiver {
 //            context.startActivity(i);
 
 
+            if(HuaShanApplication.loginStatus != 1){
+                return;
+            }
+
+
            boolean flag = HuaShanApplication.lifecycle.isForeground();
 //            Log.i("flag",flag+"");
             if(flag){

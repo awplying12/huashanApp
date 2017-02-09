@@ -23,7 +23,7 @@ public class LoginDataSource extends BaseDataSource {
         bean.setUsername(loginName);
         bean.setPassword(password);
         bean.setCorp(corp);
-        return service.getToken(bean,"android","XMLHttpRequest");
+        return service.getToken(bean,"android",corp,"XMLHttpRequest");
 
     }
 }

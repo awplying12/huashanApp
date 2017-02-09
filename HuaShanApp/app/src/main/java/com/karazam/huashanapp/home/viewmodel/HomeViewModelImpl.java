@@ -13,11 +13,14 @@ import com.karazam.huashanapp.home.view.HomeView;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
 import com.karazam.huashanapp.main.Bean.MyAssets.MyAssetsBean;
 import com.karazam.huashanapp.main.Bean.MyInformation.MyInformationBean;
+import com.karazam.huashanapp.main.refreshToken.RefreshToken;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.main.retrofit.registrationId.RegistrationIdDataSource;
 import com.karazam.huashanapp.main.retrofit.user.MyAssetsDataSource;
 import com.karazam.huashanapp.main.retrofit.user.MyInformationDataSource;
 import com.karazam.huashanapp.user.login.model.databinding.TokenData;
+
+import java.net.ConnectException;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -177,7 +180,7 @@ public class HomeViewModelImpl extends HomeViewModel {
      * 获取我的信息
      */
     @Override
-    public void getMyInformation() {
+    public void getMyInformation(final boolean isfirst) {
 
         informationDataSource.getMyInformation().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<MyInformationBean>>() {
             @Override
@@ -189,6 +192,30 @@ public class HomeViewModelImpl extends HomeViewModel {
             public void onError(Throwable e) {
                 Log.i("getMyInformation","e : "+e.toString());
                 mView.getBaseDataFinish();
+
+                if(e instanceof ConnectException){  // token 过期处理
+
+                    if(!isfirst){
+                        HuaShanApplication.safeExit();
+                        return;
+                    }
+                    RefreshToken.refresh(new RefreshToken.RefreshTokenInterface() {
+                        @Override
+                        public void onSuccess(String s) {
+                            getMyInformation(false);
+                        }
+
+                        @Override
+                        public void onFaile(String s) {
+                            HuaShanApplication.safeExit();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            HuaShanApplication.safeExit();
+                        }
+                    });
+                }
             }
 
             @Override
@@ -211,7 +238,7 @@ public class HomeViewModelImpl extends HomeViewModel {
      * 获取我的资产
      */
     @Override
-    public void getMyAssets(){
+    public void getMyAssets(final boolean isfirst){
 
         assetsDataSource.getMyAssets().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<MyAssetsBean>>() {
             @Override
@@ -222,6 +249,30 @@ public class HomeViewModelImpl extends HomeViewModel {
             @Override
             public void onError(Throwable e) {
                 Log.i("getMyAssets","e : "+e.toString());
+
+                if(e instanceof ConnectException){  // token 过期处理
+
+                    if(!isfirst){
+                        HuaShanApplication.safeExit();
+                        return;
+                    }
+                    RefreshToken.refresh(new RefreshToken.RefreshTokenInterface() {
+                        @Override
+                        public void onSuccess(String s) {
+                            getMyAssets(false);
+                        }
+
+                        @Override
+                        public void onFaile(String s) {
+                            HuaShanApplication.safeExit();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            HuaShanApplication.safeExit();
+                        }
+                    });
+                }
             }
 
             @Override

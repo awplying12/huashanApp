@@ -152,7 +152,7 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
     public void getManageRecordsSuccess(ArrayList<RecordsItem> records) {
 
         recordRP.set(records);
-        recordsPage ++;
+
     }
 
     /**
@@ -294,6 +294,7 @@ public class DetailsFragment2 extends BaseFragment implements DetailsFragment2Vi
 
                 }
 
+                recordsPage ++;
             }
         });
 

@@ -61,12 +61,12 @@ public class MyreturndetailsActivity extends BaseActivity implements Myreturndet
     @Override
     public void dealLogicAfterInitView() {
         setLayout();
-        mModel.getMyreturndetails();
+        mModel.getMyreturndetails(true);
     }
 
     @Override
     public void onRefresh() {
-        mModel.getMyreturndetails();
+        mModel.getMyreturndetails(true);
     }
 
     /**

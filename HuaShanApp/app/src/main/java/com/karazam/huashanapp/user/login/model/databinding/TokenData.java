@@ -6,6 +6,10 @@ package com.karazam.huashanapp.user.login.model.databinding;
 
 public class TokenData {
 
+//    userKey=74c549b62aa6e7a8a2e60e2cf0dc473f
+//    userId=1289
+//    sid=2eb8b3b8-930b-44d9-bc29-d7aadd609522
+
     private String token;
     private String userId;
     private String userKey;

@@ -57,6 +57,9 @@
                 android:paddingLeft="5dp"
                 android:hint="请输入登录密码"
                 android:textColorHint="#e0e0e0"
+                android:inputType="textPassword"
+                android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:maxLines="1"
                 android:background="@drawable/frame_input_bg"
                 android:textSize="14dp"/>
 

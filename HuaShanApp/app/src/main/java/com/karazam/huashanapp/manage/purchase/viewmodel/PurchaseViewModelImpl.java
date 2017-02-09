@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
 
+import com.karazam.huashanapp.agreement.investmentagreement.InvestmentagreementActivity;
 import com.karazam.huashanapp.main.dialog.PromptDialog.PromptDialog;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.manage.details.model.databinding.ManagedetailsBean;
@@ -20,6 +21,7 @@ import com.karazam.huashanapp.manage.purchase.model.retrofit.PurchaseDataSource;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.view.activity.PurchaseActivity;
 import com.karazam.huashanapp.my.bankcard.bindcard.view.activity.BindcardActivity;
+import com.karazam.huashanapp.my.myfinancing.main.view.activity.MyfinanceActivity;
 import com.karazam.huashanapp.my.realname.view.activity.UnauthorizedActivity;
 import com.karazam.huashanapp.my.recharge.main.view.activity.RechargeActivity;
 
@@ -120,7 +122,12 @@ public class PurchaseViewModelImpl extends PurchaseViewModel {
      */
     @Override
     public void onAgreement(View view) {
-        mView.showToast("投资协议");
+//        mView.showToast("投资协议");
+
+        Intent intent = new Intent(activity, InvestmentagreementActivity.class);
+        intent.putExtra("type","projectId");
+        intent.putExtra("projectId",borrowingId);
+        activity.startActivity(intent);
     }
 
     /**

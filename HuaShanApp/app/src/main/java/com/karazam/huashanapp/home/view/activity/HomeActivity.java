@@ -333,8 +333,8 @@ public class HomeActivity extends BaseActivity implements HomeView {
      * 获取基本数据
      */
     public void getBaseData(){
-        mModel.getMyInformation();
-        mModel.getMyAssets();
+        mModel.getMyInformation(true);
+        mModel.getMyAssets(true);
         mModel.setRegistrationId();
     }
 

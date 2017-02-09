@@ -10,5 +10,5 @@ public abstract class InvestmentViewModel extends BaseViewModel{
 
     public String orderNo,orderId,type;
 
-    public abstract void getInvestmentdetails();
+    public abstract void getInvestmentdetails(boolean isfirst);
 }

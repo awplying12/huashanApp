@@ -179,7 +179,7 @@ public class TransactionActivity extends BaseActivity implements TransactionView
      */
     private void Refresh() {
         page = 1;
-        mModel.getTransaction(page);
+        mModel.getTransaction(page,true);
     }
 
     /**
@@ -203,7 +203,7 @@ public class TransactionActivity extends BaseActivity implements TransactionView
             return;
         }
 
-        mModel.getTransaction(page);
+        mModel.getTransaction(page,true);
     }
 
     /**

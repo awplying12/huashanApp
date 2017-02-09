@@ -68,13 +68,6 @@ public class Register3ViewModelImpl extends Register3ViewModel {
     @Override
     public void complete(View view) {
 
-        mView.showToast("complete");
-
-        Intent intent = new Intent(activity, GestureEditActivity.class);
-        intent.putExtra("uuid",HuaShanApplication.uuid);
-        intent.putExtra("account",HuaShanApplication.account);
-        intent.putExtra("token",HuaShanApplication.token);
-        activity.startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
 
         onRegister();
 
@@ -120,7 +113,7 @@ public class Register3ViewModelImpl extends Register3ViewModel {
             @Override
             public void onError(Throwable e) {
                 Log.i("onRegister", "e  :  "+e.toString());
-                mView.registerFaile(e);
+                mView.registerError(e);
 
             }
 
@@ -145,8 +138,8 @@ public class Register3ViewModelImpl extends Register3ViewModel {
                     mView.registerSuccess(data);
 
                 }else {
-                    mView.showToast(tokenDataBaseReturn.getMessage());
-                    mView.registerFaile(new Throwable("Faile"));
+
+                    mView.registerFaile(tokenDataBaseReturn.getMessage());
                 }
             }
         });

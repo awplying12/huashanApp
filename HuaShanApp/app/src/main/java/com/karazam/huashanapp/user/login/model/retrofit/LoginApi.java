@@ -22,5 +22,5 @@ public interface LoginApi {
 
 
     @POST("/oauth/login")
-    Observable<BaseReturn<TokenData>> getToken(@Body LoginBean loginBean, @Query("clientType") String clientType, @Header("X-Requested-With") String ID);
+    Observable<BaseReturn<TokenData>> getToken(@Body LoginBean loginBean, @Query("clientType") String clientType,@Query("corp") Boolean corp, @Header("X-Requested-With") String ID);
 }

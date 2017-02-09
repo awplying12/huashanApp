@@ -7,12 +7,15 @@ import android.view.View;
 
 import com.karazam.huashanapp.HuaShanApplication;
 import com.karazam.huashanapp.home.view.activity.HomeActivity;
+import com.karazam.huashanapp.main.refreshToken.RefreshToken;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.today.calendar.view.activity.CalendarActivity;
 import com.karazam.huashanapp.today.main.model.databinding.TodayBean;
 import com.karazam.huashanapp.today.main.model.databinding.TodayEntity;
 import com.karazam.huashanapp.today.main.model.retrofit.TaodayDataSource;
 import com.karazam.huashanapp.today.main.view.TodayView;
+
+import java.net.ConnectException;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -148,7 +151,9 @@ public class TodayViewModelImpl extends TodayViewModel {
      * 获取数据
      */
     @Override
-    public void getData() {
+    public void getData(final boolean isfirst) {
+
+
 
         dataSource.getTodayData().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.newThread()).subscribe(new Subscriber<BaseReturn<TodayBean>>() {
             @Override
@@ -160,6 +165,33 @@ public class TodayViewModelImpl extends TodayViewModel {
             public void onError(Throwable e) {
                 Log.i("TodayData","e  :  "+e.toString());
                 mView.getTodayDataFaile(e.toString());
+
+
+
+                if(e instanceof ConnectException){  // token 过期处理
+
+                    if(!isfirst){
+                        HuaShanApplication.safeExit();
+                        return;
+                    }
+                    RefreshToken.refresh(new RefreshToken.RefreshTokenInterface() {
+                        @Override
+                        public void onSuccess(String s) {
+                            getData(false);
+                        }
+
+                        @Override
+                        public void onFaile(String s) {
+                            HuaShanApplication.safeExit();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            HuaShanApplication.safeExit();
+                        }
+                    });
+                }
+
             }
 
             @Override

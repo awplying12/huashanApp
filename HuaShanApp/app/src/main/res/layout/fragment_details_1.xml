@@ -65,16 +65,17 @@
         <!--/>-->
         <!--</android.support.percent.PercentRelativeLayout>-->
         <!--</LinearLayout>-->
-
+        //            android:background="@color/all_activity_background"
         <android.support.percent.PercentFrameLayout
             android:id="@+id/content_pl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/title_ll"
             app:layout_heightPercent="100%"
-            android:background="@color/all_activity_background"
 
-            >
+            android:background="#fff"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
 
             <!--第2部分-->
@@ -124,7 +125,7 @@
                 android:layout_width="match_parent"
                 app:layout_heightPercent="36%"
                 app:layout_marginTopPercent="24%"
-                android:background="#eee"
+                android:background="#fff"
                 >
 
                 <android.support.percent.PercentFrameLayout
@@ -217,23 +218,62 @@
             </android.support.percent.PercentFrameLayout>
 
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                app:layout_marginBottomPercent="5%"
-                android:src="@drawable/move_1"
-                />
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="bottom"-->
+                <!--app:layout_marginBottomPercent="5%"-->
+                <!--android:src="@drawable/move_1"-->
+                <!--/>-->
 
-            <ImageView
-                app:layout_widthPercent="8%"
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="100%"
                 app:layout_heightPercent="10%"
-                android:layout_gravity="bottom|center_horizontal"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                app:layout_marginBottomPercent="10%"
+                >
 
-                app:layout_marginBottomPercent="15%"
-                android:src="@drawable/move_2"
-                />
+                <ImageView
+                    android:id="@+id/img1"
+                    app:layout_widthPercent="3%"
+                    app:layout_heightPercent="100%"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:src="@drawable/shang"
+                    />
 
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginBottomPercent="15%"
+                    android:layout_toRightOf="@+id/img1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_centerVertical="true"
+                    android:text="向上拖动查看更多信息"
+                    android:textSize="10dp"/>
+
+            </android.support.percent.PercentRelativeLayout>
+
+
+
+
+
+            <!--<ImageView-->
+                <!--app:layout_widthPercent="30%"-->
+                <!--app:layout_heightPercent="0.1%"-->
+                <!--android:background="#70000000"-->
+                <!--android:layout_gravity="bottom"-->
+                <!--app:layout_marginLeftPercent="5%"-->
+                <!--app:layout_marginBottomPercent="5%"/>-->
+
+            <!--<ImageView-->
+                <!--app:layout_widthPercent="30%"-->
+                <!--app:layout_heightPercent="0.1%"-->
+                <!--android:background="#70000000"-->
+                <!--android:layout_gravity="bottom|right"-->
+                <!--app:layout_marginRightPercent="5%"-->
+                <!--app:layout_marginBottomPercent="5%"/>-->
 
 
         </android.support.percent.PercentFrameLayout>

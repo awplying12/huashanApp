@@ -31,9 +31,13 @@ import com.ogaclejapan.rx.binding.RxView;
 
 import java.util.concurrent.TimeUnit;
 
+import huashanapp.karazam.com.gesture_lock.GestureEditActivity;
 import huashanapp.karazam.com.gesture_lock.GestureUtil;
+import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
 
 /**
  * Created by Administrator on 2016/10/20.
@@ -100,7 +104,7 @@ public class Register3Activity extends BaseActivity implements Register3View {
 
                     String str = data.getStringExtra(GestureUtil.Password);
 
-//                    mModel.setGesPassword(StringUtil.interrupt(str,0,"-1"));
+//                    mModel.setGesPassword(StringUtil.interrupt(str,0,"-1")); // 弃用 世实际请求在GesPasswordActivty中
 //                    registerActivity.finishAll();
 
                     break;
@@ -229,15 +233,54 @@ public class Register3Activity extends BaseActivity implements Register3View {
     @Override
     public void registerSuccess(TokenData data) {
 
+
+        Intent intent = new Intent(this, GestureEditActivity.class);
+        intent.putExtra("uuid",HuaShanApplication.uuid);
+        intent.putExtra("account",HuaShanApplication.account);
+        intent.putExtra("token",HuaShanApplication.token);
+        startActivityForResult(intent, GestureUtil.GESTURELOCK_REQUESTCODE);
+
+        Observable.from(registerActivity.allRegisterActivity)
+                .filter(new Func1<BaseActivity, Boolean>() {
+                    @Override
+                    public Boolean call(BaseActivity activity) {
+                        return activity != null;
+                    }
+                })
+                .subscribe(new Subscriber<BaseActivity>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseActivity activity) {
+                        activity.finish();
+                    }
+                });
     }
 
     /**
      * 注册失败
      */
     @Override
-    public void registerFaile(Throwable e) {
-
+    public void registerFaile(String s) {
+        showToast(s);
     }
+
+    /**
+     * 注册错误
+     */
+    @Override
+    public void registerError(Throwable e) {
+        showToast("网络故障！");
+    }
+
 
     /**
      * 设置手势密码成功

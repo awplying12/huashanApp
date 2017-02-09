@@ -138,6 +138,14 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
     @Override
     public void onNextStep(View view) {
 
+        String password = ed_password.getText().toString();
+        String password_2 = ed_password_two.getText().toString();
+
+        if(!password.equals(password_2)){
+            mView.showToast("两次输入的密码不一致！");
+            return;
+        }
+
         verifySms();
         activity.showProgressDialog();
     }
@@ -149,9 +157,13 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
     @Override
     public void Findpassword() {
 
+        String password = ed_password.getText().toString();
+
         String phonenum = et_phonenum.getText().toString();
         String code = ed_code.getText().toString();
-        String password = ed_password.getText().toString();
+
+
+
 
         dataSource.findPassword(phonenum,password,code)
                 .throttleFirst(2000, TimeUnit.MILLISECONDS)
@@ -165,7 +177,7 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
                     @Override
                     public void onError(Throwable e) {
                         Log.i("Findpassword","e   :  "+e.toString());
-                        mView.FindpasswordFaile(e.toString());
+                        mView.FindpasswordError(e);
                         activity.dissmissProgressDialog();
 
                     }
@@ -174,10 +186,10 @@ public class FindpasswordViewModelImpl extends FindpasswordViewModel {
                     public void onNext(BaseReturn baseReturn) {
 
                         if(baseReturn.isSuccess()){
-                            mView.FindpasswordSuccess(baseReturn.toString());
+                            mView.FindpasswordSuccess(baseReturn.getMessage().toString());
                             activity.dissmissProgressDialog();
                         }else {
-                            mView.FindpasswordFaile(baseReturn.toString());
+                            mView.FindpasswordFaile(baseReturn.getMessage().toString());
                             activity.dissmissProgressDialog();
                         }
                     }

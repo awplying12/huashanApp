@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
+import com.karazam.huashanapp.HuaShanApplication;
+import com.karazam.huashanapp.main.refreshToken.RefreshToken;
 import com.karazam.huashanapp.main.retorfitMain.BaseReturn;
 import com.karazam.huashanapp.my.transactiondetails.main.model.databinding.TransactiondetailsBean;
 import com.karazam.huashanapp.my.transactiondetails.main.model.retrofit.TransactiondetailsDataSource;
@@ -11,6 +13,7 @@ import com.karazam.huashanapp.my.transactiondetails.recharge.model.datatbinding.
 import com.karazam.huashanapp.my.transactiondetails.recharge.view.RechargedetailsView;
 import com.karazam.huashanapp.my.transactiondetails.recharge.view.activity.RechargedetailsActivity;
 
+import java.net.ConnectException;
 import java.util.concurrent.TimeUnit;
 
 import rx.Subscriber;
@@ -48,7 +51,7 @@ public class RechargedetailsViewModelImpl extends RechargedetailsViewModel {
      * 获取充值详情
      */
     @Override
-    public void getRechargedetails() {
+    public void getRechargedetails(final boolean isfirst) {
 
         activity.showProgressDialog();
 
@@ -66,6 +69,30 @@ public class RechargedetailsViewModelImpl extends RechargedetailsViewModel {
                         Log.i("getRechargedetails","  e  :  "+e.toString());
                         activity.dissmissProgressDialog();
                         mView.getWithdrawalsdetailsError(e);
+
+                        if(e instanceof ConnectException){  // token 过期处理
+
+                            if(!isfirst){
+                                HuaShanApplication.safeExit();
+                                return;
+                            }
+                            RefreshToken.refresh(new RefreshToken.RefreshTokenInterface() {
+                                @Override
+                                public void onSuccess(String s) {
+                                    getRechargedetails(false);
+                                }
+
+                                @Override
+                                public void onFaile(String s) {
+                                    HuaShanApplication.safeExit();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    HuaShanApplication.safeExit();
+                                }
+                            });
+                        }
                     }
 
                     @Override

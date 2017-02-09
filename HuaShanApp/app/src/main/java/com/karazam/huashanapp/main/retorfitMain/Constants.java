@@ -14,11 +14,12 @@ public class Constants {
 
 
     public static final String PORT = "50005";
-    public static String URL = BASEURL + ":" + PORT;
+//    public static final String PORT = "8081";
+    public static final String URL = BASEURL + ":" + PORT;
 
     public static final String PORT1 = "50006";
-//    public static final String PORT1 = "8086";
-    public static String URL1 = BASEURL + ":"+ PORT1;
+//    public static final String PORT1 = "9090";
+    public static final String URL1 = BASEURL + ":"+ PORT1;
 
     public static String PATH = "DASD";
 

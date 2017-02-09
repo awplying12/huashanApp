@@ -184,6 +184,13 @@ public class FinishedAdapter extends RecyclerView.Adapter<FinishedAdapter.ViewHo
         }
     }
 
+    public ArrayList<CompletedBean> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<CompletedBean> list) {
+        this.list = list;
+    }
 
     public interface OnItemClickListener{
 

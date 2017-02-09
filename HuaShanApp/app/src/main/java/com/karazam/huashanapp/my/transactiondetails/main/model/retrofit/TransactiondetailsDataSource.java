@@ -16,6 +16,7 @@ public class TransactiondetailsDataSource extends BaseDataSource{
     TransactiondetailsApi service = retrofit1.create(TransactiondetailsApi.class);
 
     public Observable<BaseReturn<TransactiondetailsBean>> getTransactiondetails(String orderNo,String type){
+
         return service.getTransactiondetails(orderNo,type, HuaShanApplication.token,"XMLHttpRequest");
     }
 }
