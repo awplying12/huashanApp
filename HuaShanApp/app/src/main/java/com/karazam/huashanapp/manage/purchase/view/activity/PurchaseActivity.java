@@ -33,6 +33,7 @@ import com.karazam.huashanapp.manage.purchase.model.databinding.PurchaseEntity;
 import com.karazam.huashanapp.manage.purchase.view.PurchaseView;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModel;
 import com.karazam.huashanapp.manage.purchase.viewmodel.PurchaseViewModelImpl;
+import com.karazam.huashanapp.my.security.checkpaymentpassword.CheckPaymentps;
 import com.karazam.huashanapp.my.transactiondetails.investment.view.activity.InvestmentActivity;
 import com.ogaclejapan.rx.binding.Rx;
 import com.ogaclejapan.rx.binding.RxProperty;
@@ -315,12 +316,33 @@ public class PurchaseActivity extends BaseActivity implements PurchaseView{
      */
     @Override
     public void showPasswordView() {
-        if(passwordView == null){
-            return;
-        }
-        String money = mModel.ed_amountofmoney.getText().toString();
-            passwordView.setMoney("投资金额:"+money);
-            passwordView.show();
+
+        CheckPaymentps checkPaymentps = new CheckPaymentps(this,new CheckPaymentps.CheckPaymentpsInterface() {
+            @Override
+            public void onSuccess() {
+
+                if(passwordView == null){
+                    return;
+                }
+                String money = mModel.ed_amountofmoney.getText().toString();
+                passwordView.setMoney("投资金额:"+money);
+                passwordView.show();
+            }
+
+            @Override
+            public void onFail(String s) {
+                showToast(s);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showToast("网络故障！");
+            }
+        });
+
+
+
+
 
 //        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);

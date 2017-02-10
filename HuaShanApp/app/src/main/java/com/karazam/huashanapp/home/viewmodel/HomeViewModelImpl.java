@@ -193,7 +193,7 @@ public class HomeViewModelImpl extends HomeViewModel {
                 Log.i("getMyInformation","e : "+e.toString());
                 mView.getBaseDataFinish();
 
-                if(e instanceof ConnectException){  // token 过期处理
+                if(e.toString().equals("retrofit2.adapter.rxjava.HttpException: HTTP 302 Internal Server Error")){  // token 过期处理
 
                     if(!isfirst){
                         HuaShanApplication.safeExit();
@@ -250,7 +250,7 @@ public class HomeViewModelImpl extends HomeViewModel {
             public void onError(Throwable e) {
                 Log.i("getMyAssets","e : "+e.toString());
 
-                if(e instanceof ConnectException){  // token 过期处理
+                if(e.toString().equals("retrofit2.adapter.rxjava.HttpException: HTTP 302 Internal Server Error")){  // token 过期处理
 
                     if(!isfirst){
                         HuaShanApplication.safeExit();

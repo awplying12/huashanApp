@@ -89,6 +89,16 @@
                 android:textSize="10dp"/>
 
             <!--手势密码-->
+
+
+            <TextView
+                android:id="@+id/hint_text"
+                app:layout_widthPercent="90%"
+                android:layout_height="wrap_content"
+                app:layout_marginTopPercent="19%"
+                android:layout_gravity="center_horizontal"
+                android:text="如无法修改支付密码，请拨打400-606-5500转7，由客服协助您进行修改"/>
+
             <android.support.percent.PercentFrameLayout
                 android:layout_width="match_parent"
                 app:layout_heightPercent="12%"
@@ -115,15 +125,6 @@
                     android:src="@drawable/goto2_icon"/>
 
             </android.support.percent.PercentFrameLayout>
-
-
-            <TextView
-                android:id="@+id/hint_text"
-                app:layout_widthPercent="90%"
-                android:layout_height="wrap_content"
-                app:layout_marginTopPercent="19%"
-                android:layout_gravity="center_horizontal"
-                android:text="如无法修改支付密码，请拨打400-606-5500转7，由客服协助您进行修改"/>
 
 
         </android.support.percent.PercentFrameLayout>
